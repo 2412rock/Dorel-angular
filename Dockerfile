@@ -24,6 +24,8 @@ FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
+COPY acme.html /etc/nginx/acme.html
+
 # Copy the built Angular app from the builder stage to the nginx web root directory
 COPY --from=builder /app/dist/* /usr/share/nginx/html/
 
