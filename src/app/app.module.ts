@@ -10,6 +10,7 @@ import { GoogleLoginProvider, SocialLoginModule } from '@abacritt/angularx-socia
 import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AcmeComponent } from './components/acme/acme.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AcmeComponent } from './components/acme/acme.component';
         {
           id: GoogleLoginProvider.PROVIDER_ID,
           provider: new GoogleLoginProvider('826065678951-r0fsp9t7nj7g5mshsmvrqtlp6bb2sbo7.apps.googleusercontent.com') // your client id
-        }
+        },
+        {provide: LocationStrategy, useClass: HashLocationStrategy}
       ]
     }
   }],
