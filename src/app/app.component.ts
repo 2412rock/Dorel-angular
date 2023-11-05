@@ -24,10 +24,6 @@ export class AppComponent {
     this.router.navigate(['./login-page'])
   }
 
-  navigateToAcme(){
-    this.router.navigate(['./.well-known/acme-challenge/7wqPKUvgxxkSW9RD7Y5cXtIkOwPI0MBni1oZScfL6sA'])
-  }
-
   async ngOnInit(){
    (await this.dataService.getData()).subscribe(result => {
     console.log("GOT RESULT")
@@ -37,7 +33,7 @@ export class AppComponent {
    this.checkUserLoggedIn();
    if(!this.userIsLoggedIn){
     //this.navigateToLoginPage();
-    this.navigateToAcme();
+    this.navigateToLoginPage();
    }
   }
 }
