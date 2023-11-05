@@ -22,6 +22,8 @@ RUN ng build
 # Use a lightweight Nginx image as a parent image
 FROM nginx:alpine
 
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Copy the built Angular app from the builder stage to the nginx web root directory
 COPY --from=builder /app/dist/* /usr/share/nginx/html/
 
