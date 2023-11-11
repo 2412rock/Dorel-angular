@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from './services/data.service';
 import { Router } from '@angular/router';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +14,10 @@ export class AppComponent {
   data = "no value yet";
   userIsLoggedIn: boolean = false;
 
-  constructor(private dataService: DataService, private router: Router){}
+  constructor(private dataService: DataService, private router: Router, private authService: SocialAuthService){}
 
   checkUserLoggedIn(){
-    // TO DO
-    this.userIsLoggedIn = false;
+    
   }
 
   navigateToLoginPage(){
@@ -30,10 +30,14 @@ export class AppComponent {
     console.log(result)
     this.data = result.name;
    });
-   this.checkUserLoggedIn();
-   if(!this.userIsLoggedIn){
-    //this.navigateToLoginPage();
-    this.navigateToLoginPage();
-   }
+
+
+   this.authService.authState.subscribe((user) => {
+      console.log("USER")
+      console.log(user)
+      if(user == null){
+        this.navigateToLoginPage();
+      }
+    })
   }
 }

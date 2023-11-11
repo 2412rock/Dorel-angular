@@ -10,13 +10,15 @@ import { GoogleLoginProvider, SocialLoginModule } from '@abacritt/angularx-socia
 import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AcmeComponent } from './components/acme/acme.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     HomePageComponent,
-    AcmeComponent
+    AcmeComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,

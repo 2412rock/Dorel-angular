@@ -13,10 +13,7 @@ export class LoginPageComponent {
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private authService: SocialAuthService, private router: Router) {
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+    
   }
   
   ngOnInit(){
@@ -24,14 +21,15 @@ export class LoginPageComponent {
       console.log("USER")
       console.log(user)
       if(user != null){
-        this.router.navigate(['./home-page']);
+        //this.router.navigate(['./home-page']);
       }
     })
   }
 
-  onSubmit() {
-    // Handle login logic here
-    console.log(this.loginForm.value);
+  onClickSignUp(){
+    this.router.navigate(['./register-page'])
   }
+
+
 
 }
