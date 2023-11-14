@@ -11,6 +11,8 @@ import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AcmeComponent } from './components/acme/acme.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { VerifyUserComponentComponent } from './components/verify-user-component/verify-user-component.component';
+import { VerifySuccessComponentComponent } from './components/verify-success-component/verify-success-component.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { RegisterPageComponent } from './components/register-page/register-page.
     LoginPageComponent,
     HomePageComponent,
     AcmeComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    VerifyUserComponentComponent,
+    VerifySuccessComponentComponent
   ],
   imports: [
     BrowserModule,

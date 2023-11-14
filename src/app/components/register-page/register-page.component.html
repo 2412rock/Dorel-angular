@@ -10,19 +10,19 @@
               <form>
 
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Your name"/>
+                  <input [(ngModel)]="name" [ngModelOptions]="{standalone: true}" type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Your name"/>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email"/>
+                  <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email"/>
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password"/>
+                  <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password" />
                 </div>
 
                 <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repeat your password"/>
+                  <input [(ngModel)]="repeatPassword" [ngModelOptions]="{standalone: true}" type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repeat your password"/>
                 </div>
 
                 <div class="form-check d-flex justify-content-center mb-5">
@@ -33,8 +33,15 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <button type="button"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+        
+                  <button type="button" (click)="onClickRegister()"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">{{registerButtonText}}</button>
+                    
+                </div>
+                <!-- Bootstrap spinner -->
+                <div *ngIf="loadingSpinner" class="d-flex justify-content-center align-items-center custom-spinner">
+                  <div class="spinner-border text-primary" role="status">
+                  </div>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"

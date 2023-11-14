@@ -1,26 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseModel } from '../model/response';
+import { SendVerificationCodeModel } from '../model/Requests/SendVerificationCodeModel';
+import { VerifyUserModel } from '../model/Requests/verify-user-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private apiUrl = 'http://dorelapp.xyz:4200'; // Replace this with your API endpoint URL
+  private apiUrl = isDevMode() ? 'http://localhost:4200' : 'http://dorelapp.xyz:4200'; // Replace this with your API endpoint URL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {   }
 
-  // Define methods to make HTTP requests
-
-  // Example GET request
-  async getData() {
-    return this.http.get<ResponseModel>(`${this.apiUrl}/api/GetData`);
+  sendVerificationCode(sendVerificationCodeModel: SendVerificationCodeModel): Observable<ResponseModel>{
+    return this.http.post<ResponseModel>(`${this.apiUrl}/api/sendVerification`, sendVerificationCodeModel);
   }
 
-  // Example POST request
-  postData(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/data`, data);
+  verifyUser(verifyUser: VerifyUserModel): Observable<ResponseModel>{
+    return this.http.post<ResponseModel>(`${this.apiUrl}/api/verifyUser`, verifyUser);
   }
 }

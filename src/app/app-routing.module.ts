@@ -4,11 +4,15 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { AcmeComponent } from './components/acme/acme.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { VerifyUserComponentComponent } from './components/verify-user-component/verify-user-component.component';
+import { VerifySuccessComponentComponent } from './components/verify-success-component/verify-success-component.component';
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent},
   {path: 'home-page', component: HomePageComponent},
   {path: 'register-page', component: RegisterPageComponent},
+  {path: 'verify-page', component: VerifyUserComponentComponent},
+  {path: 'verify-success', component: VerifySuccessComponentComponent},
   {path: '.well-known/acme-challenge/7wqPKUvgxxkSW9RD7Y5cXtIkOwPI0MBni1oZScfL6sA', component: AcmeComponent}
 ];
 

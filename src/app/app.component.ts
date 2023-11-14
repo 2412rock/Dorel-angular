@@ -25,13 +25,6 @@ export class AppComponent {
   }
 
   async ngOnInit(){
-   (await this.dataService.getData()).subscribe(result => {
-    console.log("GOT RESULT")
-    console.log(result)
-    this.data = result.name;
-   });
-
-
    this.authService.authState.subscribe((user) => {
       console.log("USER")
       console.log(user)
