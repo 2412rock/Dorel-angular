@@ -26,6 +26,7 @@ export class LoginPageComponent {
     })
   }
 
+
   onClickSignUp(){
     this.router.navigate(['./register-page'])
   }

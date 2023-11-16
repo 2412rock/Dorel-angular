@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-verify-success-component',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./verify-success-component.component.css']
 })
 export class VerifySuccessComponentComponent {
+  
+  constructor(private router: Router){}
+
+  onClickGoBackToLogin(){
+    this.router.navigate(['./login-page'])
+  }
 
 }
