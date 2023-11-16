@@ -10,7 +10,7 @@ import { VerifyUserModel } from '../model/Requests/verify-user-model';
 })
 export class DataService {
 
-  private apiUrl = isDevMode() ? 'http://localhost:4200' : 'http://dorelapp.xyz:4200'; // Replace this with your API endpoint URL
+  private apiUrl = isDevMode() ? 'https://localhost:4200' : 'https://dorelapp.xyz:4200'; // Replace this with your API endpoint URL
 
   constructor(private http: HttpClient) {   }
 
