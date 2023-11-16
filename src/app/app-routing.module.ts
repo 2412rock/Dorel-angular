@@ -6,6 +6,7 @@ import { AcmeComponent } from './components/acme/acme.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { VerifyUserComponentComponent } from './components/verify-user-component/verify-user-component.component';
 import { VerifySuccessComponentComponent } from './components/verify-success-component/verify-success-component.component';
+import { BasicSearchPageComponent } from './components/basic-search-page/basic-search-page.component';
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'register-page', component: RegisterPageComponent},
   {path: 'verify-page', component: VerifyUserComponentComponent},
   {path: 'verify-success', component: VerifySuccessComponentComponent},
+  {path: 'basic-search-page', component: BasicSearchPageComponent},
   {path: '.well-known/acme-challenge/7wqPKUvgxxkSW9RD7Y5cXtIkOwPI0MBni1oZScfL6sA', component: AcmeComponent}
 ];
 

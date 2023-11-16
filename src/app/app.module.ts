@@ -13,6 +13,7 @@ import { AcmeComponent } from './components/acme/acme.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { VerifyUserComponentComponent } from './components/verify-user-component/verify-user-component.component';
 import { VerifySuccessComponentComponent } from './components/verify-success-component/verify-success-component.component';
+import { BasicSearchPageComponent } from './components/basic-search-page/basic-search-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { VerifySuccessComponentComponent } from './components/verify-success-com
     AcmeComponent,
     RegisterPageComponent,
     VerifyUserComponentComponent,
-    VerifySuccessComponentComponent
+    VerifySuccessComponentComponent,
+    BasicSearchPageComponent
   ],
   imports: [
     BrowserModule,

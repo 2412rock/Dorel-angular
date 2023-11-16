@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { SendVerificationCodeModel } from 'src/app/model/Requests/SendVerificationCodeModel';
 import { DataService } from 'src/app/services/data.service';
+import { ValidationService } from 'src/app/services/validation.service';
 
 @Component({
   selector: 'app-register-page',
@@ -19,7 +20,7 @@ export class RegisterPageComponent {
   public loadingSpinner: boolean = false;
   public registerButtonText: string = "Register"
 
-  constructor(private router: Router, private dataService: DataService){
+  constructor(private router: Router, private dataService: DataService, private validationService: ValidationService){
 
   }
 
@@ -27,20 +28,12 @@ export class RegisterPageComponent {
     return this.name != null && this.name.trim().length > 0;
   }
 
-  isValidEmail(): boolean {
-    // Regular expression for a basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Test if the email string matches the regex pattern
-    return emailRegex.test(this.email);
-  }
-
   isValidPassword(){
     return this.password == this.repeatPassword;
   }
 
   async onClickRegister(){
-    if(this.isValidName() && this.isValidEmail() && this.isValidPassword()){
+    if(this.isValidName() && this.validationService.isValidEmail(this.email) && this.isValidPassword()){
       this.loadingSpinner = true;
       this.registerButtonText = "Loading.."
       console.log("Evrything checks out")
