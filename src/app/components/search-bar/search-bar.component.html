@@ -1,0 +1,35 @@
+<div class="search-bars-container">
+    <div class="display-flex">
+        <div [ngClass]="{'border-radius-left-bottom': !dropdownServiciiVisible}" class="input-and-clear-btn flex-serviciu input-container border-radius-left-top">
+            <div class="space-between">
+                <input type="text" (click)="dropdownLocationVisible = false" class="" [formControl]="textInputControlServicii" placeholder="Cauta un serviciu"/>
+                <div>
+                    <i (click)="clickClearServicii()" class="fa-solid fa-x"></i>
+                </div>
+            </div>
+        </div>
+
+        <div [ngClass]="{'border-radius-right-bottom': !dropdownLocationVisible}" class="input-and-clear-btn flex-locatie input-container border-radius-right-top">
+            <div class="space-between">
+                <input type="text" (click)="dropdownServiciiVisible = false" class="" [formControl]="textInputControlLocation" placeholder="Cauta o locatie"/>
+                <div>
+                    <i (click)="clickClearLocatie()" class="fa-solid fa-x"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <input [ngClass]="{'border-radius-right-bottom': !dropdownLocationVisible}" type="text" (click)="dropdownServiciiVisible = false" class="flex-locatie input-container border-radius-right-top" [formControl]="textInputControlLocation" placeholder="Locatie"/> -->
+    </div>
+</div>
+<div class="search-bars-container">
+    <div class="display-flex">
+        <div [ngStyle]="{'visibility': dropdownServiciiVisible ? 'visible' : 'hidden'}" class="flex-serviciu input-container border-radius-left-bottom input-container border-radius-right-bottom">
+            <div class="dropdown-items-header">Suggested results</div>
+            <div class="dropdown-item" *ngFor="let item of filteredResultsServicii">{{item}}</div>
+        </div>
+        <div [ngStyle]="{'visibility': dropdownLocationVisible ? 'visible' : 'hidden'}" class="flex-locatie input-container">
+            <div class="dropdown-items-header">Suggested results</div>
+            <div class="dropdown-item" *ngFor="let item of filteredResultsLocatie">{{item}}</div>
+        </div>
+    </div>
+</div>

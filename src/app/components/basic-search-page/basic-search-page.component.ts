@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./basic-search-page.component.css']
 })
 export class BasicSearchPageComponent {
-
+  public servicii: string[] = ['electrictian', 'menajera', 'curatenie'];
 }

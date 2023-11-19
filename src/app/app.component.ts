@@ -25,12 +25,14 @@ export class AppComponent {
   }
 
   async ngOnInit(){
-   this.authService.authState.subscribe((user) => {
-      console.log("USER")
-      console.log(user)
-      if(user == null){
-        this.navigateToLoginPage();
-      }
-    })
+  //  this.authService.authState.subscribe((user) => {
+  //     console.log("USER")
+  //     console.log(user)
+  //     if(user == null){
+  //       this.navigateToLoginPage();
+  //     }
+  //   })
+  // }
+  this.router.navigate(["./basic-search-page"]);
   }
 }

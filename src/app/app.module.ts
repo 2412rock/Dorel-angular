@@ -14,6 +14,13 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { VerifyUserComponentComponent } from './components/verify-user-component/verify-user-component.component';
 import { VerifySuccessComponentComponent } from './components/verify-success-component/verify-success-component.component';
 import { BasicSearchPageComponent } from './components/basic-search-page/basic-search-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BoldPipe } from './pipes/bold.pipe';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +31,9 @@ import { BasicSearchPageComponent } from './components/basic-search-page/basic-s
     RegisterPageComponent,
     VerifyUserComponentComponent,
     VerifySuccessComponentComponent,
-    BasicSearchPageComponent
+    BasicSearchPageComponent,
+    SearchBarComponent, 
+    BoldPipe
   ],
   imports: [
     BrowserModule,
@@ -33,7 +42,11 @@ import { BasicSearchPageComponent } from './components/basic-search-page/basic-s
     FormsModule,
     ReactiveFormsModule,
     SocialLoginModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',
