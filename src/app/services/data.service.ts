@@ -1,7 +1,7 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ResponseModel } from '../model/response';
+import { Maybe} from '../model/maybe';
 import { SendVerificationCodeModel } from '../model/Requests/SendVerificationCodeModel';
 import { VerifyUserModel } from '../model/Requests/verify-user-model';
 import { LoginModel } from '../model/Requests/login-model';
@@ -16,19 +16,19 @@ export class DataService {
 
   constructor(private http: HttpClient) {   }
 
-  loginGoogle(loginModel: LoginGoogleRequest): Observable<ResponseModel>{
-    return this.http.post<ResponseModel>(`${this.apiUrl}/api/loginGoogle`, loginModel);
+  loginGoogle(loginModel: LoginGoogleRequest): Observable<Maybe>{
+    return this.http.post<Maybe>(`${this.apiUrl}/api/loginGoogle`, loginModel);
   }
 
-  login(loginModel: LoginModel): Observable<ResponseModel>{
-    return this.http.post<ResponseModel>(`${this.apiUrl}/api/login`, loginModel);
+  login(loginModel: LoginModel): Observable<Maybe>{
+    return this.http.post<Maybe>(`${this.apiUrl}/api/login`, loginModel);
   }
 
-  sendVerificationCode(sendVerificationCodeModel: SendVerificationCodeModel): Observable<ResponseModel>{
-    return this.http.post<ResponseModel>(`${this.apiUrl}/api/sendVerification`, sendVerificationCodeModel);
+  sendVerificationCode(sendVerificationCodeModel: SendVerificationCodeModel): Observable<Maybe>{
+    return this.http.post<Maybe>(`${this.apiUrl}/api/sendVerification`, sendVerificationCodeModel);
   }
 
-  verifyUser(verifyUser: VerifyUserModel): Observable<ResponseModel>{
-    return this.http.post<ResponseModel>(`${this.apiUrl}/api/verifyUser`, verifyUser);
+  verifyUser(verifyUser: VerifyUserModel): Observable<Maybe>{
+    return this.http.post<Maybe>(`${this.apiUrl}/api/verifyUser`, verifyUser);
   }
 }

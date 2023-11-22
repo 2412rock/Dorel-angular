@@ -16,6 +16,8 @@ export class SearchBarComponent {
   public filteredResultsLocatie: string[];
   public dropdownServiciiVisible: boolean = false;
   public dropdownLocationVisible: boolean = false;
+  public selectedService: string;
+  public selectedLocation: string;
 
   constructor() { }
 
@@ -57,6 +59,18 @@ export class SearchBarComponent {
 
   clickClearLocatie(){
     this.textInputControlLocation.reset();
+    this.dropdownLocationVisible = false;
+  }
+
+  selectService(val: string){
+    this.selectedService = val;
+    this.textInputControlServicii.setValue(val);
+    this.dropdownServiciiVisible = false;
+  }
+
+  selectLocationval(val:string){
+    this.selectedLocation = val;
+    this.textInputControlLocation.setValue(val);
     this.dropdownLocationVisible = false;
   }
 }

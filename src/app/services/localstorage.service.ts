@@ -1,0 +1,26 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LocalstorageService {
+
+  constructor() { }
+
+  setUserData(accessToken: string, refreshToken:string, name:string, profilePic: string,
+     isEmailLogin: string, profilePicContent: string){
+    localStorage.setItem('accessToken', accessToken );
+    localStorage.setItem('refreshToken', refreshToken );
+    localStorage.setItem('name', name );
+    localStorage.setItem('isEmailLogin', isEmailLogin);
+    localStorage.setItem('profilePicContent', profilePicContent);
+  }
+
+  deleteUserData(){
+   localStorage.removeItem('accessToken' );
+   localStorage.removeItem('refreshToken');
+   localStorage.removeItem('name');
+   localStorage.removeItem('isEmailLogin');
+   localStorage.removeItem('profilePicContent');
+ }
+}

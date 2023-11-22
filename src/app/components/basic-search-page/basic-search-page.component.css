@@ -11,108 +11,83 @@
     display: block;
     justify-content: center;
     align-items: center;
-
 }
 
-.search {
-    background-color: #fff;
-    padding: 4px;
-    border-radius: 5px
-}
-
-.search-1 {
-    position: relative;
-    width: 100%
-}
-
-.search-1 input {
-    height: 45px;
-    border: none;
-    width: 100%;
-    padding-left: 34px;
-    padding-right: 10px;
-    border-right: 2px solid #eee
-}
-
-.search-1 input:focus {
-    border-color: none;
-    box-shadow: none;
-    outline: none
-}
-
-.search-1 i {
-    position: absolute;
-    top: 12px;
-    left: 5px;
-    font-size: 24px;
-    color: #eee
-}
-
-::placeholder {
-    color: #3b3838;
-    opacity: 1
-}
-
-.search-2 {
-    position: relative;
-    width: 100%
-}
-
-.search-2 input {
-    height: 45px;
-    border: none;
-    width: 100%;
-    padding-left: 18px;
-    padding-right: 100px
-}
-
-.search-2 input:focus {
-    border-color: none;
-    box-shadow: none;
-    outline: none
-}
-
-.search-2 i {
-    position: absolute;
-    top: 12px;
-    left: -10px;
-    font-size: 24px;
-    color: #eee
-}
-
-.search-2 button {
-    position: absolute;
-    right: 1px;
-    top: 0px;
-    border: none;
-    height: 45px;
-    background-color: red;
-    color: #fff;
-    width: 90px;
-    border-radius: 4px
-}
-
-.servicii-dropdown{
-    width: 2em;
+.gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84fab0;
     
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
 }
 
-@media (max-width:800px) {
-    .search-1 input {
-        border-right: none;
-        border-bottom: 1px solid #eee
-    }
+.login-btn{
+    margin-right: 1em;
+    margin-top: 0.6em;
+}
 
-    .search-2 i {
-        left: 4px
-    }
+.top{
+    display: flex;
+    justify-content: end;
+}
 
-    .search-2 input {
-        padding-left: 34px
-    }
+.profile-pic{
+    border-radius: 50%; /* Makes the image round */
+    overflow: hidden;
+    width: 3em;
+    height: auto;
+}
 
-    .search-2 button {
-        height: 37px;
-        top: 5px
-    }
+.user-info{
+    display: flex;
+    
+    align-items: center;
+    margin-top: 1em;
+    margin-right: 1em;
+
+}
+
+.my-account{
+    font-size: medium;
+    margin: 0;
+    margin-left: 0.6em;
+    cursor: pointer;
+}
+
+.account-dropdown-icon{
+    margin-left: 0.2em;
+}
+
+.account-dropdown{
+    margin-right: 1em;
+    background-color: white;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    padding: 6px 16px;
+    width: 8em;
+    font-size: small;
+    line-height: 34px;
+}
+
+p{
+    margin: 0;
+}
+
+.dropdown-item-p{
+    margin-right: 0.5em;
+}
+
+.account-dropdown-item{
+    cursor: pointer;
+    width:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-dropdown-item:hover{
+    background-color: rgb(224, 225, 225);
 }

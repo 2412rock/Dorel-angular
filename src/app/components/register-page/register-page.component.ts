@@ -43,7 +43,7 @@ export class RegisterPageComponent {
       sendVerificationCodeModel.password = this.password;
 
       await firstValueFrom(this.dataService.sendVerificationCode(sendVerificationCodeModel)).then(response => {
-        if(response.message == "Verification sent succesfully"){
+        if(response.isSuccess){
           const params = { email: this.email };
           this.router.navigate(['./verify-page'], { queryParams: params })
         }

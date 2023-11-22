@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div [ngClass]="{'border-radius-right-bottom': !dropdownLocationVisible}" class="input-and-clear-btn flex-locatie input-container border-radius-right-top">
+        <div class="input-and-clear-btn flex-locatie input-container">
             <div class="space-between">
                 <input type="text" (click)="dropdownServiciiVisible = false" class="" [formControl]="textInputControlLocation" placeholder="Cauta o locatie"/>
                 <div>
@@ -17,6 +17,9 @@
                 </div>
             </div>
         </div>
+
+        <button type="button"
+                    class="search-btn">Search</button>
         
         <!-- <input [ngClass]="{'border-radius-right-bottom': !dropdownLocationVisible}" type="text" (click)="dropdownServiciiVisible = false" class="flex-locatie input-container border-radius-right-top" [formControl]="textInputControlLocation" placeholder="Locatie"/> -->
     </div>
@@ -25,11 +28,19 @@
     <div class="display-flex">
         <div [ngStyle]="{'visibility': dropdownServiciiVisible ? 'visible' : 'hidden'}" class="flex-serviciu input-container border-radius-left-bottom input-container border-radius-right-bottom">
             <div class="dropdown-items-header">Suggested results</div>
-            <div class="dropdown-item" *ngFor="let item of filteredResultsServicii">{{item}}</div>
+            <div *ngFor="let item of filteredResultsServicii">
+                <div (click)="selectService(item)" class="dropdown-item">{{item}}</div>
+            </div>
         </div>
         <div [ngStyle]="{'visibility': dropdownLocationVisible ? 'visible' : 'hidden'}" class="flex-locatie input-container">
             <div class="dropdown-items-header">Suggested results</div>
-            <div class="dropdown-item" *ngFor="let item of filteredResultsLocatie">{{item}}</div>
+            <div *ngFor="let item of filteredResultsLocatie">
+                <div (click)="selectLocationval(item)" class="dropdown-item">
+                    {{item}}
+                </div>
+            </div>
         </div>
+        <button type="button"
+                    class="search-btn hidden">Search</button>
     </div>
 </div>

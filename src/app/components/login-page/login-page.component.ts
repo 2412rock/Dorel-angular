@@ -8,6 +8,7 @@ import { ValidationService } from 'src/app/services/validation.service';
 import { LoginModel } from 'src/app/model/Requests/login-model';
 import { firstValueFrom } from 'rxjs';
 import { LoginGoogleRequest } from 'src/app/model/Requests/login-google-model';
+import { LocalstorageService } from 'src/app/services/localstorage.service';
 
 @Component({
   selector: 'app-login-page',
@@ -23,7 +24,8 @@ export class LoginPageComponent {
      private authService: SocialAuthService,
      private router: Router,
      private dataService: DataService,
-     private validationService: ValidationService) { }
+     private validationService: ValidationService,
+     private localStorageService: LocalstorageService) { }
   
 
   ngOnInit(){
@@ -33,8 +35,10 @@ export class LoginPageComponent {
         var model = new LoginGoogleRequest();
         model.email = user.email;
         model.name = user.lastName + " " + user.firstName;
+        model.idToken = user.idToken;;
         firstValueFrom(this.dataService.loginGoogle(model)).then(res => {
-            if(res.message === "ok"){
+            if(res.isSuccess){
+              this.localStorageService.setUserData(res.data[0], res.data[1], model.name, "", "false", user.photoUrl);
               this.router.navigate(['./basic-search-page']);
             }
         }).catch(e => {
@@ -53,7 +57,8 @@ export class LoginPageComponent {
       model.email = this.email;
       model.password = this.password;
       firstValueFrom(this.dataService.login(model)).then(res => {
-        if(res.message === "Login success"){
+        if(res.isSuccess){
+          this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "");
           this.router.navigate(['./basic-search-page']);
         }
       }).catch(e => {

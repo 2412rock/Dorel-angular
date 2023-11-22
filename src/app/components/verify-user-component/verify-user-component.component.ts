@@ -30,7 +30,7 @@ export class VerifyUserComponentComponent {
       model.verificationCode = this.verificationCode;
 
       firstValueFrom(this.dataService.verifyUser(model)).then(res => {
-        if(res.message == "Verification success"){
+        if(res.isSuccess){
           this.router.navigate(['./verify-success'])
         }
       }).catch(err => {
