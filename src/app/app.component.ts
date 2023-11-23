@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DataService } from './services/data.service';
 import { Router } from '@angular/router';
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 
@@ -14,7 +13,7 @@ export class AppComponent {
   data = "no value yet";
   userIsLoggedIn: boolean = false;
 
-  constructor(private dataService: DataService, private router: Router, private authService: SocialAuthService){}
+  constructor(private router: Router, private authService: SocialAuthService){}
 
   checkUserLoggedIn(){
     

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, firstValueFrom, map, startWith } from 'rxjs';
+import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
+import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
+import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -10,8 +14,6 @@ import { Observable, map, startWith } from 'rxjs';
 export class SearchBarComponent {
   textInputControlServicii = new FormControl('');
   textInputControlLocation = new FormControl('');
-  public mockValuesServicii: string[] = ["Electrician", "Instalator", "Menajera", "Abc", "Aaaa"];
-  public mockValuesLocatie: string[] = ["Arad", "Deva", "Timisoara", "Bucuresti", "Cluj"];
   public filteredResultsServicii: string[];
   public filteredResultsLocatie: string[];
   public dropdownServiciiVisible: boolean = false;
@@ -19,7 +21,7 @@ export class SearchBarComponent {
   public selectedService: string;
   public selectedLocation: string;
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.textInputControlServicii.valueChanges.subscribe(value => {
@@ -45,12 +47,29 @@ export class SearchBarComponent {
   }
 
   filterResultsServicii(startsWith: string){
-    this.filteredResultsServicii = this.mockValuesServicii.filter(val => val.toLowerCase().startsWith((startsWith as string).toLowerCase()))
+    var req = new StartsWithRequest();
+    req.startsWith = startsWith;
+    firstValueFrom(this.dataService.getServicii(req)).then(e => {
+      let dataValues = e.data as DBServiciuModel[];
+      let values: string[] = [];
+      dataValues.forEach(e => {
+        values.push(e.name);
+      });
+      this.filteredResultsServicii = values;
+    })
   }
 
   filterResultsLocatie(startsWith: string){
-    this.filteredResultsLocatie = this.mockValuesLocatie.filter(val => val.toLowerCase().startsWith((startsWith as string).toLowerCase()))
-  }
+    var req = new StartsWithRequest();
+    req.startsWith = startsWith;
+    firstValueFrom(this.dataService.getJudete(req)).then(e => {
+      let dataValues = e.data as DBJudetModel[];
+      let values: string[] = [];
+      dataValues.forEach(e => {
+        values.push(e.name);
+      });
+      this.filteredResultsLocatie = values;
+    })  }
 
   clickClearServicii(){
     this.textInputControlServicii.reset();

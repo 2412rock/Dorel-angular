@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { VerifyUserModel } from 'src/app/model/Requests/verify-user-model';
-import { DataService } from 'src/app/services/data.service';
+import {LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-verify-user-component',
@@ -14,7 +14,7 @@ export class VerifyUserComponentComponent {
   public email: string;
   public loadingSpinner: boolean = false;
 
-  constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router){}
+  constructor(private route: ActivatedRoute, private loginService: LoginService, private router: Router){}
 
   ngOnInit(){
     this.route.queryParams.subscribe(params => {
@@ -29,7 +29,7 @@ export class VerifyUserComponentComponent {
       model.email = this.email;
       model.verificationCode = this.verificationCode;
 
-      firstValueFrom(this.dataService.verifyUser(model)).then(res => {
+      firstValueFrom(this.loginService.verifyUser(model)).then(res => {
         if(res.isSuccess){
           this.router.navigate(['./verify-success'])
         }

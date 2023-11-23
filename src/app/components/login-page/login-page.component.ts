@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import {LoginService } from 'src/app/services/login.service';
 import { ValidationService } from 'src/app/services/validation.service';
 import { LoginModel } from 'src/app/model/Requests/login-model';
 import { firstValueFrom } from 'rxjs';
@@ -23,7 +23,7 @@ export class LoginPageComponent {
   constructor(private fb: FormBuilder,
      private authService: SocialAuthService,
      private router: Router,
-     private dataService: DataService,
+     private loginService: LoginService,
      private validationService: ValidationService,
      private localStorageService: LocalstorageService) { }
   
@@ -36,7 +36,7 @@ export class LoginPageComponent {
         model.email = user.email;
         model.name = user.lastName + " " + user.firstName;
         model.idToken = user.idToken;;
-        firstValueFrom(this.dataService.loginGoogle(model)).then(res => {
+        firstValueFrom(this.loginService.loginGoogle(model)).then(res => {
             if(res.isSuccess){
               this.localStorageService.setUserData(res.data[0], res.data[1], model.name, "", "false", user.photoUrl);
               this.router.navigate(['./basic-search-page']);
@@ -56,7 +56,7 @@ export class LoginPageComponent {
       var model = new LoginModel();
       model.email = this.email;
       model.password = this.password;
-      firstValueFrom(this.dataService.login(model)).then(res => {
+      firstValueFrom(this.loginService.login(model)).then(res => {
         if(res.isSuccess){
           this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "");
           this.router.navigate(['./basic-search-page']);

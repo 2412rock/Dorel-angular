@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { SendVerificationCodeModel } from 'src/app/model/Requests/SendVerificationCodeModel';
-import { DataService } from 'src/app/services/data.service';
+import {LoginService } from 'src/app/services/login.service';
 import { ValidationService } from 'src/app/services/validation.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class RegisterPageComponent {
   public loadingSpinner: boolean = false;
   public registerButtonText: string = "Register"
 
-  constructor(private router: Router, private dataService: DataService, private validationService: ValidationService){
+  constructor(private router: Router, private loginService: LoginService, private validationService: ValidationService){
 
   }
 
@@ -42,7 +42,7 @@ export class RegisterPageComponent {
       sendVerificationCodeModel.name = this.name;
       sendVerificationCodeModel.password = this.password;
 
-      await firstValueFrom(this.dataService.sendVerificationCode(sendVerificationCodeModel)).then(response => {
+      await firstValueFrom(this.loginService.sendVerificationCode(sendVerificationCodeModel)).then(response => {
         if(response.isSuccess){
           const params = { email: this.email };
           this.router.navigate(['./verify-page'], { queryParams: params })
