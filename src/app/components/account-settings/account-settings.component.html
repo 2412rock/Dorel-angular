@@ -1,0 +1,85 @@
+<section class="vh-100 bg-image">
+    <div class="mask d-flex h-100 gradient-custom-3">
+        <div class="container justify-content-center align-items-center">
+            <div class="row justify-content-center align-items-center h-100 center-card">
+                <div class="justify-content-center align-items-center center-card">
+                    <div class="card size-100" style="border-radius: 15px;">
+                        <div class="card-body justify-content margin-0">
+                            <!-- Sidebar -->
+                            <div class="sidebar">
+                                <nav>
+                                    <div>
+                                        <div class="list-group list-group-flush">
+                                            <div [ngClass]="{'active' : menuItemSelected == 0}" (click)="selectMenuItem(0)" class="list-group-item list-group-item-action py-2 ripple"
+                                                aria-current="true">
+                                                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span
+                                                    class="menu-item-text">Servicii oferite</span>
+                                            </div>
+                                            <div (click)="selectMenuItem(1)" 
+                                            [ngClass]="{'active' : menuItemSelected == 1}" class="list-group-item list-group-item-action py-2 ripple">
+                                                <i class="fas fa-chart-area fa-fw me-3"></i><span
+                                                    class="menu-item-text">Setari acont</span>
+                                            </div>
+                                            <div (click)="selectMenuItem(2)" [ngClass]="{'active' : menuItemSelected == 2}" class="list-group-item list-group-item-action py-2 ripple"><i
+                                                    class="fas fa-lock fa-fw me-3"></i><span
+                                                    class="menu-item-text">Password</span></div>
+                                            <div (click)="selectMenuItem(3)" [ngClass]="{'active' : menuItemSelected == 3}" class="list-group-item list-group-item-action py-2 ripple"><i
+                                                    class="fas fa-chart-line fa-fw me-3"></i><span
+                                                    class="menu-item-text">Analytics</span></div>
+                                            <div (click)="selectMenuItem(4)" [ngClass]="{'active' : menuItemSelected == 4}" class="list-group-item list-group-item-action py-2 ripple">
+                                                <i class="fas fa-chart-pie fa-fw me-3"></i><span
+                                                    class="menu-item-text">SEO</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Sidebar -->
+                            <div class="option-menu">
+                                <div class="toggle-serviciu-available-container">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="toggleSwitch" [(ngModel)]="isToggleEnabled">
+                                        <label class="form-check-label" for="toggleSwitch">Ofera servicii</label>
+                                      </div>
+                                </div>
+                                <div class="servicii-and-judete">
+                                    <p class="margin-right">Selecteaza serviciile pe care vrei sa le oferi. In meniul urmator va trebui ca pentru fiecare serviciu oferit sa adaugi o descriere si una sau mai multe imagini pentru viitori tai clienti.</p>
+                                    <div class="margin-bottom margin-right">
+                                        <app-generic-search-bar (selectedValueEmitter)="getSelectedValueServicii($event)" (typedValue)="getServiciuTypeValue($event)" [searchResultEventEmitter]="serviciiSearchResultEventEmitter"></app-generic-search-bar>
+                                        <div class="selected-items">
+                                            <div *ngFor="let item of selectedServicii">
+                                                <div class="selected-item">
+                                                    <p class="selected-item-text">{{item}}</p>
+                                                    <div class="selected-item-delete-div" (click)="removeSelectedServiciu(item)">
+                                                        <i class="fa-solid fa-x selected-item-delete-icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="margin-right">Selecteaza judetle unde doresti sa prestezi serviciile. Clientii te vor gasi in functie de judetule pe care le selectezi</p>
+                                    <div class="margin-bottom margin-right">
+                                        <app-generic-search-bar (selectedValueEmitter)="getSelectedValueJudete($event)"></app-generic-search-bar>
+                                        <div class="selected-items">
+                                            <div *ngFor="let item of selectedJudete">
+                                                <div class="selected-item">
+                                                    <p class="selected-item-text">{{item}}</p>
+                                                    <div class="selected-item-delete-div" (click)="removeSelectedJudet(item)">
+                                                        <i class="fa-solid fa-x selected-item-delete-icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -20,6 +20,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BoldPipe } from './pipes/bold.pipe';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { GenericSearchBarComponent } from './components/generic-search-bar/generic-search-bar.component';
 
 
 @NgModule({
@@ -33,7 +36,7 @@ import { BoldPipe } from './pipes/bold.pipe';
     VerifySuccessComponentComponent,
     BasicSearchPageComponent,
     SearchBarComponent, 
-    BoldPipe
+    BoldPipe, SearchResultsComponent, AccountSettingsComponent, GenericSearchBarComponent
   ],
   imports: [
     BrowserModule,

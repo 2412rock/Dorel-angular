@@ -14,7 +14,7 @@ export class BasicSearchPageComponent {
   public loggedInEmail: boolean;
   public profilePicContent: string;
   public displayPlaceholder: boolean = false;
-  public accountDropDown: string[] = ["Log out"];
+  public accountDropDown: string[] = ["Log out", "Account options"];
   public showAccountDropdown: boolean = false;
 
   constructor(private router: Router, private localstorageService: LocalstorageService){}
@@ -52,5 +52,9 @@ export class BasicSearchPageComponent {
 
   clickLogin(){
     this.router.navigate(["./login-page"])
+  }
+
+  clickAccountSettings(){
+    this.router.navigate(['./account-settings'])
   }
 }

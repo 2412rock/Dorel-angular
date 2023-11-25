@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, firstValueFrom, map, startWith } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
@@ -21,7 +22,7 @@ export class SearchBarComponent {
   public selectedService: string;
   public selectedLocation: string;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit(): void {
     this.textInputControlServicii.valueChanges.subscribe(value => {
@@ -91,5 +92,9 @@ export class SearchBarComponent {
     this.selectedLocation = val;
     this.textInputControlLocation.setValue(val);
     this.dropdownLocationVisible = false;
+  }
+
+  clickSearch(){
+    this.router.navigate(["./search-results-page"])
   }
 }

@@ -11,8 +11,9 @@
     <div *ngIf="showAccountDropdown" class="top">
         <div class="account-dropdown">
             <div class="account-dropdown-item" *ngFor="let item of accountDropDown">
-                <p (click)="clickLogout()" class="dropdown-item-p"> {{item}} </p>
-                <i class="logout-icon" *ngIf="item==='Log out'" class="fa-solid fa-arrow-right-from-bracket"></i>
+                <p *ngIf="item === 'Log out'" (click)="clickLogout()" class="dropdown-item-p"> {{item}} </p>
+                <i class="logout-icon" *ngIf="item === 'Log out'" class="fa-solid fa-arrow-right-from-bracket"></i>
+                <p (click)="clickAccountSettings()" *ngIf="item != 'Log out'" class="dropdown-item-p">{{item}}</p>
             </div>
         </div>
     </div>
