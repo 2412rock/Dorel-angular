@@ -1,4 +1,10 @@
 import { Component, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
+import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
+import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-account-settings',
@@ -7,35 +13,17 @@ import { Component, EventEmitter } from '@angular/core';
 })
 export class AccountSettingsComponent {
   public menuItemSelected: number;
-  public isToggleEnabled: boolean;
-  public searchTermServiciu: string;
-  public searchResultServiciu: string[] = ["alo" ,"alo2"];
-  public selectedServicii: string[] = [];
-  public selectedJudete: string[] = [];
-  public serviciiSearchResultEventEmitter: EventEmitter<string[]> = new EventEmitter<string[]>();
+
+
+  constructor(private router: Router){}
 
   selectMenuItem(index: number){
     this.menuItemSelected = index;
+    if(index == 0){
+      this.router.navigate(['./account-settings/assign-servicii']);
+    }
   }
 
-  removeSelectedJudet(val: string){
-    this.selectedJudete = this.selectedJudete.filter(e => e !== val);
-  }
 
-  removeSelectedServiciu(val: string){
-    this.selectedServicii = this.selectedServicii.filter(e => e !== val);
-  }
-
-  getSelectedValueServicii(element: string){
-    this.selectedServicii.push(element);
-  }
-
-  getSelectedValueJudete(element: string){
-    this.selectedJudete.push(element);
-  }
-
-  getServiciuTypeValue(val: string){
-    console.log("GOT TYPED VALUE FROM SEARCH " + val)
-    this.serviciiSearchResultEventEmitter.emit(['first val', 'second val'])
-  }
+  
 }

@@ -10,31 +10,34 @@ export class GenericSearchBarComponent {
   @Output() selectedValueEmitter = new EventEmitter<string>();
   @Output() typedValue = new EventEmitter<string>();
   @Input() searchResultEventEmitter: EventEmitter<string[]>;
+  @Input() placeHolderText: string;
 
   public textInput: FormControl = new FormControl('');
   public dropdownVisible: boolean = false;
   public filteredResults: string[] = [];
+  public typedValueString: string;
 
   ngOnInit(): void {
     this.searchResultEventEmitter.subscribe(e => {
       console.log("GOT SEARCH VALUE")
-      this.filteredResults = e;
+      if(e.length == 0){
+        this.filteredResults = [this.typedValueString];
+      }else{
+        this.filteredResults = e;
+      }
+      
     });
     this.textInput.valueChanges.subscribe(value => {
       if(value != null){
         this.typedValue.emit(value);
+        this.typedValueString = value;
         this.dropdownVisible = true;
-        this.filterResultsServicii(value);
       }
       var str = value as string;
       if(str.length == 0 || str.trim().length == 0){
         this.dropdownVisible = false;
       }
     });
-  }
-
-  filterResultsServicii(startsWith: string){
-
   }
 
   clearSerchbar(){

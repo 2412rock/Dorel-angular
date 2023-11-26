@@ -23,6 +23,8 @@ import { BoldPipe } from './pipes/bold.pipe';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { GenericSearchBarComponent } from './components/generic-search-bar/generic-search-bar.component';
+import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
+import { AddDescritionImagesComponent } from './components/add-descrition-images/add-descrition-images.component';
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import { GenericSearchBarComponent } from './components/generic-search-bar/gener
     VerifySuccessComponentComponent,
     BasicSearchPageComponent,
     SearchBarComponent, 
-    BoldPipe, SearchResultsComponent, AccountSettingsComponent, GenericSearchBarComponent
+    BoldPipe, SearchResultsComponent, AccountSettingsComponent, GenericSearchBarComponent, AssignServiciiComponent, AddDescritionImagesComponent
   ],
   imports: [
     BrowserModule,
