@@ -1,3 +1,36 @@
-<div>
+<div style="margin-left: 2em;">
+    <div class="selecteaza-serviciile">
+        <p style="font-size: mediumx;">Selecteaza serviciile pentru care vrei sa adaugi imaginile si descriera</p>
+        <div class="selected-items">
+            <div *ngFor="let item of servicii">
+                <div (click)="updateSelectedServicii(item)" [ngClass]="{ 'serviciu-selected': serviciiSelected.includes(item), 'serviciu-not-selected': !serviciiSelected.includes(item)}" class="selected-item">
+                    <p class="selected-item-text">{{item}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="add-images">
+        <form (submit)="onSubmit()">
+            <input type="file" accept="image/*" (change)="onFileSelected($event)" multiple  />
+          </form>
+          <div class="images">
+            <div *ngFor="let item of selectedImages">
+                <img style="width: 8em; height: auto;" [src]="item.fileContentBase64">
     
+              </div>
+          </div>
+    </div>
+    <div>
+        <form>
+            <label for="description">Description:</label><br>
+            <textarea [(ngModel)]="userDescription" id="description" name="description" rows="6" cols="40" placeholder="Enter your description here..."></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div class="bottom-buttons">
+        <div class="bottom-btn">Cancel</div>
+        <div *ngIf="serviciiLeft.length > 0" (click)="clickNext()" class="bottom-btn">Next</div>
+        <div *ngIf="serviciiLeft.length == 0" (click)="clickPublish()" class="bottom-btn">Publish</div>
+    </div>
 </div>

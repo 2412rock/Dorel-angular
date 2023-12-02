@@ -1,9 +1,14 @@
 import { Component, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { firstValueFrom } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
+import { setSelectedServicii } from 'src/app/ngrx/actions';
+import { AppState, SelectedServicii } from 'src/app/ngrx/reducer';
 import { DataService } from 'src/app/services/data.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -13,13 +18,15 @@ import { DataService } from 'src/app/services/data.service';
 export class AssignServiciiComponent {
   public isToggleEnabled: boolean;
   public searchTermServiciu: string;
-  public searchResultServiciu: string[] = ["alo" ,"alo2"];
   public selectedServicii: string[] = [];
   public selectedJudete: string[] = [];
   public serviciiSearchResultEventEmitter: EventEmitter<string[]> = new EventEmitter<string[]>();
   public judeteSearchResultEventEmitter: EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  constructor(private dataService: DataService){}
+  constructor(private dataService: DataService,
+    private router: Router,
+    private store: Store<{ app: AppState }>,
+    private sharedDataSerice: SharedDataService){}
 
 
   removeSelectedJudet(val: string){
@@ -65,5 +72,17 @@ export class AssignServiciiComponent {
       }
     })
   }
-
+  
+  clickNext(){
+    const selectedServicii: SelectedServicii = {
+      servicii: this.selectedServicii,
+      judete: this.selectedJudete,
+      remainingServicii: []
+    };
+    // this.store.dispatch(setSelectedServicii({ selectedServicii }));
+    this.sharedDataSerice.addServiciiSelectate(this.selectedServicii)
+    this.sharedDataSerice.addJudeteSelectate(this.selectedJudete);
+    this.sharedDataSerice.addServiciiLeftToSelect(this.selectedServicii);
+    this.router.navigate(['./account-settings/add-description-images'])
+  }
 }

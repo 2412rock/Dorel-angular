@@ -25,6 +25,8 @@ import { AccountSettingsComponent } from './components/account-settings/account-
 import { GenericSearchBarComponent } from './components/generic-search-bar/generic-search-bar.component';
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
 import { AddDescritionImagesComponent } from './components/add-descrition-images/add-descrition-images.component';
+import { StoreModule } from '@ngrx/store';
+import { serviciiReducer } from './ngrx/reducer';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { AddDescritionImagesComponent } from './components/add-descrition-images
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatAutocompleteModule,
-    MatInputModule
+    MatInputModule,
+    StoreModule.forRoot({ app: serviciiReducer }),
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',

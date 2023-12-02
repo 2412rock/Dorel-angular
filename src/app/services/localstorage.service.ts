@@ -7,7 +7,7 @@ export class LocalstorageService {
 
   constructor() { }
 
-  setUserData(accessToken: string, refreshToken:string, name:string, profilePic: string,
+  public setUserData(accessToken: string, refreshToken:string, name:string, profilePic: string,
      isEmailLogin: string, profilePicContent: string){
     localStorage.setItem('accessToken', accessToken );
     localStorage.setItem('refreshToken', refreshToken );
@@ -16,7 +16,11 @@ export class LocalstorageService {
     localStorage.setItem('profilePicContent', profilePicContent);
   }
 
-  deleteUserData(){
+  public getAccessToken(): string{
+    return localStorage.getItem("accessToken") as string;
+  }
+
+  public deleteUserData(){
    localStorage.removeItem('accessToken' );
    localStorage.removeItem('refreshToken');
    localStorage.removeItem('name');

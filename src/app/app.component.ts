@@ -32,6 +32,6 @@ export class AppComponent {
   //     }
   //   })
   // }
-  this.router.navigate(["./account-settings"]);
+  this.router.navigate(["./basic-search-page"]);
   }
 }

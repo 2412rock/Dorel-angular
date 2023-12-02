@@ -38,7 +38,7 @@ export class LoginPageComponent {
         model.idToken = user.idToken;;
         firstValueFrom(this.loginService.loginGoogle(model)).then(res => {
             if(res.isSuccess){
-              this.localStorageService.setUserData(res.data[0], res.data[1], model.name, "", "false", user.photoUrl);
+              this.localStorageService.setUserData(res.data[1], res.data[0], model.name, "", "false", user.photoUrl);
               this.router.navigate(['./basic-search-page']);
             }
         }).catch(e => {

@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "dorel-website:build:production"
+              "buildTarget": "dorel-website:build:production"
             },
             "development": {
-              "browserTarget": "dorel-website:build:development"
+              "buildTarget": "dorel-website:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dorel-website:build"
+            "buildTarget": "dorel-website:build"
           }
         },
         "test": {
