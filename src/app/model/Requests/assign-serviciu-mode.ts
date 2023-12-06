@@ -1,7 +1,7 @@
-import { ImagesAndServicii } from "../images-and-servicii";
+import { ImaginiServiciiDescriere } from "../imagine-servicii-descriere";
 
 export class AssignServiciuRequest{
     public servicii: string[];
     public judete: string[];
-    public serviciiAndImagini: ImagesAndServicii[];
+    public serviciiAndImagini: ImaginiServiciiDescriere[];
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ImagesAndServicii } from '../model/images-and-servicii';
+import { ImaginiServiciiDescriere } from '../model/imagine-servicii-descriere';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class SharedDataService {
   private serviciiSelectate: string[] = [];
   private serviciiLeftToSelect: string[] = [];
   private judeteSelectate: string[] = [];
-  private imagesAndServicii: ImagesAndServicii[] = [];
+  private imagesAndServicii: ImaginiServiciiDescriere[] = [];
 
   setData(data: any) {
     this.subject.next(data);
@@ -56,11 +56,11 @@ export class SharedDataService {
     return this.judeteSelectate;
   }
 
-  public addImagesAndServicii(imagesAndServicii: ImagesAndServicii){
+  public addImaginiServiciiDescriere(imagesAndServicii: ImaginiServiciiDescriere){
     this.imagesAndServicii.push(imagesAndServicii);
   }
 
-  public getImagesAndServicii(){
+  public getImaginiServiciiDescriere(){
     return this.imagesAndServicii;
   }
 

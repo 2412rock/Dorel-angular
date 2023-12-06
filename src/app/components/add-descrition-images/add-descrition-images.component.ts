@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable, firstValueFrom } from 'rxjs';
 import { Imagine } from 'src/app/model/Imagine';
 import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mode';
-import { ImagesAndServicii } from 'src/app/model/images-and-servicii';
+import { ImaginiServiciiDescriere } from 'src/app/model/imagine-servicii-descriere';
 import { AppState, SelectedServicii } from 'src/app/ngrx/reducer';
 import { selectSelectedServicii } from 'src/app/ngrx/selectors';
 import { DataService } from 'src/app/services/data.service';
@@ -107,10 +107,11 @@ export class AddDescritionImagesComponent {
   }
 
   private addServiciiAndImagini(){
-    var imagesAndServicii = new ImagesAndServicii();
-    imagesAndServicii.imagini = this.selectedImages;
-    imagesAndServicii.servicii = this.serviciiSelected;
-    this.sharedDataService.addImagesAndServicii(imagesAndServicii);
+    var isd = new ImaginiServiciiDescriere();
+    isd.imagini = this.selectedImages;
+    isd.servicii = this.serviciiSelected;
+    isd.descriere = this.userDescription;
+    this.sharedDataService.addImaginiServiciiDescriere(isd);
   }
 
   clickNext(){
@@ -128,7 +129,7 @@ export class AddDescritionImagesComponent {
     let request = new AssignServiciuRequest();
     request.servicii = this.sharedDataService.getServiciiSelectate();
     request.judete = this.sharedDataService.getJudeteSelectate();
-    request.serviciiAndImagini = this.sharedDataService.getImagesAndServicii();
+    request.serviciiAndImagini = this.sharedDataService.getImaginiServiciiDescriere();
     firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
       if(e.isSuccess){
         console.log("REQ SUCCESS")
