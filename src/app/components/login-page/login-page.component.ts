@@ -9,6 +9,7 @@ import { LoginModel } from 'src/app/model/Requests/login-model';
 import { firstValueFrom } from 'rxjs';
 import { LoginGoogleRequest } from 'src/app/model/Requests/login-google-model';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-login-page',
@@ -25,7 +26,8 @@ export class LoginPageComponent {
      private router: Router,
      private loginService: LoginService,
      private validationService: ValidationService,
-     private localStorageService: LocalstorageService) { }
+     private localStorageService: LocalstorageService,
+     private sharedDataService: SharedDataService) { }
   
 
   ngOnInit(){
@@ -38,6 +40,7 @@ export class LoginPageComponent {
         model.idToken = user.idToken;;
         firstValueFrom(this.loginService.loginGoogle(model)).then(res => {
             if(res.isSuccess){
+              this.sharedDataService.setUserEmail(user.email);
               this.localStorageService.setUserData(res.data[1], res.data[0], model.name, "", "false", user.photoUrl);
               this.router.navigate(['./basic-search-page']);
             }
@@ -58,6 +61,7 @@ export class LoginPageComponent {
       model.password = this.password;
       firstValueFrom(this.loginService.login(model)).then(res => {
         if(res.isSuccess){
+          this.sharedDataService.setUserEmail(this.email);
           this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "");
           this.router.navigate(['./basic-search-page']);
         }

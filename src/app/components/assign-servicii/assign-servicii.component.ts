@@ -5,8 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
-import { setSelectedServicii } from 'src/app/ngrx/actions';
-import { AppState, SelectedServicii } from 'src/app/ngrx/reducer';
+import { Maybe } from 'src/app/model/maybe';
 import { DataService } from 'src/app/services/data.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -18,30 +17,33 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class AssignServiciiComponent {
   public isToggleEnabled: boolean;
   public searchTermServiciu: string;
-  public selectedServicii: string[] = [];
-  public selectedJudete: string[] = [];
-  public serviciiSearchResultEventEmitter: EventEmitter<string[]> = new EventEmitter<string[]>();
-  public judeteSearchResultEventEmitter: EventEmitter<string[]> = new EventEmitter<string[]>();
+  public selectedServiciu: DBServiciuModel | null;
+  public selectedJudete: DBJudetModel[] = [];
+  public serviciiSearchResultEventEmitter: EventEmitter<DBServiciuModel[]> = new EventEmitter<DBServiciuModel[]>();
+  public judeteSearchResultEventEmitter: EventEmitter<DBJudetModel[]> = new EventEmitter<DBJudetModel[]>();
 
   constructor(private dataService: DataService,
     private router: Router,
-    private store: Store<{ app: AppState }>,
     private sharedDataSerice: SharedDataService){}
 
 
-  removeSelectedJudet(val: string){
-    this.selectedJudete = this.selectedJudete.filter(e => e !== val);
+  ngOnInit(){
+    this.loadServiciiAlreadyOferite();
   }
 
-  removeSelectedServiciu(val: string){
-    this.selectedServicii = this.selectedServicii.filter(e => e !== val);
+  removeSelectedJudet(val: DBJudetModel){
+    this.selectedJudete = this.selectedJudete.filter(e => e.id !== val.id);
   }
 
-  getSelectedValueServicii(element: string){
-    this.selectedServicii.push(element);
+  removeSelectedServiciu(){
+    this.selectedServiciu = null;
   }
 
-  getSelectedValueJudete(element: string){
+  getSelectedValueServicii(element: DBServiciuModel){
+    this.selectedServiciu = element;
+  }
+
+  getSelectedValueJudete(element: DBJudetModel){
     this.selectedJudete.push(element);
   }
 
@@ -50,13 +52,15 @@ export class AssignServiciiComponent {
     request.startsWith = val;
     firstValueFrom(this.dataService.getServicii(request)).then(val => {
       if(val.isSuccess){
-        var arr: string[] = [];
-        for(var item of val.data as DBServiciuModel[]){
-          arr.push(item.name);
-        }
-        this.serviciiSearchResultEventEmitter.emit(arr);
+        this.serviciiSearchResultEventEmitter.emit(val.data);
       }
     }); 
+  }
+
+  loadServiciiAlreadyOferite(){
+    firstValueFrom(this.dataService.getServiciiForUser(this.sharedDataSerice.getUserEmail())).then(res => {
+
+      }).catch(e => {});
   }
 
   getJudetTypedValue(val: string){
@@ -64,25 +68,29 @@ export class AssignServiciiComponent {
     request.startsWith = val;
     firstValueFrom(this.dataService.getJudete(request)).then(val => {
       if(val.isSuccess){
-        var arr: string[] = [];
-        for(var item of val.data as DBJudetModel[]){
-          arr.push(item.name);
-        }
-        this.judeteSearchResultEventEmitter.emit(arr);
+        this.judeteSearchResultEventEmitter.emit(val.data);
       }
     })
   }
+
+  clickBack(){
+    this.router.navigate(['./account-settings/add-or-edit-sericiu'])
+  }
   
   clickNext(){
-    const selectedServicii: SelectedServicii = {
-      servicii: this.selectedServicii,
-      judete: this.selectedJudete,
-      remainingServicii: []
-    };
-    // this.store.dispatch(setSelectedServicii({ selectedServicii }));
-    this.sharedDataSerice.addServiciiSelectate(this.selectedServicii)
-    this.sharedDataSerice.addJudeteSelectate(this.selectedJudete);
-    this.sharedDataSerice.addServiciiLeftToSelect(this.selectedServicii);
-    this.router.navigate(['./account-settings/add-description-images'])
+    if(this.selectedServiciu != null){
+      // this.store.dispatch(setSelectedServicii({ selectedServicii }));
+      console.log("SERVICUU SELECTAT")
+      console.log(this.selectedServiciu)
+      console.log(this.selectedServiciu.id)
+      this.sharedDataSerice.addServiciuSelectat(this.selectedServiciu.id)
+      console.log("JUDETE SELECTAT")
+      console.log(this.selectedJudete)
+      var map = this.selectedJudete.map(e => e.id);
+      console.log(map)
+      this.sharedDataSerice.addJudeteSelectate(map);
+      this.router.navigate(['./account-settings/add-description-images'])
+    }
+    console.log("No serviciu selectat")
   }
 }

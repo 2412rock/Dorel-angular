@@ -5,8 +5,6 @@ import { Observable, firstValueFrom } from 'rxjs';
 import { Imagine } from 'src/app/model/Imagine';
 import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mode';
 import { ImaginiServiciiDescriere } from 'src/app/model/imagine-servicii-descriere';
-import { AppState, SelectedServicii } from 'src/app/ngrx/reducer';
-import { selectSelectedServicii } from 'src/app/ngrx/selectors';
 import { DataService } from 'src/app/services/data.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -18,17 +16,13 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class AddDescritionImagesComponent {
 
   public subscription: any;
-  public servicii: string[] = [];
-  public serviciiSelected: string[] = [];
   public selectedFiles: any[] = [];
   public selectedImages: Imagine[] = [];
   public userDescription: string;
-  public serviciiLeft: string[] = [];
+  public loadingPublish: boolean = false;
 
-  constructor(private store: Store<{ app: AppState }>,
-     private route: ActivatedRoute,
-     private router: Router,
-     private sharedDataService: SharedDataService,
+  constructor(
+    private sharedDataService: SharedDataService,
      private dataService: DataService){}
 
   ngOnInit(){
@@ -37,9 +31,6 @@ export class AddDescritionImagesComponent {
     //   console.log('GOT VALUE FROM NGRX add-desc coomponent:', value);
     //   //this.servicii = value.servicii;
     // });
-    console.log("SERVICII LEFT")
-    console.log(this.sharedDataService.getServiciiLeftToSelect())
-    this.servicii = this.sharedDataService.getServiciiLeftToSelect();
   }
 
   ngOnDestroy() {
@@ -85,51 +76,19 @@ export class AddDescritionImagesComponent {
     reader.readAsDataURL(file);
   }
 
-  updateSelectedServicii(val: string){
-    if(this.serviciiSelected.find(e => e === val)){
-      // remove value 
-      this.serviciiSelected = this.serviciiSelected.filter(e => e !== val);
-    }
-    else{
-      this.serviciiSelected.push(val);
-    }
-    this.updateServiciiLeftToSelect();
-  }
 
-  private updateServiciiLeftToSelect(){
-    this.serviciiLeft = [];
-    for(let element of this.servicii){
-      if(!this.serviciiSelected.includes(element)){
-        // check if serviciu was selected; if it was not selected, pass it next screen
-        this.serviciiLeft.push(element);
-      }
-    }
-  }
-
-  private addServiciiAndImagini(){
-    var isd = new ImaginiServiciiDescriere();
-    isd.imagini = this.selectedImages;
-    isd.servicii = this.serviciiSelected;
-    isd.descriere = this.userDescription;
-    this.sharedDataService.addImaginiServiciiDescriere(isd);
-  }
-
-  clickNext(){
-    this.sharedDataService.addServiciiLeftToSelect(this.serviciiSelected);
-    this.addServiciiAndImagini();
-    this.sharedDataService.setData("next");
-  }
 
   clickCancel(){
-    this.sharedDataService.resetAll();
+
   }
 
   clickPublish(){
-    this.addServiciiAndImagini();
+    this.loadingPublish = true;
     let request = new AssignServiciuRequest();
-    request.servicii = this.sharedDataService.getServiciiSelectate();
-    request.judete = this.sharedDataService.getJudeteSelectate();
-    request.serviciiAndImagini = this.sharedDataService.getImaginiServiciiDescriere();
+    request.serviciuId = this.sharedDataService.getServiciuSelectat() as number;
+    request.judeteIds = this.sharedDataService.getJudeteSelectate();
+    request.descriere = this.userDescription;
+    request.imagini = this.selectedImages;
     firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
       if(e.isSuccess){
         console.log("REQ SUCCESS")
@@ -137,6 +96,7 @@ export class AddDescritionImagesComponent {
         console.log("REQ FAILED")
         console.log(e.exceptionMessage)
       }
+      this.loadingPublish = false;
     });
   }
 }

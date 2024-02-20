@@ -16,19 +16,19 @@ export class LoginService {
 
   constructor(private http: HttpClient) {   }
 
-  loginGoogle(loginModel: LoginGoogleRequest): Observable<Maybe>{
-    return this.http.post<Maybe>(`${this.apiUrl}/api/loginGoogle`, loginModel);
+  loginGoogle(loginModel: LoginGoogleRequest): Observable<Maybe<string>>{
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/loginGoogle`, loginModel);
   }
 
-  login(loginModel: LoginModel): Observable<Maybe>{
-    return this.http.post<Maybe>(`${this.apiUrl}/api/login`, loginModel);
+  login(loginModel: LoginModel): Observable<Maybe<string>>{
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/login`, loginModel);
   }
 
-  sendVerificationCode(sendVerificationCodeModel: SendVerificationCodeModel): Observable<Maybe>{
-    return this.http.post<Maybe>(`${this.apiUrl}/api/sendVerification`, sendVerificationCodeModel);
+  sendVerificationCode(sendVerificationCodeModel: SendVerificationCodeModel): Observable<Maybe<string>>{
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/sendVerification`, sendVerificationCodeModel);
   }
 
-  verifyUser(verifyUser: VerifyUserModel): Observable<Maybe>{
-    return this.http.post<Maybe>(`${this.apiUrl}/api/verifyUser`, verifyUser);
+  verifyUser(verifyUser: VerifyUserModel): Observable<Maybe<string>>{
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/verifyUser`, verifyUser);
   }
 }

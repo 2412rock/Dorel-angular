@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
+import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
+import { Maybe } from 'src/app/model/maybe';
 
 @Component({
   selector: 'app-generic-search-bar',
@@ -7,23 +10,27 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./generic-search-bar.component.css']
 })
 export class GenericSearchBarComponent {
-  @Output() selectedValueEmitter = new EventEmitter<string>();
+  @Output() selectedValueEmitter = new EventEmitter<any>();
   @Output() typedValue = new EventEmitter<string>();
-  @Input() searchResultEventEmitter: EventEmitter<string[]>;
+  @Input() searchResultEventEmitter: EventEmitter<any[]>;
   @Input() placeHolderText: string;
 
   public textInput: FormControl = new FormControl('');
   public dropdownVisible: boolean = false;
-  public filteredResults: string[] = [];
+  public filteredResults: any[] = [];
   public typedValueString: string;
 
   ngOnInit(): void {
     this.searchResultEventEmitter.subscribe(e => {
       console.log("GOT SEARCH VALUE")
+      console.log(e)
       if(e.length == 0){
         this.filteredResults = [this.typedValueString];
       }else{
-        this.filteredResults = e;
+        e.forEach(e => {
+          this.filteredResults = [];
+          this.filteredResults.push(e);
+        });
       }
       
     });

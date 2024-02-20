@@ -1,7 +1,9 @@
+import { Imagine } from "../Imagine";
 import { ImaginiServiciiDescriere } from "../imagine-servicii-descriere";
 
 export class AssignServiciuRequest{
-    public servicii: string[];
-    public judete: string[];
-    public serviciiAndImagini: ImaginiServiciiDescriere[];
+    public serviciuId: number;
+    public judeteIds: number[];
+    public imagini: Imagine[];
+    public descriere: string;
 }

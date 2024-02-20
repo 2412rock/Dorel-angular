@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { Maybe } from '../model/maybe';
 import { LocalstorageService } from './localstorage.service';
 import { AssignServiciuRequest } from '../model/Requests/assign-serviciu-mode';
+import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
+import { DBJudetModel } from '../model/DBModels/DBJudetModel';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +17,25 @@ export class DataService {
 
   constructor(private http: HttpClient, private localStorage: LocalstorageService) {   }
   
-  getServicii(request: StartsWithRequest): Observable<Maybe>{
-    return this.http.post<Maybe>(`${this.apiUrl}/api/getServicii`, request);
+  getServicii(request: StartsWithRequest): Observable<Maybe<DBServiciuModel[]>>{
+    return this.http.post<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServicii`, request);
   }
 
-  getJudete(request: StartsWithRequest): Observable<Maybe>{
-    return this.http.post<Maybe>(`${this.apiUrl}/api/getJudete`, request);
+  getJudete(request: StartsWithRequest): Observable<Maybe<DBJudetModel[]>>{
+    return this.http.post<Maybe<DBJudetModel[]>>(`${this.apiUrl}/api/getJudete`, request);
+  }
+  
+  getServiciiForUser(email: string){
+    return this.http.get<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServiciiUser?email=${email}`)
   }
 
-  assignUserServicii(request: AssignServiciuRequest): Observable<Maybe>{
+  assignUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
     const requestHeaders = new HttpHeaders()
       .set('Authorization', `Bearer ${this.localStorage.getAccessToken()}`);
 
     const requestOptions = {
       headers: requestHeaders
     };
-    return this.http.post<Maybe>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request, requestOptions);
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request, requestOptions);
   }
 }

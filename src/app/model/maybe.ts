@@ -1,5 +1,5 @@
-export class Maybe {
-    public data: any;
+export class Maybe<T> {
+    public data: T;
 
     public isSuccess: boolean;
 

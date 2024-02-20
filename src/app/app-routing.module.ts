@@ -11,6 +11,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
 import { AddDescritionImagesComponent } from './components/add-descrition-images/add-descrition-images.component';
+import { AddOrEditServiciiComponent } from './components/add-or-edit-servicii/add-or-edit-servicii.component';
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'basic-search-page', component: BasicSearchPageComponent},
   {path: 'search-results-page', component: SearchResultsComponent},
   {path: 'account-settings', component: AccountSettingsComponent, children: [
+    {path: 'add-or-edit-sericiu', component: AddOrEditServiciiComponent},
     {path: 'assign-servicii', component: AssignServiciiComponent},
     {path: 'add-description-images', component: AddDescritionImagesComponent}
   ]},

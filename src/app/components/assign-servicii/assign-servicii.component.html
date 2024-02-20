@@ -1,32 +1,41 @@
 <div>
-    <div class="toggle-serviciu-available-container">
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="toggleSwitch" [(ngModel)]="isToggleEnabled">
-            <label class="form-check-label" for="toggleSwitch">Ofera servicii</label>
-          </div>
+    <div class="toggle-back-btn-servicii-already-selected">
+        <div>
+            <div class="arrow-left" (click)="clickBack()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="toggleSwitch" [(ngModel)]="isToggleEnabled">
+                <label class="form-check-label" for="toggleSwitch">Ofera servicii</label>
+            </div>
+        </div>
+        <div>
+            <span>Already selected items</span>
+            <div *ngFor=""></div>
+        </div>
     </div>
     <div class="servicii-and-judete">
-        <p class="margin-right">Selecteaza serviciile pe care vrei sa le oferi. In meniul urmator va trebui ca pentru fiecare serviciu oferit sa adaugi o descriere si una sau mai multe imagini pentru viitori tai clienti.</p>
+        <p class="margin-right">Selecteaza tag-urile pentru serviciul pe care vrei sa il prestezi</p>
         <div class="margin-bottom margin-right">
             <app-generic-search-bar (selectedValueEmitter)="getSelectedValueServicii($event)" (typedValue)="getServiciuTypedValue($event)" [searchResultEventEmitter]="serviciiSearchResultEventEmitter" [placeHolderText]="'Cauta serviciu'"></app-generic-search-bar>
             <div class="selected-items">
-                <div *ngFor="let item of selectedServicii">
-                    <div class="selected-item">
-                        <p class="selected-item-text">{{item}}</p>
-                        <div class="selected-item-delete-div" (click)="removeSelectedServiciu(item)">
+                
+                    <div *ngIf="selectedServiciu != null" class="selected-item">
+                        <p class="selected-item-text">{{selectedServiciu.name}}</p>
+                        <div class="selected-item-delete-div" (click)="removeSelectedServiciu()">
                             <i class="fa-solid fa-x selected-item-delete-icon"></i>
                         </div>
                     </div>
-                </div>
+                
             </div>
         </div>
-        <p class="margin-right">Selecteaza judetle unde doresti sa prestezi serviciile. Clientii te vor gasi in functie de judetule pe care le selectezi</p>
+        <p class="margin-right">Selecteaza judetle unde doresti sa prestezi serviciul. Clientii te vor gasi in functie de judetule pe care le selectezi</p>
         <div class="margin-bottom margin-right">
             <app-generic-search-bar (selectedValueEmitter)="getSelectedValueJudete($event)" (typedValue)="getJudetTypedValue($event)" [searchResultEventEmitter]="judeteSearchResultEventEmitter" [placeHolderText]="'Cauta judet'"></app-generic-search-bar>
             <div class="selected-items">
                 <div *ngFor="let item of selectedJudete">
                     <div class="selected-item">
-                        <p class="selected-item-text">{{item}}</p>
+                        <p class="selected-item-text">{{item.name}}</p>
                         <div class="selected-item-delete-div" (click)="removeSelectedJudet(item)">
                             <i class="fa-solid fa-x selected-item-delete-icon"></i>
                         </div>

@@ -13,7 +13,7 @@
         <div *ngIf="dropdownVisible" class="flex-serviciu input-container">
             <div class="dropdown-items-header">Suggested results</div>
             <div *ngFor="let item of filteredResults">
-                <div (click)="selectOption(item)" class="dropdown-item">{{item}}</div>
+                <div (click)="selectOption(item)" class="dropdown-item">{{item.name}}</div>
             </div>
         </div>
     </div>

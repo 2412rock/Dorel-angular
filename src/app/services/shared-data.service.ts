@@ -10,10 +10,17 @@ export class SharedDataService {
   private subject = new BehaviorSubject<any>(null);
   subjectData$ = this.subject.asObservable();
 
-  private serviciiSelectate: string[] = [];
-  private serviciiLeftToSelect: string[] = [];
-  private judeteSelectate: string[] = [];
-  private imagesAndServicii: ImaginiServiciiDescriere[] = [];
+  private serviciuSelectat: number | null;
+  private judeteSelectate: number[] = [];
+  private userEmail: string;
+
+  getUserEmail(){
+    return this.userEmail;
+  }
+
+  setUserEmail(email: string){
+    this.userEmail = email;
+  }
 
   setData(data: any) {
     this.subject.next(data);
@@ -23,52 +30,25 @@ export class SharedDataService {
     this.subject.next(null);
   }
 
-  public addServiciiSelectate(servicii: string[]){
-    for(let item of servicii){
-      this.serviciiSelectate.push(item);
-    }
+  public addServiciuSelectat(serviciuId: number){
+    this.serviciuSelectat = serviciuId;
   }
 
-  public getServiciiSelectate(): string[]{
-    return this.serviciiSelectate;
+  public getServiciuSelectat(): number | null{
+    return this.serviciuSelectat;
   }
 
-  public addServiciiLeftToSelect(servicii: string[]){
-    console.log("SETTING SERVICII LEFT")
-    console.log(servicii)
-    this.serviciiLeftToSelect = [];
-    for(let item of servicii){
-      this.serviciiLeftToSelect.push(item);
-    }
+  public addJudeteSelectate(judete: number[]){
+    this.judeteSelectate = judete;
   }
 
-  public getServiciiLeftToSelect(): string[]{
-    return this.serviciiLeftToSelect;
-  }
-
-  public addJudeteSelectate(servicii: string[]){
-    for(let item of servicii){
-      this.judeteSelectate.push(item);
-    }
-  }
-
-  public getJudeteSelectate(): string[]{
+  public getJudeteSelectate(): number[]{
     return this.judeteSelectate;
   }
 
-  public addImaginiServiciiDescriere(imagesAndServicii: ImaginiServiciiDescriere){
-    this.imagesAndServicii.push(imagesAndServicii);
-  }
-
-  public getImaginiServiciiDescriere(){
-    return this.imagesAndServicii;
-  }
-
   public resetAll(){
-    this. serviciiSelectate = [];
-    this.serviciiLeftToSelect = [];
+    this.serviciuSelectat = null;
     this.judeteSelectate = [];
-    this.imagesAndServicii = [];
     this.clearData();
   }
 }

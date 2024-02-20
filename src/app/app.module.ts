@@ -26,7 +26,6 @@ import { GenericSearchBarComponent } from './components/generic-search-bar/gener
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
 import { AddDescritionImagesComponent } from './components/add-descrition-images/add-descrition-images.component';
 import { StoreModule } from '@ngrx/store';
-import { serviciiReducer } from './ngrx/reducer';
 
 
 @NgModule({
@@ -53,8 +52,7 @@ import { serviciiReducer } from './ngrx/reducer';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatAutocompleteModule,
-    MatInputModule,
-    StoreModule.forRoot({ app: serviciiReducer }),
+    MatInputModule
   ],
   providers: [{
     provide: 'SocialAuthServiceConfig',
