@@ -18,6 +18,7 @@ export class AssignServiciiComponent {
   public isToggleEnabled: boolean;
   public searchTermServiciu: string;
   public selectedServiciu: DBServiciuModel | null;
+  public alreadySelectedServicii: DBServiciuModel[];
   public selectedJudete: DBJudetModel[] = [];
   public serviciiSearchResultEventEmitter: EventEmitter<DBServiciuModel[]> = new EventEmitter<DBServiciuModel[]>();
   public judeteSearchResultEventEmitter: EventEmitter<DBJudetModel[]> = new EventEmitter<DBJudetModel[]>();
@@ -58,8 +59,10 @@ export class AssignServiciiComponent {
   }
 
   loadServiciiAlreadyOferite(){
-    firstValueFrom(this.dataService.getServiciiForUser(this.sharedDataSerice.getUserEmail())).then(res => {
-
+    firstValueFrom(this.dataService.getServiciiForUser()).then(res => {
+          if(res.isSuccess){
+            this.alreadySelectedServicii = res.data;
+          }
       }).catch(e => {});
   }
 

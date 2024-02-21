@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialLoginModule } from '@abacritt/angularx-social-login';
@@ -26,6 +26,7 @@ import { GenericSearchBarComponent } from './components/generic-search-bar/gener
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
 import { AddDescritionImagesComponent } from './components/add-descrition-images/add-descrition-images.component';
 import { StoreModule } from '@ngrx/store';
+import { DorelHttpInterceptor } from './interceptors/http-interceptor';
 
 
 @NgModule({
@@ -54,18 +55,25 @@ import { StoreModule } from '@ngrx/store';
     MatAutocompleteModule,
     MatInputModule
   ],
-  providers: [{
-    provide: 'SocialAuthServiceConfig',
-    useValue: {
-      autoLogin: true, //keeps the user signed in
-      providers: [
-        {
-          id: GoogleLoginProvider.PROVIDER_ID,
-          provider: new GoogleLoginProvider('826065678951-r0fsp9t7nj7g5mshsmvrqtlp6bb2sbo7.apps.googleusercontent.com') // your client id
-        }
-      ]
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true, //keeps the user signed in
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('826065678951-r0fsp9t7nj7g5mshsmvrqtlp6bb2sbo7.apps.googleusercontent.com') // your client id
+          }
+        ]
+      }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DorelHttpInterceptor,
+      multi: true
     }
-  }],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

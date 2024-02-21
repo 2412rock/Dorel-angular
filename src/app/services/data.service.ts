@@ -25,17 +25,17 @@ export class DataService {
     return this.http.post<Maybe<DBJudetModel[]>>(`${this.apiUrl}/api/getJudete`, request);
   }
   
-  getServiciiForUser(email: string){
-    return this.http.get<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServiciiUser?email=${email}`)
+  getServiciiForUser(){
+    return this.http.get<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServiciiUser`)
   }
 
   assignUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
-    const requestHeaders = new HttpHeaders()
-      .set('Authorization', `Bearer ${this.localStorage.getAccessToken()}`);
+    // const requestHeaders = new HttpHeaders()
+    //   .set('Authorization', `Bearer ${this.localStorage.getAccessToken()}`);
 
-    const requestOptions = {
-      headers: requestHeaders
-    };
-    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request, requestOptions);
+    // const requestOptions = {
+    //   headers: requestHeaders
+    // };
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request,) //requestOptions);
   }
 }
