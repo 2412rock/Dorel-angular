@@ -27,53 +27,55 @@ import { AssignServiciiComponent } from './components/assign-servicii/assign-ser
 import { AddDescritionImagesComponent } from './components/add-descrition-images/add-descrition-images.component';
 import { StoreModule } from '@ngrx/store';
 import { DorelHttpInterceptor } from './interceptors/http-interceptor';
+import { SettingsSidebarComponent } from "./components/settings-sidebar/settings-sidebar.component";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginPageComponent,
-    HomePageComponent,
-    AcmeComponent,
-    RegisterPageComponent,
-    VerifyUserComponentComponent,
-    VerifySuccessComponentComponent,
-    BasicSearchPageComponent,
-    SearchBarComponent, 
-    BoldPipe, SearchResultsComponent, AccountSettingsComponent, GenericSearchBarComponent, AssignServiciiComponent, AddDescritionImagesComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SocialLoginModule,
-    GoogleSigninButtonModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    MatInputModule
-  ],
-  providers: [
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: true, //keeps the user signed in
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('826065678951-r0fsp9t7nj7g5mshsmvrqtlp6bb2sbo7.apps.googleusercontent.com') // your client id
-          }
-        ]
-      }
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: DorelHttpInterceptor,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginPageComponent,
+        HomePageComponent,
+        AcmeComponent,
+        RegisterPageComponent,
+        VerifyUserComponentComponent,
+        VerifySuccessComponentComponent,
+        BasicSearchPageComponent,
+        SearchBarComponent,
+        BoldPipe, SearchResultsComponent, AccountSettingsComponent, GenericSearchBarComponent, AssignServiciiComponent, AddDescritionImagesComponent
+    ],
+    providers: [
+        {
+            provide: 'SocialAuthServiceConfig',
+            useValue: {
+                autoLogin: true, //keeps the user signed in
+                providers: [
+                    {
+                        id: GoogleLoginProvider.PROVIDER_ID,
+                        provider: new GoogleLoginProvider('826065678951-r0fsp9t7nj7g5mshsmvrqtlp6bb2sbo7.apps.googleusercontent.com') // your client id
+                    }
+                ]
+            }
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: DorelHttpInterceptor,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SocialLoginModule,
+        GoogleSigninButtonModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        SettingsSidebarComponent
+    ]
 })
 export class AppModule { }
