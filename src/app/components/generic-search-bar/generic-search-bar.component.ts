@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
@@ -14,6 +14,7 @@ export class GenericSearchBarComponent {
   @Output() typedValue = new EventEmitter<string>();
   @Input() searchResultEventEmitter: EventEmitter<any[]>;
   @Input() placeHolderText: string;
+  @ViewChild('parentElement', { static: true }) parentElement: ElementRef;
 
   public textInput: FormControl = new FormControl('');
   public dropdownVisible: boolean = false;
@@ -55,5 +56,9 @@ export class GenericSearchBarComponent {
   selectOption(element: string){
     this.selectedValueEmitter.emit(element);
     this.clearSerchbar();
+  }
+
+  getParentWidth(): number {
+    return this.parentElement.nativeElement.offsetWidth;
   }
 }

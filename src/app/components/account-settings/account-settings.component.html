@@ -1,6 +1,12 @@
 <div>
-    <div>
-      <app-settings-sidebar (sideBarEventEmitter)="selectMenuItem($event)"></app-settings-sidebar>
-      <!-- <app-setting-content [selectedSetting]="selectedSetting"></app-setting-content> -->
+    <div style="display: flex; flex-direction: row;">
+      <div style="width: 10%;">
+        <app-settings-sidebar (sideBarEventEmitter)="selectMenuItem($event)"></app-settings-sidebar>
+      </div>
+      <div style="width: 90%; height: 100vh;">
+          <!-- <app-setting-content [selectedSetting]="selectedSetting"></app-setting-content> -->
+          <app-assign-servicii *ngIf="menuItemSelected === 1"></app-assign-servicii>
+      </div>
+      
     </div>
   </div>

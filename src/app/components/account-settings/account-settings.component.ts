@@ -17,7 +17,6 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class AccountSettingsComponent {
   public menuItemSelected: number;
 
-
   constructor(private router: Router,
     private sharedDataStorage: SharedDataService){
   //   var selector = this.store.pipe(select(selectSelectedServicii));
@@ -43,9 +42,6 @@ export class AccountSettingsComponent {
 
   selectMenuItem(index: number){
     this.menuItemSelected = index;
-    if(index == 0){
-      this.router.navigate(['./account-settings/add-or-edit-sericiu']);
-    }
   }
 
 
