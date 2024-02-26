@@ -5,7 +5,7 @@
       </div>
       <div style="width: 90%; height: 100vh;">
           <!-- <app-setting-content [selectedSetting]="selectedSetting"></app-setting-content> -->
-          <app-assign-servicii *ngIf="menuItemSelected === 1"></app-assign-servicii>
+          <app-assign-servicii (publishDone)="publishDone($event)" *ngIf="menuItemSelected === 1"></app-assign-servicii>
       </div>
       
     </div>

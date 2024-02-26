@@ -1,4 +1,5 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { firstValueFrom } from 'rxjs';
@@ -10,6 +11,7 @@ import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
 import { Maybe } from 'src/app/model/maybe';
 import { DataService } from 'src/app/services/data.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import { NotificationModalComponent } from '../notification-modal/notification-modal.component';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -17,6 +19,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./assign-servicii.component.css']
 })
 export class AssignServiciiComponent {
+  @Output() publishDone = new EventEmitter<boolean>();
   public isToggleEnabled: boolean;
   public searchTermServiciu: string;
   public selectedServiciu: DBServiciuModel | null;
@@ -33,7 +36,8 @@ export class AssignServiciiComponent {
 
   constructor(private dataService: DataService,
     private router: Router,
-    private sharedDataSerice: SharedDataService){}
+    private sharedDataSerice: SharedDataService,
+    private dialog: MatDialog){}
 
 
   ngOnInit(){
@@ -154,6 +158,15 @@ export class AssignServiciiComponent {
 
   }
 
+  openModal(title: string, message: string): void {
+    this.dialog.open(NotificationModalComponent, {
+      data: {
+        title: title,
+        message: message
+      }
+    });
+  }
+
   clickPublish(){
     this.loadingPublish = true;
     let request = new AssignServiciuRequest();
@@ -164,10 +177,16 @@ export class AssignServiciiComponent {
     firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
       if(e.isSuccess){
         console.log("REQ SUCCESS")
+        
+        this.openModal("Success", "Your publish request was executed");
+        this.publishDone.emit(true);
+        
       }else{
         console.log("REQ FAILED")
         console.log(e.exceptionMessage)
+        this.openModal("Failed", "Your publish request failed");
       }
+      
       this.loadingPublish = false;
     });
   }

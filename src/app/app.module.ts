@@ -28,6 +28,8 @@ import { AddDescritionImagesComponent } from './components/add-descrition-images
 import { StoreModule } from '@ngrx/store';
 import { DorelHttpInterceptor } from './interceptors/http-interceptor';
 import { SettingsSidebarComponent } from "./components/settings-sidebar/settings-sidebar.component";
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -75,7 +77,9 @@ import { SettingsSidebarComponent } from "./components/settings-sidebar/settings
         MatFormFieldModule,
         MatAutocompleteModule,
         MatInputModule,
-        SettingsSidebarComponent
+        SettingsSidebarComponent,
+        MatButtonModule,
+        MatDialogModule 
     ]
 })
 export class AppModule { }

@@ -44,6 +44,12 @@ export class AccountSettingsComponent {
     this.menuItemSelected = index;
   }
 
-
+  publishDone(val:boolean){
+    console.log("Publish done")
+    if(val){
+      console.log("Menu item selected")
+      this.menuItemSelected = 0;
+    }
+  }
   
 }
