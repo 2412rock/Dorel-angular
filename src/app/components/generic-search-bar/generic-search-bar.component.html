@@ -1,6 +1,6 @@
-<div class="search-bars-container">
-    <div class="display-flex">
-        <div class="input-and-clear-btn flex-serviciu input-container">
+<div #parentElement style="background-color: yellow; max-width: 100%;">
+    <div style="width: 100%;">
+        <div class="input-container" style="width: 100%;">
             <div class="space-between">
                 <input type="text" class="" [formControl]="textInput" [placeholder]="placeHolderText"/>
                 <div>
@@ -9,8 +9,8 @@
             </div>
         </div>
     </div>
-    <div class="display-flex fixed">
-        <div *ngIf="dropdownVisible" class="flex-serviciu input-container">
+    <div>
+        <div *ngIf="dropdownVisible" [style.width.px]="getParentWidth()" class="input-container" style="position:fixed;">
             <div class="dropdown-items-header">Suggested results</div>
             <div *ngFor="let item of filteredResults">
                 <div (click)="selectOption(item)" class="dropdown-item">{{item.name}}</div>

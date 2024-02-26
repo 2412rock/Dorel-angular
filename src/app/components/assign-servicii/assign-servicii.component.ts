@@ -1,13 +1,17 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { firstValueFrom } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
+import { Imagine } from 'src/app/model/Imagine';
+import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mode';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
 import { Maybe } from 'src/app/model/maybe';
 import { DataService } from 'src/app/services/data.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import { NotificationModalComponent } from '../notification-modal/notification-modal.component';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -15,6 +19,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./assign-servicii.component.css']
 })
 export class AssignServiciiComponent {
+  @Output() publishDone = new EventEmitter<boolean>();
   public isToggleEnabled: boolean;
   public searchTermServiciu: string;
   public selectedServiciu: DBServiciuModel | null;
@@ -23,9 +28,16 @@ export class AssignServiciiComponent {
   public serviciiSearchResultEventEmitter: EventEmitter<DBServiciuModel[]> = new EventEmitter<DBServiciuModel[]>();
   public judeteSearchResultEventEmitter: EventEmitter<DBJudetModel[]> = new EventEmitter<DBJudetModel[]>();
 
+  public subscription: any;
+  public selectedFiles: any[] = [];
+  public selectedImages: Imagine[] = [];
+  public userDescription: string;
+  public loadingPublish: boolean = false;
+
   constructor(private dataService: DataService,
     private router: Router,
-    private sharedDataSerice: SharedDataService){}
+    private sharedDataSerice: SharedDataService,
+    private dialog: MatDialog){}
 
 
   ngOnInit(){
@@ -95,5 +107,87 @@ export class AssignServiciiComponent {
       this.router.navigate(['./account-settings/add-description-images'])
     }
     console.log("No serviciu selectat")
+  }
+
+  ngOnDestroy() {
+    console.log("DESTROY")
+    //this.subscription.unsubscribe();
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      //this.selectedFile = input.files[0];
+      for(var fileIndex=0; fileIndex< input.files.length; fileIndex++){
+        this.selectedFiles.push(input.files[fileIndex]);
+        this.readFileAsBase64(input.files[fileIndex]);
+      }
+      console.log("SELECTED FILES")
+      console.log(this.selectedFiles)
+    }
+  }
+
+  onSubmit(): void {
+    
+  }
+
+  private getFileExtension(fileName: string): string{
+    return fileName.split('.').pop() || '';
+  }
+
+  readFileAsBase64(file: File): void {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64String = reader.result as string;
+
+      let imagine = new Imagine();
+      imagine.fileContentBase64 = base64String;
+      imagine.fileExtension = this.getFileExtension(file.name);
+      imagine.fileType = file.type;
+
+      this.selectedImages.push(imagine);
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+
+
+  clickCancel(){
+
+  }
+
+  openModal(title: string, message: string): void {
+    this.dialog.open(NotificationModalComponent, {
+      data: {
+        title: title,
+        message: message
+      }
+    });
+  }
+
+  clickPublish(){
+    this.loadingPublish = true;
+    let request = new AssignServiciuRequest();
+    request.serviciuId = this.selectedServiciu?.id as number;
+    request.judeteIds = this.selectedJudete.map(e => e.id);
+    request.descriere = this.userDescription;
+    request.imagini = this.selectedImages;
+    firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
+      if(e.isSuccess){
+        console.log("REQ SUCCESS")
+        
+        this.openModal("Success", "Your publish request was executed");
+        this.publishDone.emit(true);
+        
+      }else{
+        console.log("REQ FAILED")
+        console.log(e.exceptionMessage)
+        this.openModal("Failed", "Your publish request failed");
+      }
+      
+      this.loadingPublish = false;
+    });
   }
 }
