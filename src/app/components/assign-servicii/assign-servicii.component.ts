@@ -31,8 +31,13 @@ export class AssignServiciiComponent {
   public subscription: any;
   public selectedFiles: any[] = [];
   public selectedImages: Imagine[] = [];
-  public userDescription: string;
+  public userDescription: string = "";
   public loadingPublish: boolean = false;
+
+  public serviciuValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public judeteValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public showImagesValidation: boolean = false;
+  public showDescriptionValidation: boolean = false
 
   constructor(private dataService: DataService,
     private router: Router,
@@ -167,27 +172,51 @@ export class AssignServiciiComponent {
     });
   }
 
+  private validationPassed(): boolean{
+    let result: boolean = true;
+    if(this.selectedServiciu == null){
+      result = false;
+      this.serviciuValidationErrorEmitter.emit(true);
+    }
+    if(this.selectedJudete.length == 0){
+      result = false;
+      this.judeteValidationErrorEmitter.emit(true);
+    }
+    if(this.selectedImages.length == 0){
+      result = false;
+      this.showImagesValidation = true;
+    }
+    if(this.userDescription.length == 0){
+      result = false;
+      this.showDescriptionValidation = true;
+    }
+    return result;
+  }
+
   clickPublish(){
-    this.loadingPublish = true;
-    let request = new AssignServiciuRequest();
-    request.serviciuId = this.selectedServiciu?.id as number;
-    request.judeteIds = this.selectedJudete.map(e => e.id);
-    request.descriere = this.userDescription;
-    request.imagini = this.selectedImages;
-    firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
-      if(e.isSuccess){
-        console.log("REQ SUCCESS")
+    if(this.validationPassed()){
+      this.loadingPublish = true;
+      let request = new AssignServiciuRequest();
+      request.serviciuId = this.selectedServiciu?.id as number;
+      request.judeteIds = this.selectedJudete.map(e => e.id);
+      request.descriere = this.userDescription;
+      request.imagini = this.selectedImages;
+      firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
+        if(e.isSuccess){
+          console.log("REQ SUCCESS")
+          
+          this.openModal("Success", "Your publish request was executed");
+          this.publishDone.emit(true);
+          
+        }else{
+          console.log("REQ FAILED")
+          console.log(e.exceptionMessage)
+          this.openModal("Failed", "Your publish request failed");
+        }
         
-        this.openModal("Success", "Your publish request was executed");
-        this.publishDone.emit(true);
-        
-      }else{
-        console.log("REQ FAILED")
-        console.log(e.exceptionMessage)
-        this.openModal("Failed", "Your publish request failed");
-      }
-      
-      this.loadingPublish = false;
-    });
+        this.loadingPublish = false;
+      });
+    }
+    
   }
 }

@@ -14,12 +14,14 @@ export class GenericSearchBarComponent {
   @Output() typedValue = new EventEmitter<string>();
   @Input() searchResultEventEmitter: EventEmitter<any[]>;
   @Input() placeHolderText: string;
+  @Input() showValidationErrorEvent: EventEmitter<boolean>;
   @ViewChild('parentElement', { static: true }) parentElement: ElementRef;
 
   public textInput: FormControl = new FormControl('');
   public dropdownVisible: boolean = false;
   public filteredResults: any[] = [];
   public typedValueString: string;
+  public showValidationError: boolean = false;
 
   ngOnInit(): void {
     this.searchResultEventEmitter.subscribe(e => {
@@ -46,6 +48,9 @@ export class GenericSearchBarComponent {
         this.dropdownVisible = false;
       }
     });
+    this.showValidationErrorEvent.subscribe(e => {
+      this.showValidationError = e;
+    })
   }
 
   clearSerchbar(){
