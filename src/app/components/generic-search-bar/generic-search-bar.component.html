@@ -10,7 +10,7 @@
         </div>
     </div>
     <div>
-        <div *ngIf="dropdownVisible" [style.width.px]="getParentWidth()" class="input-container" style="position:fixed;">
+        <div *ngIf="dropdownVisible" [style.width.px]="getParentWidth()" class="input-container" style="position:fixed; border: solid 1px rgba(0, 0, 0, 0.1)">
             <div class="dropdown-items-header">Suggested results</div>
             <div *ngFor="let item of filteredResults">
                 <div (click)="selectOption(item)" class="dropdown-item">{{item.name}}</div>

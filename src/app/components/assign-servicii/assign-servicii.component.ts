@@ -66,6 +66,7 @@ export class AssignServiciiComponent {
   }
 
   getServiciuTypedValue(val: string){
+    this.serviciuValidationErrorEmitter.emit(false);
     var request = new StartsWithRequest();
     request.startsWith = val;
     firstValueFrom(this.dataService.getServicii(request)).then(val => {
@@ -84,6 +85,7 @@ export class AssignServiciiComponent {
   }
 
   getJudetTypedValue(val: string){
+    this.judeteValidationErrorEmitter.emit(false);
     var request = new StartsWithRequest();
     request.startsWith = val;
     firstValueFrom(this.dataService.getJudete(request)).then(val => {
@@ -93,33 +95,13 @@ export class AssignServiciiComponent {
     })
   }
 
-  clickBack(){
-    this.router.navigate(['./account-settings/add-or-edit-sericiu'])
-  }
-  
-  clickNext(){
-    if(this.selectedServiciu != null){
-      // this.store.dispatch(setSelectedServicii({ selectedServicii }));
-      console.log("SERVICUU SELECTAT")
-      console.log(this.selectedServiciu)
-      console.log(this.selectedServiciu.id)
-      this.sharedDataSerice.addServiciuSelectat(this.selectedServiciu.id)
-      console.log("JUDETE SELECTAT")
-      console.log(this.selectedJudete)
-      var map = this.selectedJudete.map(e => e.id);
-      console.log(map)
-      this.sharedDataSerice.addJudeteSelectate(map);
-      this.router.navigate(['./account-settings/add-description-images'])
-    }
-    console.log("No serviciu selectat")
-  }
-
   ngOnDestroy() {
     console.log("DESTROY")
     //this.subscription.unsubscribe();
   }
 
   onFileSelected(event: Event): void {
+    this.showImagesValidation = false;
     const input = event.target as HTMLInputElement;
     if (input.files) {
       //this.selectedFile = input.files[0];
@@ -217,6 +199,9 @@ export class AssignServiciiComponent {
         this.loadingPublish = false;
       });
     }
-    
+  }
+
+  onDescriptionChange(val:string){
+    this.showDescriptionValidation = false;
   }
 }
