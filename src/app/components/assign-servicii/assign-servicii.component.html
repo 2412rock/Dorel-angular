@@ -14,7 +14,8 @@
                 <div>
                     <p class="">Selecteaza tag-urile pentru serviciul pe care vrei sa il prestezi</p>
                     <div>
-                        <app-generic-search-bar (selectedValueEmitter)="getSelectedValueServicii($event)"
+                        <app-generic-search-bar [showValidationErrorEvent]="serviciuValidationErrorEmitter"
+                            (selectedValueEmitter)="getSelectedValueServicii($event)"
                             (typedValue)="getServiciuTypedValue($event)"
                             [searchResultEventEmitter]="serviciiSearchResultEventEmitter"
                             [placeHolderText]="'Cauta serviciu'"></app-generic-search-bar>
@@ -29,10 +30,12 @@
 
                         </div>
                     </div>
-                    <p style="margin-top: 2em;">Selecteaza judetle unde doresti sa prestezi serviciul. Clientii te vor gasi
+                    <p style="margin-top: 2em;">Selecteaza judetle unde doresti sa prestezi serviciul. Clientii te vor
+                        gasi
                         in functie de judetule pe care le selectezi</p>
                     <div class="">
-                        <app-generic-search-bar (selectedValueEmitter)="getSelectedValueJudete($event)"
+                        <app-generic-search-bar [showValidationErrorEvent]="judeteValidationErrorEmitter"
+                            (selectedValueEmitter)="getSelectedValueJudete($event)"
                             (typedValue)="getJudetTypedValue($event)"
                             [searchResultEventEmitter]="judeteSearchResultEventEmitter"
                             [placeHolderText]="'Cauta judet'"></app-generic-search-bar>
@@ -51,26 +54,36 @@
 
                 <!-- Description and images -->
                 <div style="margin-top: 2em;">
-                    <span>Selecteaza imaginile care vrei sa apara in acest anunt. Prima imagine selectata va fi cea din
-                        cover</span>
-                    <div class="add-images">
-                        <form (submit)="onSubmit()">
-                            <input type="file" accept="image/*" (change)="onFileSelected($event)" multiple />
-                        </form>
-                        <div class="images">
-                            <div *ngFor="let item of selectedImages">
-                                <img style="width: 8em; height: auto;" [src]="item.fileContentBase64">
-
+                        <span>Selecteaza imaginile care vrei sa apara in acest anunt. Prima imagine selectata va fi cea din
+                            cover</span>
+                        <div [ngStyle]="{'border': showImagesValidation? '0.1em solid red' : ''}"> 
+                            <div class="add-images">
+                                <form (submit)="onSubmit()">
+                                    <input type="file" accept="image/*" (change)="onFileSelected($event)" multiple />
+                                </form>
+                                <div class="images">
+                                    <div *ngFor="let item of selectedImages">
+                                        <img style="width: 8em; height: auto;" [src]="item.fileContentBase64">
+        
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div *ngIf="showImagesValidation">
+                            <span style="color: red; font-size: medium;">Select at least one image</span>
+                        </div>
+                    
+                    
                     <div style="margin-top: 2em;width: 100%;">
                         <form>
                             <label for="description">Description:</label><br>
-                            <textarea style="width: 100%;" [(ngModel)]="userDescription" id="description"
+                            <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;" [(ngModel)]="userDescription" id="description"
                                 name="description" rows="6" cols="40"
                                 placeholder="Enter your description here..."></textarea><br>
                         </form>
+                        <div *ngIf="showDescriptionValidation">
+                            <span style="color: red; font-size: medium;">Please enter a description</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,7 +95,8 @@
     <div style="position: sticky; bottom: 0; width: 100%;">
         <div style="display: flex; justify-content: end; padding: 20px; background-color: #f1f1f1;">
             <div class="bottom-btn">Cancel</div>
-            <div (click)="clickPublish()" class="bottom-btn" style="display: flex; justify-content: center; align-items: center; flex-direction: row;">
+            <div (click)="clickPublish()" class="bottom-btn"
+                style="display: flex; justify-content: center; align-items: center; flex-direction: row;">
                 <span>Publish</span>
                 <div *ngIf="loadingPublish" class="d-flex custom-spinner" style="margin-left: 0.5em;">
                     <div class="spinner-border text-primary" style="width: 1.2rem; height: 1.2rem;" role="status">

@@ -31,8 +31,13 @@ export class AssignServiciiComponent {
   public subscription: any;
   public selectedFiles: any[] = [];
   public selectedImages: Imagine[] = [];
-  public userDescription: string;
+  public userDescription: string = "";
   public loadingPublish: boolean = false;
+
+  public serviciuValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public judeteValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public showImagesValidation: boolean = false;
+  public showDescriptionValidation: boolean = false
 
   constructor(private dataService: DataService,
     private router: Router,
@@ -61,6 +66,7 @@ export class AssignServiciiComponent {
   }
 
   getServiciuTypedValue(val: string){
+    this.serviciuValidationErrorEmitter.emit(false);
     var request = new StartsWithRequest();
     request.startsWith = val;
     firstValueFrom(this.dataService.getServicii(request)).then(val => {
@@ -79,6 +85,7 @@ export class AssignServiciiComponent {
   }
 
   getJudetTypedValue(val: string){
+    this.judeteValidationErrorEmitter.emit(false);
     var request = new StartsWithRequest();
     request.startsWith = val;
     firstValueFrom(this.dataService.getJudete(request)).then(val => {
@@ -88,33 +95,13 @@ export class AssignServiciiComponent {
     })
   }
 
-  clickBack(){
-    this.router.navigate(['./account-settings/add-or-edit-sericiu'])
-  }
-  
-  clickNext(){
-    if(this.selectedServiciu != null){
-      // this.store.dispatch(setSelectedServicii({ selectedServicii }));
-      console.log("SERVICUU SELECTAT")
-      console.log(this.selectedServiciu)
-      console.log(this.selectedServiciu.id)
-      this.sharedDataSerice.addServiciuSelectat(this.selectedServiciu.id)
-      console.log("JUDETE SELECTAT")
-      console.log(this.selectedJudete)
-      var map = this.selectedJudete.map(e => e.id);
-      console.log(map)
-      this.sharedDataSerice.addJudeteSelectate(map);
-      this.router.navigate(['./account-settings/add-description-images'])
-    }
-    console.log("No serviciu selectat")
-  }
-
   ngOnDestroy() {
     console.log("DESTROY")
     //this.subscription.unsubscribe();
   }
 
   onFileSelected(event: Event): void {
+    this.showImagesValidation = false;
     const input = event.target as HTMLInputElement;
     if (input.files) {
       //this.selectedFile = input.files[0];
@@ -167,27 +154,54 @@ export class AssignServiciiComponent {
     });
   }
 
+  private validationPassed(): boolean{
+    let result: boolean = true;
+    if(this.selectedServiciu == null){
+      result = false;
+      this.serviciuValidationErrorEmitter.emit(true);
+    }
+    if(this.selectedJudete.length == 0){
+      result = false;
+      this.judeteValidationErrorEmitter.emit(true);
+    }
+    if(this.selectedImages.length == 0){
+      result = false;
+      this.showImagesValidation = true;
+    }
+    if(this.userDescription.length == 0){
+      result = false;
+      this.showDescriptionValidation = true;
+    }
+    return result;
+  }
+
   clickPublish(){
-    this.loadingPublish = true;
-    let request = new AssignServiciuRequest();
-    request.serviciuId = this.selectedServiciu?.id as number;
-    request.judeteIds = this.selectedJudete.map(e => e.id);
-    request.descriere = this.userDescription;
-    request.imagini = this.selectedImages;
-    firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
-      if(e.isSuccess){
-        console.log("REQ SUCCESS")
+    if(this.validationPassed()){
+      this.loadingPublish = true;
+      let request = new AssignServiciuRequest();
+      request.serviciuId = this.selectedServiciu?.id as number;
+      request.judeteIds = this.selectedJudete.map(e => e.id);
+      request.descriere = this.userDescription;
+      request.imagini = this.selectedImages;
+      firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
+        if(e.isSuccess){
+          console.log("REQ SUCCESS")
+          
+          this.openModal("Success", "Your publish request was executed");
+          this.publishDone.emit(true);
+          
+        }else{
+          console.log("REQ FAILED")
+          console.log(e.exceptionMessage)
+          this.openModal("Failed", "Your publish request failed");
+        }
         
-        this.openModal("Success", "Your publish request was executed");
-        this.publishDone.emit(true);
-        
-      }else{
-        console.log("REQ FAILED")
-        console.log(e.exceptionMessage)
-        this.openModal("Failed", "Your publish request failed");
-      }
-      
-      this.loadingPublish = false;
-    });
+        this.loadingPublish = false;
+      });
+    }
+  }
+
+  onDescriptionChange(val:string){
+    this.showDescriptionValidation = false;
   }
 }

@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleLoginProvider, SocialLoginModule } from '@abacritt/angularx-social-login';
 import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { AcmeComponent } from './components/acme/acme.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { VerifyUserComponentComponent } from './components/verify-user-component/verify-user-component.component';
 import { VerifySuccessComponentComponent } from './components/verify-success-component/verify-success-component.component';
@@ -24,8 +23,6 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { GenericSearchBarComponent } from './components/generic-search-bar/generic-search-bar.component';
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
-import { AddDescritionImagesComponent } from './components/add-descrition-images/add-descrition-images.component';
-import { StoreModule } from '@ngrx/store';
 import { DorelHttpInterceptor } from './interceptors/http-interceptor';
 import { SettingsSidebarComponent } from "./components/settings-sidebar/settings-sidebar.component";
 import { MatButtonModule } from '@angular/material/button';
@@ -37,13 +34,16 @@ import { MatDialogModule } from '@angular/material/dialog';
         AppComponent,
         LoginPageComponent,
         HomePageComponent,
-        AcmeComponent,
         RegisterPageComponent,
         VerifyUserComponentComponent,
         VerifySuccessComponentComponent,
         BasicSearchPageComponent,
         SearchBarComponent,
-        BoldPipe, SearchResultsComponent, AccountSettingsComponent, GenericSearchBarComponent, AssignServiciiComponent, AddDescritionImagesComponent
+        BoldPipe,
+        SearchResultsComponent,
+        AccountSettingsComponent,
+        GenericSearchBarComponent,
+        AssignServiciiComponent
     ],
     providers: [
         {
