@@ -114,6 +114,14 @@
     cursor: pointer;
 }
 
+.custom-dialog-surface {
+    border-radius: 30%; /* Adjust the value as per your preference */
+  }
+
+  ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 30%; /* Adjust the value as per your preference */
+  }
+
 .serviciu-selected{
     background-color: rgb(67, 67, 255)
 }

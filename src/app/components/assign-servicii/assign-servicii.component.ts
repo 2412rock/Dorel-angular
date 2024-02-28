@@ -145,12 +145,14 @@ export class AssignServiciiComponent {
 
   }
 
-  openModal(title: string, message: string): void {
+  openModal(title: string, message: string, isSuccess: boolean): void {
     this.dialog.open(NotificationModalComponent, {
       data: {
         title: title,
-        message: message
-      }
+        message: message,
+        isSuccess: isSuccess
+      },
+      panelClass: 'custom-dialog-surface'
     });
   }
 
@@ -187,13 +189,13 @@ export class AssignServiciiComponent {
         if(e.isSuccess){
           console.log("REQ SUCCESS")
           
-          this.openModal("Success", "Your publish request was executed");
+          this.openModal("Success", "Your data has been succesfully published!", true);
           this.publishDone.emit(true);
           
         }else{
           console.log("REQ FAILED")
           console.log(e.exceptionMessage)
-          this.openModal("Failed", "Your publish request failed");
+          this.openModal("Failed", "An error has occured", false);
         }
         
         this.loadingPublish = false;
