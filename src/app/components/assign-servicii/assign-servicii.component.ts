@@ -33,6 +33,7 @@ export class AssignServiciiComponent {
   public selectedImages: Imagine[] = [];
   public userDescription: string = "";
   public loadingPublish: boolean = false;
+  public pageReady: boolean = false;
 
   public serviciuValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   public judeteValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -81,8 +82,9 @@ export class AssignServiciiComponent {
     firstValueFrom(this.dataService.getServiciiForUser()).then(res => {
           if(res.isSuccess){
             this.alreadySelectedServicii = res.data;
+            this.pageReady = true;
           }
-      }).catch(e => {});
+      }).catch(e => {this.openModal('Error', 'Something went wrong loading the menu', false); this.publishDone.emit(true);});
   }
 
   getJudetTypedValue(val: string){
