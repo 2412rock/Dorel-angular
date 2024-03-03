@@ -15,6 +15,7 @@ export class GenericSearchBarComponent {
   @Input() searchResultEventEmitter: EventEmitter<any[]>;
   @Input() placeHolderText: string;
   @Input() showValidationErrorEvent: EventEmitter<boolean>;
+  @Input() notAvailableOptions: DBServiciuModel[];
   @ViewChild('parentElement', { static: true }) parentElement: ElementRef;
 
   public textInput: FormControl = new FormControl('');
@@ -51,6 +52,13 @@ export class GenericSearchBarComponent {
     this.showValidationErrorEvent.subscribe(e => {
       this.showValidationError = e;
     })
+  }
+
+  resultAvailable(item: DBServiciuModel){
+    if(!this.notAvailableOptions){
+      return true;
+    }
+    return !this.notAvailableOptions.find(e => e.id === item.id);
   }
 
   clearSerchbar(){

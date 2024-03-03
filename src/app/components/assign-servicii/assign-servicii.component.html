@@ -12,19 +12,21 @@
             <div>
 
                 <div>
-                    <p class="">Selecteaza tag-urile pentru serviciul pe care vrei sa il prestezi</p>
-                    <div>
-                        <app-generic-search-bar [showValidationErrorEvent]="serviciuValidationErrorEmitter"
+                    <p>Selecteaza serviciul pe care doresti sa il prestezi</p>
+                    <div *ngIf="selectedServiciu == null">
+                        <app-generic-search-bar [notAvailableOptions]="alreadySelectedServicii" [showValidationErrorEvent]="serviciuValidationErrorEmitter"
                             (selectedValueEmitter)="getSelectedValueServicii($event)"
                             (typedValue)="getServiciuTypedValue($event)"
                             [searchResultEventEmitter]="serviciiSearchResultEventEmitter"
                             [placeHolderText]="'Cauta serviciu'"></app-generic-search-bar>
-                        <div class="selected-items">
-
-                            <div *ngIf="selectedServiciu != null" class="selected-item">
-                                <p class="selected-item-text">{{selectedServiciu.name}}</p>
+                        
+                    </div>
+                    <div *ngIf="selectedServiciu != null" style="display: flex; justify-content: start; align-items: center;">
+                        <div style="width: 34%;">
+                            <div *ngIf="selectedServiciu != null" class="selected-item gradient-custom-4">
+                                <p class="selected-item-text" style="margin-right: 2em;">{{selectedServiciu.name}}</p>
                                 <div class="selected-item-delete-div" (click)="removeSelectedServiciu()">
-                                    <i class="fa-solid fa-x selected-item-delete-icon"></i>
+                                    <i class="fa-solid fa-x selected-item-delete-icon" style="color: red;"></i>
                                 </div>
                             </div>
 
@@ -44,7 +46,7 @@
                                 <div class="selected-item">
                                     <p class="selected-item-text">{{item.name}}</p>
                                     <div class="selected-item-delete-div" (click)="removeSelectedJudet(item)">
-                                        <i class="fa-solid fa-x selected-item-delete-icon"></i>
+                                        <i class="fa-solid fa-x selected-item-delete-icon" style="color: red;"></i>
                                     </div>
                                 </div>
                             </div>

@@ -33,7 +33,6 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(65, 65, 65);
-    margin: 0.3em;
     color: white;
     padding: 0.3em;
 }
@@ -42,11 +41,15 @@
     cursor: pointer;
 }
 
-.selected-items{
-    display: flex;
-    flex-direction: row;
-    max-width: 20em;
-    flex-wrap: wrap;
+.gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84fab0;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
 }
 
 .margin-right{
@@ -95,11 +98,11 @@
     flex-direction: row;
     max-width: 30em;
     flex-wrap: wrap;
-    margin-left: 2em;
 }
 
 .selected-item-text{
     margin: 0.1em;
+    margin-right: 0.3em;
     font-size: small;
 }
 
