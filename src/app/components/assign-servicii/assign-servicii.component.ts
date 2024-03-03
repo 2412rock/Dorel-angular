@@ -33,6 +33,7 @@ export class AssignServiciiComponent {
   public selectedImages: Imagine[] = [];
   public userDescription: string = "";
   public loadingPublish: boolean = false;
+  public pageReady: boolean = false;
 
   public serviciuValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   public judeteValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -58,6 +59,7 @@ export class AssignServiciiComponent {
   }
 
   getSelectedValueServicii(element: DBServiciuModel){
+
     this.selectedServiciu = element;
   }
 
@@ -80,8 +82,9 @@ export class AssignServiciiComponent {
     firstValueFrom(this.dataService.getServiciiForUser()).then(res => {
           if(res.isSuccess){
             this.alreadySelectedServicii = res.data;
+            this.pageReady = true;
           }
-      }).catch(e => {});
+      }).catch(e => {this.openModal('Error', 'Something went wrong loading the menu', false); this.publishDone.emit(true);});
   }
 
   getJudetTypedValue(val: string){
@@ -195,11 +198,11 @@ export class AssignServiciiComponent {
         }else{
           console.log("REQ FAILED")
           console.log(e.exceptionMessage)
-          this.openModal("Failed", "An error has occured", false);
+          this.openModal("Failed", `An error has occured: ${e.exceptionMessage}`, false);
         }
         
         this.loadingPublish = false;
-      });
+      }).catch(e => { this.openModal("Failed", `An unknown error has occured`, false);});
     }
   }
 
