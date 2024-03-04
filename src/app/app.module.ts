@@ -27,6 +27,9 @@ import { DorelHttpInterceptor } from './interceptors/http-interceptor';
 import { SettingsSidebarComponent } from "./components/settings-sidebar/settings-sidebar.component";
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EditServiciiComponent } from './components/edit-servicii/edit-servicii.component';
+import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.component';
+import { EditServiciiSidebarComponent } from './components/edit-servicii-sidebar/edit-servicii-sidebar.component';
 
 
 @NgModule({
@@ -43,7 +46,10 @@ import { MatDialogModule } from '@angular/material/dialog';
         SearchResultsComponent,
         AccountSettingsComponent,
         GenericSearchBarComponent,
-        AssignServiciiComponent
+        AssignServiciiComponent,
+        EditServiciiComponent,
+        EditServiciuComponent,
+        EditServiciiSidebarComponent
     ],
     providers: [
         {

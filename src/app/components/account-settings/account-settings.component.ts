@@ -15,7 +15,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./account-settings.component.css']
 })
 export class AccountSettingsComponent {
-  public menuItemSelected: number;
+  public menuItemSelected: number = 2;
 
   constructor(private router: Router,
     private sharedDataStorage: SharedDataService){
@@ -44,7 +44,7 @@ export class AccountSettingsComponent {
     this.menuItemSelected = index;
   }
 
-  publishDone(val:boolean){
+  deselectOption(val:boolean){
     console.log("Publish done")
     if(val){
       console.log("Menu item selected")
