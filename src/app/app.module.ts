@@ -30,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditServiciiComponent } from './components/edit-servicii/edit-servicii.component';
 import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.component';
 import { EditServiciiSidebarComponent } from './components/edit-servicii-sidebar/edit-servicii-sidebar.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import { EditServiciiSidebarComponent } from './components/edit-servicii-sidebar
         MatInputModule,
         SettingsSidebarComponent,
         MatButtonModule,
-        MatDialogModule 
+        MatDialogModule,
+        DragDropModule
     ]
 })
 export class AppModule { }

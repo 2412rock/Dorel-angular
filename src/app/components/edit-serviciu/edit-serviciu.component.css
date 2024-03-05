@@ -144,8 +144,8 @@
 .images{
     display: flex;
     flex-direction: row;
-    max-width: 30em;
-    flex-wrap: wrap;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 .bottom-buttons{
@@ -173,5 +173,22 @@
     padding: 0.5em;
     border-radius: 10%;
     cursor: pointer;
-    
+}
+
+.remove-btn {
+    position:relative;
+    bottom: 2em;
+    left: 0.3em;
+    color: red;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.drag-preview {
+    border: 2px dashed gray; /* Adjust the style of the preview */
+     /* Initially hide the preview */
+}
+
+.dragging .drag-preview {
+    display: block; /* Display the preview when dragging */
 }

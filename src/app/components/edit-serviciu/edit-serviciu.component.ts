@@ -4,6 +4,7 @@ import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { Imagine } from 'src/app/model/Imagine';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
 import { DataService } from 'src/app/services/data.service';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-edit-serviciu',
@@ -54,19 +55,19 @@ export class EditServiciuComponent {
     this.selectedJudete = this.selectedJudete.filter(e => e.id !== val.id);
   }
 
-  onFileSelected(event: Event): void {
-    this.showImagesValidation = false;
-    const input = event.target as HTMLInputElement;
-    if (input.files) {
-      //this.selectedFile = input.files[0];
-      for(var fileIndex=0; fileIndex< input.files.length; fileIndex++){
-        this.selectedFiles.push(input.files[fileIndex]);
-        this.readFileAsBase64(input.files[fileIndex]);
-      }
-      console.log("SELECTED FILES")
-      console.log(this.selectedFiles)
-    }
-  }
+  // onFileSelected(event: Event): void {
+  //   this.showImagesValidation = false;
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files) {
+  //     //this.selectedFile = input.files[0];
+  //     for(var fileIndex=0; fileIndex< input.files.length; fileIndex++){
+  //       this.selectedFiles.push(input.files[fileIndex]);
+  //       this.readFileAsBase64(input.files[fileIndex]);
+  //     }
+  //     console.log("SELECTED FILES")
+  //     console.log(this.selectedFiles)
+  //   }
+  // }
 
   onSubmit(): void {
     
@@ -118,5 +119,35 @@ export class EditServiciuComponent {
       
     }
   }
+
+  onFileSelected(event: any) {
+    const files = event.target.files;
+    if (files) {
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            const reader = new FileReader();
+            reader.onload = () => {
+              var img = new Imagine();
+              img.fileContentBase64 = reader.result as string;
+              img.fileExtension = file.name;
+              img.fileType = file.type;
+                this.selectedImages.push(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+}
+
+removeImage(item: any) {
+    const index = this.selectedImages.indexOf(item);
+    if (index !== -1) {
+        this.selectedImages.splice(index, 1);
+    }
+}
+
+
+drop(event: CdkDragDrop<string[]>) {
+  moveItemInArray(this.selectedImages, event.previousIndex, event.currentIndex);
+}
 
 }
