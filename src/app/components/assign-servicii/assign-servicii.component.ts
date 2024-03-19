@@ -29,7 +29,6 @@ export class AssignServiciiComponent {
   public judeteSearchResultEventEmitter: EventEmitter<DBJudetModel[]> = new EventEmitter<DBJudetModel[]>();
 
   public subscription: any;
-  public selectedFiles: any[] = [];
   public selectedImages: Imagine[] = [];
   public userDescription: string = "";
   public loadingPublish: boolean = false;
@@ -103,45 +102,9 @@ export class AssignServiciiComponent {
     //this.subscription.unsubscribe();
   }
 
-  onFileSelected(event: Event): void {
-    this.showImagesValidation = false;
-    const input = event.target as HTMLInputElement;
-    if (input.files) {
-      //this.selectedFile = input.files[0];
-      for(var fileIndex=0; fileIndex< input.files.length; fileIndex++){
-        this.selectedFiles.push(input.files[fileIndex]);
-        this.readFileAsBase64(input.files[fileIndex]);
-      }
-      console.log("SELECTED FILES")
-      console.log(this.selectedFiles)
-    }
+  changeImages(imgs: Imagine[]){
+    this.selectedImages = imgs;
   }
-
-  onSubmit(): void {
-    
-  }
-
-  private getFileExtension(fileName: string): string{
-    return fileName.split('.').pop() || '';
-  }
-
-  readFileAsBase64(file: File): void {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const base64String = reader.result as string;
-
-      let imagine = new Imagine();
-      imagine.fileContentBase64 = base64String;
-      imagine.fileExtension = this.getFileExtension(file.name);
-      imagine.fileType = file.type;
-
-      this.selectedImages.push(imagine);
-    };
-
-    reader.readAsDataURL(file);
-  }
-
 
 
   clickCancel(){

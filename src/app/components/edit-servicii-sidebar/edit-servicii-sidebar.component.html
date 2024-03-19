@@ -2,10 +2,10 @@
     <div style=" display: flex; justify-content: center; align-items: center; padding: 0.5em;">
         <span style="font-weight: bold; text-align: center; font-size: medium; color: #FFFFFF;">Serviciile tale</span>
     </div>
-    <div *ngFor="let item of servicii">
-        <div class="nav-item-div" [ngStyle]="{'background-color': item === 'serviciu 1' ? '#586161' : ''}">
+    <div *ngFor="let item of servicii; let i = index">
+        <div class="nav-item-div" (click)="selectServiciu(i)" [ngStyle]="{'background-color': selectedServiciuIndex === i ? '#586161' : ''}">
             <li class="nav-item">
-                <span>{{item}}</span>
+                <span>{{item.name}}</span>
             </li>
         </div>
     </div>

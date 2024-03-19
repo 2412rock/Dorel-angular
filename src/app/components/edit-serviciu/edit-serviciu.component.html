@@ -35,7 +35,7 @@
                             cover</span>
                         <div [ngStyle]="{'border': showImagesValidation? '0.1em solid red' : ''}"> 
                             <div class="add-images">
-                                <form (submit)="onSubmit()">
+                                <!-- <form (submit)="onSubmit()">
                                     <input type="file" accept="image/*" (change)="onFileSelected($event)" multiple />
                                 </form>
                                 <div class="images" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
@@ -50,7 +50,8 @@
                                             <img style="width: 12em; height: 10em;" [src]="item.fileContentBase64">
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+                                <app-image-selector [selectedImages]="selectedImages" (outPutImages)="imagesChanged($event)"></app-image-selector>
                             </div>
                         </div>
                         <div *ngIf="showImagesValidation">

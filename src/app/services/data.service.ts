@@ -7,6 +7,7 @@ import { LocalstorageService } from './localstorage.service';
 import { AssignServiciuRequest } from '../model/Requests/assign-serviciu-mode';
 import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
 import { DBJudetModel } from '../model/DBModels/DBJudetModel';
+import { Imagine } from '../model/Imagine';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,17 @@ export class DataService {
     return this.http.get<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServiciiUser`)
   }
 
+  getJudeteForServiciu(serviciuId: number){
+    return this.http.get<Maybe<DBJudetModel[]>>(`${this.apiUrl}/api/getJudeteForServiciu?serviciuId=${serviciuId}`)
+  }
+
+  getDescriereForServiciu(serviciuId: number){
+    return this.http.get<Maybe<string>>(`${this.apiUrl}/api/getDescriereForServiciu?serviciuId=${serviciuId}`)
+  }
+
+  getImaginiForServiciu(serviciuId: number){
+    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiForServiciu?serviciuId=${serviciuId}`)
+  }
   assignUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
     // const requestHeaders = new HttpHeaders()
     //   .set('Authorization', `Bearer ${this.localStorage.getAccessToken()}`);
@@ -38,4 +50,6 @@ export class DataService {
     // };
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request,) //requestOptions);
   }
+
+  
 }

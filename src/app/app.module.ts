@@ -31,6 +31,7 @@ import { EditServiciiComponent } from './components/edit-servicii/edit-servicii.
 import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.component';
 import { EditServiciiSidebarComponent } from './components/edit-servicii-sidebar/edit-servicii-sidebar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ImageSelectorComponent } from './components/image-selector/image-selector.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         AssignServiciiComponent,
         EditServiciiComponent,
         EditServiciuComponent,
-        EditServiciiSidebarComponent
+        EditServiciiSidebarComponent,
+        ImageSelectorComponent
     ],
     providers: [
         {

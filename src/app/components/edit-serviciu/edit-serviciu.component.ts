@@ -1,10 +1,11 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { Imagine } from 'src/app/model/Imagine';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
 import { DataService } from 'src/app/services/data.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 
 @Component({
   selector: 'app-edit-serviciu',
@@ -12,6 +13,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
   styleUrl: './edit-serviciu.component.css'
 })
 export class EditServiciuComponent {
+  @Input() serviciu: DBServiciuModel;
+
   public pageReady: boolean = true;
   public judeteValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   public judeteSearchResultEventEmitter: EventEmitter<DBJudetModel[]> = new EventEmitter<DBJudetModel[]>();
@@ -36,6 +39,24 @@ export class EditServiciuComponent {
 
   constructor(private dataService: DataService){}
 
+  ngOnInit(){
+    firstValueFrom(this.dataService.getJudeteForServiciu(this.serviciu.id)).then(response => {
+      if(response.isSuccess){
+        this.selectedJudete = response.data;
+      }
+    });
+    firstValueFrom(this.dataService.getDescriereForServiciu(this.serviciu.id)).then(response => {
+      if(response.isSuccess){
+        this.userDescription = response.data;
+      }
+    });
+    firstValueFrom(this.dataService.getImaginiForServiciu(this.serviciu.id)).then(response => {
+      if(response.isSuccess){
+        this.selectedImages = response.data;
+      }
+    });
+  }
+
   getSelectedValueJudete(element: DBJudetModel){
     this.selectedJudete.push(element);
   }
@@ -55,42 +76,6 @@ export class EditServiciuComponent {
     this.selectedJudete = this.selectedJudete.filter(e => e.id !== val.id);
   }
 
-  // onFileSelected(event: Event): void {
-  //   this.showImagesValidation = false;
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files) {
-  //     //this.selectedFile = input.files[0];
-  //     for(var fileIndex=0; fileIndex< input.files.length; fileIndex++){
-  //       this.selectedFiles.push(input.files[fileIndex]);
-  //       this.readFileAsBase64(input.files[fileIndex]);
-  //     }
-  //     console.log("SELECTED FILES")
-  //     console.log(this.selectedFiles)
-  //   }
-  // }
-
-  onSubmit(): void {
-    
-  }
-
-  private getFileExtension(fileName: string): string{
-    return fileName.split('.').pop() || '';
-  }
-
-  readFileAsBase64(file: File): void {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const base64String = reader.result as string;
-
-      let imagine = new Imagine();
-      imagine.fileContentBase64 = base64String;
-      imagine.fileExtension = this.getFileExtension(file.name);
-      imagine.fileType = file.type;
-
-      this.selectedImages.push(imagine);
-    };
-  }
 
   onDescriptionChange(val:string){
     this.showDescriptionValidation = false;
@@ -119,35 +104,9 @@ export class EditServiciuComponent {
       
     }
   }
-
-  onFileSelected(event: any) {
-    const files = event.target.files;
-    if (files) {
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const reader = new FileReader();
-            reader.onload = () => {
-              var img = new Imagine();
-              img.fileContentBase64 = reader.result as string;
-              img.fileExtension = file.name;
-              img.fileType = file.type;
-                this.selectedImages.push(img);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-}
-
-removeImage(item: any) {
-    const index = this.selectedImages.indexOf(item);
-    if (index !== -1) {
-        this.selectedImages.splice(index, 1);
-    }
-}
-
-
-drop(event: CdkDragDrop<string[]>) {
-  moveItemInArray(this.selectedImages, event.previousIndex, event.currentIndex);
-}
+  
+  imagesChanged(imgs: Imagine[]){
+    this.selectedImages = imgs;
+  }
 
 }
