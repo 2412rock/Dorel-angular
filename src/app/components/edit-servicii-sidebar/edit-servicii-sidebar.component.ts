@@ -9,8 +9,18 @@ import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 export class EditServiciiSidebarComponent {
   @Output() selectedServiciuEvent: EventEmitter<DBServiciuModel> = new EventEmitter<DBServiciuModel>();
   @Input() servicii: DBServiciuModel[];
+  @Input() loading: boolean;
+  @Input() resetIndexEvent: EventEmitter<boolean>;
 
   public selectedServiciuIndex: number;
+
+  ngOnInit(){
+    this.resetIndexEvent.subscribe(e => {
+      if(e){
+        this.selectedServiciuIndex = -1;
+      }
+    })
+  }
 
   selectServiciu(index: number){
     this.selectedServiciuIndex = index;

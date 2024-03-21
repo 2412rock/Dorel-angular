@@ -42,13 +42,11 @@ export class DataService {
     return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiForServiciu?serviciuId=${serviciuId}`)
   }
   assignUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
-    // const requestHeaders = new HttpHeaders()
-    //   .set('Authorization', `Bearer ${this.localStorage.getAccessToken()}`);
-
-    // const requestOptions = {
-    //   headers: requestHeaders
-    // };
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request,) //requestOptions);
+  }
+
+  editUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/editUserServiciu`, request,) //requestOptions);
   }
 
   

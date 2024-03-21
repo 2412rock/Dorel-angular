@@ -1,4 +1,4 @@
 <div style="display: flex; flex-direction: row;">
-    <app-edit-servicii-sidebar [servicii]="servicii" (selectedServiciuEvent)="getSelectedServiciu($event)"></app-edit-servicii-sidebar>
-    <app-edit-serviciu *ngIf="selectedServiciu != null" [serviciu]="selectedServiciu"></app-edit-serviciu>
+    <app-edit-servicii-sidebar [loading]="loadingServicii" [servicii]="servicii" [resetIndexEvent]="resetIndex" (selectedServiciuEvent)="getSelectedServiciu($event)"></app-edit-servicii-sidebar>
+    <app-edit-serviciu *ngIf="selectedServiciu != null" [serviciu]="selectedServiciu" (publishDone)="publishDoneHandler($event)"></app-edit-serviciu>
 </div>

@@ -12,6 +12,7 @@ import { Maybe } from 'src/app/model/maybe';
 import { DataService } from 'src/app/services/data.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { NotificationModalComponent } from '../notification-modal/notification-modal.component';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -39,10 +40,7 @@ export class AssignServiciiComponent {
   public showImagesValidation: boolean = false;
   public showDescriptionValidation: boolean = false
 
-  constructor(private dataService: DataService,
-    private router: Router,
-    private sharedDataSerice: SharedDataService,
-    private dialog: MatDialog){}
+  constructor(private dataService: DataService,private modalService: ModalService){}
 
 
   ngOnInit(){
@@ -83,7 +81,7 @@ export class AssignServiciiComponent {
             this.alreadySelectedServicii = res.data;
             this.pageReady = true;
           }
-      }).catch(e => {this.openModal('Error', 'Something went wrong loading the menu', false); this.publishDone.emit(true);});
+      }).catch(e => {this.modalService.openModalNotification('Error', 'Something went wrong loading the menu', false); this.publishDone.emit(true);});
   }
 
   getJudetTypedValue(val: string){
@@ -109,17 +107,6 @@ export class AssignServiciiComponent {
 
   clickCancel(){
 
-  }
-
-  openModal(title: string, message: string, isSuccess: boolean): void {
-    this.dialog.open(NotificationModalComponent, {
-      data: {
-        title: title,
-        message: message,
-        isSuccess: isSuccess
-      },
-      panelClass: 'custom-dialog-surface'
-    });
   }
 
   private validationPassed(): boolean{
@@ -155,17 +142,17 @@ export class AssignServiciiComponent {
         if(e.isSuccess){
           console.log("REQ SUCCESS")
           
-          this.openModal("Success", "Your data has been succesfully published!", true);
+          this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);
           this.publishDone.emit(true);
           
         }else{
           console.log("REQ FAILED")
           console.log(e.exceptionMessage)
-          this.openModal("Failed", `An error has occured: ${e.exceptionMessage}`, false);
+          this.modalService.openModalNotification("Failed", `An error has occured: ${e.exceptionMessage}`, false);
         }
         
         this.loadingPublish = false;
-      }).catch(e => { this.openModal("Failed", `An unknown error has occured`, false);});
+      }).catch(e => { this.modalService.openModalNotification("Failed", `An unknown error has occured`, false); this.loadingPublish = false;});
     }
   }
 
