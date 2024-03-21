@@ -32,6 +32,7 @@ export class EditServiciuComponent {
   public subscription: any;
   public userDescription: string = "";
   public loadingPublish: boolean = false;
+  public loadingDelete: boolean = false;
   public loading: boolean = true;
 
 
@@ -144,6 +145,19 @@ export class EditServiciuComponent {
       }).catch(e => { this.modalService.openModalNotification("Failed", `An unknown error has occured`, false); this.loadingPublish = false;});
       ;
     }
+  }
+
+  clickDelete(){
+    var dialogref = this.modalService.openConfirmationModal("Confirm delete", "Are you sure you want to delete this service?");
+    dialogref.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Confirm button was pressed');
+        // Handle the confirmation action
+      } else if (!result) {
+        console.log('Cancel button was pressed');
+        // Handle the cancel action
+      }
+    });
   }
   
   imagesChanged(imgs: Imagine[]){

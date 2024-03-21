@@ -49,5 +49,9 @@ export class DataService {
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/editUserServiciu`, request,) //requestOptions);
   }
 
+  deleteUserServicii(serviciuId: number): Observable<Maybe<string>>{
+    return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId${serviciuId}`,) //requestOptions);
+  }
+
   
 }

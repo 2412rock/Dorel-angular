@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotificationModalComponent } from '../components/notification-modal/notification-modal.component';
+import { ConfirmationModalComponent } from '../components/confirmation-modal/confirmation-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,16 @@ export class ModalService {
         title: title,
         message: message,
         isSuccess: isSuccess
+      },
+      panelClass: 'custom-dialog-surface'
+    });
+  }
+
+  openConfirmationModal(title: string, message: string): MatDialogRef<ConfirmationModalComponent>  {
+    return this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        title: title,
+        message: message,
       },
       panelClass: 'custom-dialog-surface'
     });
