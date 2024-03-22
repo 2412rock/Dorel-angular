@@ -1,0 +1,18 @@
+<ul *ngIf="!loading" class="nav flex-column" style="display: flex; flex-direction: column;">
+    <div style=" display: flex; justify-content: center; align-items: center; padding: 0.5em;">
+        <span style="font-weight: bold; text-align: center; font-size: medium; color: #FFFFFF;">Serviciile tale</span>
+    </div>
+    <div *ngFor="let item of servicii; let i = index">
+        <div class="nav-item-div" (click)="selectServiciu(i)" [ngStyle]="{'background-color': selectedServiciuIndex === i ? '#586161' : ''}">
+            <li class="nav-item">
+                <span>{{item.name}}</span>
+            </li>
+        </div>
+    </div>
+</ul>
+<div *ngIf="loading" style="display: flex; align-items: center; justify-content: center;" class="nav flex-column">
+    <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
+        <div class="spinner-border text-primary" style="width: 1.8rem; height: 1.8rem;" role="status">
+        </div>
+    </div>
+</div>

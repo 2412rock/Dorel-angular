@@ -1,0 +1,27 @@
+<!-- <h1>Modal Content</h1>
+<button mat-raised-button color="primary" (click)="close()">Close</button> -->
+
+<div style="width: 25vw; height: 45vh; background-color: white;">
+    <div style="display: flex; flex-direction: column; align-items: center;  height: 80%;">
+        <div style="margin-top: 2em;">
+            <i  style="font-size: 7em; color: rgb(0, 0, 0); margin-bottom: 0.2em;" class="fa-solid fa-question"></i>
+        </div>
+        <div style="margin-bottom: 1em;">
+            <span style="font-size: large; font-weight: bold; color:black">{{data.title}}</span>
+        </div>
+        <div>
+            <span style="font-size: medium;">{{data.message}}</span>
+        </div>
+        
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <div (click)="accept()" style="border-radius: 10%; padding: 1em; cursor: pointer; background-color: green; margin-right: 1.5em;">
+            <span style="font-size: large; font-weight:400;">Yes</span>
+        </div>
+        <div (click)="decline()" style="border-radius: 10%; padding: 1em; cursor: pointer; background-color: red;">
+            <span style="font-size: large; font-weight:400;">No</span>
+        </div>
+        
+    </div>
+    
+</div>

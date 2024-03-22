@@ -3,35 +3,49 @@
         <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 1}" (click)="selectMenuItem(1)">
             <li class="nav-item">
                 <i class="fa-solid fa-bell-concierge serviciu-icon"></i>
-                <span>Servicii</span>
+                <span>Add Servicii</span>
+            </li>
+        </div>
+
+        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 2}" (click)="selectMenuItem(2)">
+            <li class="nav-item">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Edit Servicii</span>
             </li>
         </div>
         
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 2}" (click)="selectMenuItem(2)">
+        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 3}" (click)="selectMenuItem(3)">
             <li class="nav-item">
                 <i class="fa-solid fa-user serviciu-icon"></i>
                 <span>Account</span>
             </li>
         </div>
         
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 3}" (click)="selectMenuItem(3)">
+        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 4}" (click)="selectMenuItem(4)">
             <li class="nav-item">
                 <i class="fa-solid fa-desktop serviciu-icon"></i>
                 <span>Graphics</span>
             </li>
         </div>
         
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 4}" (click)="selectMenuItem(4)">
+        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 5}" (click)="selectMenuItem(5)">
             <li class="nav-item">
                 <i class="fa-solid fa-house serviciu-icon"></i>
                 <span>Overview</span>
             </li>
         </div>
         
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 5}" (click)="selectMenuItem(5)">
+        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 6}" (click)="selectMenuItem(6)">
             <li class="nav-item">
                 <i class="fa-solid fa-calendar serviciu-icon"></i>
                 <span>Calendar</span>
+            </li>
+        </div>
+
+        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 7}" (click)="selectMenuItem(7)">
+            <li class="nav-item">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to search</span>
             </li>
         </div>
     </div>

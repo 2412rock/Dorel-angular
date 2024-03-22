@@ -7,6 +7,7 @@ import { LocalstorageService } from './localstorage.service';
 import { AssignServiciuRequest } from '../model/Requests/assign-serviciu-mode';
 import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
 import { DBJudetModel } from '../model/DBModels/DBJudetModel';
+import { Imagine } from '../model/Imagine';
 
 @Injectable({
   providedIn: 'root'
@@ -29,13 +30,28 @@ export class DataService {
     return this.http.get<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServiciiUser`)
   }
 
-  assignUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
-    // const requestHeaders = new HttpHeaders()
-    //   .set('Authorization', `Bearer ${this.localStorage.getAccessToken()}`);
+  getJudeteForServiciu(serviciuId: number){
+    return this.http.get<Maybe<DBJudetModel[]>>(`${this.apiUrl}/api/getJudeteForServiciu?serviciuId=${serviciuId}`)
+  }
 
-    // const requestOptions = {
-    //   headers: requestHeaders
-    // };
+  getDescriereForServiciu(serviciuId: number){
+    return this.http.get<Maybe<string>>(`${this.apiUrl}/api/getDescriereForServiciu?serviciuId=${serviciuId}`)
+  }
+
+  getImaginiForServiciu(serviciuId: number){
+    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiForServiciu?serviciuId=${serviciuId}`)
+  }
+  assignUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request,) //requestOptions);
   }
+
+  editUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/editUserServiciu`, request,) //requestOptions);
+  }
+
+  deleteUserServicii(serviciuId: number): Observable<Maybe<string>>{
+    return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId=${serviciuId}`,) //requestOptions);
+  }
+
+  
 }

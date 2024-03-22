@@ -1,17 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { firstValueFrom } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { Imagine } from 'src/app/model/Imagine';
 import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mode';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
-import { Maybe } from 'src/app/model/maybe';
 import { DataService } from 'src/app/services/data.service';
-import { SharedDataService } from 'src/app/services/shared-data.service';
-import { NotificationModalComponent } from '../notification-modal/notification-modal.component';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -29,7 +24,6 @@ export class AssignServiciiComponent {
   public judeteSearchResultEventEmitter: EventEmitter<DBJudetModel[]> = new EventEmitter<DBJudetModel[]>();
 
   public subscription: any;
-  public selectedFiles: any[] = [];
   public selectedImages: Imagine[] = [];
   public userDescription: string = "";
   public loadingPublish: boolean = false;
@@ -40,10 +34,7 @@ export class AssignServiciiComponent {
   public showImagesValidation: boolean = false;
   public showDescriptionValidation: boolean = false
 
-  constructor(private dataService: DataService,
-    private router: Router,
-    private sharedDataSerice: SharedDataService,
-    private dialog: MatDialog){}
+  constructor(private dataService: DataService,private modalService: ModalService){}
 
 
   ngOnInit(){
@@ -84,7 +75,11 @@ export class AssignServiciiComponent {
             this.alreadySelectedServicii = res.data;
             this.pageReady = true;
           }
-      }).catch(e => {this.openModal('Error', 'Something went wrong loading the menu', false); this.publishDone.emit(true);});
+          else{
+            this.modalService.openModalNotification('Error', `Cant load data ${res.exceptionMessage}`, false);
+            this.publishDone.emit(true);
+          }
+      }).catch(e => {this.modalService.openModalNotification('Error', 'Something went wrong loading the menu', false); this.publishDone.emit(true);});
   }
 
   getJudetTypedValue(val: string){
@@ -99,64 +94,15 @@ export class AssignServiciiComponent {
   }
 
   ngOnDestroy() {
-    console.log("DESTROY")
-    //this.subscription.unsubscribe();
   }
 
-  onFileSelected(event: Event): void {
-    this.showImagesValidation = false;
-    const input = event.target as HTMLInputElement;
-    if (input.files) {
-      //this.selectedFile = input.files[0];
-      for(var fileIndex=0; fileIndex< input.files.length; fileIndex++){
-        this.selectedFiles.push(input.files[fileIndex]);
-        this.readFileAsBase64(input.files[fileIndex]);
-      }
-      console.log("SELECTED FILES")
-      console.log(this.selectedFiles)
-    }
+  changeImages(imgs: Imagine[]){
+    this.selectedImages = imgs;
   }
-
-  onSubmit(): void {
-    
-  }
-
-  private getFileExtension(fileName: string): string{
-    return fileName.split('.').pop() || '';
-  }
-
-  readFileAsBase64(file: File): void {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const base64String = reader.result as string;
-
-      let imagine = new Imagine();
-      imagine.fileContentBase64 = base64String;
-      imagine.fileExtension = this.getFileExtension(file.name);
-      imagine.fileType = file.type;
-
-      this.selectedImages.push(imagine);
-    };
-
-    reader.readAsDataURL(file);
-  }
-
 
 
   clickCancel(){
-
-  }
-
-  openModal(title: string, message: string, isSuccess: boolean): void {
-    this.dialog.open(NotificationModalComponent, {
-      data: {
-        title: title,
-        message: message,
-        isSuccess: isSuccess
-      },
-      panelClass: 'custom-dialog-surface'
-    });
+    this.publishDone.emit(true);
   }
 
   private validationPassed(): boolean{
@@ -190,19 +136,15 @@ export class AssignServiciiComponent {
       request.imagini = this.selectedImages;
       firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
         if(e.isSuccess){
-          console.log("REQ SUCCESS")
-          
-          this.openModal("Success", "Your data has been succesfully published!", true);
+          this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);
           this.publishDone.emit(true);
           
         }else{
-          console.log("REQ FAILED")
-          console.log(e.exceptionMessage)
-          this.openModal("Failed", `An error has occured: ${e.exceptionMessage}`, false);
+          this.modalService.openModalNotification("Failed", `An error has occured: ${e.exceptionMessage}`, false);
         }
         
         this.loadingPublish = false;
-      }).catch(e => { this.openModal("Failed", `An unknown error has occured`, false);});
+      }).catch(e => { this.modalService.openModalNotification("Failed", `An unknown error has occured`, false); this.loadingPublish = false;});
     }
   }
 

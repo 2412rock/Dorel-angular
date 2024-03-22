@@ -1,0 +1,16 @@
+<form (submit)="onSubmit()">
+    <input id="fileUpload" type="file" accept="image/*" (change)="onFileSelected($event)" multiple />
+</form>
+<div class="images" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+    <div *ngFor="let item of selectedImages; let i = index" cdkDrag>
+        <div  class="drag-handle" style="cursor:grab;">
+            <img style="width: 12em; height: 10em; margin-right: 0.5em; margin-bottom: 0.5em;" [src]="item.fileContentBase64">
+            <div class="remove-btn" (click)="removeImage(item)">
+                <i class="fas fa-trash"></i>
+            </div>
+        </div>
+        <div *cdkDragPreview class="drag-preview">
+            <img style="width: 12em; height: 10em;" [src]="item.fileContentBase64">
+        </div>
+    </div>
+</div>

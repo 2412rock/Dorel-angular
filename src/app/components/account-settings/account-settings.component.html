@@ -1,11 +1,12 @@
 <div>
     <div style="display: flex; flex-direction: row;">
-      <div style="width: 10%;">
-        <app-settings-sidebar (sideBarEventEmitter)="selectMenuItem($event)"></app-settings-sidebar>
+      <div style="width: 10vw;">
+        <app-settings-sidebar [selectItemEvent]="selectedItemEvent" (sideBarEventEmitter)="selectMenuItem($event)"></app-settings-sidebar>
       </div>
-      <div style="width: 90%; height: 100vh;">
+      <div style="width: 90vw; height: 100vh;">
           <!-- <app-setting-content [selectedSetting]="selectedSetting"></app-setting-content> -->
-          <app-assign-servicii (publishDone)="publishDone($event)" *ngIf="menuItemSelected === 1"></app-assign-servicii>
+          <app-assign-servicii (publishDone)="deselectOption($event)" *ngIf="menuItemSelected === 1"></app-assign-servicii>
+          <app-edit-servicii (editDone)="deselectOption($event)" *ngIf="menuItemSelected === 2"></app-edit-servicii>
       </div>
       
     </div>

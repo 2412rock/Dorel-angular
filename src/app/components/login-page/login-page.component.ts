@@ -45,7 +45,6 @@ export class LoginPageComponent {
               this.router.navigate(['./basic-search-page']);
             }
         }).catch(e => {
-          console.log(e);
           this.loadingSpinner = false;
         });
       }
@@ -66,7 +65,6 @@ export class LoginPageComponent {
           this.router.navigate(['./basic-search-page']);
         }
       }).catch(e => {
-        console.log(e)
         this.loadingSpinner = false;
       });
     }
