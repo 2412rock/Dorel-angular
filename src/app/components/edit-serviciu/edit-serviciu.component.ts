@@ -162,6 +162,7 @@ export class EditServiciuComponent {
           this.loadingDelete = false;
         }).catch(e => {this.modalService.openModalNotification("Failed", "Unknown error occured", false); this.loadingDelete = false;});
       }
+      this.loadingDelete = false;
     });
   }
   
