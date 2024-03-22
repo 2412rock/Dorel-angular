@@ -96,8 +96,6 @@ export class AssignServiciiComponent {
   }
 
   ngOnDestroy() {
-    console.log("DESTROY")
-    //this.subscription.unsubscribe();
   }
 
   changeImages(imgs: Imagine[]){
@@ -140,14 +138,10 @@ export class AssignServiciiComponent {
       request.imagini = this.selectedImages;
       firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
         if(e.isSuccess){
-          console.log("REQ SUCCESS")
-          
           this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);
           this.publishDone.emit(true);
           
         }else{
-          console.log("REQ FAILED")
-          console.log(e.exceptionMessage)
           this.modalService.openModalNotification("Failed", `An error has occured: ${e.exceptionMessage}`, false);
         }
         

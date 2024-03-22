@@ -1,12 +1,6 @@
 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { firstValueFrom } from 'rxjs';
-import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
-import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
-import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
-import { DataService } from 'src/app/services/data.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
@@ -19,25 +13,17 @@ export class AccountSettingsComponent {
 
   constructor(private router: Router,
     private sharedDataStorage: SharedDataService){
-  //   var selector = this.store.pipe(select(selectSelectedServicii));
-  //   selector.subscribe((value) => {
-  //     console.log('GOT VALUE FROM NGRX:', value);
-      
-  //   });
  }
 
   ngOnInit(){
     this.sharedDataStorage.subjectData$.subscribe(e => {
       if(e != null){
-        console.log("RECEIVED DATA")
-      console.log(e)
-     // this.router.navigate(['./account-settings/add-description-images'])
-      this.router.navigateByUrl('/account-settings', { skipLocationChange: true }).then(() => {
-        this.router.navigate(['./account-settings/add-description-images']);
-      });
+        this.router.navigateByUrl('/account-settings', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['./account-settings/add-description-images']);
+        });
       }
       
-    })
+    });
   }
 
   selectMenuItem(index: number){
@@ -45,9 +31,7 @@ export class AccountSettingsComponent {
   }
 
   deselectOption(val:boolean){
-    console.log("Publish done")
     if(val){
-      console.log("Menu item selected")
       this.menuItemSelected = 0;
     }
   }

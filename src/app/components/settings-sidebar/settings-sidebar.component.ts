@@ -15,7 +15,7 @@ export class SettingsSidebarComponent {
   public profilePicContent: string;
   public selectedItem: number;
 
-  constructor(private http: HttpClient){};
+  constructor(){};
 
   ngOnInit(){
     let name = localStorage.getItem("name");
@@ -30,8 +30,6 @@ export class SettingsSidebarComponent {
         this.displayPlaceholder = this.profilePicContent === "" ? true : false;
       }
     }
-    console.log("Profile pic")
-    console.log(profilePicContent)
   }
 
   selectMenuItem(itemIndex: number){

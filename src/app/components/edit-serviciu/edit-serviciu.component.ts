@@ -46,7 +46,6 @@ export class EditServiciuComponent {
   }
 
   ngOnChanges(){
-    console.log("Changes")
     this.getData();
   }
 

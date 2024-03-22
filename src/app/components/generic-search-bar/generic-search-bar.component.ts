@@ -26,8 +26,6 @@ export class GenericSearchBarComponent {
 
   ngOnInit(): void {
     this.searchResultEventEmitter.subscribe(e => {
-      console.log("GOT SEARCH VALUE")
-      console.log(e)
       if(e.length == 0){
         this.filteredResults = [this.typedValueString];
       }else{

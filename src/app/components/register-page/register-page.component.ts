@@ -36,7 +36,6 @@ export class RegisterPageComponent {
     if(this.isValidName() && this.validationService.isValidEmail(this.email) && this.isValidPassword()){
       this.loadingSpinner = true;
       this.registerButtonText = "Loading.."
-      console.log("Evrything checks out")
       var sendVerificationCodeModel = new SendVerificationCodeModel();
       sendVerificationCodeModel.email = this.email;
       sendVerificationCodeModel.name = this.name;
