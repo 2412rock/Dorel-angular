@@ -75,6 +75,10 @@ export class AssignServiciiComponent {
             this.alreadySelectedServicii = res.data;
             this.pageReady = true;
           }
+          else{
+            this.modalService.openModalNotification('Error', `Cant load data ${res.exceptionMessage}`, false);
+            this.publishDone.emit(true);
+          }
       }).catch(e => {this.modalService.openModalNotification('Error', 'Something went wrong loading the menu', false); this.publishDone.emit(true);});
   }
 
@@ -98,7 +102,7 @@ export class AssignServiciiComponent {
 
 
   clickCancel(){
-
+    this.publishDone.emit(true);
   }
 
   private validationPassed(): boolean{

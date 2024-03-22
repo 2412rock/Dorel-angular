@@ -65,20 +65,23 @@ export class EditServiciuComponent {
               else{
                 this.loading = false;
                 this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
+                this.publishDone.emit(true);
               }
-            }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured", false);});;
+            }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured3", false);this.publishDone.emit(true);});;
           }
           else{
             this.loading = false;
             this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
+            this.publishDone.emit(true);
           }
-        }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured", false);});;
+        }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured2", false);this.publishDone.emit(true);});;
       }
       else{
         this.loading = false;
         this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
+        this.publishDone.emit(true);
       }
-    }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured", false);});
+    }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured1", false);this.publishDone.emit(true);});
   }
 
   getSelectedValueJudete(element: DBJudetModel){
@@ -164,6 +167,10 @@ export class EditServiciuComponent {
       }
       this.loadingDelete = false;
     });
+  }
+
+  clickCancel(){
+    this.publishDone.emit(true);
   }
   
   imagesChanged(imgs: Imagine[]){

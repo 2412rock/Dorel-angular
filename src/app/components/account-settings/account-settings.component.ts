@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -10,6 +10,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 })
 export class AccountSettingsComponent {
   public menuItemSelected: number;
+  public selectedItemEvent = new EventEmitter<number>();
 
   constructor(private router: Router,
     private sharedDataStorage: SharedDataService){
@@ -28,7 +29,8 @@ export class AccountSettingsComponent {
 
   deselectOption(val:boolean){
     if(val){
-      this.menuItemSelected = 0;
+      this.selectMenuItem(0);
+      this.selectedItemEvent.emit(0);
     }
   }
   

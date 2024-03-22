@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SettingsSidebarComponent {
   @Output() sideBarEventEmitter = new EventEmitter<number>();
+  @Input() selectItemEvent = new EventEmitter<number>();
   public displayPlaceholder: boolean = false;
   public profilePicContent: string;
   public selectedItem: number;
@@ -30,7 +31,11 @@ export class SettingsSidebarComponent {
         this.displayPlaceholder = this.profilePicContent === "" ? true : false;
       }
     }
+    this.selectItemEvent.subscribe(val => {
+      this.selectedItem = val;
+    })
   }
+
 
   selectMenuItem(itemIndex: number){
     this.selectedItem = itemIndex;

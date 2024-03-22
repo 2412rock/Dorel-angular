@@ -1,7 +1,7 @@
 <div>
     <div style="display: flex; flex-direction: row;">
       <div style="width: 10vw;">
-        <app-settings-sidebar (sideBarEventEmitter)="selectMenuItem($event)"></app-settings-sidebar>
+        <app-settings-sidebar [selectItemEvent]="selectedItemEvent" (sideBarEventEmitter)="selectMenuItem($event)"></app-settings-sidebar>
       </div>
       <div style="width: 90vw; height: 100vh;">
           <!-- <app-setting-content [selectedSetting]="selectedSetting"></app-setting-content> -->
