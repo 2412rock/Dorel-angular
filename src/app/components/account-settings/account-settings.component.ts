@@ -16,19 +16,12 @@ export class AccountSettingsComponent {
  }
 
   ngOnInit(){
-    this.sharedDataStorage.subjectData$.subscribe(e => {
-      if(e != null){
-        this.router.navigateByUrl('/account-settings', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['./account-settings/add-description-images']);
-        });
-      }
-      
-    });
   }
 
   selectMenuItem(index: number){
     if(index === 7){
-      this.router.navigate(['/basic-search-page'])
+      this.router.navigate(['/basic-search-page']);
+      return;
     }
     this.menuItemSelected = index;
   }

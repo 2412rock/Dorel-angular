@@ -1,17 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { firstValueFrom } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { Imagine } from 'src/app/model/Imagine';
 import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mode';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
-import { Maybe } from 'src/app/model/maybe';
 import { DataService } from 'src/app/services/data.service';
-import { SharedDataService } from 'src/app/services/shared-data.service';
-import { NotificationModalComponent } from '../notification-modal/notification-modal.component';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
