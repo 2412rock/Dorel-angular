@@ -148,14 +148,20 @@ export class EditServiciuComponent {
   }
 
   clickDelete(){
+    this.loadingDelete = true;
     var dialogref = this.modalService.openConfirmationModal("Confirm delete", "Are you sure you want to delete this service?");
     dialogref.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Confirm button was pressed');
-        // Handle the confirmation action
-      } else if (!result) {
-        console.log('Cancel button was pressed');
-        // Handle the cancel action
+        firstValueFrom(this.dataService.deleteUserServicii(this.serviciu.id)).then(response => {
+          if(response.isSuccess){
+            this.modalService.openModalNotification("Success", "Serviciu deleted succesfully", true);
+            this.publishDone.emit(true);
+          }
+          else{
+            this.modalService.openModalNotification("Failed", `Failed to delete service ${response.exceptionMessage}`, false);
+          }
+          this.loadingDelete = false;
+        }).catch(e => {this.modalService.openModalNotification("Failed", "Unknown error occured", false); this.loadingDelete = false;});
       }
     });
   }

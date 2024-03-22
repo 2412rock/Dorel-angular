@@ -15,7 +15,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./account-settings.component.css']
 })
 export class AccountSettingsComponent {
-  public menuItemSelected: number = 2;
+  public menuItemSelected: number;
 
   constructor(private router: Router,
     private sharedDataStorage: SharedDataService){

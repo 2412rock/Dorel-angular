@@ -50,7 +50,7 @@ export class DataService {
   }
 
   deleteUserServicii(serviciuId: number): Observable<Maybe<string>>{
-    return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId${serviciuId}`,) //requestOptions);
+    return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId=${serviciuId}`,) //requestOptions);
   }
 
   

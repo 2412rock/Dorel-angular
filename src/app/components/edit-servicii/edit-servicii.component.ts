@@ -20,6 +20,10 @@ export class EditServiciiComponent {
 
   constructor(private dataService: DataService, private modalService: ModalService){}
   ngOnInit(){
+    this.loadServicii();
+  }
+
+  loadServicii(){
     firstValueFrom(this.dataService.getServiciiForUser()).then(response => {
       if(response.isSuccess){
         this.servicii = response.data;
@@ -33,7 +37,7 @@ export class EditServiciiComponent {
       this.loadingServicii = false;
       this.resetIndex.emit(true);
       this.modalService.openModalNotification("Unknown error", "Couldnt load servicii", false);
-    })
+    });
   }
 
   getSelectedServiciu(serviciu: DBServiciuModel){
@@ -43,5 +47,6 @@ export class EditServiciiComponent {
   publishDoneHandler(val: boolean){
     this.selectedServiciu = null;
     this.resetIndex.emit(true);
+    this.loadServicii();
   }
 }

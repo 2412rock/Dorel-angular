@@ -13,7 +13,7 @@ export class SettingsSidebarComponent {
   @Output() sideBarEventEmitter = new EventEmitter<number>();
   public displayPlaceholder: boolean = false;
   public profilePicContent: string;
-  public selectedItem: number = 1;
+  public selectedItem: number;
 
   constructor(private http: HttpClient){};
 
