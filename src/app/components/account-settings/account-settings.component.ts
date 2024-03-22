@@ -27,6 +27,9 @@ export class AccountSettingsComponent {
   }
 
   selectMenuItem(index: number){
+    if(index === 7){
+      this.router.navigate(['/basic-search-page'])
+    }
     this.menuItemSelected = index;
   }
 

@@ -41,6 +41,13 @@
                 <span>Calendar</span>
             </li>
         </div>
+
+        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 7}" (click)="selectMenuItem(7)">
+            <li class="nav-item">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to search</span>
+            </li>
+        </div>
     </div>
     <div class="current-account-data">
         <img class="profile-pic" *ngIf="!displayPlaceholder" [src]='profilePicContent'>
