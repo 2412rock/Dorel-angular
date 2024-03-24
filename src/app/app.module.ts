@@ -32,6 +32,8 @@ import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.
 import { EditServiciiSidebarComponent } from './components/edit-servicii-sidebar/edit-servicii-sidebar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ImageSelectorComponent } from './components/image-selector/image-selector.component';
+import { SearchResultCardComponent } from './components/search-result-card/search-result-card.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import { ImageSelectorComponent } from './components/image-selector/image-select
         EditServiciiComponent,
         EditServiciuComponent,
         EditServiciiSidebarComponent,
-        ImageSelectorComponent
+        ImageSelectorComponent,
+        SearchResultCardComponent,
+        StarRatingComponent
     ],
     providers: [
         {
