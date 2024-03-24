@@ -1,5 +1,5 @@
-<form (submit)="onSubmit()">
-    <input id="fileUpload" type="file" accept="image/*" (change)="onFileSelected($event)" multiple />
+<form class="" (submit)="onSubmit()">
+    <input class="" id="fileUpload" type="file" accept="image/*" (change)="onFileSelected($event)" multiple />
 </form>
 <div class="images" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
     <div *ngFor="let item of selectedImages; let i = index" cdkDrag>

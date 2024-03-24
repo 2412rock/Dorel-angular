@@ -9,7 +9,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./account-settings.component.css']
 })
 export class AccountSettingsComponent {
-  public menuItemSelected: number;
+  public menuItemSelected: number = 0;;
   public selectedItemEvent = new EventEmitter<number>();
 
   constructor(private router: Router,

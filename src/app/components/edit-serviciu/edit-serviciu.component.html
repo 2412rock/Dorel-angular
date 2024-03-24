@@ -1,4 +1,4 @@
-<div *ngIf="!loading" style="display: flex; flex-direction: column; min-height: 100vh; width: 79vw;" [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
+<div *ngIf="!loading" class="theme-slate-gray" style="display: flex; flex-direction: column; min-height: 100vh; width: 79vw;" [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
     <div *ngIf="!pageReady">
         <div class="spinner-border text-primary" style="width: 8.2rem; height: 8.2rem;" role="status">
         </div>
@@ -46,7 +46,7 @@
                     <div style="margin-top: 2em;width: 100%;">
                         <form>
                             <label for="description">Description:</label><br>
-                            <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;" [(ngModel)]="userDescription" id="description"
+                            <textarea class="theme-red" (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;" [(ngModel)]="userDescription" id="description"
                                 name="description" rows="6" cols="40"
                                 placeholder="Enter your description here..."></textarea><br>
                         </form>
@@ -62,8 +62,8 @@
 
     <!-- Container for the buttons -->
     <div *ngIf="pageReady" style="position: sticky; bottom: 0; width: 100%;">
-        <div style="display: flex; justify-content: end; padding: 20px; background-color: #f1f1f1;">
-            <div (click)="clickCancel()" class="bottom-btn green-theme-background">Cancel</div>
+        <div style="display: flex; justify-content: end; padding: 20px;" class="theme-slate-gray">
+            <div (click)="clickCancel()" class="bottom-btn theme-golden-brown">Cancel</div>
             <div (click)="clickDelete()" class="bottom-btn delete-btn-background"
                 style="display: flex; justify-content: center; align-items: center; flex-direction: row;">
                 <span>Delete</span>
@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div (click)="clickPublish()" class="bottom-btn green-theme-background"
+            <div (click)="clickPublish()" class="bottom-btn theme-golden-brown"
                 style="display: flex; justify-content: center; align-items: center; flex-direction: row;">
                 <span>Publish</span>
                 <div *ngIf="loadingPublish" class="d-flex custom-spinner" style="margin-left: 0.5em;">
@@ -84,7 +84,7 @@
     </div>
 </div>
 
-<div *ngIf="loading" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; width: 79vw;">
+<div *ngIf="loading" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; width: 79vw;" class="theme-slate-gray">
     <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
         <div class="spinner-border text-primary" style="width: 2.8rem; height: 2.8rem;" role="status">
         </div>
