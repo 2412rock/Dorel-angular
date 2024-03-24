@@ -8,7 +8,7 @@
             <i class="fa-solid fa-caret-down account-dropdown-icon"></i>
         </div>
     </div>
-    <div *ngIf="showAccountDropdown" class="top">
+    <div *ngIf="showAccountDropdown" class="top-dropdown">
         <div class="account-dropdown">
             <div class="account-dropdown-item" *ngFor="let item of accountDropDown">
                 <p *ngIf="item === 'Log out'" (click)="clickLogout()" class="dropdown-item-p"> {{item}} </p>
@@ -17,5 +17,8 @@
             </div>
         </div>
     </div>
-    <app-search-bar></app-search-bar>
+    <div class="search" style="height: 90%; display: flex; align-items: center; justify-content: center; width: 100vw;">
+        <app-search-bar style="width: 50%;"></app-search-bar>
+    </div>
+    
 </div>

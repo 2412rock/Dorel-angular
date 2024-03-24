@@ -1,16 +1,14 @@
 .body {
-    background: #84fab0;
+    /* background: #84fab0;
     
-    /* Chrome 10-25, Safari 5.1-6 */
     background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
     
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
-    
+    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5)); */
+    background-color: #11191f;
     height: 100vh;
-    display: block;
-    justify-content: center;
-    align-items: center;
+
+    width: 100vw;
+
 }
 
 .gradient-custom-4 {
@@ -30,8 +28,18 @@
 }
 
 .top{
+    width: 100vw;
     display: flex;
     justify-content: end;
+    position:absolute;
+}
+
+.top-dropdown{
+    width: 100vw;
+    display: flex;
+    justify-content: end;
+    position:absolute;
+    top: 4.2em;
 }
 
 .profile-pic{
@@ -55,10 +63,12 @@
     margin: 0;
     margin-left: 0.6em;
     cursor: pointer;
+    color: rgba(255, 255, 255, 0.74);
 }
 
 .account-dropdown-icon{
     margin-left: 0.2em;
+    color: rgba(255, 255, 255, 0.74);
 }
 
 .account-dropdown{
