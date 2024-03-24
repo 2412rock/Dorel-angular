@@ -34,6 +34,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ImageSelectorComponent } from './components/image-selector/image-selector.component';
 import { SearchResultCardComponent } from './components/search-result-card/search-result-card.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { MyAccountMenuComponent } from './components/my-account-menu/my-account-menu.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
         EditServiciiSidebarComponent,
         ImageSelectorComponent,
         SearchResultCardComponent,
-        StarRatingComponent
+        StarRatingComponent,
+        MyAccountMenuComponent
     ],
     providers: [
         {

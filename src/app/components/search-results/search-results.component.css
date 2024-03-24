@@ -15,3 +15,11 @@
     align-items: center;
 
 }
+
+.top{
+    width: 100vw;
+    display: flex;
+    justify-content: end;
+    position:absolute;
+    top: 0;
+}

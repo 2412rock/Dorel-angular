@@ -1,22 +1,8 @@
 <div class="body">
     <div class="top">
-        <button *ngIf="!isLoggedIn" type="button" (click)="clickLogin()"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body login-btn">Log in</button>
-        <div class="user-info" *ngIf="isLoggedIn">
-            <img class="profile-pic" *ngIf="!displayPlaceholder" [src]='profilePicContent' alt="Base64 Image">
-            <p (click)="clickMyAccount()" class="my-account">Contul meu</p>
-            <i class="fa-solid fa-caret-down account-dropdown-icon"></i>
-        </div>
+        <app-my-account-menu></app-my-account-menu>
     </div>
-    <div *ngIf="showAccountDropdown" class="top-dropdown">
-        <div class="account-dropdown">
-            <div class="account-dropdown-item" *ngFor="let item of accountDropDown">
-                <p *ngIf="item === 'Log out'" (click)="clickLogout()" class="dropdown-item-p"> {{item}} </p>
-                <i class="logout-icon" *ngIf="item === 'Log out'" class="fa-solid fa-arrow-right-from-bracket"></i>
-                <p (click)="clickAccountSettings()" *ngIf="item != 'Log out'" class="dropdown-item-p">{{item}}</p>
-            </div>
-        </div>
-    </div>
+    
     <div class="search" style="height: 90%; display: flex; align-items: center; justify-content: center; width: 100vw;">
         <app-search-bar style="width: 50%;"></app-search-bar>
     </div>
