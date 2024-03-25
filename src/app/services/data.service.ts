@@ -53,5 +53,8 @@ export class DataService {
     return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId=${serviciuId}`,) //requestOptions);
   }
 
+  getServiciiForJudet(serviciuId: number, judetId: number, pageNumber: number){
+    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiForServiciu?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}`)
+  }
   
 }

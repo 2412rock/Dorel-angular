@@ -57,4 +57,8 @@ export class BasicSearchPageComponent {
   clickAccountSettings(){
     this.router.navigate(['./account-settings'])
   }
+
+  navigateToSearch(val: boolean){
+    this.router.navigate(["./search-results-page"])
+  }
 }

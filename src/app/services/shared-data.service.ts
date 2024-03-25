@@ -10,8 +10,8 @@ export class SharedDataService {
   private subject = new BehaviorSubject<any>(null);
   subjectData$ = this.subject.asObservable();
 
-  private serviciuSelectat: number | null;
-  private judeteSelectate: number[] = [];
+  private serviciuSelectatId: number | null;
+  private judetSelectatId: number | null;
   private userEmail: string;
 
   getUserEmail(){
@@ -30,25 +30,25 @@ export class SharedDataService {
     this.subject.next(null);
   }
 
-  public addServiciuSelectat(serviciuId: number){
-    this.serviciuSelectat = serviciuId;
+  public setServiciuSelectat(serviciuId: number){
+    this.serviciuSelectatId = serviciuId;
   }
 
   public getServiciuSelectat(): number | null{
-    return this.serviciuSelectat;
+    return this.serviciuSelectatId;
   }
 
-  public addJudeteSelectate(judete: number[]){
-    this.judeteSelectate = judete;
+  public setJudetselectat(judetId: number){
+    this.judetSelectatId = judetId;
   }
 
-  public getJudeteSelectate(): number[]{
-    return this.judeteSelectate;
+  public getJudetSelectat(): number | null{
+    return this.judetSelectatId;
   }
 
   public resetAll(){
-    this.serviciuSelectat = null;
-    this.judeteSelectate = [];
+    this.serviciuSelectatId = null;
+    this.judetSelectatId = null;
     this.clearData();
   }
 }
