@@ -75,6 +75,7 @@ i{
 .search-bars-container{
   width: 100%!important;
   display:block;
+  z-index: 2;
 }
 
 .display-flex{

@@ -1,4 +1,4 @@
-<div class="top">
+<div class="top" style="z-index:0">
     <button *ngIf="!isLoggedIn" type="button" (click)="clickLogin()"
                 class="btn btn-success btn-block btn-lg gradient-custom-4 text-body login-btn">Log in</button>
     <div class="user-info" *ngIf="isLoggedIn">
@@ -7,7 +7,7 @@
         <i class="fa-solid fa-caret-down account-dropdown-icon"></i>
     </div>
 </div>
-<div *ngIf="showAccountDropdown" class="top-dropdown">
+<div *ngIf="showAccountDropdown" class="top-dropdown" style="z-index:0">
     <div class="account-dropdown">
         <div class="account-dropdown-item" *ngFor="let item of accountDropDown">
             <p *ngIf="item === 'Log out'" (click)="clickLogout()" class="dropdown-item-p"> {{item}} </p>

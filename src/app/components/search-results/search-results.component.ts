@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -19,7 +20,13 @@ export class SearchResultsComponent {
     private modalService: ModalService){}
 
   ngOnInit(){
-    firstValueFrom(this.dataService.getServiciiForJudet(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0)).then(
+    this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0);
+  }
+
+  loadData(serviciuId: number, judetId: number, pageNumber: number){
+    this.searchResults = [];
+    this.loading = true;
+    firstValueFrom(this.dataService.getServiciiForJudet(serviciuId, judetId, pageNumber)).then(
       response => {
         if(response.isSuccess){
           response.data.forEach(searchResult => {
@@ -35,4 +42,7 @@ export class SearchResultsComponent {
     ).catch(e => {this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false);this.loading = false;})
   }
 
+  getDataFromSearch(model: SearchModel){
+    this.loadData(model.serviciuId, model.judetId, 0);
+  }
 }

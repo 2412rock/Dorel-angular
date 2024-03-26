@@ -4,8 +4,8 @@
             <app-my-account-menu></app-my-account-menu>
         </div>
         
-        <div style="width: 50%; margin-top: 2em;">
-            <app-search-bar></app-search-bar>
+        <div style="width: 50%; margin-top: 4.5em;">
+            <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
         </div>
         <div *ngIf="loading" style="width: 70vw; height: 40vh; display: flex; align-items: center; justify-content: center;">
             <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
