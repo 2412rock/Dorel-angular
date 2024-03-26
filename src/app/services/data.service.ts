@@ -8,6 +8,7 @@ import { AssignServiciuRequest } from '../model/Requests/assign-serviciu-mode';
 import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
 import { DBJudetModel } from '../model/DBModels/DBJudetModel';
 import { Imagine } from '../model/Imagine';
+import { SearchResult } from '../model/search-result';
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +54,8 @@ export class DataService {
     return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId=${serviciuId}`,) //requestOptions);
   }
 
+  getServiciiForJudet(serviciuId: number, judetId: number, pageNumber: number){
+    return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getServiciiForJudet?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}`)
+  }
   
 }

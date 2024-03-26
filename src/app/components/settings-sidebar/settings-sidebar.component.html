@@ -1,56 +1,78 @@
-<ul class="nav flex-column" style="display: flex; flex-direction: column; justify-content: space-between;">
+<ul class="nav flex-column theme-dark-blue"
+    style="display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 1}" (click)="selectMenuItem(1)">
+        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 1}"
+            (click)="selectMenuItem(1)">
             <li class="nav-item">
-                <i class="fa-solid fa-bell-concierge serviciu-icon"></i>
-                <span>Add Servicii</span>
+                <div style="display: flex; flex-direction: row;">
+                    <i class="fa-solid fa-bell-concierge serviciu-icon"></i>
+                    <span>Add Servicii</span>
+                </div>
             </li>
         </div>
 
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 2}" (click)="selectMenuItem(2)">
+        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 2}"
+            (click)="selectMenuItem(2)">
             <li class="nav-item">
-                <i class="fa-solid fa-pen-to-square"></i>
-                <span>Edit Servicii</span>
-            </li>
-        </div>
-        
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 3}" (click)="selectMenuItem(3)">
-            <li class="nav-item">
-                <i class="fa-solid fa-user serviciu-icon"></i>
-                <span>Account</span>
-            </li>
-        </div>
-        
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 4}" (click)="selectMenuItem(4)">
-            <li class="nav-item">
-                <i class="fa-solid fa-desktop serviciu-icon"></i>
-                <span>Graphics</span>
-            </li>
-        </div>
-        
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 5}" (click)="selectMenuItem(5)">
-            <li class="nav-item">
-                <i class="fa-solid fa-house serviciu-icon"></i>
-                <span>Overview</span>
-            </li>
-        </div>
-        
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 6}" (click)="selectMenuItem(6)">
-            <li class="nav-item">
-                <i class="fa-solid fa-calendar serviciu-icon"></i>
-                <span>Calendar</span>
+                <div style="display: flex; flex-direction: row;">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Edit Servicii</span>
+                </div>     
             </li>
         </div>
 
-        <div class="nav-item-div" [ngClass]="{'selected-item-background': selectedItem === 7}" (click)="selectMenuItem(7)">
+        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 3}"
+            (click)="selectMenuItem(3)">
             <li class="nav-item">
-                <i class="fa-solid fa-arrow-left"></i>
-                <span>Back to search</span>
+                <div style="display: flex; flex-direction: row;">
+                    <i class="fa-solid fa-user serviciu-icon"></i>
+                    <span>Account</span>
+                </div>               
+            </li>
+        </div>
+
+        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 4}"
+            (click)="selectMenuItem(4)">
+            <li class="nav-item">
+                <div style="display: flex; flex-direction: row;">
+                    <i class="fa-solid fa-desktop serviciu-icon"></i>
+                    <span>Graphics</span>
+                </div>                
+            </li>
+        </div>
+
+        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 5}"
+            (click)="selectMenuItem(5)">
+            <li class="nav-item">
+                <div style="display: flex; flex-direction: row;">
+                    <i class="fa-solid fa-house serviciu-icon"></i>
+                    <span>Overview</span>
+                </div>               
+            </li>
+        </div>
+
+        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 6}"
+            (click)="selectMenuItem(6)">
+            <li class="nav-item">
+                <div style="display: flex; flex-direction: row;">
+                    <i class="fa-solid fa-calendar serviciu-icon"></i>
+                    <span>Calendar</span>
+                </div>
+            </li>
+        </div>
+
+        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 7}"
+            (click)="selectMenuItem(7)">
+            <li class="nav-item">
+                <div style="display: flex; flex-direction: row;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to search</span>
+                </div>
             </li>
         </div>
     </div>
     <div class="current-account-data">
-        <img class="profile-pic" *ngIf="!displayPlaceholder" [src]='profilePicContent'>
-        Adrian Albu
+        <img class="profile-pic" *ngIf="!displayPlaceholder" [src]='profilePicContent' style="margin-right: 0.3em;">
+        <span style="color: white;">Adrian Albu</span>
     </div>
-  </ul>
+</ul>

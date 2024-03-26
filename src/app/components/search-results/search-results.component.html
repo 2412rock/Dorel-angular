@@ -1,88 +1,24 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h2 class="mt-4 mb-4">Bootstrap 5 Cards</h2>
+<div class="body">
+    <div class="content">
+        <div class="top">
+            <app-my-account-menu></app-my-account-menu>
         </div>
-        <div class="col-md-6 col-lg-4">
-            <!-- Bootstrap 5 card box -->
-            <div class="card-box">
-                <div class="card-thumbnail">
-                    <img src="https://frankfurt.apollo.olxcdn.com/v1/files/5igz95tlkea51-RO/image;s=1000x700" class="img-fluid" alt="">
+        
+        <div style="width: 50%; margin-top: 4.5em;">
+            <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
+        </div>
+        <div *ngIf="loading" style="width: 70vw; height: 40vh; display: flex; align-items: center; justify-content: center;">
+            <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
+                <div class="spinner-border text-primary" style="width: 3.5rem; height: 3.5rem;" role="status">
                 </div>
-                <h3><a href="#" class="mt-2 text-danger">What is Lorem Ipsum?</a></h3>
-                <p class="text-secondary">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                <a href="#" class="btn btn-sm btn-danger float-right">Read more >></a>
             </div>
         </div>
-
-        <div class="col-md-6 col-lg-4">
-            <!-- Bootstrap 5 card box -->
-            <div class="card-box">
-                <div class="card-thumbnail">
-                    <img src="https://frankfurt.apollo.olxcdn.com/v1/files/5igz95tlkea51-RO/image;s=1000x700" class="img-fluid" alt="">
-                </div>
-                <h3><a href="#" class="mt-2 text-danger">Why do we use it?</a></h3>
-                <p class="text-secondary">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                <a href="#" class="btn btn-sm btn-danger float-right">Read more >></a>
+        <div *ngIf="!loading" style="width: 70vw; display: flex; flex-direction: row; flex-wrap: wrap;">
+            <div style="width: 100%; margin: 1em;">
+                <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{searchResults[0].serviciuName}}</span>
             </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <!-- Bootstrap 5 card box -->
-            <div class="card-box">
-                <div class="card-thumbnail">
-                    <img src="https://frankfurt.apollo.olxcdn.com/v1/files/5igz95tlkea51-RO/image;s=1000x700" class="img-fluid" alt="">
-                </div>
-                <h3><a href="#" class="mt-2 text-danger">Where does it come from?</a></h3>
-                <p class="text-secondary">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                <a href="#" class="btn btn-sm btn-danger float-right">Read more >></a>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <!-- Bootstrap 5 card box -->
-            <div class="card-box">
-                <div class="card-thumbnail">
-                    <img src="https://frankfurt.apollo.olxcdn.com/v1/files/mirc10ookt7u3-RO/image;s=1000x700" class="img-fluid" alt="">
-                </div>
-                <h3><a href="#" class="mt-2 text-danger">Where can I get some?</a></h3>
-                <p class="text-secondary">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                <a href="#" class="btn btn-sm btn-danger float-right">Read more >></a>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <!-- Bootstrap 5 card box -->
-            <div class="card-box">
-                <div class="card-thumbnail">
-                    <img src="https://frankfurt.apollo.olxcdn.com/v1/files/mirc10ookt7u3-RO/image;s=1000x700" class="img-fluid" alt="">
-                </div>
-                <h3><a href="#" class="mt-2 text-danger">Standard Lorem Ipsum passage</a></h3>
-                <p class="text-secondary">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                <a href="#" class="btn btn-sm btn-danger float-right">Read more >></a>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <!-- Bootstrap 5 card box -->
-            <div class="card-box">
-                <div class="card-thumbnail">
-                    <img src="https://frankfurt.apollo.olxcdn.com/v1/files/mirc10ookt7u3-RO/image;s=1000x700" class="img-fluid" alt="">
-                </div>
-                <h3><a href="#" class="mt-2 text-danger">What is Lorem Ipsum?</a></h3>
-                <p class="text-secondary">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                <a href="#" class="btn btn-sm btn-danger float-right">Read more >></a>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <!-- Bootstrap 5 card box -->
-            <div class="card-box">
-                <div class="card-thumbnail">
-                    <img src="https://frankfurt.apollo.olxcdn.com/v1/files/mirc10ookt7u3-RO/image;s=1000x700" class="img-fluid" alt="">
-                </div>
-                <h3><a href="#" class="mt-2 text-danger">What is Lorem Ipsum?</a></h3>
-                <p class="text-secondary">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</p>
-                <a href="#" class="btn btn-sm btn-danger float-right">Read more >></a>
+            <div *ngFor="let item of searchResults" style="margin: 1em;">
+                <app-search-result-card [userName]="item.userName" [description]="item.descriere" [rating]="item.starsAverage" [imagine]="item.imagineCover"></app-search-result-card>
             </div>
         </div>
     </div>

@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, firstValueFrom, map, startWith } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
+import { SearchModel } from 'src/app/model/search-model';
 import { DataService } from 'src/app/services/data.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -13,16 +15,19 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
+  @Output() searchClickEvent = new EventEmitter<SearchModel>();
   textInputControlServicii = new FormControl('');
   textInputControlLocation = new FormControl('');
-  public filteredResultsServicii: string[];
-  public filteredResultsLocatie: string[];
+  public filteredResultsServicii: DBServiciuModel[];
+  public filteredResultsLocatie: DBJudetModel[];
   public dropdownServiciiVisible: boolean = false;
   public dropdownLocationVisible: boolean = false;
   public selectedService: string;
   public selectedLocation: string;
+  public selectedServiciu: DBServiciuModel | null;
+  public selectedJudet: DBJudetModel | null;
 
-  constructor(private dataService: DataService, private router: Router) { }
+  constructor(private dataService: DataService, private sharedDataService: SharedDataService) { }
 
   ngOnInit(): void {
     this.textInputControlServicii.valueChanges.subscribe(value => {
@@ -52,11 +57,8 @@ export class SearchBarComponent {
     req.startsWith = startsWith;
     firstValueFrom(this.dataService.getServicii(req)).then(e => {
       let dataValues = e.data as DBServiciuModel[];
-      let values: string[] = [];
-      dataValues.forEach(e => {
-        values.push(e.name);
-      });
-      this.filteredResultsServicii = values;
+      
+      this.filteredResultsServicii = dataValues;
     })
   }
 
@@ -65,36 +67,44 @@ export class SearchBarComponent {
     req.startsWith = startsWith;
     firstValueFrom(this.dataService.getJudete(req)).then(e => {
       let dataValues = e.data as DBJudetModel[];
-      let values: string[] = [];
-      dataValues.forEach(e => {
-        values.push(e.name);
-      });
-      this.filteredResultsLocatie = values;
-    })  }
+      this.filteredResultsLocatie = dataValues;
+    });}
 
   clickClearServicii(){
     this.textInputControlServicii.reset();
     this.dropdownServiciiVisible = false;
+    this.selectedServiciu = null;
   }
 
   clickClearLocatie(){
     this.textInputControlLocation.reset();
     this.dropdownLocationVisible = false;
+    this.selectedJudet = null;
   }
 
-  selectService(val: string){
-    this.selectedService = val;
-    this.textInputControlServicii.setValue(val);
+  selectService(serviciu: DBServiciuModel){
+    this.selectedService = serviciu.name;
+    this.textInputControlServicii.setValue(serviciu.name);
     this.dropdownServiciiVisible = false;
+    this.selectedServiciu = serviciu;
+
   }
 
-  selectLocationval(val:string){
-    this.selectedLocation = val;
-    this.textInputControlLocation.setValue(val);
+  selectJudet(judet: DBJudetModel){
+    this.selectedLocation = judet.name;
+    this.textInputControlLocation.setValue(judet.name);
     this.dropdownLocationVisible = false;
+    this.sharedDataService.setJudetselectat(judet.id);
+    this.selectedJudet = judet;
   }
 
   clickSearch(){
-    this.router.navigate(["./search-results-page"])
+    if(this.selectedServiciu != null && this.selectedJudet != null){
+      var model = new SearchModel();
+      model.serviciuId = this.selectedServiciu.id;
+      model.judetId = this.selectedJudet.id;
+      this.searchClickEvent.emit(model);
+    }
+    
   }
 }
