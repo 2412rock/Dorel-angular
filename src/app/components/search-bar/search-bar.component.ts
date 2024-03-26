@@ -5,6 +5,7 @@ import { Observable, firstValueFrom, map, startWith } from 'rxjs';
 import { DBJudetModel } from 'src/app/model/DBModels/DBJudetModel';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
+import { SearchModel } from 'src/app/model/search-model';
 import { DataService } from 'src/app/services/data.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -14,7 +15,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
-  @Output() searchClickEvent = new EventEmitter<boolean>();
+  @Output() searchClickEvent = new EventEmitter<SearchModel>();
   textInputControlServicii = new FormControl('');
   textInputControlLocation = new FormControl('');
   public filteredResultsServicii: DBServiciuModel[];
@@ -23,6 +24,8 @@ export class SearchBarComponent {
   public dropdownLocationVisible: boolean = false;
   public selectedService: string;
   public selectedLocation: string;
+  public selectedServiciu: DBServiciuModel | null;
+  public selectedJudet: DBJudetModel | null;
 
   constructor(private dataService: DataService, private sharedDataService: SharedDataService) { }
 
@@ -70,18 +73,20 @@ export class SearchBarComponent {
   clickClearServicii(){
     this.textInputControlServicii.reset();
     this.dropdownServiciiVisible = false;
+    this.selectedServiciu = null;
   }
 
   clickClearLocatie(){
     this.textInputControlLocation.reset();
     this.dropdownLocationVisible = false;
+    this.selectedJudet = null;
   }
 
   selectService(serviciu: DBServiciuModel){
     this.selectedService = serviciu.name;
     this.textInputControlServicii.setValue(serviciu.name);
     this.dropdownServiciiVisible = false;
-    this.sharedDataService.setServiciuSelectat(serviciu.id);
+    this.selectedServiciu = serviciu;
 
   }
 
@@ -90,9 +95,16 @@ export class SearchBarComponent {
     this.textInputControlLocation.setValue(judet.name);
     this.dropdownLocationVisible = false;
     this.sharedDataService.setJudetselectat(judet.id);
+    this.selectedJudet = judet;
   }
 
   clickSearch(){
-    this.searchClickEvent.emit(true);
+    if(this.selectedServiciu != null && this.selectedJudet != null){
+      var model = new SearchModel();
+      model.serviciuId = this.selectedServiciu.id;
+      model.judetId = this.selectedJudet.id;
+      this.searchClickEvent.emit(model);
+    }
+    
   }
 }

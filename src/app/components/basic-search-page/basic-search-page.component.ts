@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchModel } from 'src/app/model/search-model';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-basic-search-page',
@@ -17,7 +19,7 @@ export class BasicSearchPageComponent {
   public accountDropDown: string[] = ["Log out", "Account options"];
   public showAccountDropdown: boolean = false;
 
-  constructor(private router: Router, private localstorageService: LocalstorageService){}
+  constructor(private router: Router, private localstorageService: LocalstorageService, private sharedDataService: SharedDataService){}
 
   private stringToBool(value: string){
     return value === "true" ? true : false;
@@ -58,7 +60,9 @@ export class BasicSearchPageComponent {
     this.router.navigate(['./account-settings'])
   }
 
-  navigateToSearch(val: boolean){
-    this.router.navigate(["./search-results-page"])
+  navigateToSearch(val: SearchModel){
+    this.sharedDataService.setServiciuSelectat(val.serviciuId);
+    this.sharedDataService.setJudetselectat(val.judetId);
+    this.router.navigate(["./search-results-page"]);
   }
 }

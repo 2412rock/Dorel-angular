@@ -1,13 +1,12 @@
 <div class="content">
     <div style="display: flex; flex-direction: column;  align-items: center;">
-            <img src="https://ziarulceahlaul.ro/wp-content/uploads/2022/02/electrician-626x375.jpeg" alt="Electrician"
+            <img [src]="imagine.fileContentBase64" alt="Electrician"
                 style="width: 70%;">
-            <div style="max-width: 70%;">
-                <p style="color: white; width: fit-content; font-size: large; font-weight: bold; margin-top: 1em;">John Doe</p>
-                <p style="color: white; width: fit-content; margin-top: 1em; font-size: medium;">John is known for his meticulous attention to detail and
-                    his expertise in handling complex electrical installations.</p>
+            <div style="width: 70%;">
+                <p style="color: white; width: fit-content; font-size: large; font-weight: bold; margin-top: 1em;">{{userName}}</p>
+                <p style="color: white; width: fit-content; margin-top: 1em; font-size: medium;">{{description}}.</p>
                     <p style="color: white; margin-top: 1em; margin-bottom: 1em; font-weight: bold;">Rating</p>
-                    <app-star-rating [rating]="4.5"></app-star-rating>
+                    <app-star-rating [rating]="rating"></app-star-rating>
                 </div>
             </div>
             <div>
