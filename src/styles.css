@@ -23,3 +23,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .theme-red{
     background-color: #482728;
 }
+
+:root {
+    --theme-dark-blue: #11191f; /* Define primary color */
+    --brighter-blue: #141e26; /* Define secondary color */
+    --slate-gray: #767b91;
+    --golden-brown: #9C6825;
+    --red: #482728;
+    /* Add more colors as needed */
+  }

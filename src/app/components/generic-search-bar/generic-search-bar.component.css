@@ -50,16 +50,18 @@
     width:auto;
     cursor: pointer;
     border-radius: 0.6em;
+    color: white;
   }
 
   .dropdown-item:hover{
-    background-color: rgb(224, 225, 225);
+    background-color: var(--golden-brown);
   }
+
 
   .dropdown-items-header{
     font-size: small;
     margin-left: 1em !important;
-
+    color: white;
   }
 
   .overlay{
@@ -69,4 +71,16 @@
 
   .hidden{
     visibility: hidden;
+  }
+
+  .border-radius-top{
+    border-top: solid 0.1em white;
+    border-right: solid 0.1em white;
+    border-left: solid 0.1em white;
+    border-top-left-radius: 0.1em;
+  }
+
+  .border-all{
+    border: solid 0.1em white;
+    border-radius: 0.1em;
   }

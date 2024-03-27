@@ -32,7 +32,7 @@
                     </div>
                     <div *ngIf="selectedServiciu != null" style="display: flex; justify-content: start; align-items: center;">
                         <div style="width: 34%;">
-                            <div *ngIf="selectedServiciu != null" class="selected-item gradient-custom-4">
+                            <div *ngIf="selectedServiciu != null" class="selected-item" style="background-color: var(--golden-brown);">
                                 <p class="selected-item-text" style="margin-right: 2em;">{{selectedServiciu.name}}</p>
                                 <div class="selected-item-delete-div" (click)="removeSelectedServiciu()">
                                     <i class="fa-solid fa-x selected-item-delete-icon" style="color: red;"></i>

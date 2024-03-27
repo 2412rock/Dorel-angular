@@ -30,12 +30,12 @@ export class EditServiciiComponent {
         
       }else{
         this.modalService.openModalNotification("Couldnt load servicii", response.exceptionMessage, false);
-        this.resetIndex.emit(true);
+        this.editDone.emit(true);
       }
       this.loadingServicii = false;
     }).catch(e => {
       this.loadingServicii = false;
-      this.resetIndex.emit(true);
+      this.editDone.emit(true);
       this.modalService.openModalNotification("Unknown error", "Couldnt load servicii", false);
     });
   }

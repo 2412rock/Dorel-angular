@@ -1,8 +1,8 @@
 <div #parentElement style="max-width: 100%;">
     <div style="width: 100%;">
-        <div class="input-container theme-red" style="width: 100%;" [ngStyle]="{'border': showValidationError ? 'solid 1px red': 'solid 1px rgba(0, 0, 0, 0.1)'}">
+        <div class="input-container theme-red" style="width: 100%;" [ngStyle]="{'border': showValidationError ? 'solid 0.1em red': ''}" [ngClass]="{'border-radius-top': dropdownVisible, 'border-all': !dropdownVisible}">
             <div class="space-between theme-red" >
-                <input type="text" class="theme-red" [formControl]="textInput" [placeholder]="placeHolderText"/>
+                <input type="text" class="theme-red" style="color:white" [formControl]="textInput" [placeholder]="placeHolderText"/>
                 <div>
                     <i (click)="clearSerchbar()" class="fa-solid fa-x"></i>
                 </div>
@@ -10,7 +10,7 @@
         </div>
     </div>
     <div>
-        <div *ngIf="dropdownVisible" [style.width.px]="getParentWidth()" class="input-container" style="position:fixed; border: solid 1px rgba(0, 0, 0, 0.1)">
+        <div *ngIf="dropdownVisible" [style.width.px]="getParentWidth()" class="input-container" style="position:fixed; border: solid 0.1em white; background-color: #482728;">
             <div class="dropdown-items-header">Suggested results</div>
             <div *ngFor="let item of filteredResults">
                 <div *ngIf="resultAvailable(item)" (click)="selectOption(item)" class="dropdown-item">{{item.name}}</div>
