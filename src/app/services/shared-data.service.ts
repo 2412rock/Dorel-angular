@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ImaginiServiciiDescriere } from '../model/imagine-servicii-descriere';
 import { BehaviorSubject } from 'rxjs';
+import { SearchResult } from '../model/search-result';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class SharedDataService {
   private serviciuSelectatId: number | null;
   private judetSelectatId: number | null;
   private userEmail: string;
+  private searchResult: SearchResult;
 
   getUserEmail(){
     return this.userEmail;
@@ -50,5 +52,13 @@ export class SharedDataService {
     this.serviciuSelectatId = null;
     this.judetSelectatId = null;
     this.clearData();
+  }
+
+  public setSearchResult(searchResult: SearchResult){
+    this.searchResult = searchResult;
+  }
+
+  public getSearchResult():SearchResult{
+    return this.searchResult;
   }
 }

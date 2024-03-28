@@ -25,7 +25,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 :root {
-    --theme-dark-blue: #11191f; /* Define primary color */
+    --dark-blue: #11191f; /* Define primary color */
     --brighter-blue: #141e26; /* Define secondary color */
     --slate-gray: #767b91;
     --golden-brown: #9C6825;

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Imagine } from 'src/app/model/Imagine';
+import { SearchResult } from 'src/app/model/search-result';
 
 @Component({
   selector: 'app-search-result-card',
@@ -8,9 +9,11 @@ import { Imagine } from 'src/app/model/Imagine';
 })
 export class SearchResultCardComponent {
 
-  @Input() userName: string;
-  @Input() description: string;
-  @Input() rating: number;
-  @Input() imagine: Imagine;
+  @Input() searchResult: SearchResult;
+  @Output() cardClickEvent: EventEmitter<SearchResult> = new EventEmitter<SearchResult>();
+
+  clickCard(){
+    this.cardClickEvent.emit(this.searchResult);
+  }
 
 }

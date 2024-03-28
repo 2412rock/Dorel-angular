@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
@@ -17,7 +18,8 @@ export class SearchResultsComponent {
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
-    private modalService: ModalService){}
+    private modalService: ModalService,
+    private router: Router){}
 
   ngOnInit(){
     this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0);
@@ -44,5 +46,10 @@ export class SearchResultsComponent {
 
   getDataFromSearch(model: SearchModel){
     this.loadData(model.serviciuId, model.judetId, 0);
+  }
+
+  handleClickCard(searchResult: SearchResult){
+    this.sharedDataService.setSearchResult(searchResult);
+    this.router.navigate(["./serviciu-detail-page"]);
   }
 }

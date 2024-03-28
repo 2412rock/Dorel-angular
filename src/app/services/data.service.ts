@@ -58,4 +58,7 @@ export class DataService {
     return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getServiciiForJudet?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}`)
   }
   
+  getImaginiForServiciuUser(serviciuId: number, judetId: number, userId: number){
+    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiServiciuUser?serviciuId=${serviciuId}&judetId=${judetId}&userId=${userId}`)
+  }
 }
