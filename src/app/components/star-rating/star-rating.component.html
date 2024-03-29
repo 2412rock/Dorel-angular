@@ -1,5 +1,12 @@
-<div class="star-rating">
-    <span class="fa fa-star" *ngFor="let _ of filledStarsArray"></span>
-    <span class="fa fa-star-half-alt" *ngIf="halfStar"></span>
-    <span class="fa fa-star-o" *ngFor="let _ of emptyStarsArray"></span>
+<div *ngIf="rating > 0" class="star-rating-default">
+  <span class="fa fa-star" *ngFor="let _ of filledStarsArray"></span>
+  <span class="fa fa-star-half-alt" *ngIf="halfStar"></span>
+  <span class="fa fa-star-o" *ngFor="let _ of emptyStarsArray"></span>
+</div>
+<div *ngIf="rating === 0">
+  <div class="star-rating" (mouseleave)="resetStarsMouseLeave()" (click)="saveRating()">
+    <span *ngFor="let star of stars; let i = index" (mouseenter)="highlightStars(i)">
+      <i class="fa fa-star fa-star-custom" [ngClass]="{'filled': star.highlighted, 'active': star.active}"></i>
+    </span>
   </div>
+</div>
