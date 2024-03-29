@@ -13,6 +13,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class ServiciuDetailComponent {
   public searchResult: SearchResult;
   public imagini: Imagine[] = [];
+  public reviews = [1,2,3,4,5];
 
   constructor(private dataService: DataService,private sharedDataService: SharedDataService){}
 
@@ -24,8 +25,6 @@ export class ServiciuDetailComponent {
   getImagini(){
     console.log("Get imiagini")
     firstValueFrom(this.dataService.getImaginiForServiciuUser(this.searchResult.serviciuId,this.searchResult.judetId, this.searchResult.userId)).then(response => {
-      console.log("got imagini")
-      console.log(response)
       if(response.isSuccess){
           this.imagini = response.data;
       }

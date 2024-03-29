@@ -1,4 +1,4 @@
-<div style="width: 100vw; height: 100vh; background-color: var(--dark-blue); display: flex; justify-content: center;">
+<div style="width: 100vw; height: 100vh; background-color: var(--dark-blue); display: flex; justify-content: center; overflow-y: auto;">
     <div class="top">
         <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-left: 2em; cursor: pointer;">
             <i style="font-size: 1.5em; color: white;" class="fa-solid fa-arrow-left"></i>
@@ -22,5 +22,24 @@
         <div>
             Contact button
         </div>
+        <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 70vw;">
+            <div>
+                <p style="margin-top: 1em; font-size: 2em; color: white; font-weight: bold;">Customer Reviews</p>
+            </div>
+            
+            <div style="cursor: pointer; display: flex; flex-direction: row;">
+                <i style="font-size: medium; color: white; margin-right: 0.7em;" class="fa-solid fa-pen"></i>
+                <p style="color: white; font-size: medium;">Write a review</p>
+            </div>
+        </div>
+        <div style="background-color: var(--brighter-blue); width: 70vw; margin-top: 2em; border-radius: 1em;">
+            <div *ngFor="let review of reviews">
+                <div style="margin-left: 4em; padding-top: 3em;">
+                    <app-review-card></app-review-card>
+                </div>
+                
+            </div>
+        </div>
     </div>
 </div>
+

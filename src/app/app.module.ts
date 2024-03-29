@@ -37,6 +37,7 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { MyAccountMenuComponent } from './components/my-account-menu/my-account-menu.component';
 import { ServiciuDetailComponent } from './components/serviciu-detail/serviciu-detail.component';
 import { ImageCollectionComponent } from './components/image-collection/image-collection.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { ImageCollectionComponent } from './components/image-collection/image-co
         StarRatingComponent,
         MyAccountMenuComponent,
         ServiciuDetailComponent,
-        ImageCollectionComponent
+        ImageCollectionComponent,
+        ReviewCardComponent
     ],
     providers: [
         {
