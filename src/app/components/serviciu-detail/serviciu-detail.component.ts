@@ -3,6 +3,7 @@ import { firstValueFrom } from 'rxjs';
 import { Imagine } from 'src/app/model/Imagine';
 import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
+import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
@@ -15,7 +16,9 @@ export class ServiciuDetailComponent {
   public imagini: Imagine[] = [];
   public reviews = [1,2,3,4,5];
 
-  constructor(private dataService: DataService,private sharedDataService: SharedDataService){}
+  constructor(private dataService: DataService,
+    private sharedDataService: SharedDataService,
+    private modalService: ModalService){}
 
   ngOnInit(){
     this.searchResult = this.sharedDataService.getSearchResult();
@@ -29,5 +32,9 @@ export class ServiciuDetailComponent {
           this.imagini = response.data;
       }
     })
+  }
+
+  writeReview(){
+    this.modalService.openWriteReviewModal();
   }
 }

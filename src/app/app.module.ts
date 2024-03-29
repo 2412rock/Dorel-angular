@@ -38,6 +38,7 @@ import { MyAccountMenuComponent } from './components/my-account-menu/my-account-
 import { ServiciuDetailComponent } from './components/serviciu-detail/serviciu-detail.component';
 import { ImageCollectionComponent } from './components/image-collection/image-collection.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
+import { WriteReviewModalComponent } from './components/write-review-modal/write-review-modal.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { ReviewCardComponent } from './components/review-card/review-card.compon
         MyAccountMenuComponent,
         ServiciuDetailComponent,
         ImageCollectionComponent,
-        ReviewCardComponent
+        ReviewCardComponent,
+        WriteReviewModalComponent
     ],
     providers: [
         {
