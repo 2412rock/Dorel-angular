@@ -10,17 +10,37 @@ import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-m
 export class WriteReviewModalComponent {
 
   public validation: boolean;
-  public descriptionText: string;
+  public descriptionText: string | null;
+  public rating: number | null;
+  
   constructor(
     private dialogRef: MatDialogRef<ConfirmationModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  accept(): void {
-    this.dialogRef.close(true);
+  publish(): void {
+    if(this.descriptionText != null && this.descriptionText.length > 10 && this.rating != null && this.rating != 0){
+      let reviewData = new ReviewData();
+      reviewData.description = this.descriptionText;
+      reviewData.rating = this.rating;
+      this.dialogRef.close(reviewData);
+    }
+    else{
+      this.validation = true;
+    }
+    
   }
 
-  decline(): void{
-    this.dialogRef.close(false);
+  cancel(): void{
+    this.dialogRef.close(null);
   }
+
+  saveRaring(rating: number){
+    this.rating = rating;
+  }
+}
+
+export class ReviewData{
+  public description: string;
+  public rating: number;
 }

@@ -10,6 +10,7 @@ import { DBJudetModel } from '../model/DBModels/DBJudetModel';
 import { Imagine } from '../model/Imagine';
 import { SearchResult } from '../model/search-result';
 import { DBReviewModel } from '../model/DBReviewModel';
+import { PostReviewModel } from '../model/Requests/post-review-model';
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +66,9 @@ export class DataService {
 
   getReviews(reviewedUserId:number, serviciuId: number, pageNumber: number){
     return this.http.get<Maybe<DBReviewModel[]>>(`${this.apiUrl}/api/getReviews?reviewedUserId=${reviewedUserId}&serviciuId=${serviciuId}&pageNumber=${pageNumber}`)
+  }
+
+  postReview(request: PostReviewModel){
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/postReview`, request)
   }
 }
