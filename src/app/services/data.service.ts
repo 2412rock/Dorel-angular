@@ -9,6 +9,7 @@ import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
 import { DBJudetModel } from '../model/DBModels/DBJudetModel';
 import { Imagine } from '../model/Imagine';
 import { SearchResult } from '../model/search-result';
+import { DBReviewModel } from '../model/DBReviewModel';
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +61,9 @@ export class DataService {
   
   getImaginiForServiciuUser(serviciuId: number, judetId: number, userId: number){
     return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiServiciuUser?serviciuId=${serviciuId}&judetId=${judetId}&userId=${userId}`)
+  }
+
+  getReviews(reviewedUserId:number, serviciuId: number, pageNumber: number){
+    return this.http.get<Maybe<DBReviewModel[]>>(`${this.apiUrl}/api/getReviews?reviewedUserId=${reviewedUserId}&serviciuId=${serviciuId}&pageNumber=${pageNumber}`)
   }
 }

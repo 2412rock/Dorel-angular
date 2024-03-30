@@ -45,6 +45,8 @@ export class SearchResultsComponent {
   }
 
   getDataFromSearch(model: SearchModel){
+    this.sharedDataService.setServiciuSelectat(model.serviciuId);
+    this.sharedDataService.setJudetselectat(model.judetId);
     this.loadData(model.serviciuId, model.judetId, 0);
   }
 

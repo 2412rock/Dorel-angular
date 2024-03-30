@@ -7,7 +7,7 @@
         <i class="fa-solid fa-caret-down account-dropdown-icon"></i>
     </div>
 </div>
-<div *ngIf="showAccountDropdown" class="top-dropdown" style="z-index:0">
+<div *ngIf="showAccountDropdown" class="top-dropdown" style="position: absolute;">
     <div class="account-dropdown">
         <div class="account-dropdown-item" *ngFor="let item of accountDropDown">
             <p *ngIf="item === 'Log out'" (click)="clickLogout()" class="dropdown-item-p"> {{item}} </p>
