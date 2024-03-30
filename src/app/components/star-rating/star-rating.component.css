@@ -1,7 +1,25 @@
-.star-rating {
+.star-rating-default {
     display: inline-block;
   }
 
   .fa-star, .fa-star-half-alt{
     color:gold
   }
+
+  .star-rating {
+    cursor: pointer;
+  }
+  
+  .fa-star-custom {
+    font-size: 24px;
+    color: #ccc;
+  }
+  
+  .fa-star.filled {
+    color: gold;
+  }
+  
+  .fa-star.active {
+    animation: bounce 0.4s ease-in-out;
+  }
+  

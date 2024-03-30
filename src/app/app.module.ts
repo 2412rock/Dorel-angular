@@ -35,6 +35,10 @@ import { ImageSelectorComponent } from './components/image-selector/image-select
 import { SearchResultCardComponent } from './components/search-result-card/search-result-card.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { MyAccountMenuComponent } from './components/my-account-menu/my-account-menu.component';
+import { ServiciuDetailComponent } from './components/serviciu-detail/serviciu-detail.component';
+import { ImageCollectionComponent } from './components/image-collection/image-collection.component';
+import { ReviewCardComponent } from './components/review-card/review-card.component';
+import { WriteReviewModalComponent } from './components/write-review-modal/write-review-modal.component';
 
 
 @NgModule({
@@ -58,7 +62,11 @@ import { MyAccountMenuComponent } from './components/my-account-menu/my-account-
         ImageSelectorComponent,
         SearchResultCardComponent,
         StarRatingComponent,
-        MyAccountMenuComponent
+        MyAccountMenuComponent,
+        ServiciuDetailComponent,
+        ImageCollectionComponent,
+        ReviewCardComponent,
+        WriteReviewModalComponent
     ],
     providers: [
         {

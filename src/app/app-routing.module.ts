@@ -9,6 +9,7 @@ import { BasicSearchPageComponent } from './components/basic-search-page/basic-s
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
+import { ServiciuDetailComponent } from './components/serviciu-detail/serviciu-detail.component';
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'verify-success', component: VerifySuccessComponentComponent},
   {path: 'basic-search-page', component: BasicSearchPageComponent},
   {path: 'search-results-page', component: SearchResultsComponent},
+  {path: 'serviciu-detail-page', component: ServiciuDetailComponent},
   {path: 'account-settings', component: AccountSettingsComponent, children: [
     {path: 'assign-servicii', component: AssignServiciiComponent},
   ]},

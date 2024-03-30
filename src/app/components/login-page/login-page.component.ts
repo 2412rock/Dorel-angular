@@ -32,6 +32,7 @@ export class LoginPageComponent {
 
   ngOnInit(){
     this.authService.authState.subscribe((user) => {
+      console.log("AUTH SERVICE")
       if(user != null){
         this.loadingSpinner = true;
         var model = new LoginGoogleRequest();
@@ -49,7 +50,7 @@ export class LoginPageComponent {
         });
       }
     });
-    this.authService.signOut();
+   // this.authService.signOut();
   }
 
   onClickLogin(){

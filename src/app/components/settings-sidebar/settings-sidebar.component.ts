@@ -15,11 +15,12 @@ export class SettingsSidebarComponent {
   public displayPlaceholder: boolean = false;
   public profilePicContent: string;
   public selectedItem: number;
+  public userName: string | null;
 
   constructor(){};
 
   ngOnInit(){
-    let name = localStorage.getItem("name");
+    this.userName = localStorage.getItem("name");
     let loggedInEmail = localStorage.getItem("isEmailLogin") === "true" ? true : false;
     let profilePicContent = localStorage.getItem("profilePicContent");
 

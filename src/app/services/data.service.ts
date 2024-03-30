@@ -9,6 +9,8 @@ import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
 import { DBJudetModel } from '../model/DBModels/DBJudetModel';
 import { Imagine } from '../model/Imagine';
 import { SearchResult } from '../model/search-result';
+import { DBReviewModel } from '../model/DBReviewModel';
+import { PostReviewModel } from '../model/Requests/post-review-model';
 
 @Injectable({
   providedIn: 'root'
@@ -58,4 +60,15 @@ export class DataService {
     return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getServiciiForJudet?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}`)
   }
   
+  getImaginiForServiciuUser(serviciuId: number, judetId: number, userId: number){
+    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiServiciuUser?serviciuId=${serviciuId}&judetId=${judetId}&userId=${userId}`)
+  }
+
+  getReviews(reviewedUserId:number, serviciuId: number, pageNumber: number){
+    return this.http.get<Maybe<DBReviewModel[]>>(`${this.apiUrl}/api/getReviews?reviewedUserId=${reviewedUserId}&serviciuId=${serviciuId}&pageNumber=${pageNumber}`)
+  }
+
+  postReview(request: PostReviewModel){
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/postReview`, request)
+  }
 }

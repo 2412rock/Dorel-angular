@@ -1,0 +1,12 @@
+.top{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    position:absolute;
+    top: 0;
+}
+
+.contact-text{
+    font-size: 1.2em;
+    color: white;
+}

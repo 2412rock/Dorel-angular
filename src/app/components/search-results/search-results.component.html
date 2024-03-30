@@ -18,7 +18,7 @@
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{searchResults[0].serviciuName}}</span>
             </div>
             <div *ngFor="let item of searchResults" style="margin: 1em;">
-                <app-search-result-card [userName]="item.userName" [description]="item.descriere" [rating]="item.starsAverage" [imagine]="item.imagineCover"></app-search-result-card>
+                <app-search-result-card (cardClickEvent)="handleClickCard($event)" [searchResult]="item"></app-search-result-card>
             </div>
         </div>
     </div>

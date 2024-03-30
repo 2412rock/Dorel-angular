@@ -16,7 +16,7 @@ export class MyAccountMenuComponent {
   public displayPlaceholder: boolean = false;
   public accountDropDown: string[] = ["Log out", "Account options"];
   public showAccountDropdown: boolean = false;
-
+  public placeHolderImg = "https://cdn-icons-png.flaticon.com/512/9131/9131529.png";
   constructor(private router: Router, private localstorageService: LocalstorageService){}
 
   private stringToBool(value: string){
@@ -33,10 +33,13 @@ export class MyAccountMenuComponent {
       this.name = name;
       this.loggedInEmail = this.stringToBool(loggedInEmail);
       if(!this.loggedInEmail){
+        console.log("Display image")
+        console.log(profilePicContent)
         this.profilePicContent = profilePicContent;
       }
       else{
-        this.displayPlaceholder = this.profilePicContent === "" ? true : false;
+        console.log("DISPLAY PLACE")
+        this.displayPlaceholder = true;
       }
     }
   }

@@ -1,0 +1,61 @@
+<div *ngIf="!loading" style="width: 100vw; height: 100vh; background-color: var(--dark-blue); display: flex; justify-content: center; overflow-y: auto;">
+    <div class="top">
+        <div (click)="goBack()" style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-left: 2em; cursor: pointer;">
+            <i style="font-size: 1.5em; color: white;" class="fa-solid fa-arrow-left"></i>
+            <span style="font-size: 1.5em; color: white; margin-left: 0.5em;">Go back</span>
+        </div>
+        <app-my-account-menu></app-my-account-menu>
+    </div>
+    
+    
+    <div style="margin-top: 5em; max-width: 70vw;">
+        <div style="display: flex; flex-direction: row;">
+            <p style="color: white; font-size: 3em; font-weight: bold;">{{searchResult.userName}}</p>
+            <app-star-rating [rating]="5" style="margin-left: 1.5em;"></app-star-rating>
+        </div>
+        
+        <p style="color: white; font-size: large; margin-top: 1em;">{{searchResult.descriere}}</p>
+        <p style="margin-top: 2em; color:white">Gallery</p>
+        <app-image-collection style="margin-top: 1em;" [imagini]="imagini"></app-image-collection>
+        <p style="margin-top: 1em; font-size: 2em; color: white;">Contact info</p>
+        <p class="contact-text" style=" margin-top: 3em;">Email: email.com</p>
+        <p class="contact-text">Phone: 012 344 231</p>
+        <div>
+            Contact button
+        </div>
+        <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 70vw;">
+            <div>
+                <p style="margin-top: 1em; font-size: 2em; color: white; font-weight: bold;">Customer Reviews</p>
+            </div>
+            
+            <div (click)="writeReview()" style="cursor: pointer; display: flex; flex-direction: row;">
+                <i style="font-size: medium; color: white; margin-right: 0.7em;" class="fa-solid fa-pen"></i>
+                <p style="color: white; font-size: medium;">Write a review</p>
+            </div>
+        </div>
+        <div style="background-color: var(--brighter-blue); width: 70vw; margin-top: 2em; border-radius: 1em;">
+            <div *ngFor="let review of reviews">
+                <div style="margin-left: 4em; padding-top: 3em;">
+                    <app-review-card [description]="review.reviewDescription" [reviewerName]="review.reviewerName" [stars]="review.rating"></app-review-card>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="reviews.length === 0" style="background-color: var(--brighter-blue); width: 70vw; height: 30vh; margin-top: 2em; border-radius: 1em; display: flex; align-items: center; justify-content: center;">
+            <p style="color: white; font-size: large;">No reviews yet</p>
+        </div>
+    </div>
+</div>
+<div *ngIf="loading" style="width: 100vw; height: 100vh; background-color: var(--dark-blue); display: flex; justify-content: center; align-items: center;">
+    <div class="top">
+        <div (click)="goBack()" style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-left: 2em; cursor: pointer;">
+            <i style="font-size: 1.5em; color: white;" class="fa-solid fa-arrow-left"></i>
+            <span style="font-size: 1.5em; color: white; margin-left: 0.5em;">Go back</span>
+        </div>
+        <app-my-account-menu></app-my-account-menu>
+    </div>
+    <div *ngIf="loading" class="d-flex custom-spinner" style="margin-left: 0.5em;">
+        <div class="spinner-border text-primary" style="width: 4.5rem; height: 4.5rem;" role="status">
+        </div>
+    </div>
+</div>
+
