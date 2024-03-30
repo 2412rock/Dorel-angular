@@ -24,6 +24,7 @@ export class AppComponent {
   }
 
   async ngOnInit(){
+    
   //  this.authService.authState.subscribe((user) => {
   //     console.log("USER")
   //     console.log(user)
