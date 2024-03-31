@@ -1,8 +1,7 @@
 .content{
     width: 20vw;
-    max-height: 50vh;
+    height: 50vh;
     background-color: var(--tab-color);
-    height: fit-content;
     padding-top: 2em;
     padding-bottom: 2em;
     cursor: pointer;
