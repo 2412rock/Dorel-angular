@@ -10,6 +10,7 @@ import { firstValueFrom } from 'rxjs';
 import { LoginGoogleRequest } from 'src/app/model/Requests/login-google-model';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-login-page',
@@ -27,7 +28,8 @@ export class LoginPageComponent {
      private loginService: LoginService,
      private validationService: ValidationService,
      private localStorageService: LocalstorageService,
-     private sharedDataService: SharedDataService) { }
+     private sharedDataService: SharedDataService,
+     private modalService: ModalService) { }
   
 
   ngOnInit(){
@@ -44,13 +46,17 @@ export class LoginPageComponent {
               this.sharedDataService.setUserEmail(user.email);
               this.localStorageService.setUserData(res.data[1], res.data[0], model.name, "", "false", user.photoUrl);
               this.router.navigate(['./basic-search-page']);
+              this.loadingSpinner = false;
+            }
+            else{
+              this.modalService.openModalNotification("Failed", `Failed to login ${res.exceptionMessage}`,false );
             }
         }).catch(e => {
           this.loadingSpinner = false;
+          this.modalService.openModalNotification("Failed", `Unknown error occured`,false );
         });
       }
     });
-   // this.authService.signOut();
   }
 
   onClickLogin(){
@@ -64,8 +70,14 @@ export class LoginPageComponent {
           this.sharedDataService.setUserEmail(this.email);
           this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "");
           this.router.navigate(['./basic-search-page']);
+          this.loadingSpinner = false;
+        }
+        else{
+          this.loadingSpinner = false;
+          this.modalService.openModalNotification("Failed", `Failed to login ${res.exceptionMessage}`,false );
         }
       }).catch(e => {
+        this.modalService.openModalNotification("Failed", `Unknown error occured`,false );
         this.loadingSpinner = false;
       });
     }

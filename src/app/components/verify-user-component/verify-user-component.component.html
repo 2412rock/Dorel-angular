@@ -1,5 +1,5 @@
 <section class="vh-100 bg-image">
-    <div class="mask d-flex align-items-center h-100" style="background-color: var(--tab-color);">
+    <div class="mask d-flex align-items-center h-100" style="background-color: var(--background-color);">
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
@@ -8,7 +8,8 @@
                 <h2 class="text-uppercase text-center mb-5">Verify your account using the code that was sent to your email</h2>
   
                 <form>
-                  <div class="form-outline mb-4">
+                  <p *ngIf="validation" style="color: red; font-size: medium;">Validation code must pe 4 digits</p>
+                  <div class="form-outline mb-4" [ngClass]="{'validation': validation}">
                     <input [(ngModel)]="verificationCode" [ngModelOptions]="{standalone: true}" type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Enter your verification code"/>
                   </div>
   
