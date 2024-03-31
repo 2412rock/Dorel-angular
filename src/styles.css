@@ -4,31 +4,15 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.theme-dark-blue{
-    background-color: #11191f;
-}
-
-.theme-brighter-blue{
-    background-color: #141e26;
-}
-
-.theme-slate-gray{
-    background-color: #767b91;
-}
-
-.theme-golden-brown{
-    background-color: #9C6825;
-}
-
-.theme-red{
-    background-color: #482728;
-}
 
 :root {
-    --dark-blue: #11191f; /* Define primary color */
-    --brighter-blue: #141e26; /* Define secondary color */
-    --slate-gray: #767b91;
-    --golden-brown: #9C6825;
     --red: #482728;
+    --background-color: #2D3250;
+    --tab-color: #424769;
+    --smaller-tab-color: #7077A1;
+    --selected-color: #F6B17A;
+    --text-color-white: white;
+    --input-color: rgb(189, 185, 185);
+    --black: black;
     /* Add more colors as needed */
   }

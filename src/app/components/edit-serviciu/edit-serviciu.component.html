@@ -1,4 +1,4 @@
-<div *ngIf="!loading" class="theme-slate-gray" style="display: flex; flex-direction: column; min-height: 100vh; width: 79vw;" [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
+<div *ngIf="!loading" style="display: flex; flex-direction: column; min-height: 100vh; width: 79vw; background-color: var(--tab-color);" [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
     <div *ngIf="!pageReady">
         <div class="spinner-border text-primary" style="width: 8.2rem; height: 8.2rem;" role="status">
         </div>
@@ -7,7 +7,7 @@
         <div style=" display: flex; flex-direction: column; align-items: center;">            
             <div style="width: 50vw;">
                 <div>
-                    <p style="margin-top: 2em;">Selecteaza judetle unde doresti sa prestezi serviciul. Clientii te vor
+                    <p style="margin-top: 2em; color: var(--text-color-white);">Selecteaza judetle unde doresti sa prestezi serviciul. Clientii te vor
                         gasi
                         in functie de judetule pe care le selectezi</p>
                     <div class="">
@@ -31,7 +31,7 @@
 
                 <!-- Description and images -->
                 <div style="margin-top: 2em;">
-                        <span>Selecteaza imaginile care vrei sa apara in acest anunt. Prima imagine selectata va fi cea din
+                        <span style="color: var(--text-color-white);">Selecteaza imaginile care vrei sa apara in acest anunt. Prima imagine selectata va fi cea din
                             cover</span>
                         <div [ngStyle]="{'border': showImagesValidation? '0.1em solid red' : ''}"> 
                             <div class="add-images">
@@ -45,13 +45,13 @@
                     
                     <div style="margin-top: 2em;width: 100%;">
                         <form>
-                            <label for="description">Description:</label><br>
-                            <textarea class="theme-red" (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;" [(ngModel)]="userDescription" id="description"
+                            <label style="color: var(--text-color-white);" for="description">Description:</label><br>
+                            <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%; background-color: var(--input-color);color: var(--text-color-white);" [(ngModel)]="userDescription" id="description"
                                 name="description" rows="6" cols="40"
                                 placeholder="Enter your description here..."></textarea><br>
                         </form>
                         <div *ngIf="showDescriptionValidation">
-                            <span style="color: red; font-size: medium;">Please enter a description</span>
+                            <span style="color: var(--text-color-white); font-size: medium;">Please enter a description</span>
                         </div>
                     </div>
                 </div>
@@ -62,19 +62,19 @@
 
     <!-- Container for the buttons -->
     <div *ngIf="pageReady" style="position: sticky; bottom: 0; width: 100%;">
-        <div style="display: flex; justify-content: end; padding: 20px;" class="theme-slate-gray">
-            <div (click)="clickCancel()" class="bottom-btn theme-golden-brown">Cancel</div>
+        <div style="display: flex; justify-content: end; padding: 20px; background-color: var(--tab-color);">
+            <div (click)="clickCancel()" class="bottom-btn" style="background-color: var(--selected-color); font-weight: 500;">Cancel</div>
             <div (click)="clickDelete()" class="bottom-btn delete-btn-background"
                 style="display: flex; justify-content: center; align-items: center; flex-direction: row;">
-                <span>Delete</span>
+                <span style="font-weight: 500;">Delete</span>
                 <div *ngIf="loadingDelete" class="d-flex custom-spinner" style="margin-left: 0.5em;">
                     <div class="spinner-border text-primary" style="width: 1.2rem; height: 1.2rem;" role="status">
                     </div>
                 </div>
             </div>
-            <div (click)="clickPublish()" class="bottom-btn theme-golden-brown"
-                style="display: flex; justify-content: center; align-items: center; flex-direction: row;">
-                <span>Publish</span>
+            <div (click)="clickPublish()" class="bottom-btn"
+                style="display: flex; justify-content: center; align-items: center; flex-direction: row;background-color: var(--selected-color);">
+                <span style="font-weight: 500;">Publish</span>
                 <div *ngIf="loadingPublish" class="d-flex custom-spinner" style="margin-left: 0.5em;">
                     <div class="spinner-border text-primary" style="width: 1.2rem; height: 1.2rem;" role="status">
                     </div>
@@ -84,7 +84,7 @@
     </div>
 </div>
 
-<div *ngIf="loading" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; width: 79vw;" class="theme-slate-gray">
+<div *ngIf="loading" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; width: 79vw; background-color: var(--tab-color);">
     <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
         <div class="spinner-border text-primary" style="width: 2.8rem; height: 2.8rem;" role="status">
         </div>

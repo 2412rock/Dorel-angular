@@ -39,6 +39,7 @@ import { ServiciuDetailComponent } from './components/serviciu-detail/serviciu-d
 import { ImageCollectionComponent } from './components/image-collection/image-collection.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { WriteReviewModalComponent } from './components/write-review-modal/write-review-modal.component';
+import { ButtonComponent } from './components/button/button.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { WriteReviewModalComponent } from './components/write-review-modal/write
         ServiciuDetailComponent,
         ImageCollectionComponent,
         ReviewCardComponent,
-        WriteReviewModalComponent
+        WriteReviewModalComponent,
+        ButtonComponent
     ],
     providers: [
         {

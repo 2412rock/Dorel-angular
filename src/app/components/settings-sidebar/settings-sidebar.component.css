@@ -1,6 +1,7 @@
 .nav{
     /* width: 10%; */
     height: 100vh;
+    background-color: var(--background-color);
 }
 
 .nav-item{
@@ -32,10 +33,10 @@
 }
 
 span{
-    color: white;
+    color: var(--text-color-white);
 }
 
 i{
-    color:white;
+    color: var(--text-color-white);
     margin-right: 0.2em;
 }

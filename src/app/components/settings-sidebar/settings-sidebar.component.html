@@ -1,7 +1,7 @@
-<ul class="nav flex-column theme-dark-blue"
+<ul class="nav flex-column"
     style="display: flex; flex-direction: column; justify-content: space-between;">
     <div>
-        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 1}"
+        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 1? 'var(--selected-color)' : ''}"
             (click)="selectMenuItem(1)">
             <li class="nav-item">
                 <div style="display: flex; flex-direction: row;">
@@ -11,7 +11,7 @@
             </li>
         </div>
 
-        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 2}"
+        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 2? 'var(--selected-color)' : ''}"
             (click)="selectMenuItem(2)">
             <li class="nav-item">
                 <div style="display: flex; flex-direction: row;">
@@ -21,7 +21,7 @@
             </li>
         </div>
 
-        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 3}"
+        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 3? 'var(--selected-color)' : ''}"
             (click)="selectMenuItem(3)">
             <li class="nav-item">
                 <div style="display: flex; flex-direction: row;">
@@ -31,7 +31,7 @@
             </li>
         </div>
 
-        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 4}"
+        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 4? 'var(--selected-color)' : ''}"
             (click)="selectMenuItem(4)">
             <li class="nav-item">
                 <div style="display: flex; flex-direction: row;">
@@ -41,7 +41,7 @@
             </li>
         </div>
 
-        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 5}"
+        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 5? 'var(--selected-color)' : ''}"
             (click)="selectMenuItem(5)">
             <li class="nav-item">
                 <div style="display: flex; flex-direction: row;">
@@ -51,7 +51,7 @@
             </li>
         </div>
 
-        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 6}"
+        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 6? 'var(--selected-color)' : ''}"
             (click)="selectMenuItem(6)">
             <li class="nav-item">
                 <div style="display: flex; flex-direction: row;">
@@ -61,7 +61,7 @@
             </li>
         </div>
 
-        <div class="nav-item-div" [ngClass]="{'theme-golden-brown': selectedItem === 7}"
+        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 7? 'var(--selected-color)' : ''}"
             (click)="selectMenuItem(7)">
             <li class="nav-item">
                 <div style="display: flex; flex-direction: row;">

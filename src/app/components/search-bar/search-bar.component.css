@@ -89,9 +89,8 @@ i{
 .search-btn{
   flex:1;
   border: 0;
-  background-color: white;
   border-top-right-radius: 0.6em;
   border-bottom-right-radius: 0.6em;
   /* Chrome 10-25, Safari 5.1-6 */
-  background-color: #9c6825;
+  background-color: var(--selected-color);
 }
