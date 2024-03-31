@@ -10,14 +10,15 @@
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-black-50 mb-5">Please enter your login and password!</p>
 
-              <div class="form-outline form-black mb-4">
+              <p *ngIf="emailValidation" style="color: red; font-size: medium;">Pleanse enter your email</p>
+              <div class="form-outline form-black mb-4" [ngClass]="{'validation-highlight': emailValidation}">
                 <input [(ngModel)]="email" [ngModelOptions]="{standalone: true}" type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="Email"/>
               </div>
 
-              <div class="form-outline form-white mb-4">
+              <p *ngIf="passwordValidation" style="color: red; font-size: medium;">Pleanse enter your password</p>
+              <div class="form-outline form-white mb-4" [ngClass]="{'validation-highlight': passwordValidation}">
                 <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Password"/>
               </div>
-
               <p class="small mb-5 pb-lg-2"><a class="text-black-50" href="#!">Forgot password?</a></p>
 
               <button (click)="onClickLogin()" class="btn btn-outline-black btn-lg px-5" style="border: 0.1em solid grey;" type="submit">Login</button>
