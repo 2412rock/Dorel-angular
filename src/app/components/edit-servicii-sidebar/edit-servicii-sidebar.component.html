@@ -1,4 +1,4 @@
-<ul *ngIf="!loading" class="nav flex-column theme-brighter-blue" style="display: flex; flex-direction: column;">
+<ul *ngIf="!loading" class="nav flex-column" style="display: flex; flex-direction: column; background-color: var(--tab-color);">
     <div style=" display: flex; justify-content: center; align-items: center; padding: 0.5em;">
         <span style="font-weight: bold; text-align: center; font-size: medium; color: #FFFFFF;">Serviciile tale</span>
     </div>
@@ -10,7 +10,7 @@
         </div>
     </div>
 </ul>
-<div *ngIf="loading" style="display: flex; align-items: center; justify-content: center;" class="nav flex-column theme-brighter-blue">
+<div *ngIf="loading" style="display: flex; align-items: center; justify-content: center;" class="nav flex-column" style="background-color: var(--tab-color)">
     <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
         <div class="spinner-border text-primary" style="width: 1.8rem; height: 1.8rem;" role="status">
         </div>

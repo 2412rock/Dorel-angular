@@ -1,4 +1,4 @@
-<div *ngIf="!loading" style="width: 100vw; height: 100vh; background-color: var(--dark-blue); display: flex; justify-content: center; overflow-y: auto;">
+<div *ngIf="!loading" style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; overflow-y: auto;">
     <div class="top">
         <div (click)="goBack()" style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-left: 2em; cursor: pointer;">
             <i style="font-size: 1.5em; color: white;" class="fa-solid fa-arrow-left"></i>
@@ -33,19 +33,19 @@
                 <p style="color: white; font-size: medium;">Write a review</p>
             </div>
         </div>
-        <div style="background-color: var(--brighter-blue); width: 70vw; margin-top: 2em; border-radius: 1em;">
+        <div style="background-color: var(--tab-color); width: 70vw; margin-top: 2em; border-radius: 1em;">
             <div *ngFor="let review of reviews">
                 <div style="margin-left: 4em; padding-top: 3em;">
                     <app-review-card [description]="review.reviewDescription" [reviewerName]="review.reviewerName" [stars]="review.rating"></app-review-card>
                 </div>
             </div>
         </div>
-        <div *ngIf="reviews.length === 0" style="background-color: var(--brighter-blue); width: 70vw; height: 30vh; margin-top: 2em; border-radius: 1em; display: flex; align-items: center; justify-content: center;">
+        <div *ngIf="reviews.length === 0" style="background-color: var(--tab-color); width: 70vw; height: 30vh; margin-top: 2em; border-radius: 1em; display: flex; align-items: center; justify-content: center;">
             <p style="color: white; font-size: large;">No reviews yet</p>
         </div>
     </div>
 </div>
-<div *ngIf="loading" style="width: 100vw; height: 100vh; background-color: var(--dark-blue); display: flex; justify-content: center; align-items: center;">
+<div *ngIf="loading" style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; align-items: center;">
     <div class="top">
         <div (click)="goBack()" style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-left: 2em; cursor: pointer;">
             <i style="font-size: 1.5em; color: white;" class="fa-solid fa-arrow-left"></i>

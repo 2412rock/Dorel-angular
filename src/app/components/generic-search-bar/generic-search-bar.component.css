@@ -54,7 +54,7 @@
   }
 
   .dropdown-item:hover{
-    background-color: var(--golden-brown);
+    background-color: var(--selected-color);
   }
 
 
