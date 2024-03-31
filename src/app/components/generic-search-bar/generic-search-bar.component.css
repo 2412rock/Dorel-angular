@@ -74,14 +74,14 @@
   }
 
   .border-radius-top{
-    border-top: solid 0.1em var(--input-color);
-    border-right: solid 0.1em var(--input-color);
-    border-left: solid 0.1em var(--input-color);
+    border-top: solid 0.1em var(--black);
+    border-right: solid 0.1em var(--black);
+    border-left: solid 0.1em var(--black);
     border-top-left-radius: 0.1em;
   }
 
   .border-all{
-    border: solid 0.1em var(--input-color);
+    border: solid 0.1em var(--black);
     border-radius: 0.1em;
   }
 

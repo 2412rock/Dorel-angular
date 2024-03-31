@@ -13,5 +13,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --selected-color: #F6B17A;
     --text-color-white: white;
     --input-color: rgb(189, 185, 185);
+    --black: black;
     /* Add more colors as needed */
   }

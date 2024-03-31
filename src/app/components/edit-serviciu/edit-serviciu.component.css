@@ -32,7 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(65, 65, 65);
+    background-color: var(--selected-color);
     color: white;
     padding: 0.3em;
 }
@@ -41,16 +41,6 @@
     cursor: pointer;
 }
 
-.gradient-custom-4 {
-    /* fallback for old browsers */
-    background: #84fab0;
-    
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
-    
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
-}
 
 .margin-right{
     margin-right: 10em;
@@ -78,13 +68,6 @@
     right: 10px;
 }
 
-.green-theme-background{
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
-
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
-}
 
 .delete-btn-background{
     background-color: rgb(245, 20, 20);
@@ -110,7 +93,7 @@
     align-items: center;
     margin: 0.3em;
     color: white;
-    background-color: rgb(65, 65, 65);
+    background-color: var(--selected-color);
     padding: 0.3em;
     cursor: pointer;
 }
@@ -122,14 +105,6 @@
   ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
     border-radius: 30%; /* Adjust the value as per your preference */
   }
-
-.serviciu-selected{
-    background-color: rgb(67, 67, 255)
-}
-
-.serviciu-not-selected{
-    background-color: rgb(65, 65, 65);
-}
 
 .display-serviciile{
     display: flex;
