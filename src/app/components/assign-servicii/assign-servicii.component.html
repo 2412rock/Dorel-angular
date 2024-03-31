@@ -10,9 +10,9 @@
             <div style=" position: absolute; right: 0; top: 0;">
                 <div style="display: flex; justify-content: end; margin-right: 1em;">
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                        <span style="font-size: medium; font-weight: bold;">Servicii selectate</span>
+                        <span style="font-size: medium; font-weight: bold;color: var(--text-color-white);">Servicii selectate</span>
                         <div>
-                            <div *ngFor="let item of alreadySelectedServicii"><span>{{item.name}}</span></div>
+                            <div style="color: var(--text-color-white);" *ngFor="let item of alreadySelectedServicii"><span>{{item.name}}</span></div>
                         </div>
                     </div>
                     
@@ -21,7 +21,7 @@
             </div>
             <div style="width: 50vw; margin-top: 2em;">
                 <div>
-                    <p>Selecteaza serviciul pe care doresti sa il prestezi</p>
+                    <p style="color: var(--text-color-white);">Selecteaza serviciul pe care doresti sa il prestezi</p>
                     <div *ngIf="selectedServiciu == null">
                         <app-generic-search-bar [notAvailableOptions]="alreadySelectedServicii" [showValidationErrorEvent]="serviciuValidationErrorEmitter"
                             (selectedValueEmitter)="getSelectedValueServicii($event)"
@@ -41,7 +41,7 @@
 
                         </div>
                     </div>
-                    <p style="margin-top: 2em;">Selecteaza judetle unde doresti sa prestezi serviciul. Clientii te vor
+                    <p style="margin-top: 2em;color: var(--text-color-white);">Selecteaza judetle unde doresti sa prestezi serviciul. Clientii te vor
                         gasi
                         in functie de judetule pe care le selectezi</p>
                     <div class="">
@@ -65,7 +65,7 @@
 
                 <!-- Description and images -->
                 <div style="margin-top: 2em;">
-                        <span>Selecteaza imaginile care vrei sa apara in acest anunt. Prima imagine selectata va fi cea din
+                        <span style="color: var(--text-color-white);">Selecteaza imaginile care vrei sa apara in acest anunt. Prima imagine selectata va fi cea din
                             cover</span>
                         <div [ngStyle]="{'border': showImagesValidation? '0.1em solid red' : ''}"> 
                             <div class="add-images">
@@ -73,19 +73,19 @@
                             </div>
                         </div>
                         <div *ngIf="showImagesValidation">
-                            <span style="color: red; font-size: medium;">Select at least one image</span>
+                            <span style="color: var(--text-color-white); font-size: medium;">Select at least one image</span>
                         </div>
                     
                     
                     <div style="margin-top: 2em;width: 100%;">
                         <form>
-                            <label for="description">Description:</label><br>
+                            <label style="color: var(--text-color-white);" for="description">Description:</label><br>
                             <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;background-color: var(--input-color);" [(ngModel)]="userDescription" id="description"
                                 name="description" rows="6" cols="40"
                                 placeholder="Enter your description here..."></textarea><br>
                         </form>
                         <div *ngIf="showDescriptionValidation">
-                            <span style="color: red; font-size: medium;">Please enter a description</span>
+                            <span style="color: var(--text-color-white); font-size: medium;">Please enter a description</span>
                         </div>
                     </div>
                 </div>

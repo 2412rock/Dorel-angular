@@ -12,6 +12,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --smaller-tab-color: #7077A1;
     --selected-color: #F6B17A;
     --text-color-white: white;
-    --input-color: gray
+    --input-color: rgb(189, 185, 185);
     /* Add more colors as needed */
   }
