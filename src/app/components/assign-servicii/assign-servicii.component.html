@@ -80,7 +80,7 @@
                     <div style="margin-top: 2em;width: 100%;">
                         <form>
                             <label style="color: var(--text-color-white);" for="description">Description:</label><br>
-                            <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;background-color: var(--input-color);" [(ngModel)]="userDescription" id="description"
+                            <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;background-color: var(--input-color); color: var(--text-color-white);" [(ngModel)]="userDescription" id="description"
                                 name="description" rows="6" cols="40"
                                 placeholder="Enter your description here..."></textarea><br>
                         </form>

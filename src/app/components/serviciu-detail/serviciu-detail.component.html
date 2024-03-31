@@ -13,16 +13,14 @@
             <p style="color: white; font-size: 3em; font-weight: bold;">{{searchResult.userName}}</p>
             <app-star-rating [rating]="5" style="margin-left: 1.5em;"></app-star-rating>
         </div>
-        
+        <p style="margin-top: 1em; font-size: 2em; color: var(--text-color-white)">Description</p>
         <p style="color: white; font-size: large; margin-top: 1em;">{{searchResult.descriere}}</p>
-        <p style="margin-top: 2em; color:white">Gallery</p>
+        <p style="margin-top: 2em; font-size: 2em; color: var(--text-color-white)">Gallery</p>
         <app-image-collection style="margin-top: 1em;" [imagini]="imagini"></app-image-collection>
-        <p style="margin-top: 1em; font-size: 2em; color: white;">Contact info</p>
+        <p style="margin-top: 1em; font-size: 2em; color: var(--text-color-white);">Contact info</p>
         <p class="contact-text" style=" margin-top: 3em;">Email: email.com</p>
         <p class="contact-text">Phone: 012 344 231</p>
-        <div>
-            Contact button
-        </div>
+        <app-button [label]="'Send message'"></app-button>
         <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 70vw;">
             <div>
                 <p style="margin-top: 1em; font-size: 2em; color: white; font-weight: bold;">Customer Reviews</p>

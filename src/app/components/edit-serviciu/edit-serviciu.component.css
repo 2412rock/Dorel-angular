@@ -157,3 +157,7 @@
 .dragging .drag-preview {
     display: block; /* Display the preview when dragging */
 }
+
+::placeholder {
+    color: var(--text-color-white); /* Example color */
+  }

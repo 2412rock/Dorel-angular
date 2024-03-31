@@ -161,3 +161,7 @@
     cursor: pointer;
     
 }
+
+::placeholder {
+    color: var(--text-color-white); /* Example color */
+  }
