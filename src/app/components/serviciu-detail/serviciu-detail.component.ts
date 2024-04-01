@@ -39,8 +39,14 @@ export class ServiciuDetailComponent {
             if(response.isSuccess){
               this.reviews = response.data;
             }
+            else{
+              this.modalService.openModalNotification("Failed", `Failed to load data:${response.exceptionMessage}`, false);
+            }
             this.loading = false;
-          }).catch(e => this.loading = false);
+          }).catch(e => {
+            this.loading = false;
+            this.modalService.openModalNotification("Failed", `Unkown error occured`, false);
+          });
       }else{
         this.loading = false;
         this.modalService.openModalNotification("Failed", `Failed to load data:${response.exceptionMessage}`, false);
