@@ -1,78 +1,82 @@
-<ul class="nav flex-column"
-    style="display: flex; flex-direction: column; justify-content: space-between;">
-    <div>
-        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 1? 'var(--selected-dropdown-color)' : ''}"
-            (click)="selectMenuItem(1)">
-            <li class="nav-item">
-                <div style="display: flex; flex-direction: row;">
-                    <i class="fa-solid fa-bell-concierge serviciu-icon"></i>
-                    <span>Add Servicii</span>
-                </div>
-            </li>
-        </div>
+<div class="nav" style="display: flex; flex-direction: column; justify-content: space-between;">
+    <div class="nav-item-div"
+        [ngStyle]="{'background-color': selectedItem === 1? 'var(--selected-dropdown-color)' : ''}"
+        (click)="selectMenuItem(1)">
+        <li class="nav-item">
+            <div style="display: flex; flex-direction: row;">
+                <i class="fa-solid fa-bell-concierge serviciu-icon"></i>
+                <span>Add Servicii</span>
+            </div>
+        </li>
+    </div>
 
-        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 2? 'var(--selected-dropdown-color)' : ''}"
-            (click)="selectMenuItem(2)">
-            <li class="nav-item">
-                <div style="display: flex; flex-direction: row;">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <span>Edit Servicii</span>
-                </div>     
-            </li>
-        </div>
+    <div class="nav-item-div"
+        [ngStyle]="{'background-color': selectedItem === 2? 'var(--selected-dropdown-color)' : ''}"
+        (click)="selectMenuItem(2)">
+        <li class="nav-item">
+            <div style="display: flex; flex-direction: row;">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Edit Servicii</span>
+            </div>
+        </li>
+    </div>
 
-        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 3? 'var(--selected-dropdown-color)' : ''}"
-            (click)="selectMenuItem(3)">
-            <li class="nav-item">
-                <div style="display: flex; flex-direction: row;">
-                    <i class="fa-solid fa-user serviciu-icon"></i>
-                    <span>Account</span>
-                </div>               
-            </li>
-        </div>
+    <div class="nav-item-div"
+        [ngStyle]="{'background-color': selectedItem === 3? 'var(--selected-dropdown-color)' : ''}"
+        (click)="selectMenuItem(3)">
+        <li class="nav-item">
+            <div style="display: flex; flex-direction: row;">
+                <i class="fa-solid fa-user serviciu-icon"></i>
+                <span>Account</span>
+            </div>
+        </li>
+    </div>
 
-        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 4? 'var(--selected-dropdown-color)' : ''}"
-            (click)="selectMenuItem(4)">
-            <li class="nav-item">
-                <div style="display: flex; flex-direction: row;">
-                    <i class="fa-solid fa-desktop serviciu-icon"></i>
-                    <span>Graphics</span>
-                </div>                
-            </li>
-        </div>
+    <div class="nav-item-div"
+        [ngStyle]="{'background-color': selectedItem === 4? 'var(--selected-dropdown-color)' : ''}"
+        (click)="selectMenuItem(4)">
+        <li class="nav-item">
+            <div style="display: flex; flex-direction: row;">
+                <i class="fa-solid fa-desktop serviciu-icon"></i>
+                <span>Graphics</span>
+            </div>
+        </li>
+    </div>
 
-        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 5? 'var(--selected-dropdown-color)' : ''}"
-            (click)="selectMenuItem(5)">
-            <li class="nav-item">
-                <div style="display: flex; flex-direction: row;">
-                    <i class="fa-solid fa-house serviciu-icon"></i>
-                    <span>Overview</span>
-                </div>               
-            </li>
-        </div>
+    <div class="nav-item-div"
+        [ngStyle]="{'background-color': selectedItem === 5? 'var(--selected-dropdown-color)' : ''}"
+        (click)="selectMenuItem(5)">
+        <li class="nav-item">
+            <div style="display: flex; flex-direction: row;">
+                <i class="fa-solid fa-house serviciu-icon"></i>
+                <span>Overview</span>
+            </div>
+        </li>
+    </div>
 
-        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 6? 'var(--selected-dropdown-color)' : ''}"
-            (click)="selectMenuItem(6)">
-            <li class="nav-item">
-                <div style="display: flex; flex-direction: row;">
-                    <i class="fa-solid fa-calendar serviciu-icon"></i>
-                    <span>Calendar</span>
-                </div>
-            </li>
-        </div>
+    <div class="nav-item-div"
+        [ngStyle]="{'background-color': selectedItem === 6? 'var(--selected-dropdown-color)' : ''}"
+        (click)="selectMenuItem(6)">
+        <li class="nav-item">
+            <div style="display: flex; flex-direction: row;">
+                <i class="fa-solid fa-calendar serviciu-icon"></i>
+                <span>Calendar</span>
+            </div>
+        </li>
+    </div>
 
-        <div class="nav-item-div" [ngStyle]="{'background-color': selectedItem === 7? 'var(--selected-dropdown-color)' : ''}"
-            (click)="selectMenuItem(7)">
-            <li class="nav-item">
-                <div style="display: flex; flex-direction: row;">
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Back to search</span>
-                </div>
-            </li>
-        </div>
+    <div class="nav-item-div"
+        [ngStyle]="{'background-color': selectedItem === 7? 'var(--selected-dropdown-color)' : ''}"
+        (click)="selectMenuItem(7)">
+        <li class="nav-item">
+            <div style="display: flex; flex-direction: row;">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to search</span>
+            </div>
+        </li>
     </div>
     <div class="current-account-data">
         <img class="profile-pic" *ngIf="!displayPlaceholder" [src]='profilePicContent' style="margin-right: 0.3em;">
         <span style="color: var(--text-color-black)">{{userName}}</span>
     </div>
-</ul>
+</div>
