@@ -7,12 +7,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root {
     --red: #482728;
-    --background-color: #2D3250;
-    --tab-color: #424769;
-    --smaller-tab-color: #7077A1;
-    --selected-color: #F6B17A;
+    --background-color: #303036;
+    --card-color: #3d3d44;
+    --review-color: #4a4a52;
+    --tab-color: #FFFFFF;
+    --smaller-tab-color: #cacaca;
+    --item-hover: #a5a5a5;
+    --selected-dropdown-color: rgb(146, 144, 144);
+    --selected-color: #EA9010;
     --text-color-white: white;
     --input-color: rgb(189, 185, 185);
+    --text-color-black: black;
     --black: black;
     /* Add more colors as needed */
   }

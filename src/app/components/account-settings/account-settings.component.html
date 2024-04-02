@@ -7,7 +7,7 @@
           <!-- <app-setting-content [selectedSetting]="selectedSetting"></app-setting-content> -->
           <app-assign-servicii (publishDone)="deselectOption($event)" *ngIf="menuItemSelected === 1"></app-assign-servicii>
           <app-edit-servicii (editDone)="deselectOption($event)" *ngIf="menuItemSelected === 2"></app-edit-servicii>
-          <div *ngIf="menuItemSelected != 1 && menuItemSelected != 2 " style="width: 90vw; height: 100%; background-color: var(--tab-color);"></div>
+          <div *ngIf="menuItemSelected != 1 && menuItemSelected != 2 " style="width: 90vw; height: 100%; background-color: var(--background-color);"></div>
       </div>
       
     </div>

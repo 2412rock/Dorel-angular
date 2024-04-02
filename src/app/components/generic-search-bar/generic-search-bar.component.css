@@ -77,12 +77,12 @@
     border-top: solid 0.1em var(--black);
     border-right: solid 0.1em var(--black);
     border-left: solid 0.1em var(--black);
-    border-top-left-radius: 0.1em;
+    border-top-left-radius: 0.7em;
   }
 
   .border-all{
     border: solid 0.1em var(--black);
-    border-radius: 0.1em;
+    border-radius: 0.7em;
   }
 
   ::placeholder {

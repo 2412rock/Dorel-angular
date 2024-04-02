@@ -1,7 +1,8 @@
 .nav{
     /* width: 10%; */
     height: 100vh;
-    background-color: var(--background-color);
+    background-color: var(--tab-color);
+    width: 30vw;
 }
 
 .nav-item{
@@ -11,6 +12,10 @@
     margin-top: 1.2em;
     padding-top: 1.5em;
     padding-bottom: 1.5em;
+}
+
+.nav-item-div:hover{
+    background-color: var(--item-hover);
 }
 
 .nav-item-div{
@@ -33,10 +38,11 @@
 }
 
 span{
-    color: var(--text-color-white);
+    color: var(--text-color-black);
+    font-weight: 500;
 }
 
 i{
-    color: var(--text-color-white);
+    color: var(--text-color-black);
     margin-right: 0.2em;
 }
