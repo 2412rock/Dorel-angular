@@ -1,7 +1,7 @@
 .content{
     width: 20vw;
     height: 50vh;
-    background-color: var(--tab-color);
+    background-color: var(--card-color);
     padding-top: 2em;
     padding-bottom: 2em;
     cursor: pointer;
@@ -11,6 +11,7 @@
 p{
     margin: 0;
     padding: 0;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 img{

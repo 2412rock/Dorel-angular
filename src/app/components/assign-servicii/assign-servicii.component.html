@@ -1,6 +1,6 @@
-<div style="display: flex; flex-direction: column; min-height: 100vh; background-color: var(--tab-color);" [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
+<div style="display: flex; flex-direction: column; min-height: 100vh; background-color: var(--background-color);" [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
     <div *ngIf="!pageReady">
-        <div class="spinner-border text-primary" style="width: 8.2rem; height: 8.2rem;" role="status">
+        <div class="spinner-border text-primary" style="width: 8.2rem; height: 8.2rem;color: var(--selected-color);" role="status">
         </div>
     </div>
     <div *ngIf="pageReady" style="flex-grow:1;">
@@ -78,9 +78,9 @@
                     
                     
                     <div style="margin-top: 2em;width: 100%;">
-                        <form>
+                        <form style="border-radius: 1em;">
                             <label style="color: var(--text-color-white);" for="description">Description:</label><br>
-                            <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;background-color: var(--input-color); color: var(--text-color-white);" [(ngModel)]="userDescription" id="description"
+                            <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%;background-color: var(--input-color); color: var(--text-color-white); border-radius: 0.7em;" [(ngModel)]="userDescription" id="description"
                                 name="description" rows="6" cols="40"
                                 placeholder="Enter your description here..."></textarea><br>
                         </form>
@@ -96,13 +96,13 @@
 
     <!-- Container for the buttons -->
     <div *ngIf="pageReady" style="position: sticky; bottom: 0; width: 100%;">
-        <div style="display: flex; justify-content: end; padding: 20px; background-color: var(--tab-color);">
+        <div style="display: flex; justify-content: end; padding: 20px; background-color: var(--background-color);">
             <div (click)="clickCancel()" class="bottom-btn" style="background-color: var(--selected-color); font-weight: 500;">Cancel</div>
             <div (click)="clickPublish()" class="bottom-btn"
                 style="display: flex; justify-content: center; align-items: center; flex-direction: row;background-color: var(--selected-color);">
                 <span style="font-weight: 500;">Publish</span>
                 <div *ngIf="loadingPublish" class="d-flex custom-spinner" style="margin-left: 0.5em;">
-                    <div class="spinner-border text-primary" style="width: 1.2rem; height: 1.2rem;" role="status">
+                    <div class="spinner-border text-primary" style="width: 1.2rem; height: 1.2rem;color: var(--selected-color);" role="status">
                     </div>
                 </div>
             </div>

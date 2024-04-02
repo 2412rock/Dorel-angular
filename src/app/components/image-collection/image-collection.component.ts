@@ -8,5 +8,6 @@ import { Imagine } from 'src/app/model/Imagine';
 })
 export class ImageCollectionComponent {
   @Input() imagini: Imagine[];
+  @Input() width: string;
 
 }
