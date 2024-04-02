@@ -15,6 +15,7 @@ export class SharedDataService {
   private judetSelectatId: number | null;
   private userEmail: string;
   private searchResult: SearchResult;
+  private serviciuName: string | null;
 
   getUserEmail(){
     return this.userEmail;
@@ -32,12 +33,17 @@ export class SharedDataService {
     this.subject.next(null);
   }
 
-  public setServiciuSelectat(serviciuId: number){
+  public setServiciuSelectat(serviciuId: number, serviciuName: string){
     this.serviciuSelectatId = serviciuId;
+    this.serviciuName = serviciuName;
   }
 
   public getServiciuSelectat(): number | null{
     return this.serviciuSelectatId;
+  }
+
+  public getServiciuName(): string | null{
+    return this.serviciuName;
   }
 
   public setJudetselectat(judetId: number){
