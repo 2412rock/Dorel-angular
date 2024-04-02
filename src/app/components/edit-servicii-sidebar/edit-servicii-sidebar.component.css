@@ -20,6 +20,14 @@
     align-items: center;
 }
 
+.nav-item-div:hover{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--selected-dropdown-color);
+}
+
 .selected-item-background{
     background: linear-gradient(to right, rgba(11, 117, 50, 0.5), rgba(143, 211, 244, 0.5));
 }

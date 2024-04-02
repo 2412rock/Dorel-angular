@@ -54,7 +54,7 @@
   }
 
   .dropdown-item:hover{
-    background-color: var(--selected-color);
+    background-color: var(--selected-dropdown-color);
   }
 
 

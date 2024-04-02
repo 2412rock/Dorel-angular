@@ -10,7 +10,7 @@
             <div style=" position: absolute; right: 0; top: 0;">
                 <div style="display: flex; justify-content: end; margin-right: 1em;">
                     <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                        <span style="font-size: medium; font-weight: bold;color: var(--text-color-white);">Servicii selectate</span>
+                        <span style="font-size: medium; font-weight: bold;color: var(--text-color-white);">Servicii deja oferite</span>
                         <div>
                             <div style="color: var(--text-color-white);" *ngFor="let item of alreadySelectedServicii"><span>{{item.name}}</span></div>
                         </div>
@@ -45,7 +45,9 @@
                         gasi
                         in functie de judetule pe care le selectezi</p>
                     <div class="">
-                        <app-generic-search-bar [showValidationErrorEvent]="judeteValidationErrorEmitter"
+                        <app-generic-search-bar 
+                            [notAvailableOptions]="selectedJudete"
+                            [showValidationErrorEvent]="judeteValidationErrorEmitter"
                             (selectedValueEmitter)="getSelectedValueJudete($event)"
                             (typedValue)="getJudetTypedValue($event)"
                             [searchResultEventEmitter]="judeteSearchResultEventEmitter"

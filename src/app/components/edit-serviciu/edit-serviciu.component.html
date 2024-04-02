@@ -11,7 +11,9 @@
                         gasi
                         in functie de judetule pe care le selectezi</p>
                     <div class="">
-                        <app-generic-search-bar [showValidationErrorEvent]="judeteValidationErrorEmitter"
+                        <app-generic-search-bar
+                            [notAvailableOptions]="selectedJudete"
+                            [showValidationErrorEvent]="judeteValidationErrorEmitter"
                             (selectedValueEmitter)="getSelectedValueJudete($event)"
                             (typedValue)="getJudetTypedValue($event)"
                             [searchResultEventEmitter]="judeteSearchResultEventEmitter"
