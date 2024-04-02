@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, firstValueFrom, map, startWith } from 'rxjs';
@@ -26,6 +26,8 @@ export class SearchBarComponent {
   public selectedLocation: string;
   public selectedServiciu: DBServiciuModel | null;
   public selectedJudet: DBJudetModel | null;
+  @ViewChild('serviciuSearchInput', { static: true }) serviciuSearchInput: ElementRef;
+  @ViewChild('judetSearchInput', { static: true }) judetSearchInput: ElementRef;
 
   constructor(private dataService: DataService, private sharedDataService: SharedDataService) { }
 
@@ -71,12 +73,14 @@ export class SearchBarComponent {
     });}
 
   clickClearServicii(){
+    this.filteredResultsServicii = [];
     this.textInputControlServicii.reset();
     this.dropdownServiciiVisible = false;
     this.selectedServiciu = null;
   }
 
   clickClearLocatie(){
+    this.filteredResultsLocatie = [];
     this.textInputControlLocation.reset();
     this.dropdownLocationVisible = false;
     this.selectedJudet = null;
@@ -104,7 +108,14 @@ export class SearchBarComponent {
       model.serviciuId = this.selectedServiciu.id;
       model.judetId = this.selectedJudet.id;
       this.searchClickEvent.emit(model);
-    }
-    
+    } 
+  }
+
+  getServiciuInputWidth(): number {
+    return this.serviciuSearchInput.nativeElement.offsetWidth;
+  }
+
+  getJudetInputWidth(): number {
+    return this.judetSearchInput.nativeElement.offsetWidth;
   }
 }

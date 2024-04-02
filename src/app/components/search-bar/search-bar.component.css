@@ -15,6 +15,7 @@ input:focus{
   width: 100%;
   font-size: 16px;
   line-height: 34px;
+  position: absolute;
 }
 
 .space-between{
@@ -74,8 +75,6 @@ i{
 
 .search-bars-container{
   width: 100%!important;
-  display:block;
-  z-index: 2;
 }
 
 .display-flex{
