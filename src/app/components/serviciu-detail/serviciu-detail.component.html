@@ -18,8 +18,15 @@
         <p style="margin-top: 2em; font-size: 2em; color: var(--text-color-white)">Gallery</p>
         <app-image-collection style="margin-top: 1em;" [imagini]="imagini"></app-image-collection>
         <p style="margin-top: 1em; font-size: 2em; color: var(--text-color-white);">Contact info</p>
-        <p class="contact-text" style=" margin-top: 1.6em;">Email: email.com</p>
-        <p class="contact-text">Phone: 012 344 231</p>
+        <div style="display: flex; flex-direction: row; align-items: center ;margin-top: 1.6em;">
+            <i class="fa-solid fa-envelope contact-text"></i>
+            <span class="contact-text" style="margin-left:1em">Email: email.com</span>
+        </div>
+        <div style="display: flex; flex-direction: row; align-items: center ;margin-top: 1em; margin-bottom: 1.2em;">
+            <i class="fa-solid fa-envelope contact-text"></i>
+            <span class="contact-text margin-left:1em" style="margin-left:1em">Phone: 012 344 231</span>
+        </div>
+        
         <app-button [label]="'Send message'"></app-button>
         <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%">
             <div>
