@@ -1,5 +1,6 @@
 <div class="nav" style="display: flex; flex-direction: column; justify-content: space-between;">
-    <div class="nav-item-div"
+    <div>
+        <div class="nav-item-div"
         [ngStyle]="{'background-color': selectedItem === 1? 'var(--selected-dropdown-color)' : ''}"
         (click)="selectMenuItem(1)">
         <li class="nav-item">
@@ -74,6 +75,7 @@
                 <span>Back to search</span>
             </div>
         </li>
+    </div>
     </div>
     <div class="current-account-data">
         <img class="profile-pic" *ngIf="!displayPlaceholder" [src]='profilePicContent' style="margin-right: 0.3em;">

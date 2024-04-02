@@ -6,12 +6,10 @@
 }
 
 .nav-item{
-    font-size: medium;
-    margin-left: 2em;
-    margin-right: 2em;
-    margin-top: 1.2em;
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-item-div:hover{
@@ -20,6 +18,9 @@
 
 .nav-item-div{
     cursor: pointer;
+    height: fit-content;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .serviciu-icon{

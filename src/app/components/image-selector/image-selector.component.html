@@ -23,18 +23,17 @@
                 <span style="color:var(--text-color-white); font-size: large;">Adauga imagini</span>
             </div>
     </label>
-</div>
-
-<div class="images" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let item of selectedImages; let i = index" cdkDrag>
-        <div  class="drag-handle" style="cursor:grab;">
-            <img style="width: 12em; height: 10em; margin-right: 0.5em; margin-bottom: 0.5em;" [src]="item.fileContentBase64">
-            <div class="remove-btn" (click)="removeImage(item)">
-                <i class="fas fa-trash"></i>
+    <div class="images" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let item of selectedImages; let i = index" cdkDrag>
+            <div  class="drag-handle" style="cursor:grab;">
+                <img style="width: 10em; height: 8.9em; margin-right: 0.5em; margin-bottom: 0.5em;" [src]="item.fileContentBase64">
+                <div class="remove-btn" (click)="removeImage(item)">
+                    <i class="fas fa-trash"></i>
+                </div>
             </div>
-        </div>
-        <div *cdkDragPreview class="drag-preview">
-            <img style="width: 12em; height: 10em;" [src]="item.fileContentBase64">
+            <div *cdkDragPreview class="drag-preview">
+                <img style="width: 12em; height: 10em;" [src]="item.fileContentBase64">
+            </div>
         </div>
     </div>
 </div>
