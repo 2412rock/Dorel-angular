@@ -8,7 +8,7 @@
     </div>
     
     
-    <div style="margin-top: 5em; max-width: 70vw; background-color: var(--card-color); border-radius: 0.7em; height: fit-content; padding: 2em;">
+    <div style="margin-top: 5em; width: 70vw; background-color: var(--card-color); border-radius: 0.7em; height: fit-content; padding: 2em;">
         <div style="display: flex; flex-direction: row;">
             <p style="color: white; font-size: 3em; font-weight: bold;">{{searchResult.userName}}</p>
             <app-star-rating [rating]="5" style="margin-left: 1.5em;"></app-star-rating>
@@ -45,8 +45,12 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="reviews.length === 0" style="background-color: var(--tab-color); width: 70vw; height: 30vh; margin-top: 2em; border-radius: 1em; display: flex; align-items: center; justify-content: center;">
-            <p style="color: white; font-size: large;">No reviews yet</p>
+        <div *ngIf="reviews.length === 0" style="background-color: var(--card-color); margin-top: 2em; border-radius: 1em; width: 100%;">
+            
+                <div style="background-color: var(--review-color); border-radius: 0.7em; padding: 2em; display: flex; align-items: center; justify-content: center;">
+                    <p style="font-size: large; color: var(--text-color-white); font-weight: 500;"> No reviews yet</p>
+                </div>
+            
         </div>
     </div>
 </div>
