@@ -1,5 +1,5 @@
 # Use an official Node runtime as a parent image
-FROM node:latest as builder
+FROM node:20.10.0 as builder
 
 # Set the working directory in the container
 WORKDIR /app
