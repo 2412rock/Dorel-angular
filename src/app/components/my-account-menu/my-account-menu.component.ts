@@ -14,7 +14,7 @@ export class MyAccountMenuComponent {
   public loggedInEmail: boolean;
   public profilePicContent: string;
   public displayPlaceholder: boolean = false;
-  public accountDropDown: string[] = ["Log out", "Account options"];
+  public accountDropDown: string[] = ["Log out", "Settings"];
   public showAccountDropdown: boolean = false;
   public placeHolderImg = "https://cdn-icons-png.flaticon.com/512/9131/9131529.png";
   constructor(private router: Router, private localstorageService: LocalstorageService){}
