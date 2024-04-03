@@ -32,7 +32,7 @@
                 <div (click)="selectService(item)" class="dropdown-item">{{item.name}}</div>
             </div>
         </div>
-        <div [ngStyle]="{'visibility': dropdownLocationVisible ? 'visible' : 'hidden'}" class="flex-locatie input-container" [style.width.px]="getJudetInputWidth()" [style.margin-left.px]="getServiciuInputWidth()" >
+        <div [ngStyle]="{'visibility': dropdownLocationVisible ? 'visible' : 'hidden'}" class="flex-locatie input-container border-radius-bottom" [style.width.px]="getJudetInputWidth()" [style.margin-left.px]="getServiciuInputWidth()">
             <div class="dropdown-items-header">Suggested results</div>
             <div *ngFor="let item of filteredResultsLocatie">
                 <div (click)="selectJudet(item)" class="dropdown-item">

@@ -18,7 +18,7 @@ export class SearchBarComponent {
   @Output() searchClickEvent = new EventEmitter<SearchModel>();
   textInputControlServicii = new FormControl('');
   textInputControlLocation = new FormControl('');
-  public filteredResultsServicii: DBServiciuModel[];
+  public filteredResultsServicii: DBServiciuModel[] = [];
   public filteredResultsLocatie: DBJudetModel[];
   public dropdownServiciiVisible: boolean = false;
   public dropdownLocationVisible: boolean = false;
@@ -59,9 +59,10 @@ export class SearchBarComponent {
     req.startsWith = startsWith;
     firstValueFrom(this.dataService.getServicii(req)).then(e => {
       let dataValues = e.data as DBServiciuModel[];
-      
+      console.log("Data values")
+      console.log(dataValues)
       this.filteredResultsServicii = dataValues;
-    })
+    }).catch(e => {console.log(e)})
   }
 
   filterResultsLocatie(startsWith: string){
@@ -107,6 +108,7 @@ export class SearchBarComponent {
       var model = new SearchModel();
       model.serviciuId = this.selectedServiciu.id;
       model.judetId = this.selectedJudet.id;
+      model.serviciuName = this.selectedServiciu.name;
       this.searchClickEvent.emit(model);
     } 
   }

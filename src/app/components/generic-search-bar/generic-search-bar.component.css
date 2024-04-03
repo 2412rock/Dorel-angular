@@ -54,7 +54,7 @@
   }
 
   .dropdown-item:hover{
-    background-color: var(--selected-color);
+    background-color: var(--selected-dropdown-color);
   }
 
 
@@ -78,6 +78,7 @@
     border-right: solid 0.1em var(--black);
     border-left: solid 0.1em var(--black);
     border-top-left-radius: 0.7em;
+    border-top-right-radius: 0.7em;
   }
 
   .border-all{

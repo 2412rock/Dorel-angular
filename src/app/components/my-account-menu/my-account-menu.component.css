@@ -8,6 +8,7 @@
     overflow: hidden;
     width: 3em;
     height: auto;
+    cursor: pointer;
 }
 
 .user-info{
@@ -48,14 +49,13 @@ p{
 }
 
 .dropdown-item-p{
-    margin-right: 0.5em;
+    margin-left: 0.5em;
 }
 
 .account-dropdown-item{
     cursor: pointer;
     width:auto;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 

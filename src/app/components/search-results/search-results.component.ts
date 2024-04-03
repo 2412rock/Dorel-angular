@@ -15,6 +15,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class SearchResultsComponent {
   public loading: boolean = true;
   public searchResults: SearchResult[] = [];
+  public serviciuName: string | null;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
@@ -22,6 +23,7 @@ export class SearchResultsComponent {
     private router: Router){}
 
   ngOnInit(){
+    this.serviciuName = this.sharedDataService.getServiciuName();
     this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0);
   }
 
@@ -45,7 +47,8 @@ export class SearchResultsComponent {
   }
 
   getDataFromSearch(model: SearchModel){
-    this.sharedDataService.setServiciuSelectat(model.serviciuId);
+    this.serviciuName = model.serviciuName;
+    this.sharedDataService.setServiciuSelectat(model.serviciuId, model.serviciuName);
     this.sharedDataService.setJudetselectat(model.judetId);
     this.loadData(model.serviciuId, model.judetId, 0);
   }

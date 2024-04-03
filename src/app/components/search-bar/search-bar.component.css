@@ -85,6 +85,11 @@ i{
   visibility: hidden;
 }
 
+.border-radius-bottom{
+  border-bottom-right-radius: 0.7em;
+  border-bottom-left-radius: 0.7em;
+}
+
 .search-btn{
   flex:1;
   border: 0;

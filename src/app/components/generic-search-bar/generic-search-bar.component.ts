@@ -15,7 +15,7 @@ export class GenericSearchBarComponent {
   @Input() searchResultEventEmitter: EventEmitter<any[]>;
   @Input() placeHolderText: string;
   @Input() showValidationErrorEvent: EventEmitter<boolean>;
-  @Input() notAvailableOptions: DBServiciuModel[];
+  @Input() notAvailableOptions: DBServiciuModel[] | DBJudetModel[];
   @ViewChild('parentElement', { static: true }) parentElement: ElementRef;
 
   public textInput: FormControl = new FormControl('');

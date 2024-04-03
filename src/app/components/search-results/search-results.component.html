@@ -15,10 +15,14 @@
         </div>
         <div *ngIf="!loading" style="width: 70vw; display: flex; flex-direction: row; flex-wrap: wrap;">
             <div style="width: 100%; margin: 1em;">
-                <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{searchResults[0].serviciuName}}</span>
+                <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{serviciuName}}</span>
             </div>
             <div *ngFor="let item of searchResults" style="margin: 1em;">
                 <app-search-result-card (cardClickEvent)="handleClickCard($event)" [searchResult]="item"></app-search-result-card>
+            </div>
+            <div *ngIf="searchResults.length === 0" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">
+                <i class="fa-solid fa-face-sad-tear" style="font-size: 4em; color: var(--text-color-white);"></i>
+                <p style="font-size: 2em; color: var(--text-color-white); margin-top: 3em;">Nu am gasit nicio persona care ofera acest serviciu</p>
             </div>
         </div>
     </div>
