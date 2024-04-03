@@ -42,10 +42,10 @@ export class LoginPageComponent {
         var model = new LoginGoogleRequest();
         model.email = user.email;
         model.name = "";
-        if(user.lastName != null){
+        if(user.lastName != undefined){
           model.name += user.lastName 
         }
-        if(user.firstName != null){
+        if(user.firstName != undefined){
           model.name += " " + user.firstName 
         }
 
