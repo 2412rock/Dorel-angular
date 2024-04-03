@@ -46,6 +46,7 @@ export class ImageSelectorComponent {
   }
 
   readFilesData(files: any){
+    let displayError = false;
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const reader = new FileReader();
@@ -54,9 +55,19 @@ export class ImageSelectorComponent {
         img.fileContentBase64 = reader.result as string;
         img.fileExtension = this.getFileExtension(file.name);
         img.fileType = file.type;
+        if(this.selectedImages.length === 10){
+          if(!displayError){
+            displayError = true;
+            this.modalService.openModalNotification("Error", "Please select only 10 images", false);
+          }
+          return;
+        }
         this.selectedImages.push(img);
       };
       reader.readAsDataURL(file);
+    }
+    if(displayError){
+      
     }
     this.outPutImages.emit(this.selectedImages);
   }
