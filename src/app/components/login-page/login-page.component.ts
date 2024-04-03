@@ -41,7 +41,14 @@ export class LoginPageComponent {
         this.loadingSpinner = true;
         var model = new LoginGoogleRequest();
         model.email = user.email;
-        model.name = user.lastName + " " + user.firstName;
+        model.name = "";
+        if(user.lastName != null){
+          model.name += user.lastName 
+        }
+        if(user.firstName != null){
+          model.name += " " + user.firstName 
+        }
+
         model.idToken = user.idToken;;
         firstValueFrom(this.loginService.loginGoogle(model)).then(res => {
           if (res.isSuccess) {
