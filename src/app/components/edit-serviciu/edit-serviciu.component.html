@@ -48,12 +48,17 @@
                     <div style="margin-top: 2em;width: 100%;">
                         <form>
                             <label style="color: var(--text-color-white);" for="description">Description:</label><br>
-                            <textarea (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%; background-color: var(--input-color);color: var(--text-color-white); border-radius: 0.7em;" [(ngModel)]="userDescription" id="description"
+                            <textarea  maxlength="250" (ngModelChange)="onDescriptionChange($event)" [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}" style="width: 100%; background-color: var(--input-color);color: var(--text-color-white); border-radius: 0.7em;" [(ngModel)]="userDescription" id="description"
                                 name="description" rows="6" cols="40"
                                 placeholder="Enter your description here..."></textarea><br>
+                                <div style="position: relative; width: 100%;">
+                                    <span style="position: absolute; bottom: 1; right: 0; color: var(--text-color-white);">
+                                        {{ userDescription.length }}/250
+                                    </span>
+                                </div>
                         </form>
                         <div *ngIf="showDescriptionValidation">
-                            <span style="color: var(--text-color-white); font-size: medium;">Please enter a description</span>
+                            <span style="color: red; font-size: medium;">Please enter a description</span>
                         </div>
                     </div>
                 </div>
