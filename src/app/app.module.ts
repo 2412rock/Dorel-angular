@@ -71,12 +71,12 @@ import { DragDropDirective } from './components/Directives/drag-and-drop-directi
         WriteReviewModalComponent,
         ButtonComponent,
         DragDropDirective
-    ],
+    ], 
     providers: [
         {
             provide: 'SocialAuthServiceConfig',
             useValue: {
-                autoLogin: true, //keeps the user signed in
+                autoLogin: false, //keeps the user signed in
                 providers: [
                     {
                         id: GoogleLoginProvider.PROVIDER_ID,
