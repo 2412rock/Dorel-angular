@@ -15,7 +15,8 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class SearchResultsComponent {
   public loading: boolean = true;
   public searchResults: SearchResult[] = [];
-  public serviciuName: string | null;
+  public serviciuName: string | undefined;
+  public judetName: string | undefined;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
@@ -24,13 +25,16 @@ export class SearchResultsComponent {
 
   ngOnInit(){
     this.serviciuName = this.sharedDataService.getServiciuName();
+    this.judetName = this.sharedDataService.getJudetName();
+    console.log(this.serviciuName)
+    console.log(this.judetName)
     this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0);
   }
 
-  loadData(serviciuId: number, judetId: number, pageNumber: number){
+  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number){
     this.searchResults = [];
     this.loading = true;
-    firstValueFrom(this.dataService.getServiciiForJudet(serviciuId, judetId, pageNumber)).then(
+    firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
       response => {
         if(response.isSuccess){
           response.data.forEach(searchResult => {
@@ -48,9 +52,10 @@ export class SearchResultsComponent {
 
   getDataFromSearch(model: SearchModel){
     this.serviciuName = model.serviciuName;
+    this.judetName = model.judetName;
     this.sharedDataService.setServiciuSelectat(model.serviciuId, model.serviciuName);
-    this.sharedDataService.setJudetselectat(model.judetId);
-    this.loadData(model.serviciuId, model.judetId, 0);
+    this.sharedDataService.setJudetselectat(model?.judetId, model?.judetName);
+    this.loadData(model?.serviciuId, model.judetId, 0);
   }
 
   handleClickCard(searchResult: SearchResult){

@@ -47,3 +47,17 @@ i{
     color: var(--text-color-black);
     margin-right: 0.2em;
 }
+
+.back-btn{
+    font-size: 1.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.back-btn:hover{
+    background-color: var(--item-hover);
+}

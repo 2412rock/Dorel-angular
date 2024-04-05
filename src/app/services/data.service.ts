@@ -56,8 +56,10 @@ export class DataService {
     return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId=${serviciuId}`,) //requestOptions);
   }
 
-  getServiciiForJudet(serviciuId: number, judetId: number, pageNumber: number){
-    return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getServiciiForJudet?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}`)
+  getSearchResult(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number){
+    serviciuId = serviciuId === undefined ? -1 : serviciuId;
+    judetId = judetId === undefined ? -1 : judetId;
+    return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getSearchResult?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}`)
   }
   
   getImaginiForServiciuUser(serviciuId: number, judetId: number, userId: number){

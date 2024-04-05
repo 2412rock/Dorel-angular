@@ -99,16 +99,16 @@ export class SearchBarComponent {
     this.selectedLocation = judet.name;
     this.textInputControlLocation.setValue(judet.name);
     this.dropdownLocationVisible = false;
-    this.sharedDataService.setJudetselectat(judet.id);
     this.selectedJudet = judet;
   }
 
   clickSearch(){
-    if(this.selectedServiciu != null && this.selectedJudet != null){
+    if(this.selectedServiciu != null || this.selectedJudet != null){
       var model = new SearchModel();
-      model.serviciuId = this.selectedServiciu.id;
-      model.judetId = this.selectedJudet.id;
-      model.serviciuName = this.selectedServiciu.name;
+      model.serviciuId = this.selectedServiciu?.id;
+      model.judetId = this.selectedJudet?.id;
+      model.serviciuName = this.selectedServiciu?.name;
+      model.judetName = this.selectedJudet?.name;
       this.searchClickEvent.emit(model);
     } 
   }

@@ -1,5 +1,6 @@
 export class SearchModel{
-    public serviciuId: number;
-    public serviciuName: string;
-    public judetId: number;
+    public serviciuId: number | undefined;
+    public serviciuName: string | undefined;
+    public judetName: string | undefined;
+    public judetId: number | undefined;
 }

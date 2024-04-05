@@ -61,8 +61,8 @@ export class BasicSearchPageComponent {
   }
 
   navigateToSearch(val: SearchModel){
-    this.sharedDataService.setServiciuSelectat(val.serviciuId, val.serviciuName);
-    this.sharedDataService.setJudetselectat(val.judetId);
+    this.sharedDataService.setServiciuSelectat(val?.serviciuId, val?.serviciuName);
+    this.sharedDataService.setJudetselectat(val?.judetId, val?.judetName);
     this.router.navigate(["./search-results-page"]);
   }
 }

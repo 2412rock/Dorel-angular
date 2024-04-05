@@ -11,11 +11,12 @@ export class SharedDataService {
   private subject = new BehaviorSubject<any>(null);
   subjectData$ = this.subject.asObservable();
 
-  private serviciuSelectatId: number | null;
-  private judetSelectatId: number | null;
+  private serviciuSelectatId: number | undefined;
+  private judetSelectatId: number | undefined;
   private userEmail: string;
   private searchResult: SearchResult;
-  private serviciuName: string | null;
+  private serviciuName: string | undefined;
+  private judetName: string | undefined;
 
   getUserEmail(){
     return this.userEmail;
@@ -33,30 +34,35 @@ export class SharedDataService {
     this.subject.next(null);
   }
 
-  public setServiciuSelectat(serviciuId: number, serviciuName: string){
+  public setServiciuSelectat(serviciuId: number | undefined, serviciuName: string | undefined){
     this.serviciuSelectatId = serviciuId;
     this.serviciuName = serviciuName;
   }
 
-  public getServiciuSelectat(): number | null{
+  public getServiciuSelectat(): number | undefined{
     return this.serviciuSelectatId;
   }
 
-  public getServiciuName(): string | null{
+  public getServiciuName(): string | undefined{
     return this.serviciuName;
   }
 
-  public setJudetselectat(judetId: number){
-    this.judetSelectatId = judetId;
+  public getJudetName(): string | undefined{
+    return this.judetName;
   }
 
-  public getJudetSelectat(): number | null{
+  public setJudetselectat(judetId: number | undefined, judetName: string | undefined){
+    this.judetSelectatId = judetId;
+    this.judetName = judetName;
+  }
+
+  public getJudetSelectat(): number | undefined{
     return this.judetSelectatId;
   }
 
   public resetAll(){
-    this.serviciuSelectatId = null;
-    this.judetSelectatId = null;
+    this.serviciuSelectatId = undefined;
+    this.judetSelectatId = undefined;
     this.clearData();
   }
 
