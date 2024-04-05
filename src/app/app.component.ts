@@ -32,3 +32,4 @@ export class AppComponent {
  // this.router.navigate(["./serviciu-detail-page"]);
   }
 }
+
