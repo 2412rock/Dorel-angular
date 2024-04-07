@@ -31,4 +31,8 @@ export class LoginService {
   verifyUser(verifyUser: VerifyUserModel): Observable<Maybe<string>>{
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/verifyUser`, verifyUser);
   }
+
+  refreshToken(token: string): Observable<Maybe<string>>{
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/refreshToken`, {refreshToken: token});
+  }
 }

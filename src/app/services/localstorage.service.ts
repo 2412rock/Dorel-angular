@@ -20,6 +20,14 @@ export class LocalstorageService {
     return localStorage.getItem("accessToken") as string;
   }
 
+  public setAccessToken(val: string){
+     localStorage.setItem("accessToken", val);
+  }
+
+  public getRefreshToken(): string{
+    return localStorage.getItem("refreshToken") as string;
+  }
+
   public deleteUserData(){
    localStorage.removeItem('accessToken' );
    localStorage.removeItem('refreshToken');
