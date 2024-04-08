@@ -13,7 +13,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent {
-  public loading: boolean = true;
+  public loading: boolean = false;
   public searchResults: SearchResult[] = [];
   public serviciuName: string | undefined;
   public judetName: string | undefined;
@@ -24,11 +24,7 @@ export class SearchResultsComponent {
     private router: Router){}
 
   ngOnInit(){
-    this.serviciuName = this.sharedDataService.getServiciuName();
-    this.judetName = this.sharedDataService.getJudetName();
-    console.log(this.serviciuName)
-    console.log(this.judetName)
-    this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0);
+
   }
 
   loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number){

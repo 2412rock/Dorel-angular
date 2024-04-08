@@ -1,19 +1,24 @@
 <div class="body">
     <div class="content">
         <div class="top">
-            <app-my-account-menu></app-my-account-menu>
+            <span style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em;">DOREL</span>
+
+            <div style="margin-top: 1em;">
+                <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
+            </div>
+            
+
+            <app-my-account-menu style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+            
         </div>
         
-        <div style="width: 50%; margin-top: 4.5em;">
-            <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
-        </div>
         <div *ngIf="loading" style="width: 70vw; height: 40vh; display: flex; align-items: center; justify-content: center;">
             <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
                 <div class="spinner-border text-primary" style="width: 3.5rem; height: 3.5rem;color: var(--selected-color);" role="status">
                 </div>
             </div>
         </div>
-        <div *ngIf="!loading" style="width: 70vw; display: flex; flex-direction: row; flex-wrap: wrap;">
+        <div *ngIf="!loading" style="width: 70vw; display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 10em;">
             <div *ngIf="serviciuName != undefined" style="width: 100%; margin: 1em;">
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{serviciuName}}</span>
             </div>

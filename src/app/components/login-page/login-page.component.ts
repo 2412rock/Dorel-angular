@@ -53,7 +53,7 @@ export class LoginPageComponent {
           if (res.isSuccess) {
             this.sharedDataService.setUserEmail(user.email);
             this.localStorageService.setUserData(res.data[1], res.data[0], model.name, "", "false", user.photoUrl);
-            this.router.navigate(['./basic-search-page']);
+            this.router.navigate(['./search-results-page']);
             this.loadingSpinner = false;
           }
           else {
