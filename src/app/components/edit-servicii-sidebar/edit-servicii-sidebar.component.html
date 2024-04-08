@@ -1,11 +1,12 @@
 <ul *ngIf="!loading" class="nav flex-column" style="display: flex; flex-direction: column; background-color: var(--smaller-tab-color);">
-    <div style=" display: flex; justify-content: center; align-items: center; padding: 0.5em;">
-        <span style="font-weight: bold; text-align: center; font-size: medium; color: var(--text-color-black);;">Serviciile tale</span>
+    <div (click)="goBack()" style=" display: flex; justify-content: center; align-items: center; padding: 0.5em; flex-direction: row;">
+        <i class="fa-solid fa-arrow-left" style="font-size: 1.4em; margin-right: 1em; cursor: pointer;"></i>
+        <span style="font-weight: bold; text-align: center; font-size: 1.4em; color: var(--text-color-black);;">Serviciile tale</span>
     </div>
     <div *ngFor="let item of servicii; let i = index">
         <div class="nav-item-div" (click)="selectServiciu(i)" [ngStyle]="{'background-color': selectedServiciuIndex === i ? 'var(--selected-dropdown-color)' : ''}">
             <li class="nav-item">
-                <span style="color: var(--text-color-black); font-weight: 500;">{{item.name}}</span>
+                <span style="color: var(--text-color-black); font-weight: 500; font-size: 1.4em;">{{item.name}}</span>
             </li>
         </div>
     </div>

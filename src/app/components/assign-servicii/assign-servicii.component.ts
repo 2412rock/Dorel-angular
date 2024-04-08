@@ -7,6 +7,7 @@ import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mo
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
 import { DataService } from 'src/app/services/data.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -34,7 +35,7 @@ export class AssignServiciiComponent {
   public showImagesValidation: boolean = false;
   public showDescriptionValidation: boolean = false
 
-  constructor(private dataService: DataService,private modalService: ModalService){}
+  constructor(private dataService: DataService,private modalService: ModalService, private location: Location){}
 
 
   ngOnInit(){
@@ -102,7 +103,7 @@ export class AssignServiciiComponent {
 
 
   clickCancel(){
-    this.publishDone.emit(true);
+    this.location.back();
   }
 
   private validationPassed(): boolean{
