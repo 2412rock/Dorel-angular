@@ -8,6 +8,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mode';
 import { ModalService } from 'src/app/services/modal.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-serviciu',
@@ -15,8 +17,7 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrl: './edit-serviciu.component.css'
 })
 export class EditServiciuComponent {
-  @Input() serviciu: DBServiciuModel;
-  @Output() publishDone = new EventEmitter<boolean>();
+  public serviciu: DBServiciuModel;
 
   public pageReady: boolean = true;
   public judeteValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -39,9 +40,14 @@ export class EditServiciuComponent {
   public serviciuValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-  constructor(private dataService: DataService, private modalService: ModalService){}
+  constructor(private dataService: DataService,
+    private modalService: ModalService,
+    private sharedDataService: SharedDataService,
+    private location: Location){}
 
   ngOnInit(){
+    this.serviciu = new DBServiciuModel();
+    this.serviciu.id =  this.sharedDataService.getServiciuToEdit().id;
     this.getData();
   }
 
@@ -65,23 +71,23 @@ export class EditServiciuComponent {
               else{
                 this.loading = false;
                 this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
-                this.publishDone.emit(true);
+                //this.publishDone.emit(true);
               }
-            }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured3", false);this.publishDone.emit(true);});;
+            }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured3", false);});;
           }
           else{
             this.loading = false;
             this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
-            this.publishDone.emit(true);
+            //this.publishDone.emit(true);
           }
-        }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured2", false);this.publishDone.emit(true);});;
+        }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured2", false);});;
       }
       else{
         this.loading = false;
         this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
-        this.publishDone.emit(true);
+        //this.publishDone.emit(true);
       }
-    }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured1", false);this.publishDone.emit(true);});
+    }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured1", false);});
   }
 
   getSelectedValueJudete(element: DBJudetModel){
@@ -138,7 +144,8 @@ export class EditServiciuComponent {
       firstValueFrom(this.dataService.editUserServicii(editRequest)).then(response => {
         if(response.isSuccess){
           this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);
-          this.publishDone.emit(true);
+          //this.publishDone.emit(true);
+          this.location.back();
           
         }else{
           this.modalService.openModalNotification("Failed", `An error has occured: ${response.exceptionMessage}`, false);
@@ -156,21 +163,25 @@ export class EditServiciuComponent {
       if (result) {
         firstValueFrom(this.dataService.deleteUserServicii(this.serviciu.id)).then(response => {
           if(response.isSuccess){
-            this.modalService.openModalNotification("Success", "Serviciu deleted succesfully", true);
-            this.publishDone.emit(true);
+            let dialogref = this.modalService.openModalNotification("Success", "Serviciu deleted succesfully", true);
+            dialogref.afterClosed().subscribe(result => {this.location.back();});
+            //this.publishDone.emit(true);
+            this.location.back();
           }
           else{
             this.modalService.openModalNotification("Failed", `Failed to delete service ${response.exceptionMessage}`, false);
           }
           this.loadingDelete = false;
-        }).catch(e => {this.modalService.openModalNotification("Failed", "Unknown error occured", false); this.loadingDelete = false;});
+        }).catch(e => {this.modalService.openModalNotification("Failed", "Unknown error occured. Please try again", false); this.loadingDelete = false;});
       }
       this.loadingDelete = false;
     });
   }
 
   clickCancel(){
-    this.publishDone.emit(true);
+    //this.publishDone.emit(true);
+    this.location.back();
+    
   }
   
   imagesChanged(imgs: Imagine[]){

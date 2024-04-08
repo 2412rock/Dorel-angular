@@ -1,5 +1,12 @@
 <div style="display: flex; flex-direction: row;">
+    <div class="top">
+        <span
+            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em;">DOREL</span>
+        <div style="margin-top: 1em;">
+            <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
+        </div>
+        <app-my-account-menu style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+    </div>
     <app-edit-servicii-sidebar [loading]="loadingServicii" [servicii]="servicii" [resetIndexEvent]="resetIndex" (selectedServiciuEvent)="getSelectedServiciu($event)"></app-edit-servicii-sidebar>
-    <app-edit-serviciu *ngIf="selectedServiciu != null" [serviciu]="selectedServiciu" (publishDone)="publishDoneHandler($event)"></app-edit-serviciu>
     <div *ngIf="selectedServiciu == null" style="width: 85vw; height: 100vh; background-color: var(--background-color);"></div>
 </div>

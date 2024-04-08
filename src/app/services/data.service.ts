@@ -33,6 +33,11 @@ export class DataService {
     return this.http.get<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServiciiUser`)
   }
 
+  getServiciiForUserAsSearchResults(){
+    return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getServiciiUserAsSearchResults`)
+  }
+
+
   getJudeteForServiciu(serviciuId: number){
     return this.http.get<Maybe<DBJudetModel[]>>(`${this.apiUrl}/api/getJudeteForServiciu?serviciuId=${serviciuId}`)
   }

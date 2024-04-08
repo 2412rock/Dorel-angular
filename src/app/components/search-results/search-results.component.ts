@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
@@ -17,14 +18,40 @@ export class SearchResultsComponent {
   public searchResults: SearchResult[] = [];
   public serviciuName: string | undefined;
   public judetName: string | undefined;
+  public editServicii: boolean;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
-    private router: Router){}
+    private router: Router,
+    private route: ActivatedRoute){}
 
   ngOnInit(){
-
+    this.route.queryParams.subscribe(params => {
+      console.log("GOT PARAMS")
+      const edit = params['edit'];
+      console.log(edit)
+      if(edit){
+        this.editServicii = true;
+      }
+      // Use productId as needed
+    });
+    if(this.editServicii){
+      firstValueFrom(this.dataService.getServiciiForUserAsSearchResults()).then(response => {
+        if(response.isSuccess){
+          response.data.forEach(searchResult => {
+            this.searchResults.push(searchResult);
+          });
+        }
+      })
+    }
+    else{
+      this.serviciuName = this.sharedDataService.getServiciuName();
+      this.judetName = this.sharedDataService.getJudetName();
+      if(this.judetName != null || this.serviciuName != null){
+        this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0);
+      }
+    }
   }
 
   loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number){
@@ -55,7 +82,16 @@ export class SearchResultsComponent {
   }
 
   handleClickCard(searchResult: SearchResult){
-    this.sharedDataService.setSearchResult(searchResult);
-    this.router.navigate(["./serviciu-detail-page"]);
+    if(this.editServicii){
+      var serviciu = new DBServiciuModel();
+      serviciu.id = searchResult.serviciuId;
+      serviciu.name = searchResult.serviciuName;
+      this.sharedDataService.setServiciuToEdit(serviciu);
+      this.router.navigate(["./edit-serviciu-page"]);
+    }
+    else{
+      this.sharedDataService.setSearchResult(searchResult);
+      this.router.navigate(["./serviciu-detail-page"]);
+    }
   }
 }

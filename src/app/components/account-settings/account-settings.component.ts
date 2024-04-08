@@ -1,6 +1,7 @@
 
 import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchModel } from 'src/app/model/search-model';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
@@ -43,7 +44,7 @@ export class AccountSettingsComponent {
   };
 
   constructor(private router: Router,
-    private sharedDataStorage: SharedDataService){
+    private sharedDataService: SharedDataService){
  }
 
   ngOnInit(){
@@ -53,7 +54,8 @@ export class AccountSettingsComponent {
     if(index === 0){
       this.router.navigate(["./assign-page"]);
     }else if(index === 1){
-      this.router.navigate(['./edit-servicii-page']);
+      console.log("Launching serch results page")
+      this.router.navigate(["./search-results-page"], { queryParams: { edit: true } });
     }
   }
 
@@ -65,8 +67,10 @@ export class AccountSettingsComponent {
   }
 
 
-  getDataFromSearch(data: any){
-
+  navigateToSearch(val: SearchModel){
+    this.sharedDataService.setServiciuSelectat(val?.serviciuId, val?.serviciuName);
+    this.sharedDataService.setJudetselectat(val?.judetId, val?.judetName);
+    this.router.navigate(["./search-results-page"]);
   }
   
 }

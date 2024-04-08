@@ -11,6 +11,7 @@ import { AccountSettingsComponent } from './components/account-settings/account-
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
 import { ServiciuDetailComponent } from './components/serviciu-detail/serviciu-detail.component';
 import { EditServiciiComponent } from './components/edit-servicii/edit-servicii.component';
+import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.component';
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'serviciu-detail-page', component: ServiciuDetailComponent},
   {path: 'assign-page', component: AssignServiciiComponent},
   {path: 'edit-servicii-page', component: EditServiciiComponent},
+  {path: 'edit-serviciu-page', component: EditServiciuComponent},
   {path: 'account-settings', component: AccountSettingsComponent, children: [
     {path: 'assign-servicii', component: AssignServiciiComponent},
   ]},

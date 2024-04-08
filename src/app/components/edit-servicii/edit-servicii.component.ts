@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
+import { SearchModel } from 'src/app/model/search-model';
 import { DataService } from 'src/app/services/data.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-edit-servicii',
@@ -18,7 +21,10 @@ export class EditServiciiComponent {
   public resetIndex: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
-  constructor(private dataService: DataService, private modalService: ModalService){}
+  constructor(private dataService: DataService,
+    private modalService: ModalService,
+    private sharedDataService: SharedDataService,
+    private router: Router){}
   ngOnInit(){
     this.loadServicii();
   }
@@ -48,5 +54,11 @@ export class EditServiciiComponent {
     this.selectedServiciu = null;
     this.resetIndex.emit(true);
     this.loadServicii();
+  }
+
+  navigateToSearch(val: SearchModel){
+    this.sharedDataService.setServiciuSelectat(val?.serviciuId, val?.serviciuName);
+    this.sharedDataService.setJudetselectat(val?.judetId, val?.judetName);
+    this.router.navigate(["./search-results-page"]);
   }
 }
