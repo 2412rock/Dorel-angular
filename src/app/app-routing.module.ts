@@ -10,6 +10,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
 import { ServiciuDetailComponent } from './components/serviciu-detail/serviciu-detail.component';
+import { EditServiciiComponent } from './components/edit-servicii/edit-servicii.component';
+import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.component';
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent},
@@ -20,6 +22,9 @@ const routes: Routes = [
   {path: 'basic-search-page', component: BasicSearchPageComponent},
   {path: 'search-results-page', component: SearchResultsComponent},
   {path: 'serviciu-detail-page', component: ServiciuDetailComponent},
+  {path: 'assign-page', component: AssignServiciiComponent},
+  {path: 'edit-servicii-page', component: EditServiciiComponent},
+  {path: 'edit-serviciu-page', component: EditServiciuComponent},
   {path: 'account-settings', component: AccountSettingsComponent, children: [
     {path: 'assign-servicii', component: AssignServiciiComponent},
   ]},

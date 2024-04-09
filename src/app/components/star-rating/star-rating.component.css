@@ -1,25 +1,30 @@
 .star-rating-default {
+  font-size: 1.1em;
     display: inline-block;
   }
 
   .fa-star, .fa-star-half-alt{
+    font-size: 1.1em;
     color:gold
   }
 
   .star-rating {
+    font-size: 1.1em;
     cursor: pointer;
   }
   
   .fa-star-custom {
-    font-size: 24px;
+    font-size: 1.1em;
     color: #ccc;
   }
   
   .fa-star.filled {
+    font-size: 1.1em;
     color: gold;
   }
   
   .fa-star.active {
+    font-size: 1.1em;
     animation: bounce 0.4s ease-in-out;
   }
   

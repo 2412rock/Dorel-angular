@@ -7,6 +7,10 @@ import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mo
 import { StartsWithRequest } from 'src/app/model/Requests/starts-with-model';
 import { DataService } from 'src/app/services/data.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { Location } from '@angular/common';
+import { SearchModel } from 'src/app/model/search-model';
+import { SharedDataService } from 'src/app/services/shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -34,7 +38,11 @@ export class AssignServiciiComponent {
   public showImagesValidation: boolean = false;
   public showDescriptionValidation: boolean = false
 
-  constructor(private dataService: DataService,private modalService: ModalService){}
+  constructor(private dataService: DataService,
+    private modalService: ModalService,
+    private location: Location,
+    private sharedDataService: SharedDataService,
+    private router: Router){}
 
 
   ngOnInit(){
@@ -102,7 +110,13 @@ export class AssignServiciiComponent {
 
 
   clickCancel(){
-    this.publishDone.emit(true);
+    this.location.back();
+  }
+
+  navigateToSearch(val: SearchModel){
+    this.sharedDataService.setServiciuSelectat(val?.serviciuId, val?.serviciuName);
+    this.sharedDataService.setJudetselectat(val?.judetId, val?.judetName);
+    this.router.navigate(["./search-results-page"]);
   }
 
   private validationPassed(): boolean{
@@ -119,11 +133,15 @@ export class AssignServiciiComponent {
       result = false;
       this.showImagesValidation = true;
     }
-    if(this.userDescription.length == 0){
+    if(this.userDescription.length < 80){
       result = false;
       this.showDescriptionValidation = true;
     }
     return result;
+  }
+
+  clickLogo(){
+    this.router.navigate(["./search-results-page"]);
   }
 
   clickPublish(){
@@ -136,8 +154,9 @@ export class AssignServiciiComponent {
       request.imagini = this.selectedImages;
       firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
         if(e.isSuccess){
-          this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);
-          this.publishDone.emit(true);
+          var dialogref = this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);
+          dialogref.afterClosed().subscribe(result => {this.location.back();});
+          
           
         }else{
           this.modalService.openModalNotification("Failed", `An error has occured: ${e.exceptionMessage}`, false);

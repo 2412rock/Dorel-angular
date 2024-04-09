@@ -29,7 +29,6 @@ export class ImageSelectorComponent {
   }
 
   addFiles(files: FileList | null): void {
-    console.log(files);
     //this.filesChanged.emit(files);
   }
 

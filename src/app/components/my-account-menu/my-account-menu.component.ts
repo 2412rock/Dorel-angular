@@ -33,12 +33,9 @@ export class MyAccountMenuComponent {
       this.name = name;
       this.loggedInEmail = this.stringToBool(loggedInEmail);
       if(!this.loggedInEmail){
-        console.log("Display image")
-        console.log(profilePicContent)
         this.profilePicContent = profilePicContent;
       }
       else{
-        console.log("DISPLAY PLACE")
         this.displayPlaceholder = true;
       }
     }

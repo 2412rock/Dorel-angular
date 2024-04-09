@@ -1,0 +1,23 @@
+.top{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:absolute;
+    top: 0;
+    background-color: var(--card-color);
+}
+
+img{
+
+        border-radius: 50%; /* Makes the image round */
+        overflow: hidden;
+        width: 8em;
+        height: 8em;
+        cursor: pointer;
+}
+
+.highlight:hover{
+    border-radius: 30%;
+    background-color: var(--card-color);
+}

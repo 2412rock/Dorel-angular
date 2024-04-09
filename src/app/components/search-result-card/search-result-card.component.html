@@ -1,16 +1,48 @@
 <div (click)="clickCard()" class="content">
     <div style="display: flex; flex-direction: column;  align-items: center;">
-        <img [src]="searchResult.imagineCover.fileContentBase64" alt="Electrician" style="width: 70%;">
-        <div style="width: 70%;">
-            <p style="color: white; width: fit-content; font-size: large; font-weight: bold; margin-top: 1em;">
-                {{searchResult.userName}}</p>
-            <div style="max-height: 5em; text-overflow: ellipsis; overflow: hidden;">
-                <p
-                style="color: white; width: fit-content; margin-top: 1em; font-size: medium; font-weight: 500; text-overflow: ellipsis; overflow: hidden;">
-                {{searchResult.descriere}}.</p>
+        <img [src]="searchResult.imagineCover.fileContentBase64" alt="Electrician" style="width: 95%;">
+        <div style="width: 95%;">
+            <div
+                style="display: flex; flex-direction: row; align-items: center; margin-top: 1em; justify-content: space-between;">
+                <span style="color: white; width: fit-content; font-size: 1.5em; font-weight: bold;">
+                    {{searchResult.userName}}</span>
             </div>
-            <p style="color: white; margin-top: 0.5em; margin-bottom: 0.5em; font-weight: bold;">Rating</p>
-            <app-star-rating [rating]="searchResult.starsAverage"></app-star-rating>
+
+            <div style="height: 5em; text-overflow: ellipsis; overflow: hidden;">
+                <p
+                    style="color: white; width: fit-content; margin-top: 1em; font-size: medium; font-weight: 500; text-overflow: ellipsis; overflow: hidden;">
+                    {{searchResult.descriere}}.</p>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 0.3em">
+                <div style="display: flex; flex-direction: column;">
+                    <p style="color: white; font-size: 1em; margin-bottom: 0.4em;">
+                        {{searchResult.starsAverage + " / 5 (184)"}}</p>
+                        <app-star-rating [rating]="searchResult.starsAverage" style="bottom: 0;"></app-star-rating>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-top: 0.5em;">
+                        <i style="font-size: medium; color: var(--selected-color); margin-right: 0.6em;"
+                            class="fa-solid fa-briefcase"></i>
+                        <div
+                            style=" padding: 0.1em; color: var(--text-color-white);">
+                            {{searchResult.serviciuName}}</div>
+    
+                    </div>
+                    <div
+                        style="display: flex; flex-direction: row; justify-content: start; align-items: center; margin-top: 0.5em;">
+                        <i style="font-size: medium; color: var(--selected-color); margin-right: 0.8em;"
+                            class="fa-solid fa-location-dot"></i>
+
+                        <div
+                            style="color: var(--text-color-white); padding: 0.1em;">
+                            {{searchResult.judetName}}</div>
+
+                    </div>
+                    
+                </div>
+            </div>
+
+
         </div>
     </div>
     <div>

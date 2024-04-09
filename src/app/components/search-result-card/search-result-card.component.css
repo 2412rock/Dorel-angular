@@ -1,8 +1,8 @@
 .content{
     width: 25em;
-    height: 25em;
+    height: 27em;
     background-color: var(--card-color);
-    padding-top: 2em;
+    padding-top: 0.7em;
     padding-bottom: 2em;
     cursor: pointer;
     border-radius: 1em;
@@ -11,7 +11,7 @@
 p{
     margin: 0;
     padding: 0;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 img{

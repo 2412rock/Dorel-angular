@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
@@ -13,53 +14,97 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent {
-  public loading: boolean = true;
+  public loading: boolean = false;
   public searchResults: SearchResult[] = [];
   public serviciuName: string | undefined;
   public judetName: string | undefined;
+  public editServicii: boolean | undefined;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
-    private router: Router){}
+    private router: Router,
+    private route: ActivatedRoute){}
 
   ngOnInit(){
-    this.serviciuName = this.sharedDataService.getServiciuName();
-    this.judetName = this.sharedDataService.getJudetName();
-    console.log(this.serviciuName)
-    console.log(this.judetName)
-    this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0);
+    this.route.queryParams.subscribe(params => {
+      const edit = params['edit'];
+
+      if(edit){
+        this.editServicii = true;
+      }
+    });
+
+    if(this.editServicii){
+      this.loadData(undefined, undefined, 0, true);
+    }
+    else{
+      this.serviciuName = this.sharedDataService.getServiciuName();
+      this.judetName = this.sharedDataService.getJudetName();
+      
+      this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, false);
+      
+    }
   }
 
-  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number){
+  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean){
     this.searchResults = [];
     this.loading = true;
-    firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
-      response => {
+    if(this.editServicii){
+      firstValueFrom(this.dataService.getServiciiForUserAsSearchResults()).then(response => {
         if(response.isSuccess){
           response.data.forEach(searchResult => {
-              this.searchResults.push(searchResult);
-            });
-          this.loading = false;
+            this.searchResults.push(searchResult);
+          });
         }
         else{
-          this.modalService.openModalNotification("Failed", `Failed to retrieve data: ${response.exceptionMessage}`, false);
-          this.loading = false;
+          this.modalService.openModalNotification("Error", `Something went wrong loading data: ${response.exceptionMessage}`, false);
         }
-      }
-    ).catch(e => {this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false);this.loading = false;})
+        this.loading = false;;
+      }).catch(e => {this.modalService.openModalNotification("Error", `Something went wrong loading data`, false); this.loading = false;});
+    }
+    else{
+      firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
+        response => {
+          if(response.isSuccess){
+            response.data.forEach(searchResult => {
+                this.searchResults.push(searchResult);
+              });
+            this.loading = false;
+          }
+          else{
+            this.modalService.openModalNotification("Failed", `Failed to retrieve data: ${response.exceptionMessage}`, false);
+            this.loading = false;
+          }
+        }
+      ).catch(e => {this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false);this.loading = false;})
+    }
   }
 
   getDataFromSearch(model: SearchModel){
+    this.editServicii = false;
     this.serviciuName = model.serviciuName;
     this.judetName = model.judetName;
     this.sharedDataService.setServiciuSelectat(model.serviciuId, model.serviciuName);
     this.sharedDataService.setJudetselectat(model?.judetId, model?.judetName);
-    this.loadData(model?.serviciuId, model.judetId, 0);
+    this.loadData(model?.serviciuId, model.judetId, 0, false);
   }
 
   handleClickCard(searchResult: SearchResult){
-    this.sharedDataService.setSearchResult(searchResult);
-    this.router.navigate(["./serviciu-detail-page"]);
+    if(this.editServicii){
+      var serviciu = new DBServiciuModel();
+      serviciu.id = searchResult.serviciuId;
+      serviciu.name = searchResult.serviciuName;
+      this.sharedDataService.setServiciuToEdit(serviciu);
+      this.router.navigate(["./edit-serviciu-page"]);
+    }
+    else{
+      this.sharedDataService.setSearchResult(searchResult);
+      this.router.navigate(["./serviciu-detail-page"]);
+    }
+  }
+
+  clickLogo(){
+    window.location.reload();
   }
 }

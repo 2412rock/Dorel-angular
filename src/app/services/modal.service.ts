@@ -11,8 +11,8 @@ export class ModalService {
 
   constructor(private dialog: MatDialog) { }
 
-  openModalNotification(title: string, message: string, isSuccess: boolean): void {
-    this.dialog.open(NotificationModalComponent, {
+  openModalNotification(title: string, message: string, isSuccess: boolean): MatDialogRef<NotificationModalComponent> {
+    return this.dialog.open(NotificationModalComponent, {
       data: {
         title: title,
         message: message,
