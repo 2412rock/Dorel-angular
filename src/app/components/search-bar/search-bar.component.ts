@@ -59,8 +59,6 @@ export class SearchBarComponent {
     req.startsWith = startsWith;
     firstValueFrom(this.dataService.getServicii(req)).then(e => {
       let dataValues = e.data as DBServiciuModel[];
-      console.log("Data values")
-      console.log(dataValues)
       this.filteredResultsServicii = dataValues;
     }).catch(e => {console.log(e)})
   }

@@ -59,7 +59,7 @@ export class StarRatingComponent {
   saveRating(): void {
     this.starsSaved = !this.starsSaved;
     const rating = this.stars.filter(star => star.highlighted).length;
-    console.log('Selected rating:', rating);
+
   // Toggle the active state of stars
     this.stars.forEach((star, index) => {
       star.active = index < rating;

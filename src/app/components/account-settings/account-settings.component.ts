@@ -54,7 +54,6 @@ export class AccountSettingsComponent {
     if(index === 0){
       this.router.navigate(["./assign-page"]);
     }else if(index === 1){
-      console.log("Launching serch results page")
       this.router.navigate(["./search-results-page"], { queryParams: { edit: true } });
     }
   }

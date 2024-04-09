@@ -28,14 +28,13 @@ export class SearchResultsComponent {
 
   ngOnInit(){
     this.route.queryParams.subscribe(params => {
-      console.log("GOT PARAMS")
       const edit = params['edit'];
-      console.log(edit)
+
       if(edit){
         this.editServicii = true;
       }
     });
-    console.log("OK")
+
     if(this.editServicii){
       this.loadData(undefined, undefined, 0, true);
     }
@@ -52,7 +51,6 @@ export class SearchResultsComponent {
     this.searchResults = [];
     this.loading = true;
     if(this.editServicii){
-      console.log("LOADIN ALL DATA 1")
       firstValueFrom(this.dataService.getServiciiForUserAsSearchResults()).then(response => {
         if(response.isSuccess){
           response.data.forEach(searchResult => {
@@ -66,7 +64,6 @@ export class SearchResultsComponent {
       }).catch(e => {this.modalService.openModalNotification("Error", `Something went wrong loading data`, false); this.loading = false;});
     }
     else{
-      console.log("LOADIN ALL DATA")
       firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
         response => {
           if(response.isSuccess){
