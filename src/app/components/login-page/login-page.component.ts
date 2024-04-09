@@ -75,7 +75,7 @@ export class LoginPageComponent {
       if (res.isSuccess) {
         this.sharedDataService.setUserEmail(this.email);
         this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "");
-        this.router.navigate(['./basic-search-page']);
+        this.router.navigate(['./search-results-page']);
         this.loadingSpinner = false;
       }
       else {
