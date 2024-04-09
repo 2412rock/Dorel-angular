@@ -37,48 +37,58 @@ export class SearchResultsComponent {
       // Use productId as needed
     });
     if(this.editServicii){
+      this.loadData(undefined, undefined, 0, true);
+    }
+    else{
+      this.serviciuName = this.sharedDataService.getServiciuName();
+      this.judetName = this.sharedDataService.getJudetName();
+      if(this.judetName != null || this.serviciuName != null){
+        this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, false);
+      }
+    }
+  }
+
+  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean){
+    this.searchResults = [];
+    this.loading = true;
+    if(this.editServicii){
       firstValueFrom(this.dataService.getServiciiForUserAsSearchResults()).then(response => {
         if(response.isSuccess){
           response.data.forEach(searchResult => {
             this.searchResults.push(searchResult);
           });
         }
-      })
+        else{
+          this.modalService.openModalNotification("Error", `Something went wrong loading data: ${response.exceptionMessage}`, false);
+        }
+        this.loading = false;;
+      }).catch(e => {this.modalService.openModalNotification("Error", `Something went wrong loading data`, false); this.loading = false;});
     }
     else{
-      this.serviciuName = this.sharedDataService.getServiciuName();
-      this.judetName = this.sharedDataService.getJudetName();
-      if(this.judetName != null || this.serviciuName != null){
-        this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0);
-      }
+      firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
+        response => {
+          if(response.isSuccess){
+            response.data.forEach(searchResult => {
+                this.searchResults.push(searchResult);
+              });
+            this.loading = false;
+          }
+          else{
+            this.modalService.openModalNotification("Failed", `Failed to retrieve data: ${response.exceptionMessage}`, false);
+            this.loading = false;
+          }
+        }
+      ).catch(e => {this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false);this.loading = false;})
     }
-  }
-
-  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number){
-    this.searchResults = [];
-    this.loading = true;
-    firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
-      response => {
-        if(response.isSuccess){
-          response.data.forEach(searchResult => {
-              this.searchResults.push(searchResult);
-            });
-          this.loading = false;
-        }
-        else{
-          this.modalService.openModalNotification("Failed", `Failed to retrieve data: ${response.exceptionMessage}`, false);
-          this.loading = false;
-        }
-      }
-    ).catch(e => {this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false);this.loading = false;})
   }
 
   getDataFromSearch(model: SearchModel){
+    this.editServicii = false;
     this.serviciuName = model.serviciuName;
     this.judetName = model.judetName;
     this.sharedDataService.setServiciuSelectat(model.serviciuId, model.serviciuName);
     this.sharedDataService.setJudetselectat(model?.judetId, model?.judetName);
-    this.loadData(model?.serviciuId, model.judetId, 0);
+    this.loadData(model?.serviciuId, model.judetId, 0, false);
   }
 
   handleClickCard(searchResult: SearchResult){
