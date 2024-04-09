@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { DBReviewModel } from 'src/app/model/DBReviewModel';
 import { Imagine } from 'src/app/model/Imagine';
 import { PostReviewModel } from 'src/app/model/Requests/post-review-model';
+import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -15,7 +16,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
   styleUrl: './serviciu-detail.component.css'
 })
 export class ServiciuDetailComponent {
-  public searchResult: SearchResult;
+  public searchResult: FilteredSearchResult;
   public imagini: Imagine[] = [];
   public loading: boolean = true;
   public reviews: DBReviewModel[];
@@ -32,7 +33,7 @@ export class ServiciuDetailComponent {
 
   loadData(){
     this.loading = true;
-    firstValueFrom(this.dataService.getImaginiForServiciuUser(this.searchResult.serviciuId,this.searchResult.judetId, this.searchResult.userId)).then(response => {
+    firstValueFrom(this.dataService.getImaginiForServiciuUser(this.searchResult.serviciuId,this.searchResult.judetIds[0], this.searchResult.userId)).then(response => {
       if(response.isSuccess){
           this.imagini = response.data;
           firstValueFrom(this.dataService.getReviews(this.searchResult.userId, this.searchResult.serviciuId, 0)).then(response => {

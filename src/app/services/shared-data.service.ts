@@ -3,6 +3,7 @@ import { ImaginiServiciiDescriere } from '../model/imagine-servicii-descriere';
 import { BehaviorSubject } from 'rxjs';
 import { SearchResult } from '../model/search-result';
 import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
+import { FilteredSearchResult } from '../model/filtered-search-result';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class SharedDataService {
   private serviciuSelectatId: number | undefined;
   private judetSelectatId: number | undefined;
   private userEmail: string;
-  private searchResult: SearchResult;
+  private searchResult: FilteredSearchResult;
   private serviciuName: string | undefined;
   private judetName: string | undefined;
   private serviciuToEdit: DBServiciuModel;
@@ -68,11 +69,11 @@ export class SharedDataService {
     this.clearData();
   }
 
-  public setSearchResult(searchResult: SearchResult){
+  public setSearchResult(searchResult: FilteredSearchResult){
     this.searchResult = searchResult;
   }
 
-  public getSearchResult():SearchResult{
+  public getSearchResult():FilteredSearchResult{
     return this.searchResult;
   }
 

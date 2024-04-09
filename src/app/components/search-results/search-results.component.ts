@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
+import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
@@ -19,69 +20,96 @@ export class SearchResultsComponent {
   public serviciuName: string | undefined;
   public judetName: string | undefined;
   public editServicii: boolean | undefined;
+  public filteredSearchResults: FilteredSearchResult[] = [];
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
     private router: Router,
-    private route: ActivatedRoute){}
+    private route: ActivatedRoute) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const edit = params['edit'];
 
-      if(edit){
+      if (edit) {
         this.editServicii = true;
       }
     });
 
-    if(this.editServicii){
+    if (this.editServicii) {
       this.loadData(undefined, undefined, 0, true);
     }
-    else{
+    else {
       this.serviciuName = this.sharedDataService.getServiciuName();
       this.judetName = this.sharedDataService.getJudetName();
-      
+
       this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, false);
-      
+
     }
   }
 
-  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean){
+  private filterSearchResults() {
+    for (let index = 0; index < this.searchResults.length; index++) {
+      if (this.filteredSearchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId).length === 0) {
+        var elementsWithSameServId = this.searchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId);
+        var filteredSearchResult = new FilteredSearchResult();
+        filteredSearchResult.judetIds = [];
+        filteredSearchResult.judetNames = [];
+        filteredSearchResult.descriere = this.searchResults[index].descriere;
+        filteredSearchResult.imagineCover = this.searchResults[index].imagineCover;
+        filteredSearchResult.serviciuId = this.searchResults[index].serviciuId;
+        filteredSearchResult.serviciuName = this.searchResults[index].serviciuName;
+        filteredSearchResult.starsAverage = this.searchResults[index].starsAverage;
+        filteredSearchResult.userId = this.searchResults[index].userId;
+        filteredSearchResult.userName = this.searchResults[index].userName;
+
+        elementsWithSameServId.forEach(e => {
+          filteredSearchResult.judetIds.push(e.judetId);
+          filteredSearchResult.judetNames.push(e.judetName);
+        });
+        this.filteredSearchResults.push(filteredSearchResult);
+      }
+    }
+  }
+
+  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean) {
     this.searchResults = [];
     this.loading = true;
-    if(this.editServicii){
+    if (this.editServicii) {
       firstValueFrom(this.dataService.getServiciiForUserAsSearchResults()).then(response => {
-        if(response.isSuccess){
+        if (response.isSuccess) {
           response.data.forEach(searchResult => {
             this.searchResults.push(searchResult);
           });
         }
-        else{
+        else {
           this.modalService.openModalNotification("Error", `Something went wrong loading data: ${response.exceptionMessage}`, false);
         }
+        this.filterSearchResults();
         this.loading = false;;
-      }).catch(e => {this.modalService.openModalNotification("Error", `Something went wrong loading data`, false); this.loading = false;});
+      }).catch(e => { this.modalService.openModalNotification("Error", `Something went wrong loading data`, false); this.loading = false; });
     }
-    else{
+    else {
       firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
         response => {
-          if(response.isSuccess){
+          if (response.isSuccess) {
             response.data.forEach(searchResult => {
-                this.searchResults.push(searchResult);
-              });
+              this.searchResults.push(searchResult);
+            });
+            this.filterSearchResults();
             this.loading = false;
           }
-          else{
+          else {
             this.modalService.openModalNotification("Failed", `Failed to retrieve data: ${response.exceptionMessage}`, false);
             this.loading = false;
           }
         }
-      ).catch(e => {this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false);this.loading = false;})
+      ).catch(e => { this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false); this.loading = false; })
     }
   }
 
-  getDataFromSearch(model: SearchModel){
+  getDataFromSearch(model: SearchModel) {
     this.editServicii = false;
     this.serviciuName = model.serviciuName;
     this.judetName = model.judetName;
@@ -90,21 +118,21 @@ export class SearchResultsComponent {
     this.loadData(model?.serviciuId, model.judetId, 0, false);
   }
 
-  handleClickCard(searchResult: SearchResult){
-    if(this.editServicii){
+  handleClickCard(searchResult: FilteredSearchResult) {
+    if (this.editServicii) {
       var serviciu = new DBServiciuModel();
       serviciu.id = searchResult.serviciuId;
       serviciu.name = searchResult.serviciuName;
       this.sharedDataService.setServiciuToEdit(serviciu);
       this.router.navigate(["./edit-serviciu-page"]);
     }
-    else{
+    else {
       this.sharedDataService.setSearchResult(searchResult);
       this.router.navigate(["./serviciu-detail-page"]);
     }
   }
 
-  clickLogo(){
+  clickLogo() {
     window.location.reload();
   }
 }

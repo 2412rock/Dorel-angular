@@ -1,6 +1,6 @@
 .content{
     width: 25em;
-    height: 27em;
+    height: 29em;
     background-color: var(--card-color);
     padding-top: 0.7em;
     padding-bottom: 2em;
@@ -16,5 +16,6 @@ p{
 
 img{
     width: 70%;
+    height: 40%;
     border-radius: 0.7em;
 }

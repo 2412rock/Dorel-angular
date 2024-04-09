@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Imagine } from 'src/app/model/Imagine';
+import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchResult } from 'src/app/model/search-result';
 
 @Component({
@@ -9,11 +10,11 @@ import { SearchResult } from 'src/app/model/search-result';
 })
 export class SearchResultCardComponent {
 
-  @Input() searchResult: SearchResult;
-  @Output() cardClickEvent: EventEmitter<SearchResult> = new EventEmitter<SearchResult>();
+  @Input() searchResult: FilteredSearchResult;
+  @Output() cardClickEvent: EventEmitter<FilteredSearchResult> = new EventEmitter<FilteredSearchResult>();
+  public judete: string[];
 
   clickCard(){
     this.cardClickEvent.emit(this.searchResult);
   }
-
 }
