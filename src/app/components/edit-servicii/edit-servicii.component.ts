@@ -61,4 +61,8 @@ export class EditServiciiComponent {
     this.sharedDataService.setJudetselectat(val?.judetId, val?.judetName);
     this.router.navigate(["./search-results-page"]);
   }
+
+  clickLogo(){
+    this.router.navigate(["./search-results-page"]);
+  }
 }

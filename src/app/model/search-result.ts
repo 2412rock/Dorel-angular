@@ -13,6 +13,8 @@ export class SearchResult {
 
     public judetId: number;
 
+    public judetName: string;
+
     public starsAverage: number;
 
     public imagineCover: Imagine;

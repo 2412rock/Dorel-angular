@@ -1,7 +1,7 @@
 <div style="display: flex; flex-direction: row;">
     <div class="top">
-        <span
-            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em;">DOREL</span>
+        <span (click)="clickLogo()"
+            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em; cursor: pointer;">DOREL</span>
         <div style="margin-top: 1em;">
             <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
         </div>

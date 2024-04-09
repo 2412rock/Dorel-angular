@@ -1,8 +1,8 @@
 <div style="display: flex; flex-direction: column; height: 100vh; width: 100vw; background-color: var(--background-color); overflow-y: auto;"
     [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
     <div class="top">
-        <span
-            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em;">DOREL</span>
+        <span (click)="clickLogo()"
+            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em; cursor: pointer;">DOREL</span>
         <div style="margin-top: 1em;">
             <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
         </div>
@@ -112,7 +112,7 @@
                             </div>
                         </form>
                         <div *ngIf="showDescriptionValidation">
-                            <span style="color: red; font-size: medium;">Please enter a description</span>
+                            <span style="color: red; font-size: medium;">Adauga o descriere de cel putin 80 de caractere</span>
                         </div>
                     </div>
                 </div>

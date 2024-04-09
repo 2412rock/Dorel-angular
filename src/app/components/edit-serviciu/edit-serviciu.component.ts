@@ -10,6 +10,7 @@ import { AssignServiciuRequest } from 'src/app/model/Requests/assign-serviciu-mo
 import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-serviciu',
@@ -43,7 +44,8 @@ export class EditServiciuComponent {
   constructor(private dataService: DataService,
     private modalService: ModalService,
     private sharedDataService: SharedDataService,
-    private location: Location){}
+    private location: Location,
+    private router: Router){}
 
   ngOnInit(){
     this.serviciu = new DBServiciuModel();
@@ -125,11 +127,15 @@ export class EditServiciuComponent {
       result = false;
       this.showImagesValidation = true;
     }
-    if(this.userDescription.length == 0){
+    if(this.userDescription.length < 80){
       result = false;
       this.showDescriptionValidation = true;
     }
     return result;
+  }
+
+  clickLogo(){
+    this.router.navigate(["./search-results-page"]);
   }
 
   clickPublish(){

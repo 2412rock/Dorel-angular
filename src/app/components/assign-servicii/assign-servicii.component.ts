@@ -133,11 +133,15 @@ export class AssignServiciiComponent {
       result = false;
       this.showImagesValidation = true;
     }
-    if(this.userDescription.length == 0){
+    if(this.userDescription.length < 80){
       result = false;
       this.showDescriptionValidation = true;
     }
     return result;
+  }
+
+  clickLogo(){
+    this.router.navigate(["./search-results-page"]);
   }
 
   clickPublish(){

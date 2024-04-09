@@ -1,7 +1,7 @@
 <div class="body">
     <div class="content">
         <div class="top">
-            <span style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em;">DOREL</span>
+            <span (click)="clickLogo()" style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em; cursor: pointer;">DOREL</span>
 
             <div style="margin-top: 1em;">
                 <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
@@ -22,6 +22,9 @@
             <div *ngIf="serviciuName != undefined" style="width: 100%; margin: 1em;">
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{serviciuName}}</span>
             </div>
+            <div *ngIf="serviciuName === undefined && (editServicii === undefined || editServicii === false)" style="width: 100%; margin: 1em;">
+                <span style="color: white; font-size: 2.4em; font-weight: bold;">Cele mai cautate servicii</span>
+            </div>
             <div *ngIf="editServicii" style="width: 100%; margin: 1em;">
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Serviciile tale</span>
             </div>
@@ -35,7 +38,7 @@
                 <i class="fa-solid fa-face-sad-tear" style="font-size: 4em; color: var(--text-color-white);"></i>
                 <p style="font-size: 2em; color: var(--text-color-white); margin-top: 3em;">Nu am gasit nicio persona care ofera acest serviciu</p>
             </div>
-            <div *ngIf="searchResults.length === 0 && !editServicii" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">
+            <div *ngIf="searchResults.length === 0 && editServicii != undefined && !editServicii" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">
                 <i class="fa-solid fa-exclamation" style="font-size: 4em; color: var(--text-color-white);"></i>
                 <p style="font-size: 2em; color: var(--text-color-white); margin-top: 3em;">Nu ai publicat niciun serviciu</p>
             </div>
