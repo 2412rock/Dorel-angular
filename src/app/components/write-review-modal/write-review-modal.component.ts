@@ -9,8 +9,9 @@ import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-m
 })
 export class WriteReviewModalComponent {
 
-  public validation: boolean;
-  public descriptionText: string | null;
+  public validationRating: boolean;
+  public validationDescription: boolean;
+  public descriptionText: string = "";
   public rating: number | null;
   
   constructor(
@@ -19,14 +20,23 @@ export class WriteReviewModalComponent {
   ) {}
 
   publish(): void {
-    if(this.descriptionText != null && this.descriptionText.length > 10 && this.rating != null && this.rating != 0){
+    if(this.descriptionText.length > 10 && this.rating != null && this.rating != 0){
       let reviewData = new ReviewData();
       reviewData.description = this.descriptionText;
       reviewData.rating = this.rating;
       this.dialogRef.close(reviewData);
     }
+    if(this.descriptionText.length < 10){
+      this.validationDescription = true;
+    }
     else{
-      this.validation = true;
+      this.validationDescription = false;
+    }
+    if(this.rating == null || this.rating == 0){
+      this.validationRating = true;
+    }
+    else{
+      this.validationRating = false;
     }
     
   }

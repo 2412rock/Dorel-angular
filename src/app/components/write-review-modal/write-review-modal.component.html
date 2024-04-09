@@ -3,23 +3,27 @@
         <div style="margin-top: 2em;">
             <p style="font-size: large; font-weight: bold; color: white;">Write your review</p>
         </div>
-        <div [ngStyle]="{'border': validation ? '0.1em solid red' : ''}">
+        <div [ngStyle]="{'border': validationDescription ? '0.1em solid red' : ''}">
             <form>
-                <textarea [ngStyle]="{'border': validation ? '0.1em solid red' : '0.1em solid --var(--background-color)'}" style="width: 40vw;height: 40vh; background-color: gray; color: white;" [(ngModel)]="descriptionText" id="description"
+                <textarea maxlength="250"  style="width: 40vw;height: 40vh; background-color: gray; color: white;" [(ngModel)]="descriptionText" id="description"
                     name="description" rows="6" cols="40"
                     placeholder="Enter your review here..."></textarea><br>
-                
+                    <div style="position: relative; width: 100%;">
+                        <span style="position: absolute; bottom: 1; right: 0; color: var(--text-color-white);">
+                            {{ descriptionText.length }}/250
+                        </span>
+                    </div>
             </form>
         </div>
-        <div *ngIf="validation">
+        <div *ngIf="validationDescription">
             <p style="color: red; font-size: small;">Description text must be at least 10 characters long</p>
         </div>
         
-        <div style="width: 40vw;" [ngStyle]="{'border': validation ? '0.1em solid red' : ''}">
+        <div style="width: 40vw;" [ngStyle]="{'border': validationRating ? '0.1em solid red' : ''}">
             <p style="color: white; font-size: medium; font-weight: bold;">Give a star rating</p>
             <app-star-rating [rating]="-1" (ratingEvent)="saveRaring($event)" ></app-star-rating>
         </div>
-        <div *ngIf="validation">
+        <div *ngIf="validationRating">
             <p  style="color: red; font-size: small;">Must give a star rating</p>
         </div>
         

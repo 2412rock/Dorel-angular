@@ -8,12 +8,17 @@ export class LocalstorageService {
   constructor() { }
 
   public setUserData(accessToken: string, refreshToken:string, name:string, profilePic: string,
-     isEmailLogin: string, profilePicContent: string){
+     isEmailLogin: string, profilePicContent: string, userId: string){
     localStorage.setItem('accessToken', accessToken );
     localStorage.setItem('refreshToken', refreshToken );
     localStorage.setItem('name', name );
     localStorage.setItem('isEmailLogin', isEmailLogin);
     localStorage.setItem('profilePicContent', profilePicContent);
+    localStorage.setItem('userId', userId);
+  }
+
+  public getUserId(): string{
+    return localStorage.getItem("userId") as string;
   }
 
   public getAccessToken(): string{

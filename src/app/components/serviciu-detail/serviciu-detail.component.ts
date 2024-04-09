@@ -7,6 +7,7 @@ import { PostReviewModel } from 'src/app/model/Requests/post-review-model';
 import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
+import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -20,14 +21,19 @@ export class ServiciuDetailComponent {
   public imagini: Imagine[] = [];
   public loading: boolean = true;
   public reviews: DBReviewModel[];
+  public showWriteReview: boolean = false;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
-    private router: Router){}
+    private router: Router,
+    private localStorageService: LocalstorageService){}
 
   ngOnInit(){
     this.searchResult = this.sharedDataService.getSearchResult();
+    if(this.searchResult.userId.toString() != this.localStorageService.getUserId()){
+      this.showWriteReview = true;
+    }
     this.loadData();
   }
 
