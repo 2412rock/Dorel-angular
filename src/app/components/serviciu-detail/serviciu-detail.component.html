@@ -1,14 +1,15 @@
 <div *ngIf="!loading" style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; overflow-y: auto;">
     <div class="top">
-        <div (click)="goBack()" style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-left: 2em; cursor: pointer;">
-            <i style="font-size: 1.5em; color: white;" class="fa-solid fa-arrow-left"></i>
-            <span style="font-size: 1.5em; color: white; margin-left: 0.5em;">Go back</span>
+        <span (click)="goBack()"
+            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em; cursor: pointer;">DOREL</span>
+        <div style="margin-top: 1em;">
+            <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
         </div>
-        <app-my-account-menu></app-my-account-menu>
+        <app-my-account-menu style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
     </div>
     
     
-    <div style="margin-top: 5em; width: 70vw; background-color: var(--card-color); border-radius: 0.7em; height: fit-content; padding: 2em;">
+    <div style="margin-top: 10em; width: 70vw; background-color: var(--card-color); border-radius: 0.7em; height: fit-content; padding: 2em;">
         <div style="display: flex; flex-direction: row;">
             <p style="color: white; font-size: 3em; font-weight: bold;">{{searchResult.userName}}</p>
             <app-star-rating [static]="true" [rating]="5" style="margin-left: 1.5em;"></app-star-rating>
@@ -60,12 +61,13 @@
     </div>
 </div>
 <div *ngIf="loading" style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; align-items: center;">
-    <div class="top">
-        <div (click)="goBack()" style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-left: 2em; cursor: pointer;">
-            <i style="font-size: 1.5em; color: white;" class="fa-solid fa-arrow-left"></i>
-            <span style="font-size: 1.5em; color: white; margin-left: 0.5em;">Go back</span>
+    <<div class="top">
+        <span (click)="goBack()"
+            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em; cursor: pointer;">DOREL</span>
+        <div style="margin-top: 1em;">
+            <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
         </div>
-        <app-my-account-menu></app-my-account-menu>
+        <app-my-account-menu style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
     </div>
     <div *ngIf="loading" class="d-flex custom-spinner" style="margin-left: 0.5em;">
         <div class="spinner-border text-primary" style="width: 4.5rem; height: 4.5rem;" role="status">

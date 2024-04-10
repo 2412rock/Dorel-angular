@@ -11,6 +11,7 @@ import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { ReviewData } from '../write-review-modal/write-review-modal.component';
+import { SearchModel } from 'src/app/model/search-model';
 
 @Component({
   selector: 'app-serviciu-detail',
@@ -162,5 +163,11 @@ export class ServiciuDetailComponent {
 
   goBack(){
     this.router.navigate(['./search-results-page']);
+  }
+
+  navigateToSearch(val: SearchModel){
+    this.sharedDataService.setServiciuSelectat(val?.serviciuId, val?.serviciuName);
+    this.sharedDataService.setJudetselectat(val?.judetId, val?.judetName);
+    this.router.navigate(["./search-results-page"]);
   }
 }

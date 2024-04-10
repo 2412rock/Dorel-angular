@@ -21,3 +21,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --black: black;
     /* Add more colors as needed */
   }
+
+  p {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  span {
+    font-family: Arial, Helvetica, sans-serif;
+  }
