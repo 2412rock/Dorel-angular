@@ -10,6 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import { ReviewData } from '../write-review-modal/write-review-modal.component';
 
 @Component({
   selector: 'app-serviciu-detail',
@@ -21,7 +22,7 @@ export class ServiciuDetailComponent {
   public imagini: Imagine[] = [];
   public loading: boolean = true;
   public reviews: DBReviewModel[];
-  public showWriteReview: boolean = false;
+  public showWriteReview: boolean = true;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
@@ -44,6 +45,11 @@ export class ServiciuDetailComponent {
           this.imagini = response.data;
           firstValueFrom(this.dataService.getReviews(this.searchResult.userId, this.searchResult.serviciuId, 0)).then(response => {
             if(response.isSuccess){
+              response.data.forEach(e => {
+                if(e.reviewerUserId.toString() === this.localStorageService.getUserId()){
+                  this.showWriteReview = false;
+                }
+              })
               this.reviews = response.data;
             }
             else{
@@ -61,27 +67,66 @@ export class ServiciuDetailComponent {
     }).catch(e => {this.modalService.openModalNotification("Failed", `Unkown error occured`, false); this.loading = false;})
   }
 
-  writeReview(){
-    let dialogref = this.modalService.openWriteReviewModal();
-    dialogref.afterClosed().subscribe(result => {
-      if (result != null) {
-        var request = new PostReviewModel();
-        request.description = result.description;
-        request.rating = result.rating;
-        request.reviwedUserId = this.searchResult.userId;
-        request.serviciuId = this.searchResult.serviciuId;
+  private postReview(result: ReviewData, edit: boolean) {
+    var request = new PostReviewModel();
+    request.description = result.description;
+    request.rating = result.rating;
+    request.reviwedUserId = this.searchResult.userId;
+    request.serviciuId = this.searchResult.serviciuId;
 
-        firstValueFrom(this.dataService.postReview(request)).then(response => {
-          if(response.isSuccess){
-            this.loadData();
-          }
-          else{
-            this.modalService.openModalNotification("Failed", `Failed to post review ${response.exceptionMessage}`, false);
-          }
+    if(!edit){
+      firstValueFrom(this.dataService.postReview(request)).then(response => {
+        if (response.isSuccess) {
+          this.loadData();
+        }
+        else {
+          this.modalService.openModalNotification("Failed", `Failed to post review ${response.exceptionMessage}`, false);
+        }
+  
+      }).catch(e => { this.modalService.openModalNotification("Failed", "Unknown error occured", false); });
+    }
+    else{
+      firstValueFrom(this.dataService.editReview(request)).then(response => {
+        if (response.isSuccess) {
+          this.loadData();
+        }
+        else {
+          this.modalService.openModalNotification("Failed", `Failed to post review ${response.exceptionMessage}`, false);
+        }
+  
+      }).catch(e => { this.modalService.openModalNotification("Failed", "Unknown error occured", false); });
+    }
+    
+  }
 
-        }).catch(e => {this.modalService.openModalNotification("Failed", "Unknown error occured", false); });
-      }
-    });
+  writeReview(edit: boolean) {
+    if (!edit) {
+      let dialogref = this.modalService.openWriteReviewModal(false, null, null);
+      dialogref.afterClosed().subscribe(result => {
+        if (result != null) {
+          this.postReview(result, false);
+        }
+      });
+    }else{
+      var reviewedId = this.searchResult.userId; 
+      var serviciuId = this.searchResult.serviciuId; 
+      var reviewerId = parseInt(this.localStorageService.getUserId());
+
+      firstValueFrom(this.dataService.getReviewOfUser(reviewedId, serviciuId, reviewerId)).then(reviewResponse => {
+        if(reviewResponse.isSuccess){
+          let dialogref = this.modalService.openWriteReviewModal(true, reviewResponse.data.reviewDescription, reviewResponse.data.rating);
+          dialogref.afterClosed().subscribe(result => {
+            if(result instanceof ReviewData){
+              this.postReview(result, true);
+            }
+            else if(result != null){
+              // delete operation
+            }
+          })
+        }
+        
+      });
+    }
   }
 
   goBack(){

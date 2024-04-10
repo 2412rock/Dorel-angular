@@ -78,4 +78,12 @@ export class DataService {
   postReview(request: PostReviewModel){
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/postReview`, request)
   }
+
+  editReview(request: PostReviewModel){
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/editReview`, request)
+  }
+
+  getReviewOfUser(reviewedUserId:number, serviciuId: number, reviewerId: number){
+    return this.http.get<Maybe<DBReviewModel>>(`${this.apiUrl}/api/getReviewOfUser?reviewedUserId=${reviewedUserId}&serviciuId=${serviciuId}&reviewerId=${reviewerId}`)
+  }
 }

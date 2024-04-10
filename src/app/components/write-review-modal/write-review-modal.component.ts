@@ -12,12 +12,21 @@ export class WriteReviewModalComponent {
   public validationRating: boolean;
   public validationDescription: boolean;
   public descriptionText: string = "";
-  public rating: number | null;
+  public rating: number = 0;
   
   constructor(
     private dialogRef: MatDialogRef<ConfirmationModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+
+  ngOnInit(){
+    console.log(this.data)
+    if(this.data.edit){
+      this.descriptionText = this.data.description;
+      this.rating = this.data.rating;
+    }
+    console.log(this.rating)
+  }
 
   publish(): void {
     if(this.descriptionText.length > 10 && this.rating != null && this.rating != 0){
@@ -43,6 +52,10 @@ export class WriteReviewModalComponent {
 
   cancel(): void{
     this.dialogRef.close(null);
+  }
+
+  delete(): void{
+    this.dialogRef.close(true);
   }
 
   saveRaring(rating: number){

@@ -17,7 +17,7 @@
                 <div style="display: flex; flex-direction: column;">
                     <p style="color: white; font-size: 1em; margin-bottom: 0.4em;">
                         {{searchResult.starsAverage + " / 5 (184)"}}</p>
-                        <app-star-rating [rating]="searchResult.starsAverage" style="bottom: 0;"></app-star-rating>
+                        <app-star-rating [static]="true" [rating]="searchResult.starsAverage" style="bottom: 0;"></app-star-rating>
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: start;">
                     <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-top: 0.5em;">

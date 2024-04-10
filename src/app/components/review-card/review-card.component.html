@@ -3,7 +3,7 @@
     <div style="display: flex; flex-direction: column;">
         <div style="display: flex; flex-direction: row;">
             <p style="font-size: medium; color: white; font-weight: bold;">{{reviewerName}}</p>
-            <app-star-rating [rating]="stars" style="margin-left: 1.5em;"></app-star-rating>
+            <app-star-rating [static]="true" [rating]="stars" style="margin-left: 1.5em;"></app-star-rating>
         </div>
         <div>
             <p style="color: white;">{{description}}</p>

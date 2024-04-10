@@ -5,5 +5,5 @@ export class PostReviewModel {
 
     public rating: number;
 
-    public description: number;
+    public description: string;
 }

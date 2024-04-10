@@ -21,7 +21,7 @@
         
         <div style="width: 40vw;" [ngStyle]="{'border': validationRating ? '0.1em solid red' : ''}">
             <p style="color: white; font-size: medium; font-weight: bold;">Give a star rating</p>
-            <app-star-rating [rating]="-1" (ratingEvent)="saveRaring($event)" ></app-star-rating>
+            <app-star-rating [static]="false" [rating]="rating" (ratingEvent)="saveRaring($event)" ></app-star-rating>
         </div>
         <div *ngIf="validationRating">
             <p  style="color: red; font-size: small;">Must give a star rating</p>

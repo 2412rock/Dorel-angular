@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class StarRatingComponent {
 
   @Input() rating: number;
+  @Input() static: boolean;
   @Output() ratingEvent: EventEmitter<number> = new EventEmitter<number>();
 
   filledStarsArray: any[] = [];
@@ -33,7 +34,13 @@ export class StarRatingComponent {
 
   initializeStars(): void {
     for (let i = 0; i < 5; i++) {
-      this.stars.push({ highlighted: false, active: false });
+      if(i< this.rating){
+        this.stars.push({ highlighted: true, active: false });
+      }
+      else{
+        this.stars.push({ highlighted: false, active: false });
+      }
+      
     }
   }
 

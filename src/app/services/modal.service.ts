@@ -32,10 +32,13 @@ export class ModalService {
     });
   }
 
-  openWriteReviewModal(): MatDialogRef<WriteReviewModalComponent>  {
+  openWriteReviewModal(edit: boolean, description: string | null, rating: number | null): MatDialogRef<WriteReviewModalComponent>  {
+
     return this.dialog.open(WriteReviewModalComponent, {
       data: {
-        
+        edit: edit,
+        description: description,
+        rating : rating
       },
       panelClass: 'custom-dialog-surface'
     });
