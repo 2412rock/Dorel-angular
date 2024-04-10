@@ -29,6 +29,8 @@ export class SearchResultsComponent {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.searchResults = [];
+    this.filteredSearchResults = [];
     this.route.queryParams.subscribe(params => {
       const edit = params['edit'];
 
@@ -76,6 +78,7 @@ export class SearchResultsComponent {
 
   loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean) {
     this.searchResults = [];
+    this.filteredSearchResults = [];
     this.loading = true;
     if (this.editServicii) {
       firstValueFrom(this.dataService.getServiciiForUserAsSearchResults()).then(response => {
