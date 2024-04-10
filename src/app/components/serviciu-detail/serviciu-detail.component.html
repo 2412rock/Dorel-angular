@@ -37,7 +37,7 @@
                 <i style="font-size: medium; color: white; margin-right: 0.7em;" class="fa-solid fa-pen"></i>
                 <p style="color: white; font-size: medium;">Write a review</p>
             </div>
-            <div *ngIf="!showWriteReview" (click)="writeReview(true)" style="cursor: pointer; display: flex; flex-direction: row;">
+            <div *ngIf="showEditReview" (click)="writeReview(true)" style="cursor: pointer; display: flex; flex-direction: row;">
                 <i style="font-size: medium; color: white; margin-right: 0.7em;" class="fa-solid fa-pen"></i>
                 <p style="color: white; font-size: medium;">Edit review</p>
             </div>

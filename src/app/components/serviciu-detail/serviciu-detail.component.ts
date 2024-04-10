@@ -22,7 +22,8 @@ export class ServiciuDetailComponent {
   public imagini: Imagine[] = [];
   public loading: boolean = true;
   public reviews: DBReviewModel[];
-  public showWriteReview: boolean = true;
+  public showWriteReview: boolean = false;
+  public showEditReview: boolean = false;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
@@ -31,15 +32,32 @@ export class ServiciuDetailComponent {
     private localStorageService: LocalstorageService){}
 
   ngOnInit(){
-    this.searchResult = this.sharedDataService.getSearchResult();
-    if(this.searchResult.userId.toString() != this.localStorageService.getUserId()){
-      this.showWriteReview = true;
-    }
+
     this.loadData();
+  }
+
+  resetReviewRights(){
+    this.showEditReview = false;
+    this.showEditReview = false;
+  }
+
+  checkReviewRights(){
+    this.searchResult = this.sharedDataService.getSearchResult();
+    let reviewerId = parseInt(this.localStorageService.getUserId());
+    firstValueFrom(this.dataService.getReviewOfUser(this.searchResult.userId, this.searchResult.serviciuId, reviewerId)).then(res => {
+      var reviewerIsNotReviewee = this.searchResult.userId.toString() != this.localStorageService.getUserId();
+      if(reviewerIsNotReviewee && res.data == null){
+        this.showWriteReview = true;
+      }
+      else if(reviewerIsNotReviewee && res.data != null){
+        this.showEditReview = true;
+      }
+    });
   }
 
   loadData(){
     this.loading = true;
+    this.checkReviewRights();
     firstValueFrom(this.dataService.getImaginiForServiciuUser(this.searchResult.serviciuId,this.searchResult.judetIds[0], this.searchResult.userId)).then(response => {
       if(response.isSuccess){
           this.imagini = response.data;
@@ -129,6 +147,7 @@ export class ServiciuDetailComponent {
                 if(!response.isSuccess){
                   this.modalService.openModalNotification("Error", `Could not delete review: ${response.exceptionMessage} `, false);
                 }
+                this.resetReviewRights();
                 this.loadData();
                 this.loading = false;
               }).catch(e => {this.modalService.openModalNotification("Error", `Unknown errror`, false); this.loading = false;})
