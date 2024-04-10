@@ -29,3 +29,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   span {
     font-family: Arial, Helvetica, sans-serif;
   }
+
+  .darkened-backdrop {
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust the opacity as needed */
+  }

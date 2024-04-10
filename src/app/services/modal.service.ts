@@ -3,6 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotificationModalComponent } from '../components/notification-modal/notification-modal.component';
 import { ConfirmationModalComponent } from '../components/confirmation-modal/confirmation-modal.component';
 import { WriteReviewModalComponent } from '../components/write-review-modal/write-review-modal.component';
+import { Imagine } from '../model/Imagine';
+import { ImageModalComponent } from '../components/image-modal/image-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +43,18 @@ export class ModalService {
         rating : rating
       },
       panelClass: 'custom-dialog-surface'
+    });
+  }
+
+  openImagesModal(images: Imagine[], imageIndex: number): MatDialogRef<ImageModalComponent>  {
+
+    return this.dialog.open(ImageModalComponent, {
+      data: {
+        images: images,
+        imageIndex:imageIndex
+      },
+      panelClass: 'custom-dialog-surface',
+      backdropClass: 'darkened-backdrop'
     });
   }
 }

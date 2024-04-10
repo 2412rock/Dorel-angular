@@ -41,6 +41,7 @@ import { ReviewCardComponent } from './components/review-card/review-card.compon
 import { WriteReviewModalComponent } from './components/write-review-modal/write-review-modal.component';
 import { ButtonComponent } from './components/button/button.component';
 import { DragDropDirective } from './components/Directives/drag-and-drop-directive';
+import { ImageModalComponent } from './components/image-modal/image-modal.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { DragDropDirective } from './components/Directives/drag-and-drop-directi
         ReviewCardComponent,
         WriteReviewModalComponent,
         ButtonComponent,
-        DragDropDirective
+        DragDropDirective,
+        ImageModalComponent
     ], 
     providers: [
         {
