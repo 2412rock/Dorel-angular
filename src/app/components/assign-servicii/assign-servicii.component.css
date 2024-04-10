@@ -174,4 +174,5 @@
     position:absolute;
     top: 0;
     background-color: var(--card-color);
+    z-index: 2;
 }
