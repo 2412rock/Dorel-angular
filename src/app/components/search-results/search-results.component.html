@@ -36,9 +36,9 @@
             </div>
             <div *ngIf="searchResults.length === 0 && !editServicii" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">
                 <i class="fa-solid fa-face-sad-tear" style="font-size: 4em; color: var(--text-color-white);"></i>
-                <p style="font-size: 2em; color: var(--text-color-white); margin-top: 3em;">Nu am gasit nicio persona care ofera acest serviciu</p>
+                <p style="font-size: 2em; color: var(--text-color-white); margin-top: 3em;">Nu am gasit nicio persona care ofera servicii</p>
             </div>
-            <div *ngIf="searchResults.length === 0 && editServicii != undefined && !editServicii" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">
+            <div *ngIf="searchResults.length === 0 && editServicii != undefined && editServicii" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">
                 <i class="fa-solid fa-exclamation" style="font-size: 4em; color: var(--text-color-white);"></i>
                 <p style="font-size: 2em; color: var(--text-color-white); margin-top: 3em;">Nu ai publicat niciun serviciu</p>
             </div>
