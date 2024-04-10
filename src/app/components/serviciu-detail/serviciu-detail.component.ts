@@ -152,6 +152,7 @@ export class ServiciuDetailComponent {
                 this.loading = false;
               }).catch(e => {this.modalService.openModalNotification("Error", `Unknown errror`, false); this.loading = false;})
             }
+            this.loading = false;
           })
         }
         
