@@ -8,6 +8,10 @@
     border-radius: 1em;
 }
 
+.content:hover{
+    box-shadow: 0 0 20px 5px rgba(149, 148, 148, 0.3); 
+}
+
 p{
     margin: 0;
     padding: 0;
