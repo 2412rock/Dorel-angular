@@ -29,8 +29,11 @@
         
     </div>
     <div style="display: flex; justify-content: end; position: absolute; bottom: 0.6em; right: 0;">
-        <div (click)="cancel()" style="border-radius: 10%; padding: 1em; cursor: pointer; background-color: red;">
+        <div (click)="cancel()" style="border-radius: 10%; padding: 1em; cursor: pointer; background-color: var(--background-color);">
             <span style="font-size: large; font-weight:500; color: white;">Cancel</span>
+        </div>
+        <div *ngIf="data.edit" (click)="deleteReview()" style="border-radius: 10%; padding: 1em; cursor: pointer; background-color: red;">
+            <span style="font-size: large; font-weight:500; color: white;">Delete</span>
         </div>
         <div (click)="publish()" style="border-radius: 10%; padding: 1em; cursor: pointer; background-color: green; margin-right: 1.5em; margin-left: 1em;">
             <span style="font-size: large; font-weight:500; color: white">Publish</span>

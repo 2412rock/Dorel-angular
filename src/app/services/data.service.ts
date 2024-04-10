@@ -86,4 +86,8 @@ export class DataService {
   getReviewOfUser(reviewedUserId:number, serviciuId: number, reviewerId: number){
     return this.http.get<Maybe<DBReviewModel>>(`${this.apiUrl}/api/getReviewOfUser?reviewedUserId=${reviewedUserId}&serviciuId=${serviciuId}&reviewerId=${reviewerId}`)
   }
+
+  deleteReview(reviewedUserId:number, serviciuId: number){
+    return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteReview?reviewedUserId=${reviewedUserId}&serviciuId=${serviciuId}`)
+  }
 }

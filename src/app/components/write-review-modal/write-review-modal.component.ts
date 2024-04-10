@@ -54,7 +54,7 @@ export class WriteReviewModalComponent {
     this.dialogRef.close(null);
   }
 
-  delete(): void{
+  deleteReview(): void{
     this.dialogRef.close(true);
   }
 

@@ -100,12 +100,16 @@ export class ServiciuDetailComponent {
   }
 
   writeReview(edit: boolean) {
+    this.loading = true;
     if (!edit) {
       let dialogref = this.modalService.openWriteReviewModal(false, null, null);
       dialogref.afterClosed().subscribe(result => {
+        console.log("Posting review")
         if (result != null) {
           this.postReview(result, false);
+          
         }
+        this.loading = false;
       });
     }else{
       var reviewedId = this.searchResult.userId; 
@@ -119,8 +123,15 @@ export class ServiciuDetailComponent {
             if(result instanceof ReviewData){
               this.postReview(result, true);
             }
-            else if(result != null){
+            else if(result === true){
               // delete operation
+              firstValueFrom(this.dataService.deleteReview(reviewedId, serviciuId)).then(response => {
+                if(!response.isSuccess){
+                  this.modalService.openModalNotification("Error", `Could not delete review: ${response.exceptionMessage} `, false);
+                }
+                this.loadData();
+                this.loading = false;
+              }).catch(e => {this.modalService.openModalNotification("Error", `Unknown errror`, false); this.loading = false;})
             }
           })
         }
