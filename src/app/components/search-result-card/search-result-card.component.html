@@ -8,43 +8,44 @@
                     {{searchResult.userName}}</span>
             </div>
 
-            <div style="height: 5em; text-overflow: ellipsis; overflow: hidden;">
+            <div style="height: 5.5em; text-overflow: ellipsis; overflow: hidden;">
                 <p
                     style="color: white; width: fit-content; margin-top: 1em; font-size: medium; font-weight: 500; text-overflow: ellipsis; overflow: hidden;">
                     {{searchResult.descriere}}.</p>
             </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 0.3em">
-                <div style="display: flex; flex-direction: column;">
+            <div
+                style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 0.3em">
+                <div style="display: flex; flex-direction: column; margin-top: 2em;">
                     <p style="color: white; font-size: 1em; margin-bottom: 0.4em;">
                         {{searchResult.starsAverage + " / 5 " + "("+searchResult.numberOfReviews+")"}} </p>
-                        <app-star-rating [static]="true" [rating]="searchResult.starsAverage" style="bottom: 0;"></app-star-rating>
+                    <app-star-rating [static]="true" [rating]="searchResult.starsAverage"
+                        style="bottom: 0;"></app-star-rating>
                 </div>
-                <div style="display: flex; flex-direction: column; align-items: start;">
-                    <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-top: 0.5em;">
+                <div style="display: flex; flex-direction: column; align-items: start; margin-top: 1.5em">
+                    <div
+                        style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-top: 0.5em;">
                         <i style="font-size: medium; color: var(--selected-color); margin-right: 0.6em;"
                             class="fa-solid fa-briefcase"></i>
-                        <div
-                            style=" padding: 0.1em; color: var(--text-color-white);">
+                        <div style=" padding: 0.1em; color: var(--text-color-white);">
                             {{searchResult.serviciuName}}</div>
-    
+
                     </div>
                     <div
                         style="display: flex; flex-direction: row; justify-content: start; align-items: center; margin-top: 0.5em; max-width: 7em; overflow: hidden; text-overflow: ellipsis;">
                         <i style="font-size: medium; color: var(--selected-color); margin-right: 0.8em;"
                             class="fa-solid fa-location-dot"></i>
 
-                        <div
-                             style="color: var(--text-color-white); padding: 0.1em;">
-                            <span>Oferta in {{searchResult.judetIds.length}} judet(e)</span>
+                        <div style="color: var(--text-color-white); padding: 0.1em;">
+                            <span *ngIf="searchResult.judetIds.length > 1">{{searchResult.judetIds.length}} Judete</span>
+                            <span *ngIf="searchResult.judetIds.length === 1">{{searchResult.judetNames[0]}}</span>
+                        </div>
 
                     </div>
-                    
                 </div>
+
+
             </div>
-
-
+        </div>
+        <div>
         </div>
     </div>
-    <div>
-    </div>
-</div>
