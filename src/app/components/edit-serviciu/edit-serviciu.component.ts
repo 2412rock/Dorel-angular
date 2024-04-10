@@ -149,9 +149,10 @@ export class EditServiciuComponent {
 
       firstValueFrom(this.dataService.editUserServicii(editRequest)).then(response => {
         if(response.isSuccess){
-          this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);
+          var modal = this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);
           //this.publishDone.emit(true);
-          this.location.back();
+          modal.afterClosed().subscribe(result => {this.location.back();});
+          
           
         }else{
           this.modalService.openModalNotification("Failed", `An error has occured: ${response.exceptionMessage}`, false);
