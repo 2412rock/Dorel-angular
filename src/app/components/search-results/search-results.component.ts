@@ -63,6 +63,7 @@ export class SearchResultsComponent {
         filteredSearchResult.starsAverage = this.searchResults[index].starsAverage;
         filteredSearchResult.userId = this.searchResults[index].userId;
         filteredSearchResult.userName = this.searchResults[index].userName;
+        filteredSearchResult.numberOfReviews = this.searchResults[index].numberOfReviews;
 
         elementsWithSameServId.forEach(e => {
           filteredSearchResult.judetIds.push(e.judetId);

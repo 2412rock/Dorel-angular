@@ -18,4 +18,6 @@ export class SearchResult {
     public starsAverage: number;
 
     public imagineCover: Imagine;
+
+    public numberOfReviews: number;
 }
