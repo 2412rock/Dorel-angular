@@ -162,6 +162,6 @@ i{
 @media screen and (max-width: 35em
 ) {
   .search-bars-container {
-    margin-left: 2em;
+    margin-left: 0.4em;
   }
 }

@@ -27,7 +27,7 @@
 
 }
 
-.result-card{
+.result-cards{
     margin-top: 10em;
 }
 
@@ -37,6 +37,10 @@
     font-family: 'Courier New', Courier, monospace;
     margin-left: 0.5em;
     cursor: pointer;
+}
+
+.card{
+  margin: 1em;
 }
 
 @media screen and (max-width: 70em
@@ -60,7 +64,7 @@
         margin-left: 1em; /* Adjusted width for smaller resolutions */
       }
 
-      .result-card{
+      .result-cards{
         margin-top: 15em;
       }
 }
@@ -71,8 +75,13 @@
         display: none; /* Adjusted width for smaller resolutions */
       }
 
-      .result-card{
+      .result-cards{
         margin-top: 15em;
         margin-left: 0;
+      }
+
+      .card{
+        margin: 0;
+        margin-bottom: 1em;
       }
 }
