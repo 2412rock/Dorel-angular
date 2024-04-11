@@ -58,7 +58,7 @@ i{
 
 .dropdown-item{
   padding-left: 0.8em;
-  margin-left: 1.5em;
+  margin-left: 0.1em;
   width:auto;
   cursor: pointer;
   border-radius: 0.6em;
@@ -97,4 +97,63 @@ i{
   border-bottom-right-radius: 0.6em;
   /* Chrome 10-25, Safari 5.1-6 */
   background-color: var(--selected-color);
+}
+
+@media screen and (max-width: 70em
+) {
+  .search-bars-container {
+    width: 33em; /* Adjusted width for smaller resolutions */
+  }
+}
+
+@media screen and (max-width: 50em
+) {
+  .search-bars-container {
+    width: 25em; /* Adjusted width for smaller resolutions */
+  }
+}
+
+@media screen and (max-width: 40em
+) {
+  .search-bars-container {
+    width: 20em; /* Adjusted width for smaller resolutions */
+  }
+  .display-flex {
+    flex-direction: column; /* Adjusted width for smaller resolutions */
+  }
+  .flex-locatie{
+    flex: 5;
+  }
+  
+  .flex-serviciu{
+    flex:5;
+  }
+  .border-radius-right-bottom{
+    border-radius: 0;
+  }
+
+  .border-radius-left-bottom{
+    border-radius: 0;
+  }
+
+  .border-radius-left-top{
+    border-radius: 0;
+  }
+
+  .search-btn{
+    border-radius: 0;
+  }
+
+  .search-result-judet{
+    z-index: 4;
+    top: 6em;
+    left: 5.3em;
+    margin-left: 0!important;
+  }
+
+  .search-result-serviciu{
+    z-index: 100;
+    top: 3em;
+
+  }
 }

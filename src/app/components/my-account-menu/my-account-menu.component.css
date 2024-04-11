@@ -62,3 +62,14 @@ p{
 .account-dropdown-item:hover{
     background-color: rgb(224, 225, 225);
 }
+
+@media screen and (max-width: 40em
+) {
+    .profile-pic {
+        display: none; /* Adjusted width for smaller resolutions */
+      }
+
+      .account-dropdown-icon{
+        margin-left: 0;
+      }
+}

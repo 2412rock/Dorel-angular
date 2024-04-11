@@ -1,14 +1,14 @@
 <div
   style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; align-items: center;">
   <div class="top">
-    <span (click)="clickLogo()"
-       style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em; cursor: pointer;">DOREL</span>
+    <span class="logo" (click)="clickLogo()"
+       >DOREL</span>
     <div style="margin-top: 1em;">
       <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
     </div>
     <app-my-account-menu style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
   </div>
-  <div style="width: 60%; display: flex; flex-direction: row; flex-wrap: wrap;">
+  <div class="margin-top" style="width: 60%; display: flex; flex-direction: row; flex-wrap: wrap;">
     <div *ngFor="let item of settingsItems.settings; let i = index" style="width: fit-content; cursor: pointer;">
       <div class="highlight" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2em;" (click)="selectMenuItem(i)">
           <img [src]="item.img"/>
