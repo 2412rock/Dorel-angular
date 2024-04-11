@@ -22,7 +22,7 @@
             <div *ngIf="serviciuName != undefined" style="width: 100%; margin: 1em;">
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{serviciuName}}</span>
             </div>
-            <div *ngIf="serviciuName === undefined && (editServicii === undefined || editServicii === false)" style="width: 100%;" class="card">
+            <div *ngIf="serviciuName === undefined && (editServicii === undefined || editServicii === false)" style="width: 100%; margin: 1em;">
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Cele mai cautate servicii</span>
             </div>
             <div *ngIf="editServicii" style="width: 100%; margin: 1em;">
@@ -31,7 +31,7 @@
             <div *ngIf="judetName != undefined && serviciuName === undefined" style="width: 100%; margin: 1em;">
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii in judetul {{judetName}}</span>
             </div>
-            <div *ngFor="let item of filteredSearchResults" class="card">
+            <div *ngFor="let item of filteredSearchResults" style="margin: 1em;">
                 <app-search-result-card (cardClickEvent)="handleClickCard($event)" [searchResult]="item"></app-search-result-card>
             </div>
             <div *ngIf="searchResults.length === 0 && !editServicii" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">

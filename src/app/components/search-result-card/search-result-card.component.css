@@ -23,3 +23,11 @@ img{
     height: 40%;
     border-radius: 0.7em;
 }
+
+@media screen and (max-width: 35em
+) {
+    .content{
+        width: 20em;
+        height: 24em;
+    }
+}

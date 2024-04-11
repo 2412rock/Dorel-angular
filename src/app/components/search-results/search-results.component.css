@@ -39,10 +39,6 @@
     cursor: pointer;
 }
 
-.card{
-  margin: 1em;
-}
-
 @media screen and (max-width: 70em
 ) {
   .logo {
@@ -78,10 +74,5 @@
       .result-cards{
         margin-top: 15em;
         margin-left: 0;
-      }
-
-      .card{
-        margin: 0;
-        margin-bottom: 1em;
       }
 }
