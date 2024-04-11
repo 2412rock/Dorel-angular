@@ -21,6 +21,7 @@ export class SearchResultsComponent {
   public judetName: string | undefined;
   public editServicii: boolean | undefined;
   public filteredSearchResults: FilteredSearchResult[] = [];
+  public sidebarShow: boolean = false;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
@@ -138,5 +139,9 @@ export class SearchResultsComponent {
 
   clickLogo() {
     window.location.reload();
+  }
+
+  toggleSidebar(){
+    this.sidebarShow = !this.sidebarShow;
   }
 }

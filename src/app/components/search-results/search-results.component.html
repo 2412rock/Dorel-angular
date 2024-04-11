@@ -1,17 +1,23 @@
 <div class="body">
     <div class="content">
-        <div class="top">
+        <div  class="top">
             <span (click)="clickLogo()" class="logo">DOREL</span>
-
+            <div>
+                <i (click)="toggleSidebar()" style="color: white; font-size: 3em; position: absolute; top:0.3em; left: 0.3em;" class="fa-solid fa-bars"></i>
+            </div>
             <div style="margin-top: 1em;">
                 <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
             </div>
             
-
-            <app-my-account-menu style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
-            
         </div>
-        
+        <div *ngIf="sidebarShow" class="sidebar">
+            <div class="sidebar-button">
+                <span style="font-size: 1.6em;"> Log out</span>
+            </div>
+            <div class="sidebar-button">
+                <span style="font-size: 1.6em;"> Settings</span>
+            </div>
+        </div>
         <div *ngIf="loading" style="width: 70vw; height: 40vh; display: flex; align-items: center; justify-content: center;">
             <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
                 <div class="spinner-border text-primary" style="width: 3.5rem; height: 3.5rem;color: var(--selected-color);" role="status">
