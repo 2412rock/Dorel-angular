@@ -141,6 +141,10 @@ export class SearchResultsComponent {
     window.location.reload();
   }
 
+  closeSidebar(){
+    this.sidebarShow = false;
+  }
+
   toggleSidebar(){
     this.sidebarShow = !this.sidebarShow;
   }

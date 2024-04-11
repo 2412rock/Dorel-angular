@@ -44,6 +44,7 @@ import { DragDropDirective } from './components/Directives/drag-and-drop-directi
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
