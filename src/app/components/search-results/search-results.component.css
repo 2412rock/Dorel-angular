@@ -38,6 +38,9 @@
     margin-left: 0.5em;
     cursor: pointer;
 }
+.cards-container{
+  width: 70vw; display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 10em;
+}
 
 @media screen and (max-width: 70em
 ) {
@@ -63,6 +66,10 @@
       .result-cards{
         margin-top: 15em;
       }
+      .cards-container{
+        width: 100vw;
+        margin-top: 12em;
+      }
 }
 
 @media screen and (max-width: 35em
@@ -74,5 +81,10 @@
       .result-cards{
         margin-top: 15em;
         margin-left: 0;
+      }
+
+      .cards-container{
+        width: 100vw;
+        margin-top: 12em;
       }
 }
