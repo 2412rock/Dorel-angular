@@ -16,3 +16,44 @@
 p{
     font-family:'Times New Roman', Times, serif;
 }
+<<<<<<< Updated upstream
+=======
+
+@media screen and (max-width: 70em
+) {
+  .logo {
+    font-size: 3em; /* Adjusted width for smaller resolutions */
+  }
+}
+
+@media screen and (max-width: 50em
+) {
+    .logo {
+        font-size: 2em; /* Adjusted width for smaller resolutions */
+      }
+}
+
+@media screen and (max-width: 40em
+) {
+    .logo {
+        font-size: 1.5em;
+        margin-left: 1em; /* Adjusted width for smaller resolutions */
+      }
+
+      .result-card{
+        margin-top: 14em;
+      }
+}
+
+@media screen and (max-width: 30em
+) {
+    .logo {
+        display: none;/* Adjusted width for smaller resolutions */
+      }
+
+      .result-card{
+        margin-top: 14em;
+      }
+}
+
+>>>>>>> Stashed changes

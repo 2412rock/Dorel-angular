@@ -24,4 +24,57 @@
     position:absolute;
     top: 0;
     background-color: var(--card-color);
+<<<<<<< Updated upstream
+=======
+}
+
+.result-card{
+    margin-top: 10em;
+}
+
+.logo{
+    font-size: 4em;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 70em
+) {
+  .logo {
+    font-size: 3em; /* Adjusted width for smaller resolutions */
+  }
+}
+
+@media screen and (max-width: 50em
+) {
+    .logo {
+        font-size: 2em; /* Adjusted width for smaller resolutions */
+      }
+}
+
+@media screen and (max-width: 40em
+) {
+    .logo {
+        font-size: 1.5em;
+        margin-left: 1em; /* Adjusted width for smaller resolutions */
+      }
+
+      .result-card{
+        margin-top: 15em;
+      }
+}
+
+@media screen and (max-width: 30em
+) {
+    .logo {
+        display: none; /* Adjusted width for smaller resolutions */
+      }
+
+      .result-card{
+        margin-top: 15em;
+        margin-left: 0;
+      }
+>>>>>>> Stashed changes
 }
