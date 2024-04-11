@@ -159,13 +159,9 @@ i{
   }
 }
 
-@media screen and (max-width: 30em
+@media screen and (max-width: 35em
 ) {
-    .logo {
-        display: none; /* Adjusted width for smaller resolutions */
-      }
-
-      .result-card{
-        margin-top: 14em;
-      }
+  .search-bars-container {
+    margin-left: 2em;
+  }
 }
