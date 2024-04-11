@@ -24,8 +24,7 @@
     position:absolute;
     top: 0;
     background-color: var(--card-color);
-<<<<<<< Updated upstream
-=======
+
 }
 
 .result-card{
@@ -76,5 +75,4 @@
         margin-top: 15em;
         margin-left: 0;
       }
->>>>>>> Stashed changes
 }

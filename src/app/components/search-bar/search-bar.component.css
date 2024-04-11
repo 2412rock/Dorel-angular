@@ -97,8 +97,7 @@ i{
   border-bottom-right-radius: 0.6em;
   /* Chrome 10-25, Safari 5.1-6 */
   background-color: var(--selected-color);
-<<<<<<< Updated upstream
-=======
+
 }
 
 @media screen and (max-width: 70em
@@ -169,5 +168,4 @@ i{
       .result-card{
         margin-top: 14em;
       }
->>>>>>> Stashed changes
 }
