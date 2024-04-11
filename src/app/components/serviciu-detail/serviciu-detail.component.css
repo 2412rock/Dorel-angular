@@ -13,6 +13,23 @@
     color: white;
 }
 
+.result-card{
+    margin-top: 10em;
+    width: 70vw;
+    background-color: var(--card-color);
+    border-radius: 0.7em;
+    height: fit-content;
+    padding: 2em;
+}
+
+.logo{
+    font-size: 4em;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
 p{
     font-family:'Times New Roman', Times, serif;
 }

@@ -1,4 +1,5 @@
 <div class="search-bars-container">
+
     <div class="display-flex">
         <div #serviciuSearchInput [ngClass]="{'border-radius-left-bottom': !dropdownServiciiVisible}" class="input-and-clear-btn flex-serviciu input-container border-radius-left-top">
             <div class="space-between">
@@ -26,14 +27,14 @@
 </div>
 <div class="search-bars-container">
     <div  class="display-flex">
-        <div [ngStyle]="{'visibility': dropdownServiciiVisible ? 'visible' : 'hidden'}" class="flex-serviciu input-container border-radius-left-bottom input-container border-radius-right-bottom" [style.width.px]="getServiciuInputWidth()">
-            <div class="dropdown-items-header">Suggested results</div>
+        <div [ngStyle]="{'visibility': dropdownServiciiVisible ? 'visible' : 'hidden'}" class="flex-serviciu input-container border-radius-left-bottom input-container border-radius-right-bottom search-result-serviciu" [style.width.px]="getServiciuInputWidth()">
+            <div class="dropdown-items-header">Results</div>
             <div *ngFor="let item of filteredResultsServicii">
                 <div (click)="selectService(item)" class="dropdown-item">{{item.name}}</div>
             </div>
         </div>
-        <div [ngStyle]="{'visibility': dropdownLocationVisible ? 'visible' : 'hidden'}" class="flex-locatie input-container border-radius-bottom" [style.width.px]="getJudetInputWidth()" [style.margin-left.px]="getServiciuInputWidth()">
-            <div class="dropdown-items-header">Suggested results</div>
+        <div [ngStyle]="{'visibility': dropdownLocationVisible ? 'visible' : 'hidden'}" class="flex-locatie input-container border-radius-bottom search-result-judet" [style.width.px]="getJudetInputWidth()" [style.margin-left.px]="getServiciuInputWidth()">
+            <div class="dropdown-items-header">Results</div>
             <div *ngFor="let item of filteredResultsLocatie">
                 <div (click)="selectJudet(item)" class="dropdown-item">
                     {{item.name}}

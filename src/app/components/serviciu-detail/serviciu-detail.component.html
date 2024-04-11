@@ -1,7 +1,7 @@
 <div *ngIf="!loading" style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; overflow-y: auto;">
     <div class="top">
-        <span (click)="goBack()"
-            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em; cursor: pointer;">DOREL</span>
+        <span class="logo" (click)="goBack()"
+            >DOREL</span>
         <div style="margin-top: 1em;">
             <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
         </div>
@@ -9,7 +9,7 @@
     </div>
     
     
-    <div style="margin-top: 10em; width: 70vw; background-color: var(--card-color); border-radius: 0.7em; height: fit-content; padding: 2em;">
+    <div class="result-card">
         <div style="display: flex; flex-direction: row;">
             <p style="color: white; font-size: 3em; font-weight: bold;">{{searchResult.userName}}</p>
             <app-star-rating [static]="true" [rating]="5" style="margin-left: 1.5em;"></app-star-rating>
