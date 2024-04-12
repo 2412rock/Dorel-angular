@@ -50,7 +50,7 @@
 }
 
 .sidebar-button-toggle{
-  color: white; font-size: 3em; position: absolute; top:0.5em; left: 0.8em; cursor: pointer; display: none;
+  color: white; font-size: 3em; position: absolute; top:0.5em; left: 0.1em; cursor: pointer; display: none;
 }
 
 .btn-in-sidebar{
