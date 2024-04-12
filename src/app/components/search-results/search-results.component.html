@@ -12,9 +12,7 @@
         </div> -->
         <div class="top">
             <span (click)="clickLogo()" class="logo">DOREL</span>
-            <div>
-                <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle" ></i>
-            </div>
+            <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle" ></i>
             <div style="margin-top: 1em;">
                 <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
             </div>

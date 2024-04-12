@@ -2,6 +2,7 @@
 import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchModel } from 'src/app/model/search-model';
+import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
@@ -12,6 +13,9 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 export class AccountSettingsComponent {
   public menuItemSelected: number = 0;;
   public selectedItemEvent = new EventEmitter<number>();
+  public sidebarShow: boolean = false;
+  public loggedIn: boolean = false;
+  public sidebarShowEvent = new EventEmitter<boolean>();
   public settingsItems = 
   {
     "settings": 
@@ -44,7 +48,8 @@ export class AccountSettingsComponent {
   };
 
   constructor(private router: Router,
-    private sharedDataService: SharedDataService){
+    private sharedDataService: SharedDataService,
+    private localStorageService: LocalstorageService){
  }
 
   ngOnInit(){
@@ -75,5 +80,32 @@ export class AccountSettingsComponent {
   clickLogo(){
     this.router.navigate(["./search-results-page"]);
   }
+
+  closeSidebar(){
+    this.sidebarShow = false;
+  }
+
+  toggleSidebar(){
+    console.log("Toggle")
+    this.sidebarShow = !this.sidebarShow;
+    console.log("Emit")
+    this.sidebarShowEvent.emit(this.sidebarShow);
+  }
+
+  stopPropagation(event: Event) {
+    event.stopPropagation();
+}
+clickLogout(){
+  this.localStorageService.deleteUserData();
+  location.reload();
+}
+
+clickLogin(){
+  this.router.navigate(["./login-page"])
+}
+
+clickAccountSettings(){
+  this.router.navigate(['./account-settings'])
+}
   
 }
