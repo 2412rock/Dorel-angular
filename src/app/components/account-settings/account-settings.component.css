@@ -31,17 +31,6 @@ img{
 }
 
 
-/* .top{
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position:absolute;
-  top: 0;
-  background-color: var(--card-color);
-
-} */
-
 .top{
 width: 100vw;
 display: flex;
