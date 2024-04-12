@@ -42,6 +42,7 @@ import { WriteReviewModalComponent } from './components/write-review-modal/write
 import { ButtonComponent } from './components/button/button.component';
 import { DragDropDirective } from './components/Directives/drag-and-drop-directive';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 
 
@@ -73,7 +74,8 @@ import { ImageModalComponent } from './components/image-modal/image-modal.compon
         WriteReviewModalComponent,
         ButtonComponent,
         DragDropDirective,
-        ImageModalComponent
+        ImageModalComponent,
+        ClickOutsideDirective
     ], 
     providers: [
         {

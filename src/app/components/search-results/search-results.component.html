@@ -1,22 +1,38 @@
 <div class="body">
     <div class="content">
-        <div  class="top" >
+        <!-- <div  class="top" >
             <span (click)="clickLogo()" class="logo">DOREL</span>
             <div>
-                <i (click)="toggleSidebar()" style="color: white; font-size: 3em; position: absolute; top:0.3em; left: 0.3em; cursor: pointer;" class="fa-solid fa-bars"></i>
+                <i (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button" ></i>
             </div>
             <div style="margin-top: 1em;">
                 <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
             </div>
             
-        </div>
-        <div *ngIf="sidebarShow" class="sidebar">
-            <i (click)="closeSidebar()" style="position: absolute; top: 0; left: 7em; font-size: 1.6em; color: white; cursor: pointer;" class="fa-solid fa-xmark"></i>
-            <div class="sidebar-button" style="margin-top: 2em!important;">
-                <span style="font-size: 1.6em;"> Log out</span>
+        </div> -->
+        <div class="top">
+            <span (click)="clickLogo()" class="logo">DOREL</span>
+            <div>
+                <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle" ></i>
             </div>
-            <div class="sidebar-button">
-                <span style="font-size: 1.6em;"> Settings</span>
+            <div style="margin-top: 1em;">
+                <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
+            </div>
+            
+
+            <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+            
+        </div>
+        <div *ngIf="sidebarShow" class="sidebar" (click)="stopPropagation($event)">
+            <div [appClickOutside]="sidebarShow" (clickOutsideEvent)="closeSidebar()" *ngIf="sidebarShow">
+                <div class="btn-in-sidebar">
+                    <i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 0.5em;"></i>
+                    <span> Log out</span>
+                </div>
+                <div class="btn-in-sidebar">
+                    <i class="logout-icon fa-solid fa-gear" style="margin-right: 0.5em;"></i>
+                    <span > Settings</span>
+                </div>
             </div>
         </div>
         <div *ngIf="loading" style="width: 70vw; height: 40vh; display: flex; align-items: center; justify-content: center;">

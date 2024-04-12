@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { ClickOutsideDirective } from 'src/app/directives/click-outside.directive';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchModel } from 'src/app/model/search-model';
@@ -8,6 +9,7 @@ import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+
 
 @Component({
   selector: 'app-search-results',
@@ -142,10 +144,18 @@ export class SearchResultsComponent {
   }
 
   closeSidebar(){
-    this.sidebarShow = false;
+    console.log("Close sidebar")
+    if(this.sidebarShow){
+      this.sidebarShow = false;
+    }
   }
 
   toggleSidebar(){
+    console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
   }
+
+  stopPropagation(event: Event) {
+    event.stopPropagation();
+}
 }
