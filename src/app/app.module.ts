@@ -43,6 +43,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { DragDropDirective } from './components/Directives/drag-and-drop-directive';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { SideBarMobileComponent } from './components/side-bar-mobile/side-bar-mobile.component';
 
 
 
@@ -75,7 +76,8 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
         ButtonComponent,
         DragDropDirective,
         ImageModalComponent,
-        ClickOutsideDirective
+        ClickOutsideDirective,
+        SideBarMobileComponent
     ], 
     providers: [
         {

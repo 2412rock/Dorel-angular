@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ClickOutsideDirective } from 'src/app/directives/click-outside.directive';
@@ -26,6 +26,7 @@ export class SearchResultsComponent {
   public filteredSearchResults: FilteredSearchResult[] = [];
   public sidebarShow: boolean = false;
   public loggedIn: boolean = false;
+  public sidebarShowEvent = new EventEmitter<boolean>();
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
@@ -158,15 +159,14 @@ export class SearchResultsComponent {
   }
 
   closeSidebar(){
-    console.log("Close sidebar")
-    if(this.sidebarShow){
-      this.sidebarShow = false;
-    }
+    this.sidebarShow = false;
   }
 
   toggleSidebar(){
     console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
+    console.log("Emit")
+    this.sidebarShowEvent.emit(this.sidebarShow);
   }
 
   stopPropagation(event: Event) {
