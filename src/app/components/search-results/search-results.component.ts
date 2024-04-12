@@ -7,6 +7,7 @@ import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
 import { DataService } from 'src/app/services/data.service';
+import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -24,14 +25,17 @@ export class SearchResultsComponent {
   public editServicii: boolean | undefined;
   public filteredSearchResults: FilteredSearchResult[] = [];
   public sidebarShow: boolean = false;
+  public loggedIn: boolean = false;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private localStorageService: LocalstorageService) { }
 
   ngOnInit() {
+    this.checkIfLoggedIn();
     this.searchResults = [];
     this.filteredSearchResults = [];
     this.route.queryParams.subscribe(params => {
@@ -51,6 +55,16 @@ export class SearchResultsComponent {
 
       this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, false);
 
+    }
+  }
+
+  checkIfLoggedIn(){
+    let name = localStorage.getItem("name");
+    let loggedInEmail = localStorage.getItem("isEmailLogin");
+    let profilePicContent = localStorage.getItem("profilePicContent");
+
+    if(name != null && loggedInEmail != null && profilePicContent != null){
+      this.loggedIn = true;
     }
   }
 
@@ -157,5 +171,17 @@ export class SearchResultsComponent {
 
   stopPropagation(event: Event) {
     event.stopPropagation();
+}
+clickLogout(){
+  this.localStorageService.deleteUserData();
+  location.reload();
+}
+
+clickLogin(){
+  this.router.navigate(["./login-page"])
+}
+
+clickAccountSettings(){
+  this.router.navigate(['./account-settings'])
 }
 }
