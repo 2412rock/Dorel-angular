@@ -1,21 +1,20 @@
-
-.option-menu{
+.option-menu {
     display: flex;
     flex-direction: column;
 
 }
 
-.arrow-left{
+.arrow-left {
     font-size: 1.8em;
     margin-bottom: 1em;
     cursor: pointer;
 }
 
-.margin-bottom{
+.margin-bottom {
     margin-bottom: 10%;
 }
 
-.toggle-back-btn-servicii-already-selected{
+.toggle-back-btn-servicii-already-selected {
     margin-left: 2em;
     margin-top: 1em;
     display: flex;
@@ -23,12 +22,12 @@
     justify-content: space-between;
 }
 
-.selected-item-text{
+.selected-item-text {
     margin: 0.1em;
     font-size: small;
 }
 
-.selected-item{
+.selected-item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,26 +36,26 @@
     padding: 0.3em;
 }
 
-.selected-item-delete-div{
+.selected-item-delete-div {
     cursor: pointer;
 }
 
 .gradient-custom-4 {
     /* fallback for old browsers */
     background: #84fab0;
-    
+
     /* Chrome 10-25, Safari 5.1-6 */
     background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
-    
+
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
 }
 
-.margin-right{
+.margin-right {
     margin-right: 10em;
 }
 
-.servicii-and-judete{
+.servicii-and-judete {
     margin-top: 5em;
     margin-left: 5em;
     display: flex;
@@ -66,7 +65,7 @@
     width: 100vh;
 }
 
-.bottom-buttons{
+.bottom-buttons {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -74,10 +73,12 @@
     justify-content: end;
     margin-top: 2em;
     position: absolute;
-    bottom: 10px; /* Adjust this value as needed */
+    bottom: 10px;
+    /* Adjust this value as needed */
     right: 10px;
 }
-.bottom-btn{
+
+.bottom-btn {
     font-size: medium;
     margin-left: 1em;
     padding: 0.5em;
@@ -86,20 +87,20 @@
 }
 
 
-.selected-items{
+.selected-items {
     display: flex;
     flex-direction: row;
     max-width: 30em;
     flex-wrap: wrap;
 }
 
-.selected-item-text{
+.selected-item-text {
     margin: 0.1em;
     margin-right: 0.3em;
     font-size: small;
 }
 
-.selected-item{
+.selected-item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,22 +112,24 @@
 }
 
 .custom-dialog-surface {
-    border-radius: 30%; /* Adjust the value as per your preference */
-  }
+    border-radius: 30%;
+    /* Adjust the value as per your preference */
+}
 
-  ::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
-    border-radius: 30%; /* Adjust the value as per your preference */
-  }
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 30%;
+    /* Adjust the value as per your preference */
+}
 
-.serviciu-selected{
+.serviciu-selected {
     background-color: rgb(67, 67, 255)
 }
 
-.serviciu-not-selected{
+.serviciu-not-selected {
     background-color: rgb(65, 65, 65);
 }
 
-.display-serviciile{
+.display-serviciile {
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -134,14 +137,14 @@
     width: 100%;
 }
 
-.images{
+.images {
     display: flex;
     flex-direction: row;
     max-width: 30em;
     flex-wrap: wrap;
 }
 
-.bottom-buttons{
+.bottom-buttons {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -149,30 +152,141 @@
     justify-content: end;
     margin-top: 2em;
     position: absolute;
-    bottom: 10px; /* Adjust this value as needed */
+    bottom: 10px;
+    /* Adjust this value as needed */
     right: 10px;
+    width: 100vw;
 }
-.bottom-btn{
+
+.servicii-oferite{
+    position: absolute; right: 1em; top: 0; margin-top: 8em;
+}
+
+.bottom-btn {
     /* fallback for old browsers */
     font-size: medium;
     margin-left: 1em;
     padding: 0.5em;
     border-radius: 10%;
     cursor: pointer;
-    
+
 }
 
 ::placeholder {
-    color: var(--text-color-white); /* Example color */
-  }
+    color: var(--text-color-white);
+    /* Example color */
+}
 
-  .top{
+.servicii-deja-selectate{
+    font-size: medium; font-weight: bold;color: var(--text-color-white); z-index: 0;
+}
+
+.content{
+    display: flex; flex-direction: column; align-items: center; margin-top: 5em;
+}
+
+.search-bars-width{
+    width: 50%; margin-top: 2em;
+}
+
+.top {
     width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position:absolute;
+    position: absolute;
     top: 0;
     background-color: var(--card-color);
     z-index: 2;
+}
+
+
+.logo{
+    font-size: 4em;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 0.5em;
+    cursor: pointer;
+  }
+  
+  .sidebar-button-toggle{
+    color: white; font-size: 3em; position: absolute; top:0.5em; left: 0.1em; cursor: pointer; display: none;
+    }
+  
+  @media screen and (max-width: 70em
+  ) {
+  .logo {
+    font-size: 3em; /* Adjusted width for smaller resolutions */
+  }
+  }
+  
+  @media screen and (max-width: 50em
+  ) {
+    .logo {
+        font-size: 2em; /* Adjusted width for smaller resolutions */
+      }
+  }
+  
+  @media screen and (max-width: 40em
+  ) {
+    .logo {
+        font-size: 1.5em;
+        margin-left: 1em; /* Adjusted width for smaller resolutions */
+      }
+      .content{
+        margin-top: 11em;
+      }
+      .servicii-deja-selectate{
+        margin-top:5em;
+      }
+  }
+  
+  @media screen and (max-width: 35em
+  ) {
+    .content{
+        margin-top:3em;
+        align-items: start;
+        margin-left: 1em;
+      }
+      .servicii-deja-selectate{
+        margin-top:5em;
+        margin-right: 1em;
+      }
+    .logo {
+        display: none; /* Adjusted width for smaller resolutions */
+      }
+  
+      .sidebar-button-toggle{
+        display: block;
+      }
+  
+      .top{
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position:absolute;
+        top: 0;
+        background-color: var(--card-color);
+    }
+    .account{
+      display: none;
+    }
+  
+    .margin-top{
+      margin-top: 55em;
+    }
+
+    .servicii-oferite{
+        left: 0;
+        right: auto;
+        position: relative;
+        margin-top: 4em;
+        top: 0;
+        width: 100%;
+    }
+
+    .search-bars-width{
+        width: 100%;
+    }
 }

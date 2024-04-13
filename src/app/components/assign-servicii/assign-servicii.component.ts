@@ -36,7 +36,9 @@ export class AssignServiciiComponent {
   public serviciuValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   public judeteValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   public showImagesValidation: boolean = false;
-  public showDescriptionValidation: boolean = false
+  public showDescriptionValidation: boolean = false;
+  public sidebarShow: boolean = false;
+  public sidebarShowEvent = new EventEmitter<boolean>();
 
   constructor(private dataService: DataService,
     private modalService: ModalService,
@@ -169,5 +171,16 @@ export class AssignServiciiComponent {
 
   onDescriptionChange(val:string){
     this.showDescriptionValidation = false;
+  }
+
+  closeSidebar(){
+    this.sidebarShow = false;
+  }
+
+  toggleSidebar(){
+    console.log("Toggle")
+    this.sidebarShow = !this.sidebarShow;
+    console.log("Emit")
+    this.sidebarShowEvent.emit(this.sidebarShow);
   }
 }
