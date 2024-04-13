@@ -16,7 +16,6 @@
 
 .toggle-back-btn-servicii-already-selected {
     margin-left: 2em;
-    margin-top: 1em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -56,7 +55,6 @@
 }
 
 .servicii-and-judete {
-    margin-top: 5em;
     margin-left: 5em;
     display: flex;
     flex-direction: column;
@@ -133,7 +131,7 @@
 }
 
 .servicii-oferite{
-    position: absolute; right: 1em; top: 0; margin-top: 8em;
+    position: absolute; right: 1em; top: 0;
 }
 
 .bottom-btn {
@@ -160,11 +158,12 @@
 }
 
 .search-bars-width{
-    width: 50%; margin-top: 2em;
+    width: 50%;
+    margin-top: 2em;
 }
 
 .top {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -175,7 +174,10 @@
 }
 
 .bottom-buttons{
+    display: flex;
+    flex-direction: row;
     position: absolute; bottom: 0; right: 0; width: fit-content;
+    padding: 1em;
 }
 
 
@@ -211,23 +213,16 @@
         font-size: 1.5em;
         margin-left: 1em; /* Adjusted width for smaller resolutions */
       }
-      .content{
-        margin-top: 11em;
-      }
-      .servicii-deja-selectate{
-        margin-top:5em;
-      }
+
   }
   
   @media screen and (max-width: 35em
   ) {
     .content{
-        margin-top:3em;
         align-items: start;
         margin-left: 1em;
       }
       .servicii-deja-selectate{
-        margin-top:5em;
         margin-right: 1em;
       }
     .logo {
@@ -239,38 +234,41 @@
       }
   
       .top{
-        width: 100vw;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        position:absolute;
+        position:relative;
         top: 0;
         background-color: var(--card-color);
     }
     .account{
       display: none;
     }
-  
-    .margin-top{
-      margin-top: 55em;
-    }
+
 
     .servicii-oferite{
         left: 0;
         right: auto;
         position: relative;
-        margin-top: 4em;
         top: 0;
         width: 100%;
     }
 
     .search-bars-width{
         width: 100%;
+        margin-top: 2em;
     }
 
     .bottom-buttons{
+        width: 100%;
+        display: flex;
         position: relative;
-        width: 100vw;
+        flex-direction: row;
+        justify-content: end;
+        align-items: center;
+        padding: 0!important;
+        padding: 1em;
     }
 
 }
