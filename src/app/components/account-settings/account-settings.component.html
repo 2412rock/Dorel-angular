@@ -1,5 +1,5 @@
 <div
-  style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; align-items: center; overflow-y: scroll;">
+  style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; align-items: center; overflow-y: scroll; flex-direction: column;">
   <div class="top">
     <span (click)="clickLogo()" class="logo">DOREL</span>
     <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
@@ -13,7 +13,7 @@
   </div>
 <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="closeSidebar()"></app-side-bar-mobile>
 
-  <div class="margin-top" style="width: 60%; display: flex; flex-direction: row; flex-wrap: wrap;">
+  <div class="setting-items">
     <div *ngFor="let item of settingsItems.settings; let i = index" style="width: fit-content; cursor: pointer;">
       <div class="highlight" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2em;" (click)="selectMenuItem(i)">
           <img [src]="item.img"/>
