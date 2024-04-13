@@ -123,8 +123,8 @@
     </div>
 
     <!-- Container for the buttons -->
-    <div *ngIf="pageReady" style="position: absolute; bottom: 0; right: 0; width: 100vw;">
-        <div style="display: flex; justify-content: end; padding: 20px; background-color: var(--background-color);">
+    <div *ngIf="pageReady">
+        <div style="display: flex; justify-content: end; padding: 20px;">
             <div (click)="clickCancel()" class="bottom-btn"
                 style="background-color: var(--selected-color); font-weight: 500;">Cancel</div>
             <div (click)="clickPublish()" class="bottom-btn"

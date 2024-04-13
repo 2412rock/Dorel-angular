@@ -65,18 +65,6 @@
     width: 100vh;
 }
 
-.bottom-buttons {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    justify-content: end;
-    margin-top: 2em;
-    position: absolute;
-    bottom: 10px;
-    /* Adjust this value as needed */
-    right: 10px;
-}
 
 .bottom-btn {
     font-size: medium;
@@ -144,20 +132,6 @@
     flex-wrap: wrap;
 }
 
-.bottom-buttons {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    justify-content: end;
-    margin-top: 2em;
-    position: absolute;
-    bottom: 10px;
-    /* Adjust this value as needed */
-    right: 10px;
-    width: 100vw;
-}
-
 .servicii-oferite{
     position: absolute; right: 1em; top: 0; margin-top: 8em;
 }
@@ -198,6 +172,10 @@
     top: 0;
     background-color: var(--card-color);
     z-index: 2;
+}
+
+.bottom-buttons{
+    position: absolute; bottom: 0; right: 0; width: fit-content;
 }
 
 
@@ -288,5 +266,10 @@
 
     .search-bars-width{
         width: 100%;
+    }
+
+    .bottom-buttons{
+        position: relative;
+        width: 100vw;
     }
 }
