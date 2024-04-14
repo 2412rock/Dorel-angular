@@ -1,5 +1,5 @@
-<div style="width: 60vw; height: 65vh; display: flex; flex-direction: row; align-items: center; justify-content: center; border: solid 0.1em white;">
+<div style="width: fit-content; height: fit-content; display: flex; flex-direction: row; align-items: center; justify-content: center; border: solid 0.1em white;">
     <div class="arrows" (click)="clickBack()" style="left: 0.4em;"><i class="fa-solid fa-arrow-left"></i></div>
-    <img style="width: 100%; height: 100%;" [src]="images[imageIndex].fileContentBase64"/>
+    <img style="max-width: 100%; max-height: 100%;" [src]="images[imageIndex].fileContentBase64"/>
     <div class="arrows" (click)="clickForward()" style=" right: 0.4em;"><i class="fa-solid fa-arrow-right"></i></div>
 </div>

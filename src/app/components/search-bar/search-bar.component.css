@@ -25,6 +25,7 @@ input:focus{
 
 i{
   cursor: pointer;
+  font-size: large;
 }
 
 .input-and-clear-btn{

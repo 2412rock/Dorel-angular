@@ -45,10 +45,13 @@
             </div>
         </div>
         <div *ngIf="!loading" class="cards-container" style="">
-            <div *ngIf="serviciuName != undefined" style="width: 100%; margin: 1em;">
+            <div *ngIf="serviciuName != undefined && judetName === undefined" style="width: 100%; margin: 1em;">
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{serviciuName}}</span>
             </div>
-            <div *ngIf="serviciuName === undefined && (editServicii === undefined || editServicii === false)" style="width: 100%; margin: 1em;">
+            <div *ngIf="serviciuName != undefined && judetName != undefined" style="width: 100%; margin: 1em;">
+                <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{serviciuName}} in judetul {{judetName}}</span>
+            </div>
+            <div *ngIf="(serviciuName === undefined && judetName === undefined )&& (editServicii === false || editServicii === undefined)" style="width: 100%; margin: 1em;">
                 <span style="color: white; font-size: 2.4em; font-weight: bold;">Cele mai cautate servicii</span>
             </div>
             <div *ngIf="editServicii" style="width: 100%; margin: 1em;">
