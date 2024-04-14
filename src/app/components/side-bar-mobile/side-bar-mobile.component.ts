@@ -60,4 +60,8 @@ clickLogin(){
 clickAccountSettings(){
   this.router.navigate(['./account-settings'])
 }
+
+clickBack(){
+  this.router.navigate(['./search-results-page'])
+}
 }
