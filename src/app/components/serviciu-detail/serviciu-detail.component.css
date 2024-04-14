@@ -16,7 +16,7 @@
 .result-card{
     margin-top: 10em;
     width: 90vw;
-    background-color: var(--background-color);
+    background-color: var(--card-color);
     border-radius: 0.7em;
     height: fit-content;
     padding: 2em;
