@@ -1,7 +1,7 @@
 <div class="images" style="display: flex; flex-wrap: wrap;" [style.width.vw]="width">
     <div *ngFor="let item of imagini; let i = index">
         <div  class="drag-handle" style="cursor:pointer;" (click)="clickImage(i)">
-            <img style="width: 10vw; height: 16vh; margin-right: 0.5em; margin-bottom: 0.5em;" [src]="item.fileContentBase64">
+            <img [style.width]="width" [style.height]="height" style="margin-right: 0.5em; margin-bottom: 0.5em;" [src]="item.fileContentBase64">
         </div>
     </div>
 </div>

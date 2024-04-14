@@ -70,8 +70,10 @@ export class SearchResultsComponent {
   }
 
   private filterSearchResults() {
+    console.log("Search results")
+    console.log(this.searchResults)
     for (let index = 0; index < this.searchResults.length; index++) {
-      if (this.filteredSearchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId).length === 0) {
+      if (this.filteredSearchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId && e.userId === this.searchResults[index].userId).length === 0) {
         var elementsWithSameServId = this.searchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId);
         var filteredSearchResult = new FilteredSearchResult();
         filteredSearchResult.judetIds = [];
@@ -92,6 +94,10 @@ export class SearchResultsComponent {
         this.filteredSearchResults.push(filteredSearchResult);
       }
     }
+
+    console.log("Filtered")
+    console.log(this.filteredSearchResults)
+    
   }
 
   loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean) {
@@ -119,6 +125,7 @@ export class SearchResultsComponent {
         response => {
           if (response.isSuccess) {
             response.data.forEach(searchResult => {
+              console.log("Pushing data")
               this.searchResults.push(searchResult);
             });
             this.filterSearchResults();
