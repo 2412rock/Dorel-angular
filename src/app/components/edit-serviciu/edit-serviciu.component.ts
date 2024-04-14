@@ -11,6 +11,7 @@ import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { SearchModel } from 'src/app/model/search-model';
 
 @Component({
   selector: 'app-edit-serviciu',
@@ -36,7 +37,8 @@ export class EditServiciuComponent {
   public loadingPublish: boolean = false;
   public loadingDelete: boolean = false;
   public loading: boolean = true;
-
+  public sidebarShow: boolean = false;
+  public sidebarShowEvent = new EventEmitter<boolean>();
 
   public serviciuValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -46,6 +48,7 @@ export class EditServiciuComponent {
     private sharedDataService: SharedDataService,
     private location: Location,
     private router: Router){}
+    
 
   ngOnInit(){
     this.serviciu = new DBServiciuModel();
@@ -193,6 +196,22 @@ export class EditServiciuComponent {
   
   imagesChanged(imgs: Imagine[]){
     this.selectedImages = imgs;
+  }
+
+  navigateToSearch(val: SearchModel){
+    this.sharedDataService.setServiciuSelectat(val?.serviciuId, val?.serviciuName);
+    this.sharedDataService.setJudetselectat(val?.judetId, val?.judetName);
+    this.router.navigate(["./search-results-page"]);
+  }
+  closeSidebar(){
+    this.sidebarShow = false;
+  }
+
+  toggleSidebar(){
+    console.log("Toggle")
+    this.sidebarShow = !this.sidebarShow;
+    console.log("Emit")
+    this.sidebarShowEvent.emit(this.sidebarShow);
   }
 
 }

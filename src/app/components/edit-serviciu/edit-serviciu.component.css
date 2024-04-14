@@ -5,15 +5,25 @@
 
 }
 
-.top{
-    width: 100vw;
+.top {
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position:absolute;
+    position: relative;
     top: 0;
     background-color: var(--card-color);
+    z-index: 2;
 }
+
+.logo{
+    font-size: 4em;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 0.5em;
+    cursor: pointer;
+  }
+  
 
 .arrow-left{
     font-size: 1.8em;
@@ -171,3 +181,100 @@
 ::placeholder {
     color: var(--text-color-white); /* Example color */
   }
+  .content{
+    display: flex; flex-direction: column; align-items: center;
+}
+
+
+  .sidebar-button-toggle{
+    color: white; font-size: 3em; position: absolute; top:0.5em; left: 0.1em; cursor: pointer; display: none;
+    }
+
+    @media screen and (max-width: 70em
+    ) {
+    .logo {
+      font-size: 3em; /* Adjusted width for smaller resolutions */
+    }
+    }
+    
+    @media screen and (max-width: 50em
+    ) {
+      .logo {
+          font-size: 2em; /* Adjusted width for smaller resolutions */
+        }
+    }
+    
+    @media screen and (max-width: 40em
+    ) {
+      .logo {
+          font-size: 1.5em;
+          margin-left: 1em; /* Adjusted width for smaller resolutions */
+        }
+
+        .bottom-buttons{
+            width: 100%;
+            display: flex;
+            position: relative;
+            flex-direction: row;
+            justify-content: end;
+            align-items: center;
+            padding: 0!important;
+            padding-right: 0.2em;
+        }
+  
+    }
+    
+    @media screen and (max-width: 35em
+    ) {
+      .content{
+        max-width: 100%;
+          align-items: start;
+        }
+        .servicii-deja-selectate{
+          margin-right: 1em;
+        }
+      .logo {
+          display: none; /* Adjusted width for smaller resolutions */
+        }
+    
+        .sidebar-button-toggle{
+          display: block;
+        }
+    
+        .top{
+          max-width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position:relative;
+          top: 0;
+          background-color: var(--card-color);
+      }
+      .account{
+        display: none;
+      }
+  
+  
+      .servicii-oferite{
+          left: 0;
+          right: auto;
+          position: relative;
+          top: 0;
+          width: 100%;
+      }
+  
+      .search-bars-width{
+          width: 100%;
+          margin-top: 2em;
+      }
+  
+      .bottom-buttons{
+          width: 100%;
+          display: flex;
+          position: relative;
+          flex-direction: row;
+          justify-content: end;
+          align-items: center;
+          padding: 0!important;
+      }
+    }
