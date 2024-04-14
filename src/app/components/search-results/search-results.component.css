@@ -32,7 +32,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position:absolute;
+  position:relative;
   top: 0;
   background-color: var(--card-color);
 
@@ -76,7 +76,7 @@
     cursor: pointer;
 }
 .cards-container{
-  width: 70vw; display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 10em;
+  width: 70vw; display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 1em;
 }
 
 @media screen and (max-width: 70em
@@ -105,7 +105,6 @@
       }
       .cards-container{
         width: 100vw;
-        margin-top: 12em;
       }
 }
 
@@ -122,7 +121,7 @@
 
       .cards-container{
         width: 100vw;
-        margin-top: 12em;
+        margin-top: 2em;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -137,7 +136,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        position:absolute;
+        position:relative;
         top: 0;
         background-color: var(--card-color);
     }
