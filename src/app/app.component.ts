@@ -26,8 +26,8 @@ export class AppComponent {
   async ngOnInit(){
     
   //this.router.navigate(["./basic-search-page"]);
-  this.router.navigate(["./account-settings"]);
-  //this.router.navigate(["search-results-page"]);
+  //this.router.navigate(["./account-settings"]);
+  this.router.navigate(["search-results-page"]);
   //this.router.navigate(["./serviciu-detail-page"]);
  // this.router.navigate(["./serviciu-detail-page"]);
   }
