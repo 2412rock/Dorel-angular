@@ -87,9 +87,9 @@ export class AssignServiciiComponent {
           }
           else{
             this.modalService.openModalNotification('Error', `Cant load data ${res.exceptionMessage}`, false);
-            this.publishDone.emit(true);
+            this.router.navigate(['./account-settings'])
           }
-      }).catch(e => {this.modalService.openModalNotification('Error', 'Something went wrong loading the menu', false); this.publishDone.emit(true);});
+      }).catch(e => {this.modalService.openModalNotification('Error', 'Something went wrong loading the menu', false); this.router.navigate(['./account-settings'])});
   }
 
   getJudetTypedValue(val: string){

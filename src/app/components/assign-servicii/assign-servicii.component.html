@@ -1,6 +1,6 @@
-<div style="display: flex; flex-direction: column; height: 100%; width: 100%; background-color: var(--background-color); overflow-y: auto;"
+<div style="display: flex; flex-direction: column; min-height: 100vh; width: 100%; background-color: var(--background-color); overflow-y: auto;"
     [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
-    <div class="top">
+    <div *ngIf="pageReady" class="top">
         <span (click)="clickLogo()" class="logo">DOREL</span>
         <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
         <div style="margin-top: 1em;">

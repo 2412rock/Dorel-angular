@@ -77,22 +77,23 @@ export class EditServiciuComponent {
                 this.loading = false;
                 this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
                 //this.publishDone.emit(true);
+                this.router.navigate(['./account-settings'])
               }
-            }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured3", false);});;
+            }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured3", false);this.router.navigate(['./account-settings'])});;
           }
           else{
             this.loading = false;
             this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
             //this.publishDone.emit(true);
           }
-        }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured2", false);});;
+        }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured2", false);this.router.navigate(['./account-settings'])});;
       }
       else{
         this.loading = false;
         this.modalService.openModalNotification("Couldnt load data", response.exceptionMessage, false);
         //this.publishDone.emit(true);
       }
-    }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured1", false);});
+    }).catch(e => { this.modalService.openModalNotification("Couldnt load data", "An unknown error has occured1", false);this.router.navigate(['./account-settings'])});
   }
 
   getSelectedValueJudete(element: DBJudetModel){
@@ -182,7 +183,7 @@ export class EditServiciuComponent {
             this.modalService.openModalNotification("Failed", `Failed to delete service ${response.exceptionMessage}`, false);
           }
           this.loadingDelete = false;
-        }).catch(e => {this.modalService.openModalNotification("Failed", "Unknown error occured. Please try again", false); this.loadingDelete = false;});
+        }).catch(e => {this.modalService.openModalNotification("Failed", "Unknown error occured. Please try again", false); this.loadingDelete = false; });
       }
       this.loadingDelete = false;
     });
