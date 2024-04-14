@@ -9,14 +9,14 @@
     z-index: 2;
 }
 .contact-text{
-    font-size: 1.4em;
+    font-size: 1em;
     color: white;
 }
 
 .result-card{
     margin-top: 10em;
-    width: 70vw;
-    background-color: var(--card-color);
+    width: 90vw;
+    background-color: var(--background-color);
     border-radius: 0.7em;
     height: fit-content;
     padding: 2em;
