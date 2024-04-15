@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, Subject } from '@microsoft/signalr';
 import { Observable } from 'rxjs';
 import { LocalstorageService } from './localstorage.service';
+import { Message } from '../model/message';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ChatService {
 
   private hubConnection: HubConnection;
 
-    private messageReceived = new Subject<[string]>();
+    private messageReceived = new Subject<Message>();
 
     constructor(private localStorageService: LocalstorageService) {
         this.hubConnection = new HubConnectionBuilder()
@@ -22,7 +23,7 @@ export class ChatService {
             .catch(err => console.log('Error while starting connection: ' + err));
 
         this.hubConnection.on('ReceiveMessage', (user: string, message: string) => {
-            this.messageReceived.next([message]);
+
         });
     }
 
@@ -32,10 +33,14 @@ export class ChatService {
             .catch(err => console.error(err));
     }
 
-    getMessageObservable(): Observable<[string, string]> {
+    getMessageObservable(): Observable<Message> {
       return new Observable(observer => {
-          this.hubConnection.on('2412rock@gmail.com', (fromuser, message: string) => {
-              observer.next([fromuser ,message]);
+          this.hubConnection.on(this.localStorageService.getUserEmail(), (fromuser, message: string) => {
+            var msgObj = new Message();
+            msgObj.from = fromuser;
+            msgObj.to = "2412rock@gmail.com";
+            msgObj.message = message;
+              observer.next(msgObj);
           });
       });
   }

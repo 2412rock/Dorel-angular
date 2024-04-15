@@ -1,4 +1,4 @@
-<div style="display: flex; background-color: var(background-color); width: 100vw; height: 100vh;">
+<div style="display: flex; background-color: var(--background-color); width: 100vw; height: 100vh;">
     <div style="width: 30%; height: 100%;">
         <div>
 
@@ -6,13 +6,12 @@
     </div>
     <div style="">
         <div>
-            <input type="text" [(ngModel)]="user" placeholder="Enter your name">
-            <input type="text" [(ngModel)]="message" placeholder="Enter your message">
+
             <button (click)="sendMessage()">Send</button>
         </div>
         <div>
             <div *ngFor="let msg of messages">
-                <strong>{{ msg[0]}}:</strong>
+                <strong>{{msg.from}} -> {{msg.to}} : {{msg.message}}</strong>
             </div>
         </div>
     </div>
