@@ -45,6 +45,7 @@ import { ImageModalComponent } from './components/image-modal/image-modal.compon
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { SideBarMobileComponent } from './components/side-bar-mobile/side-bar-mobile.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 
@@ -79,7 +80,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
         ImageModalComponent,
         ClickOutsideDirective,
         SideBarMobileComponent,
-        TruncatePipe
+        TruncatePipe,
+        ChatComponent
     ], 
     providers: [
         {
