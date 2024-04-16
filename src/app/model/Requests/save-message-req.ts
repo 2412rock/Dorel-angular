@@ -1,4 +1,4 @@
 export class SaveMessageReq{
-    public receipientEmail: string;
+    public receipientId: number;
     public Message: string;
 }

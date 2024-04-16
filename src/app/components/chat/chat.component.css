@@ -1,0 +1,8 @@
+.chat-div{
+    width: 100%; padding: 1em;
+}
+
+.chat-div:hover{
+    background-color: gray;
+    cursor: pointer;
+}

@@ -1,7 +1,24 @@
+:host{
+    width: 100%;
+}
 .profile-pic{
     border-radius: 50%; /* Makes the image round */
     overflow: hidden;
     width: 3em;
     height: auto;
     cursor: pointer;
+}
+
+p{
+    margin: 0!important;
+    padding: 0!important;
+    color: var(--text-color-white);
+}
+
+.username{
+    font-size: 1.4em;
+}
+
+.message{
+    font-size: small;
 }

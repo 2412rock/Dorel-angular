@@ -7,6 +7,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ChatWithUserMenuItemComponent {
   @Input() chatWithUsername: string;
-  public profilePic: string;
+  public profilePic: string = "https://cdn-icons-png.flaticon.com/512/9131/9131529.png";
   @Input() lastMessage: string;
 }
