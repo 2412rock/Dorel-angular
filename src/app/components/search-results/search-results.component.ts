@@ -6,6 +6,7 @@ import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
+import { ChatHttpService } from 'src/app/services/chat-http.service';
 import { ChatService } from 'src/app/services/chat.service';
 import { DataService } from 'src/app/services/data.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
@@ -36,10 +37,12 @@ export class SearchResultsComponent {
     private router: Router,
     private route: ActivatedRoute,
     private localStorageService: LocalstorageService,
-    private chatService: ChatService) { }
+    private chatService: ChatService,
+    private chatHttpService: ChatHttpService) { }
 
   ngOnInit() {
     this.checkIfLoggedIn();
+    this.checkForMessageNotifications();
     this.searchResults = [];
     this.filteredSearchResults = [];
     this.route.queryParams.subscribe(params => {
@@ -60,6 +63,14 @@ export class SearchResultsComponent {
     }
     this.chatService.getMessageObservable().subscribe(e => {
       this.showMessageNotification = true;
+    })
+  }
+
+  checkForMessageNotifications(){
+    firstValueFrom(this.chatHttpService.hasSeenMessages()).then(e => {
+      if(e.isSuccess){
+        this.showMessageNotification = e.data;
+      }
     })
   }
 

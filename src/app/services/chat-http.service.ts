@@ -22,4 +22,12 @@ export class ChatHttpService {
   getMessages(): Observable<Maybe<Group[]>>{
     return this.http.get<Maybe<Group[]>>(`${this.apiUrl}/api/getMessages`);
   }
+
+  hasSeenMessages(): Observable<Maybe<boolean>>{
+    return this.http.get<Maybe<boolean>>(`${this.apiUrl}/api/hasUnseenMessages`);
+  }
+
+  seenMessage(): Observable<Maybe<string>>{
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/seenMessage`, null);
+  }
 }

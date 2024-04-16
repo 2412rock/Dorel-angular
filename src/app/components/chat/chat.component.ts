@@ -43,6 +43,7 @@ export class ChatComponent {
     //   }
     // })
     this.getMessages();
+    firstValueFrom(this.chatServiceHttp.seenMessage()).then(e => {})
   }
 
   getMessages(){
