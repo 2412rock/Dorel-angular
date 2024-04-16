@@ -22,6 +22,7 @@ export class SharedDataService {
   private judetName: string | undefined;
   private serviciuToEdit: DBServiciuModel;
   private messageToUserId: number;
+  private toName: string;
 
   getUserEmail(){
     return this.userEmail;
@@ -87,11 +88,16 @@ export class SharedDataService {
     return this.serviciuToEdit;
   }
 
-  public setNewChatData(to: number){
-    this.messageToUserId = to;
+  public setNewChatData(toId: number, toName: string){
+    this.messageToUserId = toId;
+    this.toName = toName;
   }
 
-  public getNewChatData(): number{
+  public getMessageUserId(): number{
     return this.messageToUserId
+  }
+
+  public getMessageUserName(): string{
+    return this.toName
   }
 }

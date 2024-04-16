@@ -27,8 +27,8 @@ export class AppComponent {
     
   //this.router.navigate(["./basic-search-page"]);
   //this.router.navigate(["./account-settings"]);
-  //this.router.navigate(["search-results-page"]);
-  this.router.navigate(["chat"]);
+  this.router.navigate(["search-results-page"]);
+  //this.router.navigate(["chat"]);
   //this.router.navigate(["./serviciu-detail-page"]);
  // this.router.navigate(["./serviciu-detail-page"]);
   }

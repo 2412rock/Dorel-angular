@@ -99,6 +99,10 @@ export class SearchResultsComponent {
     
   }
 
+  goToMessages(){
+    this.router.navigate(['./chat']);
+  }
+
   loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean) {
     this.searchResults = [];
     this.filteredSearchResults = [];

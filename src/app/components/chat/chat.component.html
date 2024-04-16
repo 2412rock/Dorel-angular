@@ -2,10 +2,10 @@
     style="background-color: var(--background-color); width: 100vw; height: 100vh; display: flex; flex-direction: row;">
     <div
         style="width: 14%; height:100%; border-right: 0.1em solid white; background-color: var(--card-color); display: flex; align-items: center; flex-direction: column;">
-        <div *ngFor="let group of groups; let i = index" class="chat-div">
+        <div *ngFor="let group of groups; let i = index" class="chat-div" [ngStyle]="{'background-color': selectedChat === i ? 'gray' : ''}">
             <div (click)="clickChat(i)">
                 <app-chat-with-user-menu-item style="width: 100%;" [chatWithUsername]="group.withUserName"
-                    [lastMessage]="group.messages[0].messageText"></app-chat-with-user-menu-item>
+                    [lastMessage]="group.messages.length > 0 ? group.messages[0].messageText : '...'"></app-chat-with-user-menu-item>
             </div>
         </div>
     </div>

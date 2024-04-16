@@ -167,7 +167,7 @@ export class ServiciuDetailComponent {
 
   clickSendMsg(){
     
-    this.sharedDataService.setNewChatData(this.searchResult.userId);
+    this.sharedDataService.setNewChatData(this.searchResult.userId, this.searchResult.userName);
     this.router.navigate(['./chat'])
   }
 

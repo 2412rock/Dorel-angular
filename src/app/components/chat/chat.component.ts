@@ -20,6 +20,7 @@ export class ChatComponent {
   public groupMessages: Message[];
   public myUserId: number;
   public selectedGroup: Group;
+  public selectedChat: number;
 
   @ViewChild('scrollableContent') scrollableContent: ElementRef;
 
@@ -49,7 +50,23 @@ export class ChatComponent {
     firstValueFrom(this.chatServiceHttp.getMessages()).then(response => {
       if(response.isSuccess){
         console.log("Got messages")
+        var messageUser = this.sharedDataService.getMessageUserId();
+        var existingChatWithUser = response.data.filter(e => e.withUser === messageUser);
         this.groups = response.data;
+        if(messageUser != undefined && existingChatWithUser.length === 0){
+          let group = new Group();
+          group.withUser = this.sharedDataService.getMessageUserId();
+          group.withUserName = this.sharedDataService.getMessageUserName();
+          group.messages = [];
+          this.groups.push(group)
+          this.selectedChat = this.groups.length - 1;
+          this.clickChat(this.groups.length - 1);
+        }
+        else if(response.data.length === 0){
+
+        }
+        
+        
       }
     })
   }
@@ -76,8 +93,7 @@ export class ChatComponent {
     this.openChat = true;
     this.selectedGroup = this.groups[index];
     this.groupMessages = this.groups[index].messages;
-    console.log("Group messages")
-    console.log(this.groupMessages)
+    this.selectedChat = index;
   }
 
   scrollToBottom() {
