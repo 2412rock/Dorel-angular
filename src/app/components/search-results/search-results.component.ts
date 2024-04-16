@@ -70,8 +70,6 @@ export class SearchResultsComponent {
   }
 
   private filterSearchResults() {
-    console.log("Search results")
-    console.log(this.searchResults)
     for (let index = 0; index < this.searchResults.length; index++) {
       if (this.filteredSearchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId && e.userId === this.searchResults[index].userId).length === 0) {
         var elementsWithSameServId = this.searchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId);
@@ -84,6 +82,7 @@ export class SearchResultsComponent {
         filteredSearchResult.serviciuName = this.searchResults[index].serviciuName;
         filteredSearchResult.starsAverage = this.searchResults[index].starsAverage;
         filteredSearchResult.userId = this.searchResults[index].userId;
+        filteredSearchResult.userEmail = this.searchResults[index].userEmail;
         filteredSearchResult.userName = this.searchResults[index].userName;
         filteredSearchResult.numberOfReviews = this.searchResults[index].numberOfReviews;
 

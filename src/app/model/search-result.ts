@@ -5,6 +5,8 @@ export class SearchResult {
 
     public userId: number;
 
+    public userEmail: string;
+
     public descriere: string;
 
     public serviciuName: string;

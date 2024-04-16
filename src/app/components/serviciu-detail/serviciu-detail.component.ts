@@ -12,6 +12,7 @@ import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { ReviewData } from '../write-review-modal/write-review-modal.component';
 import { SearchModel } from 'src/app/model/search-model';
+import { SaveMessageReq } from 'src/app/model/Requests/save-message-req';
 
 @Component({
   selector: 'app-serviciu-detail',
@@ -162,6 +163,12 @@ export class ServiciuDetailComponent {
         
       });
     }
+  }
+
+  clickSendMsg(){
+    
+    this.sharedDataService.setNewChatData(this.searchResult.userEmail);
+    this.router.navigate(['./chat'])
   }
 
   goBack(){

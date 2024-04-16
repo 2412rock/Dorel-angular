@@ -3,6 +3,7 @@ import { HubConnection, HubConnectionBuilder, Subject } from '@microsoft/signalr
 import { Message } from 'src/app/model/message';
 import { ChatService } from 'src/app/services/chat.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-chat',
@@ -12,15 +13,17 @@ import { LocalstorageService } from 'src/app/services/localstorage.service';
 export class ChatComponent {
 
     public messages: Message[] = [];
+    public text: string;
 
-    constructor(private chatService: ChatService, private localStorageService: LocalstorageService) {
+    constructor(private chatService: ChatService, private localStorageService: LocalstorageService, private sharedDataService: SharedDataService) {
       this.chatService.getMessageObservable().subscribe((message) => {
           this.messages.push(message);
       });
   }
 
     sendMessage(): void {
-        this.chatService.sendMessage("2412rock@gmail.com", "My msg txt");
+      var to = this.sharedDataService.getNewChatData();
+        this.chatService.sendMessage(to, this.text);
 
     }
 
