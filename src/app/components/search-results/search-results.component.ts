@@ -6,6 +6,7 @@ import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
+import { ChatService } from 'src/app/services/chat.service';
 import { DataService } from 'src/app/services/data.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -27,13 +28,15 @@ export class SearchResultsComponent {
   public sidebarShow: boolean = false;
   public loggedIn: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
+  public showMessageNotification: boolean = false;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
     private router: Router,
     private route: ActivatedRoute,
-    private localStorageService: LocalstorageService) { }
+    private localStorageService: LocalstorageService,
+    private chatService: ChatService) { }
 
   ngOnInit() {
     this.checkIfLoggedIn();
@@ -53,10 +56,11 @@ export class SearchResultsComponent {
     else {
       this.serviciuName = this.sharedDataService.getServiciuName();
       this.judetName = this.sharedDataService.getJudetName();
-
       this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, false);
-
     }
+    this.chatService.getMessageObservable().subscribe(e => {
+      this.showMessageNotification = true;
+    })
   }
 
   checkIfLoggedIn(){
@@ -100,6 +104,7 @@ export class SearchResultsComponent {
   }
 
   goToMessages(){
+    this.showMessageNotification = false;
     this.router.navigate(['./chat']);
   }
 
