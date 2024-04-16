@@ -4,8 +4,7 @@ import { LocalstorageService } from './localstorage.service';
 import { SaveMessageReq } from '../model/Requests/save-message-req';
 import { Maybe } from '../model/maybe';
 import { Observable } from 'rxjs';
-import { StartsWithRequest } from '../model/Requests/starts-with-model';
-import { DBJudetModel } from '../model/DBModels/DBJudetModel';
+import { Group } from '../model/group';
 
 @Injectable({
   providedIn: 'root'
@@ -20,4 +19,7 @@ export class ChatHttpService {
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/saveMessage`, request);
   }
   
+  getMessages(): Observable<Maybe<Group[]>>{
+    return this.http.get<Maybe<Group[]>>(`${this.apiUrl}/api/getMessages`);
+  }
 }

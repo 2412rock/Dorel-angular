@@ -46,6 +46,7 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { SideBarMobileComponent } from './components/side-bar-mobile/side-bar-mobile.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ChatComponent } from './components/chat/chat.component';
+import { ChatWithUserMenuItemComponent } from './components/chat-with-user-menu-item/chat-with-user-menu-item.component';
 
 
 
@@ -81,7 +82,8 @@ import { ChatComponent } from './components/chat/chat.component';
         ClickOutsideDirective,
         SideBarMobileComponent,
         TruncatePipe,
-        ChatComponent
+        ChatComponent,
+        ChatWithUserMenuItemComponent
     ], 
     providers: [
         {

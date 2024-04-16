@@ -1,0 +1,7 @@
+.profile-pic{
+    border-radius: 50%; /* Makes the image round */
+    overflow: hidden;
+    width: 3em;
+    height: auto;
+    cursor: pointer;
+}
