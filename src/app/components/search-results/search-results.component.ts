@@ -50,7 +50,6 @@ export class SearchResultsComponent {
       this.getDataFromSearch(model);
     })
     this.checkIfLoggedIn();
-    this.checkForMessageNotifications();
     this.searchResults = [];
     this.filteredSearchResults = [];
     this.route.queryParams.subscribe(params => {
@@ -59,9 +58,6 @@ export class SearchResultsComponent {
       if (edit) {
         this.editServicii = true;
       }
-      this.chatService.getMessageObservable().subscribe(e => {
-        this.showMessageNotification = true;
-      })
     });
 
 
@@ -78,13 +74,6 @@ export class SearchResultsComponent {
     })
   }
 
-  checkForMessageNotifications(){
-    firstValueFrom(this.chatHttpService.hasSeenMessages()).then(e => {
-      if(e.isSuccess){
-        this.showMessageNotification = e.data.length > 0;
-      }
-    })
-  }
 
   checkIfLoggedIn(){
     let name = localStorage.getItem("name");

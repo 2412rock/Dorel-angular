@@ -9,4 +9,5 @@ export class ChatWithUserMenuItemComponent {
   @Input() chatWithUsername: string;
   public profilePic: string = "https://cdn-icons-png.flaticon.com/512/9131/9131529.png";
   @Input() lastMessage: string;
+  @Input() showStar: boolean;
 }

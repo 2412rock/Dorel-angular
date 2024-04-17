@@ -3,10 +3,11 @@
         <img class="profile-pic" [src]="profilePic"/>
     </div>
     <div style="display: flex; flex-direction: column; margin-left: 1em;">
-        <div class="username">
-            <p>{{chatWithUsername}}</p>
+        <div class="username" >
+            <p [ngStyle]="{'font-weight': showStar ? '700' : '200'}">{{chatWithUsername}}</p>
+            
         </div>
         
-        <p class="message">{{lastMessage}}</p>
+        <p [ngStyle]="{'font-weight': showStar ? '800' : '200'}" class="message">{{lastMessage}}</p>
     </div>
 </div>

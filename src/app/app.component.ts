@@ -26,6 +26,7 @@ export class AppComponent {
   public sidebarShowEvent = new EventEmitter<boolean>();
   public showMessageNotification: boolean = false;
   public showSearchBar: boolean = true;
+  
 
   constructor(private router: Router, private sharedDataService: SharedDataService, private chatService: ChatService, private chatHttpService: ChatHttpService) { }
 
@@ -52,12 +53,17 @@ export class AppComponent {
 
   checkForMessageNotifications(){
     this.chatService.getMessageObservable().subscribe(e => {
+      
       this.showMessageNotification = true;
+      this.sharedDataService.newMessagsFrom.push(e.senderId)
     })
     firstValueFrom(this.chatHttpService.hasSeenMessages()).then(e => {
       if(e.isSuccess){
         this.showMessageNotification = e.data.length > 0;
-      }
+        e.data.forEach(e => {
+          this.sharedDataService.newMessagsFrom.push(e);
+        })
+      } 
     })
   }
 

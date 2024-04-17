@@ -26,6 +26,7 @@ export class SharedDataService {
   private toName: string;
   public eventEmitter = new EventEmitter<SearchModel>();
   public loginEventEmitter = new EventEmitter<void>();
+  public newMessagsFrom: number[] = [];
 
   getUserEmail(){
     return this.userEmail;
@@ -104,4 +105,6 @@ export class SharedDataService {
   public getMessageUserName(): string{
     return this.toName
   }
+
+
 }

@@ -25,6 +25,7 @@ export class ChatComponent {
   public selectedChat: number;
   public sidebarShow: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
+  public newMessageFrom: number[] = [];
 
   @ViewChild('scrollableContent') scrollableContent: ElementRef;
 
@@ -48,7 +49,17 @@ export class ChatComponent {
     // })
     this.getMessages();
     firstValueFrom(this.chatServiceHttp.seenMessage()).then(e => {})
+    this.newMessageFrom = this.sharedDataService.newMessagsFrom; 
   }
+
+  isNewMessage(index:number){
+    console.log(this.sharedDataService.newMessagsFrom)
+    console.log(this.groups[index].withUser)
+     var result =  this.sharedDataService.newMessagsFrom.find(e => e == this.groups[index].withUser) != undefined;
+     console.log(result)
+     return result;
+  }
+
 
   getMessages(){
     this.myUserId = parseInt(this.localStorageService.getUserId());
@@ -115,6 +126,8 @@ export class ChatComponent {
     this.selectedGroup = this.groups[index];
     this.groupMessages = this.groups[index].messages;
     this.selectedChat = index;
+    this.newMessageFrom = this.newMessageFrom.filter(e => e != index);
+    this.sharedDataService.newMessagsFrom = this.sharedDataService.newMessagsFrom.filter(e => e != index); 
   }
 
   scrollToBottom() {

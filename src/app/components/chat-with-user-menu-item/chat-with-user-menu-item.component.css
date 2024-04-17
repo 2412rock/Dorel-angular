@@ -15,8 +15,17 @@ p{
     color: var(--text-color-white);
 }
 
+span{
+    margin: 0!important;
+    padding: 0!important;
+    color: var(--text-color-white);
+}
 .username{
     font-size: 1.4em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .message{

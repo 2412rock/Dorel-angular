@@ -9,7 +9,7 @@
             <div *ngFor="let group of groups; let i = index" class="chat-div"
                 [ngStyle]="{'background-color': selectedChat === i ? 'gray' : ''}">
                 <div (click)="clickChat(i)">
-                    <app-chat-with-user-menu-item style="width: 100%;" [chatWithUsername]="group.withUserName"
+                    <app-chat-with-user-menu-item [showStar]="isNewMessage(i)" style="width: 100%;" [chatWithUsername]="group.withUserName"
                         [lastMessage]="group.messages.length > 0 ? group.messages[group.messages.length-1].messageText : '...'"></app-chat-with-user-menu-item>
                 </div>
             </div>
