@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HubConnection, HubConnectionBuilder, Subject } from '@microsoft/signalr';
 import { Observable, firstValueFrom } from 'rxjs';
 import { LocalstorageService } from './localstorage.service';
@@ -12,12 +12,13 @@ import { Message } from '../model/group';
 export class ChatService {
 
   private hubConnection: HubConnection;
-
+  private apiUrl = isDevMode() ? 'http://localhost:4500' : 'https://dorelapp.xyz:4200'; 
+  
     private messageReceived = new Subject<Message>();
 
     constructor(private localStorageService: LocalstorageService, private chatHttpService: ChatHttpService) {
         this.hubConnection = new HubConnectionBuilder()
-            .withUrl('http://localhost:4500/chatHub') // URL of your backend
+            .withUrl(`${this.apiUrl}/chatHub`) // URL of your backend
             .build();
 
         this.hubConnection.start()
