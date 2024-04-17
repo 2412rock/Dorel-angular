@@ -78,7 +78,7 @@ export class SearchResultsComponent {
   checkForMessageNotifications(){
     firstValueFrom(this.chatHttpService.hasSeenMessages()).then(e => {
       if(e.isSuccess){
-        this.showMessageNotification = e.data;
+        this.showMessageNotification = e.data.length > 0;
       }
     })
   }
