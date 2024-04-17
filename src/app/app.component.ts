@@ -5,6 +5,9 @@ import { SearchResult } from './model/search-result';
 import { FilteredSearchResult } from './model/filtered-search-result';
 import { SharedDataService } from './services/shared-data.service';
 import { SearchModel } from './model/search-model';
+import { ChatService } from './services/chat.service';
+import { firstValueFrom } from 'rxjs';
+import { ChatHttpService } from './services/chat-http.service';
 
 @Component({
   selector: 'app-root',
@@ -24,46 +27,58 @@ export class AppComponent {
   public showMessageNotification: boolean = false;
   public showSearchBar: boolean = true;
 
-  constructor(private router: Router, private sharedDataService: SharedDataService){}
+  constructor(private router: Router, private sharedDataService: SharedDataService, private chatService: ChatService, private chatHttpService: ChatHttpService) { }
 
-  checkUserLoggedIn(){
-    
+  checkUserLoggedIn() {
+
   }
 
-  navigateToLoginPage(){
+  navigateToLoginPage() {
     this.router.navigate(['./login-page'])
   }
 
-  async ngOnInit(){
-    this.sharedDataService.loginEventEmitter.subscribe(e =>{
+  async ngOnInit() {
+    this.sharedDataService.loginEventEmitter.subscribe(e => {
       this.showSearchBar = false;
     })
-  //this.router.navigate(["./basic-search-page"]);
-  //this.router.navigate(["./account-settings"]);
-  this.router.navigate(["search-results-page"]);
-  //this.router.navigate(["chat"]);
-  //this.router.navigate(["./serviciu-detail-page"]);
- // this.router.navigate(["./serviciu-detail-page"]);
+    //this.router.navigate(["./basic-search-page"]);
+    //this.router.navigate(["./account-settings"]);
+    this.router.navigate(["search-results-page"]);
+    //this.router.navigate(["chat"]);
+    //this.router.navigate(["./serviciu-detail-page"]);
+    // this.router.navigate(["./serviciu-detail-page"]);
+    this.checkForMessageNotifications();
+  }
+
+  checkForMessageNotifications(){
+    this.chatService.getMessageObservable().subscribe(e => {
+      this.showMessageNotification = true;
+    })
+    firstValueFrom(this.chatHttpService.hasSeenMessages()).then(e => {
+      if(e.isSuccess){
+        this.showMessageNotification = e.data.length > 0;
+      }
+    })
   }
 
   clickLogo() {
     window.location.reload();
   }
 
-  toggleSidebar(){
+  toggleSidebar() {
     console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
     console.log("Emit")
-   // this.sidebarShowEvent.emit(this.sidebarShow);
+    // this.sidebarShowEvent.emit(this.sidebarShow);
   }
   getDataFromSearch(model: SearchModel) {
     this.sharedDataService.eventEmitter.emit(model);
   }
 
-  goToMessages(){
+  goToMessages() {
     this.showMessageNotification = false;
     this.router.navigate(['./chat']);
   }
-  
+
 }
 
