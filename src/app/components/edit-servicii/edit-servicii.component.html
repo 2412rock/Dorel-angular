@@ -5,7 +5,12 @@
         <div style="margin-top: 1em;">
             <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
         </div>
-        <app-my-account-menu style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <i (click)="goToMessages()" style="font-size: large; color: white; margin-right: 0.4em; cursor: pointer;" class="fa-solid fa-message"></i>
+            <span *ngIf="showMessageNotification" style="color: red; font-size: medium;">**</span>
+            <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+        </div>
+       
     </div>
     <app-edit-servicii-sidebar [loading]="loadingServicii" [servicii]="servicii" [resetIndexEvent]="resetIndex" (selectedServiciuEvent)="getSelectedServiciu($event)"></app-edit-servicii-sidebar>
     <div *ngIf="selectedServiciu == null" style="width: 85vw; height: 100vh; background-color: var(--background-color);"></div>

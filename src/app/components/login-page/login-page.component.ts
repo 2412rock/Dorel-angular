@@ -52,7 +52,7 @@ export class LoginPageComponent {
         firstValueFrom(this.loginService.loginGoogle(model)).then(res => {
           if (res.isSuccess) {
             this.sharedDataService.setUserEmail(user.email);
-            this.localStorageService.setUserData(res.data[1], res.data[0], model.name, "", "false", user.photoUrl, res.data[2]);
+            this.localStorageService.setUserData(res.data[1], res.data[0], model.name, "", "false", user.photoUrl, res.data[2], model.email);
             this.router.navigate(['./search-results-page']);
             this.loadingSpinner = false;
           }
@@ -74,7 +74,7 @@ export class LoginPageComponent {
     firstValueFrom(this.loginService.login(model)).then(res => {
       if (res.isSuccess) {
         this.sharedDataService.setUserEmail(this.email);
-        this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "", res.data[2]);
+        this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "", res.data[2], model.email);
         this.router.navigate(['./search-results-page']);
         this.loadingSpinner = false;
       }

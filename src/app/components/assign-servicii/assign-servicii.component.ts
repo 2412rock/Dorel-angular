@@ -11,6 +11,7 @@ import { Location } from '@angular/common';
 import { SearchModel } from 'src/app/model/search-model';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { Router } from '@angular/router';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -39,16 +40,26 @@ export class AssignServiciiComponent {
   public showDescriptionValidation: boolean = false;
   public sidebarShow: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
+  public showMessageNotification: boolean = false;
 
   constructor(private dataService: DataService,
     private modalService: ModalService,
     private location: Location,
     private sharedDataService: SharedDataService,
-    private router: Router){}
+    private router: Router,
+    private chatService: ChatService){}
 
 
   ngOnInit(){
     this.loadServiciiAlreadyOferite();
+    this.chatService.getMessageObservable().subscribe(e => {
+      this.showMessageNotification = true;
+    })
+  }
+
+  goToMessages(){
+    this.showMessageNotification = false;
+    this.router.navigate(['./chat']);
   }
 
   removeSelectedJudet(val: DBJudetModel){

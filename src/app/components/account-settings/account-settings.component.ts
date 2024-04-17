@@ -2,6 +2,7 @@
 import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchModel } from 'src/app/model/search-model';
+import { ChatService } from 'src/app/services/chat.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
@@ -16,6 +17,7 @@ export class AccountSettingsComponent {
   public sidebarShow: boolean = false;
   public loggedIn: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
+  public showMessageNotification: boolean = false;
   public settingsItems = 
   {
     "settings": 
@@ -49,10 +51,14 @@ export class AccountSettingsComponent {
 
   constructor(private router: Router,
     private sharedDataService: SharedDataService,
-    private localStorageService: LocalstorageService){
+    private localStorageService: LocalstorageService,
+    private chatService: ChatService){
  }
 
   ngOnInit(){
+    this.chatService.getMessageObservable().subscribe(e => {
+      this.showMessageNotification = true;
+    })
   }
 
   selectMenuItem(index: number){
@@ -61,6 +67,11 @@ export class AccountSettingsComponent {
     }else if(index === 1){
       this.router.navigate(["./search-results-page"], { queryParams: { edit: true } });
     }
+  }
+
+  goToMessages(){
+    this.showMessageNotification = false;
+    this.router.navigate(['./chat']);
   }
 
   deselectOption(val:boolean){

@@ -6,6 +6,8 @@ import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { FilteredSearchResult } from 'src/app/model/filtered-search-result';
 import { SearchModel } from 'src/app/model/search-model';
 import { SearchResult } from 'src/app/model/search-result';
+import { ChatHttpService } from 'src/app/services/chat-http.service';
+import { ChatService } from 'src/app/services/chat.service';
 import { DataService } from 'src/app/services/data.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -27,16 +29,25 @@ export class SearchResultsComponent {
   public sidebarShow: boolean = false;
   public loggedIn: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
+  public showMessageNotification: boolean = false;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
     private router: Router,
     private route: ActivatedRoute,
-    private localStorageService: LocalstorageService) { }
+    private localStorageService: LocalstorageService,
+    private chatService: ChatService,
+    private chatHttpService: ChatHttpService) { }
+
+    goToMessages(){
+      this.showMessageNotification = false;
+      this.router.navigate(['./chat']);
+    }
 
   ngOnInit() {
     this.checkIfLoggedIn();
+    this.checkForMessageNotifications();
     this.searchResults = [];
     this.filteredSearchResults = [];
     this.route.queryParams.subscribe(params => {
@@ -45,7 +56,11 @@ export class SearchResultsComponent {
       if (edit) {
         this.editServicii = true;
       }
+      this.chatService.getMessageObservable().subscribe(e => {
+        this.showMessageNotification = true;
+      })
     });
+
 
     if (this.editServicii) {
       this.loadData(undefined, undefined, 0, true);
@@ -53,10 +68,19 @@ export class SearchResultsComponent {
     else {
       this.serviciuName = this.sharedDataService.getServiciuName();
       this.judetName = this.sharedDataService.getJudetName();
-
       this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, false);
-
     }
+    this.chatService.getMessageObservable().subscribe(e => {
+      this.showMessageNotification = true;
+    })
+  }
+
+  checkForMessageNotifications(){
+    firstValueFrom(this.chatHttpService.hasSeenMessages()).then(e => {
+      if(e.isSuccess){
+        this.showMessageNotification = e.data;
+      }
+    })
   }
 
   checkIfLoggedIn(){
@@ -70,8 +94,6 @@ export class SearchResultsComponent {
   }
 
   private filterSearchResults() {
-    console.log("Search results")
-    console.log(this.searchResults)
     for (let index = 0; index < this.searchResults.length; index++) {
       if (this.filteredSearchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId && e.userId === this.searchResults[index].userId).length === 0) {
         var elementsWithSameServId = this.searchResults.filter(e => e.serviciuId === this.searchResults[index].serviciuId);
@@ -84,6 +106,7 @@ export class SearchResultsComponent {
         filteredSearchResult.serviciuName = this.searchResults[index].serviciuName;
         filteredSearchResult.starsAverage = this.searchResults[index].starsAverage;
         filteredSearchResult.userId = this.searchResults[index].userId;
+        filteredSearchResult.userEmail = this.searchResults[index].userEmail;
         filteredSearchResult.userName = this.searchResults[index].userName;
         filteredSearchResult.numberOfReviews = this.searchResults[index].numberOfReviews;
 

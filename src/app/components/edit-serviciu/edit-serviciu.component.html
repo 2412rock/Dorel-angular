@@ -7,8 +7,12 @@
         <div style="margin-top: 1em;">
             <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
         </div>
-        <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
-
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <i (click)="goToMessages()" style="font-size: large; color: white; margin-right: 0.4em; cursor: pointer;" class="fa-solid fa-message"></i>
+            <span *ngIf="showMessageNotification" style="color: red; font-size: medium;">**</span>
+            <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+        </div>
+       
     </div>
     <div *ngIf="!pageReady">
         <div class="spinner-border text-primary" style="width: 8.2rem; height: 8.2rem;color: var(--selected-color);"
@@ -126,7 +130,12 @@
             <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
         </div>
         <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
-
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <i (click)="goToMessages()" style="font-size: large; color: white; margin-right: 0.4em; cursor: pointer;" class="fa-solid fa-message"></i>
+            <span *ngIf="showMessageNotification" style="color: red; font-size: medium;">**</span>
+            <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+        </div>
+       
     </div>
     <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
         <div class="spinner-border text-primary"

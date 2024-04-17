@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { SearchResult } from '../model/search-result';
 import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
 import { FilteredSearchResult } from '../model/filtered-search-result';
+import { SaveMessageReq } from '../model/Requests/save-message-req';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,8 @@ export class SharedDataService {
   private serviciuName: string | undefined;
   private judetName: string | undefined;
   private serviciuToEdit: DBServiciuModel;
+  private messageToUserId: number;
+  private toName: string;
 
   getUserEmail(){
     return this.userEmail;
@@ -83,5 +86,18 @@ export class SharedDataService {
 
   public getServiciuToEdit(){
     return this.serviciuToEdit;
+  }
+
+  public setNewChatData(toId: number, toName: string){
+    this.messageToUserId = toId;
+    this.toName = toName;
+  }
+
+  public getMessageUserId(): number{
+    return this.messageToUserId
+  }
+
+  public getMessageUserName(): string{
+    return this.toName
   }
 }

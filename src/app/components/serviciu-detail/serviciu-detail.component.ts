@@ -12,6 +12,8 @@ import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { ReviewData } from '../write-review-modal/write-review-modal.component';
 import { SearchModel } from 'src/app/model/search-model';
+import { SaveMessageReq } from 'src/app/model/Requests/save-message-req';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-serviciu-detail',
@@ -25,16 +27,26 @@ export class ServiciuDetailComponent {
   public reviews: DBReviewModel[];
   public showWriteReview: boolean = false;
   public showEditReview: boolean = false;
+  public showMessageNotification: boolean = false;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
     private router: Router,
-    private localStorageService: LocalstorageService){}
+    private localStorageService: LocalstorageService,
+    private chatService: ChatService){}
 
   ngOnInit(){
 
     this.loadData();
+    this.chatService.getMessageObservable().subscribe(e => {
+      this.showMessageNotification = true;
+    })
+  }
+
+  goToMessages(){
+    this.showMessageNotification = false;
+    this.router.navigate(['./chat']);
   }
 
   resetReviewRights(){
@@ -162,6 +174,12 @@ export class ServiciuDetailComponent {
         
       });
     }
+  }
+
+  clickSendMsg(){
+    
+    this.sharedDataService.setNewChatData(this.searchResult.userId, this.searchResult.userName);
+    this.router.navigate(['./chat'])
   }
 
   goBack(){

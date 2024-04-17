@@ -1,0 +1,48 @@
+<div
+    style="background-color: var(--background-color); width: 100vw; height: 100vh; display: flex; flex-direction: column;">
+    <div class="top">
+        <span (click)="clickLogo()" class="logo">DOREL</span>
+        <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
+        <div style="margin-top: 1em;">
+          <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
+        </div>
+    
+    
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+          <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+        </div>
+      </div>
+    <div style="display: flex; flex-direction: row; width: 100%; height: 89%">
+        <div
+            style="width: 14%; height:100%; border-right: 0.1em solid white; background-color: var(--review-color); display: flex; align-items: center; flex-direction: column;">
+            <div *ngIf="groups.length === 0" style="font-size: medium; color: white; margin-top: 3em;">
+                You dont have any chats yet
+            </div>
+            <div *ngFor="let group of groups; let i = index" class="chat-div"
+                [ngStyle]="{'background-color': selectedChat === i ? 'gray' : ''}">
+                <div (click)="clickChat(i)">
+                    <app-chat-with-user-menu-item style="width: 100%;" [chatWithUsername]="group.withUserName"
+                        [lastMessage]="group.messages.length > 0 ? group.messages[group.messages.length-1].messageText : '...'"></app-chat-with-user-menu-item>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="openChat" style="width: 86%; height: 100%;">
+            <div #scrollableContent style="height: 90%; width: 100%; max-height: 100%; overflow-y: scroll;">
+                <div *ngFor="let message of groupMessages" style="width: 100%; display: flex;"
+                    [ngStyle]="{'justify-content': message.senderId === myUserId? 'end' : 'start'}">
+                    <p
+                        style="color: white; font-size: large; border: 0.1em solid white; padding: 1em; border-radius: 20%; background-color: gray;">
+                        {{message.messageText}}</p>
+                </div>
+            </div>
+            <div
+                style="width: 100%; height: 9%; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                <input style="width: 90%; height: 100%;" type="text" [(ngModel)]="text">
+                <div (click)="sendMessage()"
+                    style="background-color: var(--selected-color); padding: 0.5em; display: flex; align-items: center; justify-content: center; margin-left: 1em; cursor: pointer;">
+                    <span>Send</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
