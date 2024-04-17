@@ -35,6 +35,7 @@ export class LoginPageComponent {
 
 
   ngOnInit() {
+    this.sharedDataService.loginEventEmitter.emit();
     this.authService.authState.subscribe((user) => {
       if (user != null) {
         this.loadingSpinner = true;
@@ -53,7 +54,7 @@ export class LoginPageComponent {
           if (res.isSuccess) {
             this.sharedDataService.setUserEmail(user.email);
             this.localStorageService.setUserData(res.data[1], res.data[0], model.name, "", "false", user.photoUrl, res.data[2], model.email);
-            this.router.navigate(['./search-results-page']);
+            window.location.reload();
             this.loadingSpinner = false;
           }
           else {

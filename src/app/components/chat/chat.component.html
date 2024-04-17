@@ -1,18 +1,6 @@
 <div
-    style="background-color: var(--background-color); width: 100vw; height: 100vh; display: flex; flex-direction: column;">
-    <div class="top">
-        <span (click)="clickLogo()" class="logo">DOREL</span>
-        <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
-        <div style="margin-top: 1em;">
-          <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
-        </div>
-    
-    
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-          <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
-        </div>
-      </div>
-    <div style="display: flex; flex-direction: row; width: 100%; height: 89%">
+    style="background-color: var(--background-color); width: 100%; height: 90%; display: flex; flex-direction: column;">
+    <div style="display: flex; flex-direction: row; width: 100%; height: 100%">
         <div
             style="width: 14%; height:100%; border-right: 0.1em solid white; background-color: var(--review-color); display: flex; align-items: center; flex-direction: column;">
             <div *ngIf="groups.length === 0" style="font-size: medium; color: white; margin-top: 3em;">
@@ -37,7 +25,9 @@
             </div>
             <div
                 style="width: 100%; height: 9%; display: flex; flex-direction: row; align-items: center; justify-content: center;">
-                <input (keyup.enter)="sendMessage()" style="width: 90%; height: 100%;border: 1px solid #ccc; border-radius: 1em;" type="text" [(ngModel)]="text" placeholder="Type your message">
+                <input (keyup.enter)="sendMessage()"
+                    style="width: 90%; height: 100%;border: 1px solid #ccc; border-radius: 1em;" type="text"
+                    [(ngModel)]="text" placeholder="Type your message">
                 <div (click)="sendMessage()"
                     style="background-color: var(--selected-color); padding: 0.8em; display: flex; align-items: center; justify-content: center; margin-left: 1em; cursor: pointer; border: 1px solid #ccc; border-radius: 0.7em;">
                     <span>Send</span>

@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ImaginiServiciiDescriere } from '../model/imagine-servicii-descriere';
 import { BehaviorSubject } from 'rxjs';
 import { SearchResult } from '../model/search-result';
 import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
 import { FilteredSearchResult } from '../model/filtered-search-result';
 import { SaveMessageReq } from '../model/Requests/save-message-req';
+import { SearchModel } from '../model/search-model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,8 @@ export class SharedDataService {
   private serviciuToEdit: DBServiciuModel;
   private messageToUserId: number;
   private toName: string;
+  public eventEmitter = new EventEmitter<SearchModel>();
+  public loginEventEmitter = new EventEmitter<void>();
 
   getUserEmail(){
     return this.userEmail;
@@ -43,6 +46,7 @@ export class SharedDataService {
   public setServiciuSelectat(serviciuId: number | undefined, serviciuName: string | undefined){
     this.serviciuSelectatId = serviciuId;
     this.serviciuName = serviciuName;
+    
   }
 
   public getServiciuSelectat(): number | undefined{

@@ -1,0 +1,23 @@
+.top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:relative;
+    top: 0;
+    background-color: var(--card-color);
+    height: 10%;
+  
+  }
+
+  .logo{
+    font-size: 4em;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.sidebar-button-toggle{
+    color: white; font-size: 3em; position: relative; padding-right: 0.8em; cursor: pointer; display: none;
+  }

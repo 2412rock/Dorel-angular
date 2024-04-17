@@ -1,19 +1,5 @@
 <div *ngIf="!loading"
-    style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; overflow-y: auto;">
-    <div class="top">
-        <span class="logo" (click)="goBack()">DOREL</span>
-        <div style="margin-top: 1em;">
-            <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
-        </div>
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <i (click)="goToMessages()" style="font-size: large; color: white; margin-right: 0.4em; cursor: pointer;" class="fa-solid fa-message"></i>
-            <span *ngIf="showMessageNotification" style="color: red; font-size: medium;">**</span>
-            <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
-        </div>
-       
-    </div>
-
-
+    style="width: 100%; height: 90%; background-color: var(--background-color); display: flex; justify-content: center; overflow-y: auto;">
     <div class="result-card">
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
             <div style="display: flex; flex-direction: column; max-width: 80%;">
@@ -25,13 +11,12 @@
                                 <i class="fa-solid fa-envelope contact-text"></i>
                                 <span class="contact-text" style="margin-left:0.3em">email.com</span>
                             </div>
-                            <div
-                                style="display: flex; flex-direction: row; align-items: center; margin-left: 0.8em;">
+                            <div style="display: flex; flex-direction: row; align-items: center; margin-left: 0.8em;">
                                 <i class="fa-solid fa-phone contact-text"></i>
                                 <span class="contact-text margin-left:1em" style="margin-left:0.3em">012 344 231</span>
                             </div>
                         </div>
-                        
+
 
                     </div>
 
@@ -50,7 +35,7 @@
         </div>
 
         <div style="margin-top: 2em;">
-            <app-image-collection [width]="'15vw'" [height]="'27vh'" [imagini]="imagini"></app-image-collection>
+            <app-image-collection [width]="'15vw'" [height]="'35vh'" [imagini]="imagini"></app-image-collection>
 
         </div>
 
@@ -93,22 +78,9 @@
     </div>
 </div>
 <div *ngIf="loading"
-    style="width: 100vw; height: 100vh; background-color: var(--background-color); display: flex; justify-content: center; align-items: center;">
-    <<div class="top">
-        <span (click)="goBack()"
-            style="font-size: 4em; color: white; font-family: 'Courier New', Courier, monospace; margin-left: 0.5em; cursor: pointer;">DOREL</span>
-        <div style="margin-top: 1em;">
-            <app-search-bar (searchClickEvent)="navigateToSearch($event)"></app-search-bar>
+    style="width: 100%; height: 90%; background-color: var(--background-color); display: flex; justify-content: center; align-items: center;">
+    <div *ngIf="loading" class="d-flex custom-spinner" style="margin-left: 0.5em;">
+        <div class="spinner-border text-primary" style="width: 4.5rem; height: 4.5rem;" role="status">
         </div>
-        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-            <i (click)="goToMessages()" style="font-size: large; color: white; margin-right: 0.4em; cursor: pointer;" class="fa-solid fa-message"></i>
-            <span *ngIf="showMessageNotification" style="color: red; font-size: medium;">**</span>
-            <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
-        </div>
-       
-</div>
-<div *ngIf="loading" class="d-flex custom-spinner" style="margin-left: 0.5em;">
-    <div class="spinner-border text-primary" style="width: 4.5rem; height: 4.5rem;" role="status">
     </div>
-</div>
 </div>

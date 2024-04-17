@@ -1,48 +1,6 @@
 
   <div class="content">
-        <!-- <div  class="top" >
-            <span (click)="clickLogo()" class="logo">DOREL</span>
-            <div>
-                <i (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button" ></i>
-            </div>
-            <div style="margin-top: 1em;">
-                <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
-            </div>
-            
-        </div> -->
-        <div class="top">
-            <span (click)="clickLogo()" class="logo">DOREL</span>
-            <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle" ></i>
-            <div style="margin-top: 1em;">
-                <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
-            </div>
-            
-            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                <i (click)="goToMessages()" style="font-size: 2em; color: white; cursor: pointer;" class="fa-solid fa-message"></i>
-                <span style="color: red; font-size: 3em;" [ngStyle]="{'visibility': showMessageNotification ? 'visible' : 'hidden'}">*</span>
-                <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
-            </div>
-           
-            
-        </div>
-        <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="closeSidebar()"></app-side-bar-mobile>
-        <!-- <div *ngIf="sidebarShow" class="sidebar" (click)="stopPropagation($event)">
-            <div [appClickOutside]="sidebarShow" (clickOutsideEvent)="closeSidebar()" *ngIf="sidebarShow">
-                <div *ngIf="!loggedIn" class="btn-in-sidebar" (click)="clickLogin()">
-                    <i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 0.5em;"></i>
-                    <span> Log in</span>
-                </div>
-                <div *ngIf="loggedIn"  class="btn-in-sidebar" (click)="clickLogout()">
-                    <i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 0.5em;"></i>
-                    <span> Log out</span>
-                </div>
-                <div *ngIf="loggedIn"  class="btn-in-sidebar" (click)="clickAccountSettings()">
-                    <i class="logout-icon fa-solid fa-gear" style="margin-right: 0.5em;"></i>
-                    <span > Settings</span>
-                </div>
-            </div>
-        </div> -->
-        <div *ngIf="loading" style="width: 70vw; height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div *ngIf="loading" style="display: flex; align-items: center; justify-content: center; height: 10em;">
             <div class="d-flex custom-spinner" style="margin-left: 0.5em;">
                 <div class="spinner-border text-primary" style="width: 3.5rem; height: 3.5rem;color: var(--selected-color);" role="status">
                 </div>

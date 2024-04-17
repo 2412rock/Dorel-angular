@@ -51,10 +51,12 @@ export class MyAccountMenuComponent {
   }
 
   clickLogin(){
+    this.showAccountDropdown = false;
     this.router.navigate(["./login-page"])
   }
 
   clickAccountSettings(){
+    this.showAccountDropdown = false;
     this.router.navigate(['./account-settings'])
   }
 }

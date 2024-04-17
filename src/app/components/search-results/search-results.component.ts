@@ -46,6 +46,9 @@ export class SearchResultsComponent {
     }
 
   ngOnInit() {
+    this.sharedDataService.eventEmitter.subscribe(model => {
+      this.getDataFromSearch(model);
+    })
     this.checkIfLoggedIn();
     this.checkForMessageNotifications();
     this.searchResults = [];
