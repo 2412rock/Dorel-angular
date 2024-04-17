@@ -87,6 +87,7 @@ export class AppComponent {
   }
   getDataFromSearch(model: SearchModel) {
     this.sharedDataService.eventEmitter.emit(model);
+    this.router.navigate(['./search-results-page'])
   }
 
   goToMessages() {
