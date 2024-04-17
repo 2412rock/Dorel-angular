@@ -29,8 +29,10 @@
                 </p>
             </div>
             <div>
-
-                <app-button (click)="clickSendMsg()" [label]="'Send message'"></app-button>
+                <div *ngIf="userIsLoggedIn">
+                    <app-button (click)="clickSendMsg()" [label]="'Send message'"></app-button>
+                </div>
+                
             </div>
         </div>
 

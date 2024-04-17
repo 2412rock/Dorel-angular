@@ -28,6 +28,7 @@ export class ServiciuDetailComponent {
   public showWriteReview: boolean = false;
   public showEditReview: boolean = false;
   public showMessageNotification: boolean = false;
+  public userIsLoggedIn: boolean = false;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
@@ -37,12 +38,13 @@ export class ServiciuDetailComponent {
     private chatService: ChatService){}
 
   ngOnInit(){
-
+    this.checkUserLoggedIn();
     this.loadData();
     this.chatService.getMessageObservable().subscribe(e => {
       this.showMessageNotification = true;
     })
   }
+
 
   goToMessages(){
     this.showMessageNotification = false;
@@ -54,12 +56,22 @@ export class ServiciuDetailComponent {
     this.showEditReview = false;
   }
 
+  checkUserLoggedIn(){
+    let name = localStorage.getItem("name");
+    let loggedInEmail = localStorage.getItem("isEmailLogin");
+    let profilePicContent = localStorage.getItem("profilePicContent");
+
+    if(name != null && loggedInEmail != null && profilePicContent != null){
+      this.userIsLoggedIn = true;
+    }
+  }
+
   checkReviewRights(){
     this.searchResult = this.sharedDataService.getSearchResult();
     let reviewerId = parseInt(this.localStorageService.getUserId());
     firstValueFrom(this.dataService.getReviewOfUser(this.searchResult.userId, this.searchResult.serviciuId, reviewerId)).then(res => {
       var reviewerIsNotReviewee = this.searchResult.userId.toString() != this.localStorageService.getUserId();
-      if(reviewerIsNotReviewee && res.data == null){
+      if(reviewerIsNotReviewee && res.data == null && this.userIsLoggedIn){
         this.showWriteReview = true;
       }
       else if(reviewerIsNotReviewee && res.data != null){

@@ -7,7 +7,7 @@
     </div>
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-      <i (click)="goToMessages()" style="font-size: 2em; color: white; cursor: pointer;"
+      <i *ngIf="userLoggedIn" (click)="goToMessages()" style="font-size: 2em; color: white; cursor: pointer;"
         class="fa-solid fa-message"></i>
       <span style="color: red; font-size: 3em;"
         [ngStyle]="{'visibility': showMessageNotification ? 'visible' : 'hidden'}">*</span>

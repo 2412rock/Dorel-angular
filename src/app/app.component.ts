@@ -26,19 +26,17 @@ export class AppComponent {
   public sidebarShowEvent = new EventEmitter<boolean>();
   public showMessageNotification: boolean = false;
   public showSearchBar: boolean = true;
+  public userLoggedIn: boolean = false;
   
 
   constructor(private router: Router, private sharedDataService: SharedDataService, private chatService: ChatService, private chatHttpService: ChatHttpService) { }
-
-  checkUserLoggedIn() {
-
-  }
 
   navigateToLoginPage() {
     this.router.navigate(['./login-page'])
   }
 
   async ngOnInit() {
+    this.checkUserLoggedIn()
     this.sharedDataService.loginEventEmitter.subscribe(e => {
       this.showSearchBar = false;
     })
@@ -65,6 +63,16 @@ export class AppComponent {
         })
       } 
     })
+  }
+
+  checkUserLoggedIn(){
+    let name = localStorage.getItem("name");
+    let loggedInEmail = localStorage.getItem("isEmailLogin");
+    let profilePicContent = localStorage.getItem("profilePicContent");
+
+    if(name != null && loggedInEmail != null && profilePicContent != null){
+      this.userLoggedIn = true;
+    }
   }
 
   clickLogo() {
