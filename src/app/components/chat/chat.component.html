@@ -31,15 +31,15 @@
                 <div *ngFor="let message of groupMessages" style="width: 100%; display: flex;"
                     [ngStyle]="{'justify-content': message.senderId === myUserId? 'end' : 'start'}">
                     <p
-                        style="color: white; font-size: large; border: 0.1em solid white; padding: 1em; border-radius: 20%; background-color: gray;">
+                        style="color: white; font-size: large; border: 0.1em solid white; padding: 1em; border-radius: 10%; background-color: gray; margin: 0.5em;">
                         {{message.messageText}}</p>
                 </div>
             </div>
             <div
                 style="width: 100%; height: 9%; display: flex; flex-direction: row; align-items: center; justify-content: center;">
-                <input style="width: 90%; height: 100%;" type="text" [(ngModel)]="text">
+                <input (keyup.enter)="sendMessage()" style="width: 90%; height: 100%;border: 1px solid #ccc; border-radius: 1em;" type="text" [(ngModel)]="text" placeholder="Type your message">
                 <div (click)="sendMessage()"
-                    style="background-color: var(--selected-color); padding: 0.5em; display: flex; align-items: center; justify-content: center; margin-left: 1em; cursor: pointer;">
+                    style="background-color: var(--selected-color); padding: 0.8em; display: flex; align-items: center; justify-content: center; margin-left: 1em; cursor: pointer; border: 1px solid #ccc; border-radius: 0.7em;">
                     <span>Send</span>
                 </div>
             </div>
