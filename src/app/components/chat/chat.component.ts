@@ -48,7 +48,6 @@ export class ChatComponent {
     //   }
     // })
     this.getMessages();
-    firstValueFrom(this.chatServiceHttp.seenMessage()).then(e => {})
     this.newMessageFrom = this.sharedDataService.newMessagsFrom; 
   }
 
@@ -126,8 +125,9 @@ export class ChatComponent {
     this.selectedGroup = this.groups[index];
     this.groupMessages = this.groups[index].messages;
     this.selectedChat = index;
-    this.newMessageFrom = this.newMessageFrom.filter(e => e != index);
-    this.sharedDataService.newMessagsFrom = this.sharedDataService.newMessagsFrom.filter(e => e != index); 
+    this.newMessageFrom = this.newMessageFrom.filter(e => e != this.groups[index].withUser);
+    this.sharedDataService.newMessagsFrom = this.sharedDataService.newMessagsFrom.filter(e => e != this.groups[index].withUser); 
+    firstValueFrom(this.chatServiceHttp.seenMessage(this.groups[index].withUser)).then(e => {})
   }
 
   scrollToBottom() {

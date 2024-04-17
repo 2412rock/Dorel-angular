@@ -5,6 +5,7 @@ import { SaveMessageReq } from '../model/Requests/save-message-req';
 import { Maybe } from '../model/maybe';
 import { Observable } from 'rxjs';
 import { Group } from '../model/group';
+import { SeenReq } from '../model/Requests/seen-req';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,9 @@ export class ChatHttpService {
     return this.http.get<Maybe<number[]>>(`${this.apiUrl}/api/hasUnseenMessages`);
   }
 
-  seenMessage(): Observable<Maybe<string>>{
-    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/seenMessage`, null);
+  seenMessage(senderId: number): Observable<Maybe<string>>{
+    var req = new SeenReq();
+    req.senderId = senderId;
+    return this.http.post<Maybe<string>>(`${this.apiUrl}/api/seenMessage`, req);
   }
 }
