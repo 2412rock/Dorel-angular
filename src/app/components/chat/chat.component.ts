@@ -1,7 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { HubConnection, HubConnectionBuilder, Subject } from '@microsoft/signalr';
 import { firstValueFrom } from 'rxjs';
 import { Group, Message } from 'src/app/model/group';
+import { SearchModel } from 'src/app/model/search-model';
 import { ChatHttpService } from 'src/app/services/chat-http.service';
 import { ChatService } from 'src/app/services/chat.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
@@ -21,11 +23,13 @@ export class ChatComponent {
   public myUserId: number;
   public selectedGroup: Group;
   public selectedChat: number;
+  public sidebarShow: boolean = false;
+  public sidebarShowEvent = new EventEmitter<boolean>();
 
   @ViewChild('scrollableContent') scrollableContent: ElementRef;
 
 
-  constructor(private chatService: ChatService,private chatServiceHttp: ChatHttpService ,private localStorageService: LocalstorageService, private sharedDataService: SharedDataService) {
+  constructor(private router: Router,private chatService: ChatService,private chatServiceHttp: ChatHttpService ,private localStorageService: LocalstorageService, private sharedDataService: SharedDataService) {
     this.chatService.getMessageObservable().subscribe((message) => {
       console.log("Got message")
       this.groupMessages.push(message);
@@ -76,9 +80,24 @@ export class ChatComponent {
     this.getMessages();
   }
 
+  toggleSidebar(){
+    console.log("Toggle")
+    this.sidebarShow = !this.sidebarShow;
+    console.log("Emit")
+    this.sidebarShowEvent.emit(this.sidebarShow);
+  }
+
+  navigateToSearch(val: SearchModel){
+    this.sharedDataService.setServiciuSelectat(val?.serviciuId, val?.serviciuName);
+    this.sharedDataService.setJudetselectat(val?.judetId, val?.judetName);
+    this.router.navigate(["./search-results-page"]);
+  }
+
+  clickLogo(){
+    this.router.navigate(["./search-results-page"]);
+  }
 
   async sendMessage() {
-    console.log("Send message")
     await this.chatService.sendMessage(this.selectedGroup.withUser, this.text);
     var message = new Message();
     message.messageText = this.text;
@@ -88,6 +107,7 @@ export class ChatComponent {
     setTimeout(() => {
       this.scrollToBottom();
     }, 100);
+    this.text = "";
   }
 
   clickChat(index: number){

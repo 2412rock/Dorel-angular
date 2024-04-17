@@ -1,8 +1,38 @@
-.chat-div{
-    width: 100%; padding: 1em;
+.chat-div {
+    width: 100%;
+    padding: 1em;
 }
 
-.chat-div:hover{
+.chat-div:hover {
     background-color: gray;
     cursor: pointer;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    top: 0;
+    background-color: var(--card-color);
+
+}
+
+.logo {
+    font-size: 4em;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.sidebar-button-toggle {
+    color: white;
+    font-size: 3em;
+    position: absolute;
+    top: 0.5em;
+    left: 0.1em;
+    cursor: pointer;
+    display: none;
 }

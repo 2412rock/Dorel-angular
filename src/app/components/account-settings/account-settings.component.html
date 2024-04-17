@@ -9,19 +9,20 @@
 
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-      <i (click)="goToMessages()" style="font-size: large; color: white; margin-right: 0.4em; cursor: pointer;" class="fa-solid fa-message"></i>
+      <i (click)="goToMessages()" style="font-size: large; color: white; margin-right: 0.4em; cursor: pointer;"
+        class="fa-solid fa-message"></i>
       <span *ngIf="showMessageNotification" style="color: red; font-size: medium;">**</span>
       <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+    </div>
   </div>
- 
-
-  </div>
-<app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="closeSidebar()"></app-side-bar-mobile>
+  <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="closeSidebar()"></app-side-bar-mobile>
 
   <div class="setting-items">
     <div *ngFor="let item of settingsItems.settings; let i = index" style="width: fit-content; cursor: pointer;">
-      <div class="highlight" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2em;" (click)="selectMenuItem(i)">
-          <img [src]="item.img"/>
+      <div class="highlight"
+        style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2em;"
+        (click)="selectMenuItem(i)">
+        <img [src]="item.img" />
         <span style="color: white; font-size: 1.3em; margin-top: 0.8em; font-weight: bol;">{{item.name}}</span>
       </div>
     </div>
