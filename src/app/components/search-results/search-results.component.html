@@ -18,8 +18,8 @@
             </div>
             
             <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-                <i (click)="goToMessages()" style="font-size: large; color: white; margin-right: 0.4em; cursor: pointer;" class="fa-solid fa-message"></i>
-                <span *ngIf="showMessageNotification" style="color: red; font-size: medium;">**</span>
+                <i (click)="goToMessages()" style="font-size: 2em; color: white; cursor: pointer;" class="fa-solid fa-message"></i>
+                <span style="color: red; font-size: 3em;" [ngStyle]="{'visibility': showMessageNotification ? 'visible' : 'hidden'}">*</span>
                 <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
             </div>
            
