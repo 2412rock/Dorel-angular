@@ -12,6 +12,7 @@ import { SharedDataService } from 'src/app/services/shared-data.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { SearchModel } from 'src/app/model/search-model';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-edit-serviciu',
@@ -39,6 +40,7 @@ export class EditServiciuComponent {
   public loading: boolean = true;
   public sidebarShow: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
+  public showMessageNotification: boolean = false;
 
   public serviciuValidationErrorEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -47,13 +49,21 @@ export class EditServiciuComponent {
     private modalService: ModalService,
     private sharedDataService: SharedDataService,
     private location: Location,
-    private router: Router){}
+    private router: Router,
+    private chatService: ChatService){}
     
-
+    goToMessages(){
+      this.showMessageNotification = false;
+      this.router.navigate(['./chat']);
+    }
+    
   ngOnInit(){
     this.serviciu = new DBServiciuModel();
     this.serviciu.id =  this.sharedDataService.getServiciuToEdit().id;
     this.getData();
+    this.chatService.getMessageObservable().subscribe(e => {
+      this.showMessageNotification = true;
+    })
   }
 
   ngOnChanges(){

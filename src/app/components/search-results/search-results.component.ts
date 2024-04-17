@@ -40,6 +40,11 @@ export class SearchResultsComponent {
     private chatService: ChatService,
     private chatHttpService: ChatHttpService) { }
 
+    goToMessages(){
+      this.showMessageNotification = false;
+      this.router.navigate(['./chat']);
+    }
+
   ngOnInit() {
     this.checkIfLoggedIn();
     this.checkForMessageNotifications();
@@ -51,7 +56,11 @@ export class SearchResultsComponent {
       if (edit) {
         this.editServicii = true;
       }
+      this.chatService.getMessageObservable().subscribe(e => {
+        this.showMessageNotification = true;
+      })
     });
+
 
     if (this.editServicii) {
       this.loadData(undefined, undefined, 0, true);
@@ -112,11 +121,6 @@ export class SearchResultsComponent {
     console.log("Filtered")
     console.log(this.filteredSearchResults)
     
-  }
-
-  goToMessages(){
-    this.showMessageNotification = false;
-    this.router.navigate(['./chat']);
   }
 
   loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean) {

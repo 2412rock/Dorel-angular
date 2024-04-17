@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { DBServiciuModel } from 'src/app/model/DBModels/DBServiciuModel';
 import { SearchModel } from 'src/app/model/search-model';
+import { ChatService } from 'src/app/services/chat.service';
 import { DataService } from 'src/app/services/data.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
@@ -19,14 +20,19 @@ export class EditServiciiComponent {
   public selectedServiciu: DBServiciuModel | null;
   public loadingServicii: boolean = true;
   public resetIndex: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  public showMessageNotification: boolean = false;
 
   constructor(private dataService: DataService,
     private modalService: ModalService,
     private sharedDataService: SharedDataService,
-    private router: Router){}
+    private router: Router,
+    private chatService: ChatService){}
+
   ngOnInit(){
     this.loadServicii();
+    this.chatService.getMessageObservable().subscribe(e => {
+      this.showMessageNotification = true;
+    })
   }
 
   loadServicii(){
@@ -44,6 +50,11 @@ export class EditServiciiComponent {
       this.editDone.emit(true);
       this.modalService.openModalNotification("Unknown error", "Couldnt load servicii", false);
     });
+  }
+
+  goToMessages(){
+    this.showMessageNotification = false;
+    this.router.navigate(['./chat']);
   }
 
   getSelectedServiciu(serviciu: DBServiciuModel){
