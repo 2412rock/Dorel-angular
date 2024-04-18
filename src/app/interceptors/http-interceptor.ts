@@ -60,7 +60,7 @@ export class DorelHttpInterceptor implements HttpInterceptor {
           // If token refresh failed, logout the user
           this.localStorage.deleteUserData();
           var ref = this.modalService.openModalNotification("Session expired", "Please log in again to use the app", false);
-          ref.afterClosed().subscribe(e => window.location.reload)
+          ref.afterClosed().subscribe(e => {window.location.reload()})
           return throwError('Token refresh failed');
         }
       }),
