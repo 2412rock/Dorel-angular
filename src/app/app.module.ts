@@ -49,6 +49,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ChatWithUserMenuItemComponent } from './components/chat-with-user-menu-item/chat-with-user-menu-item.component';
 import { ChatListMobileComponent } from './components/chat-list-mobile/chat-list-mobile.component';
 import { ChatWithUserMobileComponent } from './components/chat-with-user-mobile/chat-with-user-mobile.component';
+import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.component';
 
 
 
@@ -87,7 +88,8 @@ import { ChatWithUserMobileComponent } from './components/chat-with-user-mobile/
         ChatComponent,
         ChatWithUserMenuItemComponent,
         ChatListMobileComponent,
-        ChatWithUserMobileComponent
+        ChatWithUserMobileComponent,
+        DetailMobileComponent
     ], 
     providers: [
         {

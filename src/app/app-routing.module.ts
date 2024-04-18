@@ -15,6 +15,7 @@ import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.
 import { ChatComponent } from './components/chat/chat.component';
 import { ChatListMobileComponent } from './components/chat-list-mobile/chat-list-mobile.component';
 import { ChatWithUserMobileComponent } from './components/chat-with-user-mobile/chat-with-user-mobile.component';
+import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.component';
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path: 'chat', component: ChatComponent},
   {path: 'chat-list-mobile', component: ChatListMobileComponent},
   {path: 'chat-with-mobile', component: ChatWithUserMobileComponent},
+  {path: 'detail-mobile', component: DetailMobileComponent},
   {path: 'account-settings', component: AccountSettingsComponent, children: [
     {path: 'assign-servicii', component: AssignServiciiComponent},
   ]},

@@ -1,0 +1,59 @@
+<div *ngIf="!loading"
+    style="width: 100%; min-height: 50em; background-color: var(--background-color); display: flex; justify-content: center; overflow-y: auto;">
+    <div style="display: flex; flex-direction: column;">
+        <span style="color: white; font-size: 2em; font-weight: bold; margin-top: 1em;">{{searchResult.userName}}</span>
+        <div style="display: flex; flex-direction: row; margin-top: 1em;">
+            <app-star-rating [static]="true" [rating]="5" style=""></app-star-rating>
+                    <span
+                        style="color: white; font-size: 1em; font-weight: 400; margin-left: 1em;">{{searchResult.starsAverage}}/5
+                        ({{searchResult.numberOfReviews}} reviews)</span>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <div style="display: flex; flex-direction: row; align-items: center;">
+                <i class="fa-solid fa-envelope contact-text" style="color: white;"></i>
+                <span class="contact-text" style="margin-left:0.3em; color: white;">email.com</span>
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: center; margin-left: 0.8em;">
+                <i class="fa-solid fa-phone contact-text" style="color: white;"></i>
+                <span class="contact-text margin-left:1em" style="margin-left:0.3em; color: white;">012 344 231</span>
+            </div>
+        </div>
+        <div style="margin-top: 2em;">
+            <app-image-collection [width]="'45vw'" [height]="'55'" [imagini]="imagini"></app-image-collection>
+
+        </div>
+        <div
+            style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%">
+            <div>
+                <p style="margin-top: 1em; font-size: 2em; color: white; font-weight: bold;">Customer Reviews</p>
+            </div>
+
+        </div>
+        <div
+            style="background-color: var(--card-color); width: 70vw; margin-top: 2em; border-radius: 1em; width: 100%;">
+            <div *ngFor="let review of reviews">
+                <div
+                    style="background-color: var(--review-color); border-radius: 0.7em; padding: 2em; margin-bottom: 1.4em;">
+                    <app-review-card [description]="review.reviewDescription" [reviewerName]="review.reviewerName"
+                        [stars]="review.rating"></app-review-card>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="reviews.length === 0"
+            style="background-color: var(--card-color); margin-top: 2em; border-radius: 1em; width: 100%;">
+
+            <div
+                style="background-color: var(--review-color); border-radius: 0.7em; padding: 2em; display: flex; align-items: center; justify-content: center;">
+                <p style="font-size: large; color: var(--text-color-white); font-weight: 500;"> No reviews yet</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div *ngIf="loading"
+    style="width: 100%; height: 90%; background-color: var(--background-color); display: flex; justify-content: center; align-items: center;">
+    <div *ngIf="loading" class="d-flex custom-spinner" style="margin-left: 0.5em;">
+        <div class="spinner-border text-primary" style="width: 4.5rem; height: 4.5rem;" role="status">
+        </div>
+    </div>
+</div>

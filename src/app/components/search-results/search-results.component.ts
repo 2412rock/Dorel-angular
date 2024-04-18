@@ -12,6 +12,7 @@ import { DataService } from 'src/app/services/data.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
+import {Platform, PlatformModule} from '@angular/cdk/platform';
 
 
 @Component({
@@ -38,7 +39,10 @@ export class SearchResultsComponent {
     private route: ActivatedRoute,
     private localStorageService: LocalstorageService,
     private chatService: ChatService,
-    private chatHttpService: ChatHttpService) { }
+    private chatHttpService: ChatHttpService,
+    private platform: Platform
+    
+  ) { }
 
     goToMessages(){
       this.showMessageNotification = false;
@@ -46,6 +50,7 @@ export class SearchResultsComponent {
     }
 
   ngOnInit() {
+    
     this.sharedDataService.eventEmitter.subscribe(model => {
       this.getDataFromSearch(model);
     })
@@ -175,7 +180,15 @@ export class SearchResultsComponent {
     }
     else {
       this.sharedDataService.setSearchResult(searchResult);
-      this.router.navigate(["./serviciu-detail-page"]);
+      //
+      this.router.navigate(["./detail-mobile"])
+      // if(this.platform.ANDROID || this.platform.IOS){
+      //   this.router.navigate(["./detail-mobile"]);
+      // }
+      // else{
+      //   this.router.navigate(["./serviciu-detail-page"]);
+      // }
+      
     }
   }
 
