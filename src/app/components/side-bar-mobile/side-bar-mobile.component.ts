@@ -67,6 +67,6 @@ clickAccountSettings(){
 }
 
 clickBack(){
-  this.router.navigate(['./search-results-page'])
+  window.location.reload();
 }
 }

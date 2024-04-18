@@ -1,38 +1,35 @@
 .top{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position:relative;
-    top: 0;
-    background-color: var(--card-color);
-    height: 10%;
-  
-  }
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position:relative;
+  top: 0;
+  background-color: var(--card-color);
+  height: 10%;
 
-  .logo{
-    font-size: 4em;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    margin-left: 0.5em;
-    cursor: pointer;
 }
 
-.messages{
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
+.logo{
+  font-size: 4em;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  margin-left: 0.5em;
+  cursor: pointer;
 }
 
 .sidebar-button-toggle{
-    color: white; font-size: 3em; position: relative; padding-right: 0.8em; cursor: pointer; display: none;
-  }
+  color: white; font-size: 3em; position: relative; padding-right: 0.8em; cursor: pointer; display: none;
+}
 
-  @media screen and (max-width: 70em
+.mesaje{
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+
+@media screen and (max-width: 70em
 ) {
   .logo {
     font-size: 3em; /* Adjusted width for smaller resolutions */
-  }
-  .top{
-    height: fit-content;
   }
 }
 
@@ -41,8 +38,12 @@
     .logo {
         font-size: 2em; /* Adjusted width for smaller resolutions */
       }
-      .messages-text{
+      .mesaje-text{
         display: none;
+      }
+
+      .top{
+        height: 20%;
       }
 }
 
@@ -59,13 +60,7 @@
       .cards-container{
         width: 100vw;
       }
-
-      .messages-text{
-        display: none;
-      }
-
-
-    
+      
 }
 
 @media screen and (max-width: 35em
@@ -109,7 +104,9 @@
       display: none;
     }
 
-    .messages{
+    .mesaje{
       display: none;
     }
+
+
 }

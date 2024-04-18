@@ -1,4 +1,4 @@
-<div style="width: 100vw; height: 100vh;">
+<div style="width: 100vw; height: 100vh; overflow-y: auto;">
   <div *ngIf="showSearchBar" class="top">
     <span (click)="clickLogo()" class="logo">DOREL</span>
     <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
@@ -10,8 +10,8 @@
     </div>
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
-      <div *ngIf="userLoggedIn" (click)="goToMessages()" class="messages">
-        <span class="messages-text" style="font-size: medium; color: var(--text-color-white); margin-right: 0.7em;">Mesaje</span>
+      <div class="mesaje" *ngIf="userLoggedIn" (click)="goToMessages()">
+        <span class="mesaje-text" style="font-size: medium; color: var(--text-color-white); margin-right: 0.7em;">Mesaje</span>
         <i style="font-size: 2em; color: white;"
         class="fa-solid fa-message"></i>
       </div>
