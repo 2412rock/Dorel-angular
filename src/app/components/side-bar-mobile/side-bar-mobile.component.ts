@@ -12,6 +12,7 @@ export class SideBarMobileComponent {
   public sidebarShow: boolean;
   public loggedIn: boolean = false;
   @Output() sideBarClose = new EventEmitter<void>();
+  public showMessageNotification:boolean = false;
 
   constructor(private localStorageService: LocalstorageService, private router: Router){}
 
@@ -21,6 +22,11 @@ export class SideBarMobileComponent {
       console.log("Got event " + val)
       this.sidebarShow = val;
     })
+  }
+
+  goToMessages() {
+    this.showMessageNotification = false;
+    this.router.navigate(['./chat']);
   }
 
   checkIfLoggedIn(){
@@ -42,7 +48,6 @@ export class SideBarMobileComponent {
   toggleSidebar(){
     console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
-    
   }
 
   stopPropagation(event: Event) {

@@ -61,6 +61,7 @@
     .logo {
         font-size: 2em; /* Adjusted width for smaller resolutions */
       }
+      
 }
 
 @media screen and (max-width: 40em
@@ -74,7 +75,15 @@
         margin-top: 15em;
       }
       .cards-container{
-        width: 100vw;
+        width: 100%;
+        height: 85%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .content{
+        height: 85%;
+        width: 100%;
       }
 }
 

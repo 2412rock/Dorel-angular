@@ -63,9 +63,9 @@ p{
     background-color: rgb(224, 225, 225);
 }
 
-@media screen and (max-width: 40em
+@media screen and (max-width: 60em
 ) {
-    .profile-pic {
+    .my-account {
         display: none; /* Adjusted width for smaller resolutions */
       }
 

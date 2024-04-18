@@ -7,6 +7,10 @@ img{
         cursor: pointer;
 }
 
+.height{
+  height: 90%;
+}
+
 .logo{
     font-size: 4em;
     color: white;
@@ -102,6 +106,9 @@ cursor: pointer;
 
 @media screen and (max-width: 35em
 ) {
+  .height{
+    height: 85%;
+  }
   .logo {
       display: none; /* Adjusted width for smaller resolutions */
     }

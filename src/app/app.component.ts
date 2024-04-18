@@ -83,11 +83,15 @@ export class AppComponent {
     console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
     console.log("Emit")
-    // this.sidebarShowEvent.emit(this.sidebarShow);
+    this.sidebarShowEvent.emit(this.sidebarShow);
   }
   getDataFromSearch(model: SearchModel) {
     this.sharedDataService.eventEmitter.emit(model);
     this.router.navigate(['./search-results-page'])
+  }
+
+  sideBarClose(){
+    this.sidebarShow = false;
   }
 
   goToMessages() {
