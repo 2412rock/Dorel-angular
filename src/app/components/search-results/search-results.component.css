@@ -92,11 +92,6 @@
     .logo {
         display: none; /* Adjusted width for smaller resolutions */
       }
-      .content{
-        height: fit-content;
-        overflow-y: hidden;
-      
-      }
       .result-cards{
         margin-top: 15em;
         margin-left: 0;
