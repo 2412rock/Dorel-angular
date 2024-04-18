@@ -2,7 +2,7 @@
   <div *ngIf="showSearchBar" class="top">
     <span (click)="clickLogo()" class="logo">DOREL</span>
     <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
-    <div>
+    <div >
       <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="sideBarClose()"></app-side-bar-mobile>
     </div>
     <div style="margin-top: 1em;">

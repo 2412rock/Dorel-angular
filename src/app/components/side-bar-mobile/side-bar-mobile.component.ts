@@ -25,8 +25,8 @@ export class SideBarMobileComponent {
   }
 
   goToMessages() {
-    this.showMessageNotification = false;
-    this.router.navigate(['./chat']);
+    this.sidebarShow = false;
+    this.router.navigate(['./chat'])
   }
 
   checkIfLoggedIn(){
@@ -56,17 +56,24 @@ export class SideBarMobileComponent {
 clickLogout(){
   this.localStorageService.deleteUserData();
   location.reload();
+  this.sideBarClose.emit();
 }
 
 clickLogin(){
   this.router.navigate(["./login-page"])
+  this.sideBarClose.emit();
+  this.sidebarShow = false;
 }
 
 clickAccountSettings(){
   this.router.navigate(['./account-settings'])
+  this.sideBarClose.emit();
+  this.sidebarShow = false;
 }
 
 clickBack(){
+  this.sideBarClose.emit();
+  this.sidebarShow = false;
   window.location.reload();
 }
 }
