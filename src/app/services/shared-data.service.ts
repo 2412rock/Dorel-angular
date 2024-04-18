@@ -6,6 +6,7 @@ import { DBServiciuModel } from '../model/DBModels/DBServiciuModel';
 import { FilteredSearchResult } from '../model/filtered-search-result';
 import { SaveMessageReq } from '../model/Requests/save-message-req';
 import { SearchModel } from '../model/search-model';
+import { Group } from '../model/group';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class SharedDataService {
   public eventEmitter = new EventEmitter<SearchModel>();
   public loginEventEmitter = new EventEmitter<void>();
   public newMessagsFrom: number[] = [];
+  public chatGroup: Group;
 
   getUserEmail(){
     return this.userEmail;
@@ -105,6 +107,5 @@ export class SharedDataService {
   public getMessageUserName(): string{
     return this.toName
   }
-
 
 }

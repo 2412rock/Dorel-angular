@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-side-bar-mobile',
@@ -14,7 +15,7 @@ export class SideBarMobileComponent {
   @Output() sideBarClose = new EventEmitter<void>();
   public showMessageNotification:boolean = false;
 
-  constructor(private localStorageService: LocalstorageService, private router: Router){}
+  constructor(private localStorageService: LocalstorageService, private router: Router, private location: Location){}
 
   ngOnInit(){
     this.checkIfLoggedIn();
@@ -26,7 +27,7 @@ export class SideBarMobileComponent {
 
   goToMessages() {
     this.sidebarShow = false;
-    this.router.navigate(['./chat'])
+    this.router.navigate(['./chat-list-mobile'])
   }
 
   checkIfLoggedIn(){
@@ -74,6 +75,6 @@ clickAccountSettings(){
 clickBack(){
   this.sideBarClose.emit();
   this.sidebarShow = false;
-  window.location.reload();
+  this.location.back();
 }
 }
