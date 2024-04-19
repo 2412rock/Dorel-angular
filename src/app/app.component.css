@@ -9,7 +9,7 @@
 }
 
 .parent{
-  width: 100vw; height: 100vh; overflow:auto;
+  width: 100vw; height: 100vh; overflow-x:hidden;
 }
 
 .logo{
@@ -47,6 +47,9 @@
       .top{
         height: 20%;
       }
+      .parent{
+        width: auto;
+      }
 }
 
 @media screen and (max-width: 40em
@@ -55,15 +58,9 @@
         font-size: 1.5em;
         margin-left: 1em; /* Adjusted width for smaller resolutions */
       }
-
-      .result-cards{
-        margin-top: 15em;
-      }
-      .cards-container{
-        width: 100vw;
-      }
       .parent{
         height: fit-content;
+        width: auto;
       }
 }
 
@@ -71,24 +68,6 @@
 ) {
     .logo {
         display: none; /* Adjusted width for smaller resolutions */
-      }
-      .content{
-        height: fit-content;
-        overflow-y: hidden;
-      
-      }
-      .result-cards{
-        margin-top: 15em;
-        margin-left: 0;
-      }
-
-      .cards-container{
-        width: 100%;
-        height: 100;
-        margin-top: 2em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
 
       .sidebar-button-toggle{
@@ -111,6 +90,8 @@
     .mesaje{
       display: none;
     }
+
+    
 
 
 }
