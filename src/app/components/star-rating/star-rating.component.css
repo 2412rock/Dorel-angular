@@ -27,4 +27,21 @@
     font-size: 1.1em;
     animation: bounce 0.4s ease-in-out;
   }
+
+  @media screen and (max-width: 50em
+  ) {
+      
+    .star-rating-default  .fa-star, .fa-star-half-alt  .star-rating .fa-star-custom .fa-star.filled .fa-star.active{
+      font-size: 1em;
+    }
+        
+  }
   
+  @media screen and (max-width: 40em
+) {
+    
+  .star-rating-default  .fa-star, .fa-star-half-alt  .star-rating .fa-star-custom .fa-star.filled .fa-star.active{
+    font-size: 0.7em;
+  }
+      
+}

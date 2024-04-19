@@ -1,13 +1,4 @@
-.top{
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position:absolute;
-    top: 0;
-    background-color: var(--card-color);
-    z-index: 2;
-}
+
 .contact-text{
     font-size: 1em;
     color: white;
@@ -23,51 +14,78 @@
     padding: 2em;
 }
 
-.logo{
-    font-size: 4em;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-    margin-left: 0.5em;
-    cursor: pointer;
+.nr-reviews{
+  color: white; font-size: 1.3em; font-weight: 400; margin-left: 1em;
 }
+
+.username{
+  color: white; font-size: 3em; font-weight: bold;
+}
+
 
 p{
     font-family:'Times New Roman', Times, serif;
 }
 
+.contact-details{
+  display: flex; flex-direction: row; margin-top: 1em;
+}
+
+.phone{
+  display: flex; flex-direction: row; align-items: center; margin-left: 0.8em;
+}
+
+.descriere{
+  color: white; font-size: 1.7em; margin-top: 1em; line-height: 1em;
+}
+
 @media screen and (max-width: 70em
 ) {
-  .logo {
-    font-size: 3em; /* Adjusted width for smaller resolutions */
-  }
+  
 }
 
 @media screen and (max-width: 50em
 ) {
-    .logo {
-        font-size: 2em; /* Adjusted width for smaller resolutions */
-      }
+  .username{
+    font-size: 2.6em;
+    
+  }
+  .descriere{
+    font-size: 2;
+  }
 }
 
-@media screen and (max-width: 40em
+@media screen and (max-width: 45em
 ) {
-    .logo {
-        font-size: 1.5em;
-        margin-left: 1em; /* Adjusted width for smaller resolutions */
-      }
+    
 
       .result-card{
-        margin-top: 14em;
+        margin-top: 2em;
+        width: auto;
+        overflow: hidden;
+      }
+
+      .username{
+        font-size: 1.7em;
+      }
+
+      .descriere{
+        font-size: 1.4em !important;
+      }
+
+      .nr-reviews{
+        font-size: 1em;
+      }
+      .contact-details{
+        flex-direction: column;
+      }
+      .phone{
+        margin-left: 0;
       }
 }
 
 @media screen and (max-width: 30em
 ) {
-    .logo {
-        display: none;/* Adjusted width for smaller resolutions */
-      }
+    
 
-      .result-card{
-        margin-top: 14em;
-      }
 }
