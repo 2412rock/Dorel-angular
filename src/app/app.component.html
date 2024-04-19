@@ -5,7 +5,7 @@
     <div >
       <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="sideBarClose()"></app-side-bar-mobile>
     </div>
-    <div style="margin-top: 1em;">
+    <div style="margin-top: 1em;" [ngStyle]="{'margin-right': userLoggedIn ? '' : '10em'}" class="search-bar">
       <app-search-bar (searchClickEvent)="getDataFromSearch($event)"></app-search-bar>
     </div>
 
