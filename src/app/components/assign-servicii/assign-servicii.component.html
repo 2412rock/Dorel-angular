@@ -1,7 +1,7 @@
 <div style="display: flex; flex-direction: column; min-height: 90%; width: 100%; background-color: var(--background-color); overflow-y: auto;"
     [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
     <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="closeSidebar()"></app-side-bar-mobile>
-    <div *ngIf="!pageReady">
+    <div *ngIf="!pageReady" style="height: 100vh;">
         <div class="spinner-border text-primary" style="width: 8.2rem; height: 8.2rem;color: var(--selected-color);"
             role="status">
         </div>
