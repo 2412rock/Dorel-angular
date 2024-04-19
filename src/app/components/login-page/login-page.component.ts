@@ -2,7 +2,7 @@ import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-socia
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ValidationService } from 'src/app/services/validation.service';
 import { LoginModel } from 'src/app/model/Requests/login-model';
@@ -35,6 +35,12 @@ export class LoginPageComponent {
 
 
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Check if the navigation event was triggered by the back button press
+        window.location.reload();
+      }
+    });
     this.sharedDataService.loginEventEmitter.emit();
     this.authService.authState.subscribe((user) => {
       if (user != null) {
