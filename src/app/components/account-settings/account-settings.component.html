@@ -1,6 +1,4 @@
-<div class="height"
-  style="width: 100%; background-color: var(--background-color); display: flex; align-items: center; overflow-y: auto; flex-direction: column;">
-  <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="closeSidebar()"></app-side-bar-mobile>
+<div class="parent">
 
   <div class="setting-items">
     <div *ngFor="let item of settingsItems.settings; let i = index" style="width: fit-content; cursor: pointer;">
@@ -11,12 +9,5 @@
         <span style="color: white; font-size: 1.3em; margin-top: 0.8em; font-weight: bol;">{{item.name}}</span>
       </div>
     </div>
-  </div>
-  <div style="">
-    <!-- <app-settings-sidebar [selectItemEvent]="selectedItemEvent"
-      (sideBarEventEmitter)="selectMenuItem($event)"></app-settings-sidebar>
-
-    <app-assign-servicii (publishDone)="deselectOption($event)" *ngIf="menuItemSelected === 1"></app-assign-servicii>
-    <app-edit-servicii (editDone)="deselectOption($event)" *ngIf="menuItemSelected === 2"></app-edit-servicii> -->
   </div>
 </div>
