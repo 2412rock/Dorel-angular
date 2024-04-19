@@ -133,12 +133,11 @@ export class SearchResultsComponent {
         }
         else {
           this.modalService.openModalNotification("Error", `Something went wrong loading data: ${response.exceptionMessage}`, false);
-          this.router.navigate(['./account-settings']);
           
         }
         this.filterSearchResults();
         this.loading = false;;
-      }).catch(e => { this.modalService.openModalNotification("Error", `Something went wrong loading data`, false); this.loading = false;this.router.navigate(['./account-settings']); });
+      }).catch(e => { this.modalService.openModalNotification("Error", `Something went wrong loading data`, false); this.loading = false;});
     }
     else {
       firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
@@ -153,11 +152,11 @@ export class SearchResultsComponent {
           }
           else {
             this.modalService.openModalNotification("Failed", `Failed to retrieve data: ${response.exceptionMessage}`, false);
-            this.router.navigate(['./account-settings']);
+            
             this.loading = false;
           }
         }
-      ).catch(e => { this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false); this.loading = false; this.router.navigate(['./account-settings']);})
+      ).catch(e => { this.modalService.openModalNotification("Unknown error", `Failed to retrieve data`, false); this.loading = false;})
     }
   }
 
