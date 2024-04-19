@@ -50,4 +50,8 @@ export class ChatWithUserMobileComponent {
     this.scrollableContent.nativeElement.scrollTop = this.scrollableContent.nativeElement.scrollHeight;
 
   }
+
+  handleTouchStart(event: TouchEvent): void {
+    event.preventDefault(); // Prevent default touch behavior (like pinch-zooming)
+  }
 }
