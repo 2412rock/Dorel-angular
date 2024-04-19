@@ -10,8 +10,8 @@
     </div>
     <div
         style="width: 100vw; height: 10vh; display: flex; flex-direction: row; align-items: center; justify-content: center; position: absolute; bottom: 0; background-color: var(--background-color);">
-        <input (keyup.enter)="sendMessage()" (touchstart)="handleTouchStart($event)"
-            style="width: 90%; height: 100%;border: 1px solid #ccc; border-radius: 1em; touch-action: manipulation;" type="text"
+        <input (keyup.enter)="sendMessage()"
+            style="width: 90%; height: 100%;border: 1px solid #ccc; border-radius: 1em; user-zoom: none;" type="text"
             [(ngModel)]="text" placeholder="Type your message">
         <div (click)="sendMessage()"
             style="background-color: var(--selected-color); padding: 0.8em; display: flex; align-items: center; justify-content: center; margin-left: 1em; cursor: pointer; border: 1px solid #ccc; border-radius: 0.7em;">
