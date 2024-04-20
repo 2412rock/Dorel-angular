@@ -40,6 +40,7 @@ export class LoginPageComponent {
       if (event instanceof NavigationEnd) {
         
         // Check if the navigation event was triggered by the back button press
+        debugger;
         if(event.url != '/register-page' && event.url != '/forgot-password'){
           window.location.reload();
         }
@@ -91,7 +92,7 @@ export class LoginPageComponent {
       if (res.isSuccess) {
         this.sharedDataService.setUserEmail(this.email);
         this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "", res.data[2], model.email);
-        this.router.navigate(['./search-results-page']);
+        window.location.reload();
         this.loadingSpinner = false;
       }
       else {
