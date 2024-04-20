@@ -12,7 +12,6 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { VerifyUserComponentComponent } from './components/verify-user-component/verify-user-component.component';
 import { VerifySuccessComponentComponent } from './components/verify-success-component/verify-success-component.component';
-import { BasicSearchPageComponent } from './components/basic-search-page/basic-search-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -24,7 +23,6 @@ import { AccountSettingsComponent } from './components/account-settings/account-
 import { GenericSearchBarComponent } from './components/generic-search-bar/generic-search-bar.component';
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
 import { DorelHttpInterceptor } from './interceptors/http-interceptor';
-import { SettingsSidebarComponent } from "./components/settings-sidebar/settings-sidebar.component";
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditServiciiComponent } from './components/edit-servicii/edit-servicii.component';
@@ -50,6 +48,8 @@ import { ChatWithUserMenuItemComponent } from './components/chat-with-user-menu-
 import { ChatListMobileComponent } from './components/chat-list-mobile/chat-list-mobile.component';
 import { ChatWithUserMobileComponent } from './components/chat-with-user-mobile/chat-with-user-mobile.component';
 import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ForgotPasswordResetComponent } from './components/forgot-password-reset/forgot-password-reset.component';
 
 
 
@@ -61,7 +61,6 @@ import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.
         RegisterPageComponent,
         VerifyUserComponentComponent,
         VerifySuccessComponentComponent,
-        BasicSearchPageComponent,
         SearchBarComponent,
         BoldPipe,
         SearchResultsComponent,
@@ -89,7 +88,9 @@ import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.
         ChatWithUserMenuItemComponent,
         ChatListMobileComponent,
         ChatWithUserMobileComponent,
-        DetailMobileComponent
+        DetailMobileComponent,
+        ForgotPasswordComponent,
+        ForgotPasswordResetComponent
     ], 
     providers: [
         {
@@ -123,7 +124,6 @@ import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.
         MatFormFieldModule,
         MatAutocompleteModule,
         MatInputModule,
-        SettingsSidebarComponent,
         MatButtonModule,
         MatDialogModule,
         DragDropModule

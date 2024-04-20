@@ -50,19 +50,21 @@ export class AppComponent {
   }
 
   checkForMessageNotifications(){
-    this.chatService.getMessageObservable().subscribe(e => {
+    if(this.userLoggedIn){
+      this.chatService.getMessageObservable().subscribe(e => {
       
-      this.showMessageNotification = true;
-      this.sharedDataService.newMessagsFrom.push(e.senderId)
-    })
-    firstValueFrom(this.chatHttpService.hasSeenMessages()).then(e => {
-      if(e.isSuccess){
-        this.showMessageNotification = e.data.length > 0;
-        e.data.forEach(e => {
-          this.sharedDataService.newMessagsFrom.push(e);
-        })
-      } 
-    })
+        this.showMessageNotification = true;
+        this.sharedDataService.newMessagsFrom.push(e.senderId)
+      })
+      firstValueFrom(this.chatHttpService.hasSeenMessages()).then(e => {
+        if(e.isSuccess){
+          this.showMessageNotification = e.data.length > 0;
+          e.data.forEach(e => {
+            this.sharedDataService.newMessagsFrom.push(e);
+          })
+        } 
+      })
+    }
   }
 
   checkUserLoggedIn(){

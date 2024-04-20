@@ -5,7 +5,6 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { VerifyUserComponentComponent } from './components/verify-user-component/verify-user-component.component';
 import { VerifySuccessComponentComponent } from './components/verify-success-component/verify-success-component.component';
-import { BasicSearchPageComponent } from './components/basic-search-page/basic-search-page.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AssignServiciiComponent } from './components/assign-servicii/assign-servicii.component';
@@ -16,6 +15,9 @@ import { ChatComponent } from './components/chat/chat.component';
 import { ChatListMobileComponent } from './components/chat-list-mobile/chat-list-mobile.component';
 import { ChatWithUserMobileComponent } from './components/chat-with-user-mobile/chat-with-user-mobile.component';
 import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ForgotPasswordResetComponent } from './components/forgot-password-reset/forgot-password-reset.component';
+
 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent},
@@ -23,7 +25,6 @@ const routes: Routes = [
   {path: 'register-page', component: RegisterPageComponent},
   {path: 'verify-page', component: VerifyUserComponentComponent},
   {path: 'verify-success', component: VerifySuccessComponentComponent},
-  {path: 'basic-search-page', component: BasicSearchPageComponent},
   {path: 'search-results-page', component: SearchResultsComponent},
   {path: 'serviciu-detail-page', component: ServiciuDetailComponent},
   {path: 'assign-page', component: AssignServiciiComponent},
@@ -33,6 +34,8 @@ const routes: Routes = [
   {path: 'chat-list-mobile', component: ChatListMobileComponent},
   {path: 'chat-with-mobile', component: ChatWithUserMobileComponent},
   {path: 'detail-mobile', component: DetailMobileComponent},
+  {path: 'forgot-password-reset', component: ForgotPasswordResetComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'account-settings', component: AccountSettingsComponent, children: [
     {path: 'assign-servicii', component: AssignServiciiComponent},
   ]},
@@ -43,3 +46,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+

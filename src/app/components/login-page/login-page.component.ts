@@ -6,7 +6,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ValidationService } from 'src/app/services/validation.service';
 import { LoginModel } from 'src/app/model/Requests/login-model';
-import { firstValueFrom } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import { LoginGoogleRequest } from 'src/app/model/Requests/login-google-model';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
@@ -23,6 +23,7 @@ export class LoginPageComponent {
   public loadingSpinner: boolean = false;
   public emailValidation: boolean = false;
   public passwordValidation: boolean = false;
+  private routerEventsSubscription: Subscription;
 
   constructor(private fb: FormBuilder,
     private authService: SocialAuthService,
@@ -35,10 +36,14 @@ export class LoginPageComponent {
 
 
   ngOnInit() {
-    this.router.events.subscribe(event => {
+    this.routerEventsSubscription =  this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        
         // Check if the navigation event was triggered by the back button press
-        window.location.reload();
+        if(event.url != '/register-page' && event.url != '/forgot-password'){
+          window.location.reload();
+        }
+        
       }
     });
     this.sharedDataService.loginEventEmitter.emit();
@@ -72,6 +77,10 @@ export class LoginPageComponent {
         });
       }
     });
+  }
+
+  clickForgotPassword(){
+    this.router.navigate(['./forgot-password'])
   }
 
   private loginViaEmail() {
@@ -125,6 +134,13 @@ export class LoginPageComponent {
   }
   onClickSignUp() {
     this.router.navigate(['./register-page'])
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from the router events subscription when the component is destroyed
+    if (this.routerEventsSubscription) {
+      this.routerEventsSubscription.unsubscribe();
+    }
   }
 
 }

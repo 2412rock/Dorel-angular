@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SettingsSidebarComponent } from './settings-sidebar.component';
+import { ForgotPasswordComponent } from './forgot-password.component';
 
-describe('SettingsSidebarComponent', () => {
-  let component: SettingsSidebarComponent;
-  let fixture: ComponentFixture<SettingsSidebarComponent>;
+describe('ForgotPasswordComponent', () => {
+  let component: ForgotPasswordComponent;
+  let fixture: ComponentFixture<ForgotPasswordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SettingsSidebarComponent]
+      imports: [ForgotPasswordComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SettingsSidebarComponent);
+    fixture = TestBed.createComponent(ForgotPasswordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
