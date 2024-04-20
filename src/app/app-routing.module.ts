@@ -17,6 +17,7 @@ import { ChatWithUserMobileComponent } from './components/chat-with-user-mobile/
 import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ForgotPasswordResetComponent } from './components/forgot-password-reset/forgot-password-reset.component';
+import { AccountInfoComponent } from './components/account-info/account-info.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'detail-mobile', component: DetailMobileComponent},
   {path: 'forgot-password-reset', component: ForgotPasswordResetComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: 'account-info', component: AccountInfoComponent},
   {path: 'account-settings', component: AccountSettingsComponent, children: [
     {path: 'assign-servicii', component: AssignServiciiComponent},
   ]},

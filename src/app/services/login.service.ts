@@ -45,4 +45,8 @@ export class LoginService {
   refreshToken(token: string): Observable<Maybe<string>>{
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/refreshToken`, {refreshToken: token});
   }
+
+  deleteAccount(): Observable<Maybe<string>>{
+    return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteAccount`);
+  }
 }

@@ -67,6 +67,9 @@ export class AccountSettingsComponent {
     }else if(index === 1){
       this.router.navigate(["./search-results-page"], { queryParams: { edit: true } });
     }
+    else if(index === 2){
+      this.router.navigate(["./account-info"]);
+    }
   }
 
   goToMessages(){

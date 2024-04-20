@@ -50,6 +50,7 @@ import { ChatWithUserMobileComponent } from './components/chat-with-user-mobile/
 import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ForgotPasswordResetComponent } from './components/forgot-password-reset/forgot-password-reset.component';
+import { AccountInfoComponent } from './components/account-info/account-info.component';
 
 
 
@@ -90,7 +91,8 @@ import { ForgotPasswordResetComponent } from './components/forgot-password-reset
         ChatWithUserMobileComponent,
         DetailMobileComponent,
         ForgotPasswordComponent,
-        ForgotPasswordResetComponent
+        ForgotPasswordResetComponent,
+        AccountInfoComponent
     ], 
     providers: [
         {
