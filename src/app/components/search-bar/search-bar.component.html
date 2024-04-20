@@ -3,7 +3,7 @@
     <div class="display-flex">
         <div #serviciuSearchInput [ngClass]="{'border-radius-left-bottom': !dropdownServiciiVisible}" class="input-and-clear-btn flex-serviciu input-container border-radius-left-top">
             <div class="space-between">
-                <input type="text" (click)="dropdownLocationVisible = false" class="" [formControl]="textInputControlServicii" placeholder="Cauta un serviciu"/>
+                <input type="text" (click)="clickServiciuInput()" class="" [formControl]="textInputControlServicii" placeholder="Cauta un serviciu"/>
                 <div>
                     <i (click)="clickClearServicii()" class="fa-solid fa-x"></i>
                 </div>
@@ -12,7 +12,7 @@
 
         <div #judetSearchInput class="input-and-clear-btn flex-locatie input-container">
             <div class="space-between">
-                <input type="text" (click)="dropdownServiciiVisible = false" class="" [formControl]="textInputControlLocation" placeholder="Cauta o locatie"/>
+                <input type="text" (click)="clickJudetInput()" class="" [formControl]="textInputControlLocation" placeholder="Cauta o locatie"/>
                 <div>
                     <i (click)="clickClearLocatie()" class="fa-solid fa-x"></i>
                 </div>

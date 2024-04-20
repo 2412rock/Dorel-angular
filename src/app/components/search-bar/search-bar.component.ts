@@ -33,6 +33,7 @@ export class SearchBarComponent {
 
   ngOnInit(): void {
     this.textInputControlServicii.valueChanges.subscribe(value => {
+      console.log("Change")
       if(value != null){
         this.dropdownServiciiVisible = true;
         this.filterResultsServicii(value);
@@ -52,6 +53,18 @@ export class SearchBarComponent {
         this.dropdownLocationVisible = false;
       }
     });
+  }
+
+  clickServiciuInput(){
+    this.dropdownLocationVisible = false;
+    this.dropdownServiciiVisible = true;
+    this.filterResultsServicii("");
+  }
+
+  clickJudetInput(){
+    this.dropdownServiciiVisible = false;
+    this.dropdownLocationVisible = true;
+    this.filterResultsLocatie("");
   }
 
   filterResultsServicii(startsWith: string){
