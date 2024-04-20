@@ -29,8 +29,9 @@ export class AccountInfoComponent {
             })
           }else{
             this.modalService.openModalNotification("Failed", `Failed to delete account: ${e.exceptionMessage}`, false);
+            this.loadingSpinner = false;
           }
-        }).catch(e => this.modalService.openModalNotification("Failed", `Failed to delete account`, false))
+        }).catch(e => {this.modalService.openModalNotification("Failed", `Failed to delete account`, false); this.loadingSpinner = false;;})
       }
     })
     
