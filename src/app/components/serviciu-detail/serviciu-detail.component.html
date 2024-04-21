@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="reviews.length === 0"
+        <div *ngIf=" reviews != null &&  reviews.length === 0"
             style="background-color: var(--card-color); margin-top: 2em; border-radius: 1em; width: 100%;">
 
             <div
