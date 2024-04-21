@@ -49,4 +49,8 @@ export class LoginService {
   deleteAccount(): Observable<Maybe<string>>{
     return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteAccount`);
   }
+
+  isAdmin(): Observable<Maybe<boolean>>{
+    return this.http.get<Maybe<boolean>>(`${this.apiUrl}/api/isAdmin`);
+  }
 }

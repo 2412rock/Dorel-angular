@@ -18,6 +18,7 @@ import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ForgotPasswordResetComponent } from './components/forgot-password-reset/forgot-password-reset.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
+import { OverviewAdminComponent } from './components/overview-admin/overview-admin.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'forgot-password-reset', component: ForgotPasswordResetComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
   {path: 'account-info', component: AccountInfoComponent},
+  {path: 'overview-admin', component: OverviewAdminComponent},
   {path: 'account-settings', component: AccountSettingsComponent, children: [
     {path: 'assign-servicii', component: AssignServiciiComponent},
   ]},

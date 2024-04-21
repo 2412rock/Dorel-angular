@@ -1,9 +1,11 @@
 
 import { Component, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { SearchModel } from 'src/app/model/search-model';
 import { ChatService } from 'src/app/services/chat.service';
 import { LocalstorageService } from 'src/app/services/localstorage.service';
+import { LoginService } from 'src/app/services/login.service';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
@@ -18,6 +20,7 @@ export class AccountSettingsComponent {
   public loggedIn: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
   public showMessageNotification: boolean = false;
+  public isAdmin: boolean = false;
   public settingsItems = 
   {
     "settings": 
@@ -42,6 +45,10 @@ export class AccountSettingsComponent {
       "img": "https://cdn-icons-png.freepik.com/512/4624/4624025.png"
      },
      {
+      "name": "Overview admin",
+      "img": "https://cdn-icons-png.freepik.com/512/4624/4624025.png"
+     },
+     {
       "name": "Calendar",
       "img": "https://cdn-icons-png.flaticon.com/512/10691/10691802.png"
      }
@@ -52,10 +59,16 @@ export class AccountSettingsComponent {
   constructor(private router: Router,
     private sharedDataService: SharedDataService,
     private localStorageService: LocalstorageService,
-    private chatService: ChatService){
+    private chatService: ChatService,
+    private loginService: LoginService){
  }
 
   ngOnInit(){
+    firstValueFrom(this.loginService.isAdmin()).then(e => {
+      if(e.isSuccess){
+        this.isAdmin = e.data;
+      }
+    })
     this.chatService.getMessageObservable().subscribe(e => {
       this.showMessageNotification = true;
     })
@@ -69,6 +82,9 @@ export class AccountSettingsComponent {
     }
     else if(index === 2){
       this.router.navigate(["./account-info"]);
+    }
+    else if(index === 5){
+      this.router.navigate(["./overview-admin"]);
     }
   }
 

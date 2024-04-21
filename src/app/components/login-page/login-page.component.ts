@@ -91,7 +91,7 @@ export class LoginPageComponent {
     firstValueFrom(this.loginService.login(model)).then(res => {
       if (res.isSuccess) {
         this.sharedDataService.setUserEmail(this.email);
-        this.localStorageService.setUserData(res.data[0], res.data[1], "Email name", "", "true", "", res.data[2], model.email);
+        this.localStorageService.setUserData(res.data[1], res.data[0], "Email name", "", "true", "", res.data[2], model.email);
         window.location.reload();
         this.loadingSpinner = false;
       }

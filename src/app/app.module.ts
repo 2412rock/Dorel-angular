@@ -51,6 +51,7 @@ import { DetailMobileComponent } from './components/detail-mobile/detail-mobile.
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ForgotPasswordResetComponent } from './components/forgot-password-reset/forgot-password-reset.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
+import { OverviewAdminComponent } from './components/overview-admin/overview-admin.component';
 
 
 
@@ -92,7 +93,8 @@ import { AccountInfoComponent } from './components/account-info/account-info.com
         DetailMobileComponent,
         ForgotPasswordComponent,
         ForgotPasswordResetComponent,
-        AccountInfoComponent
+        AccountInfoComponent,
+        OverviewAdminComponent
     ], 
     providers: [
         {

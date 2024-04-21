@@ -1,0 +1,19 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 90vh; width: 100vw; background-color: var(--background-color);">
+    <div style="width: 80%;">
+      <table style="width: 100%; height: 100%; border-collapse: collapse; border: 2px solid white;">
+        <thead>
+          <tr>
+            <th style="border: 1px solid white; padding: 10px; color: white;">Ip address</th>
+            <th style="border: 1px solid white; padding: 10px; color: white;">Access time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of logs">
+            <td style="border: 1px solid white; padding: 10px; font-size: large; color: white;">{{ item.ipAddress}}</td>
+            <td style="border: 1px solid white; padding: 10px; font-size: large; color: white;">{{ item.accessTime }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
