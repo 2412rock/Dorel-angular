@@ -8,6 +8,7 @@ import { SearchModel } from './model/search-model';
 import { ChatService } from './services/chat.service';
 import { firstValueFrom } from 'rxjs';
 import { ChatHttpService } from './services/chat-http.service';
+import { AccessLogsService } from './services/access-logs.service';
 
 @Component({
   selector: 'app-root',
@@ -29,13 +30,18 @@ export class AppComponent {
   public userLoggedIn: boolean = false;
   
 
-  constructor(private router: Router, private sharedDataService: SharedDataService, private chatService: ChatService, private chatHttpService: ChatHttpService) { }
+  constructor(private router: Router,
+    private sharedDataService: SharedDataService,
+    private chatService: ChatService,
+    private chatHttpService: ChatHttpService,
+    private accessLogsService: AccessLogsService) { }
 
   navigateToLoginPage() {
     this.router.navigate(['./login-page'])
   }
 
   async ngOnInit() {
+    firstValueFrom(this.accessLogsService.addLog()).then(e => {})
     this.checkUserLoggedIn()
     this.sharedDataService.loginEventEmitter.subscribe(e => {
       this.showSearchBar = false;
