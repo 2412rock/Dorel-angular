@@ -36,6 +36,7 @@ export class LoginPageComponent {
 
 
   ngOnInit() {
+
     this.routerEventsSubscription =  this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         
@@ -137,13 +138,6 @@ export class LoginPageComponent {
   }
   onClickSignUp() {
     this.router.navigate(['./register-page'])
-  }
-
-  ngOnDestroy() {
-    // Unsubscribe from the router events subscription when the component is destroyed
-    if (this.routerEventsSubscription) {
-      this.routerEventsSubscription.unsubscribe();
-    }
   }
 
 }
