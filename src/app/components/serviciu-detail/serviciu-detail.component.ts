@@ -24,7 +24,7 @@ export class ServiciuDetailComponent {
   public searchResult: FilteredSearchResult;
   public imagini: Imagine[] = [];
   public loading: boolean = true;
-  public reviews: DBReviewModel[];
+  public reviews: DBReviewModel[] = [];
   public showWriteReview: boolean = false;
   public showEditReview: boolean = false;
   public showMessageNotification: boolean = false;

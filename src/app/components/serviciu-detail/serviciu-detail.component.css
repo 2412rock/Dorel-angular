@@ -28,7 +28,7 @@ p{
 }
 
 .contact-details{
-  display: flex; flex-direction: row; margin-top: 1em;
+  display: flex; flex-direction: row; margin-top: 2em;
 }
 
 .phone{

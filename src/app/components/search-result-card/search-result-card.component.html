@@ -26,8 +26,8 @@
                         style="display: flex; flex-direction: row; align-items: center; justify-content: center; margin-top: 0.5em;">
                         <i style="font-size: medium; color: var(--selected-color); margin-right: 0.6em;"
                             class="fa-solid fa-briefcase"></i>
-                        <div style=" padding: 0.1em; color: var(--text-color-white);">
-                            {{searchResult.serviciuName}}</div>
+                        <div style=" padding: 0.1em; color: var(--text-color-white); ">
+                            <span style="text-overflow: ellipsis;  overflow: hidden; flex-wrap: nowrap;">{{searchResult.serviciuName | truncateServiciuName}}</span></div>
 
                     </div>
                     <div

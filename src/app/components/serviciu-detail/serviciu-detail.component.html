@@ -5,7 +5,7 @@
             <div style="display: flex; flex-direction: column; max-width: 80%;">
                 <div style="display: flex; flex-direction: row;">
                     <div style="display: flex; flex-direction: column;">
-                        <p class="username">{{searchResult.userName}}</p>
+                        <span class="username">{{searchResult.userName}}</span>
                         <div class="contact-details">
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <i class="fa-solid fa-envelope contact-text"></i>
@@ -15,12 +15,13 @@
                                 <i class="fa-solid fa-phone contact-text"></i>
                                 <span class="contact-text margin-left:1em" style="margin-left:0.3em">012 344 231</span>
                             </div>
+                            
                         </div>
-
+                        <span class="contact-text" style="margin-top: 1em;">Activeaza in urmatoarele domenii: {{searchResult.serviciuName}}</span>
 
                     </div>
 
-                    <app-star-rating [static]="true" [rating]="5" style="margin-left: 1.5em;"></app-star-rating>
+                    <app-star-rating [static]="true" [rating]="searchResult.starsAverage" style="margin-left: 1.5em;"></app-star-rating>
                     <span
                         class="nr-reviews">{{searchResult.starsAverage}}/5
                         ({{searchResult.numberOfReviews}} reviews)</span>
@@ -64,6 +65,7 @@
         <div
             style="background-color: var(--card-color); width: 70vw; margin-top: 2em; border-radius: 1em; width: 100%;">
             <div *ngFor="let review of reviews">
+
                 <div
                     style="background-color: var(--review-color); border-radius: 0.7em; padding: 2em; margin-bottom: 1.4em;">
                     <app-review-card [description]="review.reviewDescription" [reviewerName]="review.reviewerName"

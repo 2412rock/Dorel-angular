@@ -52,6 +52,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ForgotPasswordResetComponent } from './components/forgot-password-reset/forgot-password-reset.component';
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { OverviewAdminComponent } from './components/overview-admin/overview-admin.component';
+import { TruncateServiciuNamePipe } from './pipes/truncate-serviciu-name.pipe';
 
 
 
@@ -86,6 +87,7 @@ import { OverviewAdminComponent } from './components/overview-admin/overview-adm
         ClickOutsideDirective,
         SideBarMobileComponent,
         TruncatePipe,
+        TruncateServiciuNamePipe,
         ChatComponent,
         ChatWithUserMenuItemComponent,
         ChatListMobileComponent,
