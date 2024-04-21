@@ -40,9 +40,11 @@ export class LoginPageComponent {
       if (event instanceof NavigationEnd) {
         
         // Check if the navigation event was triggered by the back button press
-        debugger;
-        if(event.url != '/register-page' && event.url != '/forgot-password'){
+        if(event.url === "/search-results-page"){
           window.location.reload();
+        }
+        else{
+          this.routerEventsSubscription.unsubscribe();
         }
         
       }
