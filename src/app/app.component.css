@@ -75,6 +75,7 @@
 
       .sidebar-button-toggle{
         display: block;
+        padding: 0;
       }
 
       .top{
@@ -94,7 +95,9 @@
       display: none;
     }
 
-    
+    .search-bar{
+      margin-right: 0!important;
+    }
 
 
 }
