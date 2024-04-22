@@ -10,7 +10,7 @@
 
 
 .cards-container {
-  width: 70vw;
+  width: 80vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -25,6 +25,15 @@
 
   .cards-container{
     overflow: hidden;
+  }
+
+}
+
+@media screen and (max-width: 50em) {
+
+
+  .cards-container{
+    width: auto;
   }
 
 }
