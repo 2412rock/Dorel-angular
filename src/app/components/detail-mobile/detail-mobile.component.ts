@@ -85,10 +85,7 @@ export class DetailMobileComponent {
     this.loading = true;
     this.checkReviewRights();
     firstValueFrom(this.dataService.getImaginiForServiciuUser(this.searchResult.serviciuId,this.searchResult.judetIds[0], this.searchResult.userId)).then(response => {
-      console.log("Response imaginig")
-      console.log(response)
       if(response.isSuccess){
-        console.log("Imagini success")
           this.imagini = response.data;
           firstValueFrom(this.dataService.getReviews(this.searchResult.userId, this.searchResult.serviciuId, 0)).then(response => {
             if(response.isSuccess){
@@ -151,7 +148,6 @@ export class DetailMobileComponent {
     if (!edit) {
       let dialogref = this.modalService.openWriteReviewModal(false, null, null);
       dialogref.afterClosed().subscribe(result => {
-        console.log("Posting review")
         if (result != null) {
           this.postReview(result, false);
           

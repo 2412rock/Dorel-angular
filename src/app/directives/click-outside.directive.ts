@@ -18,14 +18,12 @@ export class ClickOutsideDirective {
 
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
-    console.log('Directive');
     const clickedElement = event.target as HTMLElement;
     if (!clickedElement || clickedElement.id === 'sidebar-btn') {
         // Do nothing if the clicked element has the specified ID
         return;
     }
     if (!this.elementRef.nativeElement.contains(clickedElement)) {
-        console.log("emit");
         this.clickOutsideEvent.emit();
     }
   }

@@ -33,7 +33,6 @@ export class SearchBarComponent {
 
   ngOnInit(): void {
     this.textInputControlServicii.valueChanges.subscribe(value => {
-      console.log("Change")
       if(value != null){
         this.dropdownServiciiVisible = true;
         this.filterResultsServicii(value);

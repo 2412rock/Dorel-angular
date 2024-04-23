@@ -32,7 +32,6 @@ export class ChatComponent {
 
   constructor(private router: Router,private chatService: ChatService,private chatServiceHttp: ChatHttpService ,private localStorageService: LocalstorageService, private sharedDataService: SharedDataService) {
     this.chatService.getMessageObservable().subscribe((message) => {
-      console.log("Got message")
       this.groupMessages.push(message);
       setTimeout(() => {
         this.scrollToBottom();
@@ -52,10 +51,7 @@ export class ChatComponent {
   }
 
   isNewMessage(index:number){
-    console.log(this.sharedDataService.newMessagsFrom)
-    console.log(this.groups[index].withUser)
      var result =  this.sharedDataService.newMessagsFrom.find(e => e == this.groups[index].withUser) != undefined;
-     console.log(result)
      return result;
   }
 
@@ -64,7 +60,6 @@ export class ChatComponent {
     this.myUserId = parseInt(this.localStorageService.getUserId());
     firstValueFrom(this.chatServiceHttp.getMessages()).then(response => {
       if(response.isSuccess){
-        console.log("Got messages")
         var messageUser = this.sharedDataService.getMessageUserId();
         var existingChatWithUser = response.data.filter(e => e.withUser === messageUser);
         this.groups = response.data;
@@ -91,9 +86,7 @@ export class ChatComponent {
   }
 
   toggleSidebar(){
-    console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
-    console.log("Emit")
     this.sidebarShowEvent.emit(this.sidebarShow);
   }
 

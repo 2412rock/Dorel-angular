@@ -76,7 +76,6 @@ export class ChatService {
     getMessageObservable(): Observable<Message> {
       return new Observable(observer => {
           this.hubConnection.on(`${this.localStorageService.getUserId().toString()}`, (fromuser, message: string) => {
-            console.log("Got message")
             var msgObj = new Message();
             msgObj.senderId = fromuser;
             msgObj.messageText = message;

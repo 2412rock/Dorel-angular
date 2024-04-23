@@ -10,8 +10,4 @@ export class ReviewCardComponent {
   @Input() stars: number;
   @Input() description: string;
 
-  ngOnInit(){
-    console.log("STARS")
-    console.log(this.stars)
-  }
 }

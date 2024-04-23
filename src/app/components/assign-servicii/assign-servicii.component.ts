@@ -189,9 +189,7 @@ export class AssignServiciiComponent {
   }
 
   toggleSidebar(){
-    console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
-    console.log("Emit")
     this.sidebarShowEvent.emit(this.sidebarShow);
   }
 }

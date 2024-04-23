@@ -113,11 +113,7 @@ export class SearchResultsComponent {
         });
         this.filteredSearchResults.push(filteredSearchResult);
       }
-    }
-
-    console.log("Filtered")
-    console.log(this.filteredSearchResults)
-    
+    }    
   }
 
   loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean) {
@@ -144,7 +140,6 @@ export class SearchResultsComponent {
         response => {
           if (response.isSuccess) {
             response.data.forEach(searchResult => {
-              console.log("Pushing data")
               this.searchResults.push(searchResult);
             });
             this.filterSearchResults();
@@ -200,9 +195,7 @@ export class SearchResultsComponent {
   }
 
   toggleSidebar(){
-    console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
-    console.log("Emit")
     this.sidebarShowEvent.emit(this.sidebarShow);
   }
 

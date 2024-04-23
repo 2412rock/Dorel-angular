@@ -20,7 +20,6 @@ export class SideBarMobileComponent {
   ngOnInit(){
     this.checkIfLoggedIn();
     this.sidebarShowChange.subscribe(val => {
-      console.log("Got event " + val)
       this.sidebarShow = val;
     })
   }
@@ -41,13 +40,11 @@ export class SideBarMobileComponent {
   }
 
   closeSidebar(){
-    console.log("Close sidebar")
     this.sidebarShow = false;
     this.sideBarClose.emit();
   }
 
   toggleSidebar(){
-    console.log("Toggle")
     this.sidebarShow = !this.sidebarShow;
   }
 

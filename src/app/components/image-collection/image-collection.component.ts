@@ -27,7 +27,6 @@ export class ImageCollectionComponent {
   }
 
   clickImage(index: number){
-    console.log("Clicked image")
     this.modalService.openImagesModal(this.imagini, index);
   }
 }

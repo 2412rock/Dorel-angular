@@ -20,12 +20,10 @@ export class WriteReviewModalComponent {
   ) {}
 
   ngOnInit(){
-    console.log(this.data)
     if(this.data.edit){
       this.descriptionText = this.data.description;
       this.rating = this.data.rating;
     }
-    console.log(this.rating)
   }
 
   publish(): void {
