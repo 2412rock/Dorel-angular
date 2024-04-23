@@ -90,4 +90,8 @@ export class DataService {
   deleteReview(reviewedUserId:number, serviciuId: number){
     return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteReview?reviewedUserId=${reviewedUserId}&serviciuId=${serviciuId}`)
   }
+
+  getAllUsers(): Observable<Maybe<string[]>>{
+    return this.http.get<Maybe<string[]>>(`${this.apiUrl}/api/getAllUsers`)
+  }
 }
