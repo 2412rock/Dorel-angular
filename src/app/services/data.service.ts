@@ -49,6 +49,11 @@ export class DataService {
   getImaginiForServiciu(serviciuId: number, ofer: boolean){
     return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiForServiciu?serviciuId=${serviciuId}&ofer=${ofer}`)
   }
+
+  getImaginiForServiciuUser(serviciuId: number, userId: number, ofer: boolean){
+    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiServiciuUser?serviciuId=${serviciuId}&userId=${userId}&ofer=${ofer}`)
+  }
+
   assignUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request,) //requestOptions);
   }

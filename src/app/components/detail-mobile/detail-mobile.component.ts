@@ -84,7 +84,7 @@ export class DetailMobileComponent {
   loadData(){
     this.loading = true;
     this.checkReviewRights();
-    firstValueFrom(this.dataService.getImaginiForServiciu(this.searchResult.serviciuId, this.searchResult.ofer)).then(response => {
+    firstValueFrom(this.dataService.getImaginiForServiciuUser(this.searchResult.serviciuId, this.searchResult.userId,this.searchResult.ofer)).then(response => {
       if(response.isSuccess){
           this.imagini = response.data;
           firstValueFrom(this.dataService.getReviews(this.searchResult.userId, this.searchResult.serviciuId, 0)).then(response => {
