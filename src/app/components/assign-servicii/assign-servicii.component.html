@@ -1,4 +1,4 @@
-<div style="display: flex; flex-direction: column; min-height: 90%; width: 100%; background-color: var(--background-color); overflow-y: auto;"
+<div style="display: flex; flex-direction: column; min-height: 90%; width: 100%; overflow-y: auto;"
     [ngStyle]="{'justify-content': !pageReady? 'center' : '', 'align-items': !pageReady ? 'center' : ''}">
     <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="closeSidebar()"></app-side-bar-mobile>
     <div *ngIf="!pageReady" style="height: 100vh;">

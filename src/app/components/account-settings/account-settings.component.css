@@ -8,7 +8,7 @@ img{
 }
 
 .parent{
-  width: auto; background-color: var(--background-color); display: flex; align-items: center; overflow-y: auto; overflow-x: hidden; flex-direction: column; height: 90vh;
+  width: auto; display: flex; align-items: center; overflow-y: auto; overflow-x: hidden; flex-direction: column; height: 90vh;
 }
 
 

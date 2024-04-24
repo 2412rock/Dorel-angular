@@ -2,7 +2,7 @@
     color: var(--text-color-white); /* Example color */
   }
 .content{
-  width: 45vw; height: 75vh; background-color: var(--background-color);
+  width: 45vw; height: 75vh;  
 }
 
   @media screen and (max-width: 40em
