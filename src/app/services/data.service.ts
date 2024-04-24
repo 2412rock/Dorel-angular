@@ -67,10 +67,6 @@ export class DataService {
     return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getSearchResult?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}&ofer=${ofer}`)
   }
   
-  getImaginiForServiciuUser(serviciuId: number, judetId: number, userId: number, ofer: boolean){
-    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiServiciuUser?serviciuId=${serviciuId}&judetId=${judetId}&userId=${userId}&ofer=${ofer}`)
-  }
-
   getReviews(reviewedUserId:number, serviciuId: number, pageNumber: number){
     return this.http.get<Maybe<DBReviewModel[]>>(`${this.apiUrl}/api/getReviews?reviewedUserId=${reviewedUserId}&serviciuId=${serviciuId}&pageNumber=${pageNumber}`)
   }
