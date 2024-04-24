@@ -31,6 +31,10 @@ export class SearchResultsComponent {
   public loggedIn: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
   public showMessageNotification: boolean = false;
+  public cautMester: boolean = true;
+  public selectedDropDownvalue: number = 0;
+  public dropDownValuesSearch = ['Cauta mesteri', 'Cauta job'];
+  public dropdownValuesEdit = ['Servicii oferite', 'Caut mester']
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
@@ -67,16 +71,28 @@ export class SearchResultsComponent {
 
 
     if (this.editServicii) {
-      this.loadData(undefined, undefined, 0, true);
+      this.loadData(undefined, undefined, 0, this.cautMester);
     }
     else {
       this.serviciuName = this.sharedDataService.getServiciuName();
       this.judetName = this.sharedDataService.getJudetName();
-      this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, false);
+      this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, this.cautMester);
     }
     this.chatService.getMessageObservable().subscribe(e => {
       this.showMessageNotification = true;
     })
+  }
+
+  dropDownValueChange(itemIndex: number){
+    this.selectedDropDownvalue = itemIndex;
+    if(itemIndex === 0){
+      this.cautMester = true;
+      this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, true)
+    }
+    else{
+      this.cautMester = false;
+      this.loadData(this.sharedDataService.getServiciuSelectat() as number, this.sharedDataService.getJudetSelectat() as number, 0, false)
+    }
   }
 
 
@@ -106,6 +122,7 @@ export class SearchResultsComponent {
         filteredSearchResult.userEmail = this.searchResults[index].userEmail;
         filteredSearchResult.userName = this.searchResults[index].userName;
         filteredSearchResult.numberOfReviews = this.searchResults[index].numberOfReviews;
+        filteredSearchResult.ofer = this.searchResults[index].ofer;
 
         elementsWithSameServId.forEach(e => {
           filteredSearchResult.judetIds.push(e.judetId);
@@ -116,13 +133,14 @@ export class SearchResultsComponent {
     }    
   }
 
-  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, edit: boolean) {
+  loadData(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, cautMester: boolean) {
     this.searchResults = [];
     this.filteredSearchResults = [];
     this.loading = true;
     if (this.editServicii) {
-      firstValueFrom(this.dataService.getServiciiForUserAsSearchResults()).then(response => {
+      firstValueFrom(this.dataService.getServiciiForUserAsSearchResults(cautMester)).then(response => {
         if (response.isSuccess) {
+          console.log(response)
           response.data.forEach(searchResult => {
             this.searchResults.push(searchResult);
           });
@@ -136,7 +154,7 @@ export class SearchResultsComponent {
       }).catch(e => { this.modalService.openModalNotification("Error", `Something went wrong loading data`, false); this.loading = false;});
     }
     else {
-      firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber)).then(
+      firstValueFrom(this.dataService.getSearchResult(serviciuId, judetId, pageNumber, cautMester)).then(
         response => {
           if (response.isSuccess) {
             response.data.forEach(searchResult => {
@@ -161,14 +179,17 @@ export class SearchResultsComponent {
     this.judetName = model.judetName;
     this.sharedDataService.setServiciuSelectat(model.serviciuId, model.serviciuName);
     this.sharedDataService.setJudetselectat(model?.judetId, model?.judetName);
-    this.loadData(model?.serviciuId, model.judetId, 0, false);
+    this.loadData(model?.serviciuId, model.judetId, 0, this.cautMester);
   }
 
   handleClickCard(searchResult: FilteredSearchResult) {
+    console.log(searchResult)
     if (this.editServicii) {
       var serviciu = new DBServiciuModel();
       serviciu.id = searchResult.serviciuId;
       serviciu.name = searchResult.serviciuName;
+      serviciu.ofer = searchResult.ofer;
+      console.log(searchResult.ofer)
       this.sharedDataService.setServiciuToEdit(serviciu);
       this.router.navigate(["./edit-serviciu-page"]);
     }

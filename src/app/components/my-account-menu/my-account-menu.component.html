@@ -8,13 +8,13 @@
         <i class="fa-solid fa-caret-down account-dropdown-icon"></i>
     </div>
 </div>
-<div *ngIf="showAccountDropdown" class="top-dropdown" style="position: absolute;">
+<div *ngIf="showAccountDropdown" class="top-dropdown" style="position: absolute; z-index: 2;">
     <div class="account-dropdown">
-        <div class="account-dropdown-item" *ngFor="let item of accountDropDown">
+        <div class="account-dropdown-item" (click)="clickItem(item)" *ngFor="let item of accountDropDown">
             <i class="logout-icon" *ngIf="item === 'Log out'" class="fa-solid fa-arrow-right-from-bracket"></i>
-            <p *ngIf="item === 'Log out'" (click)="clickLogout()" class="dropdown-item-p"> {{item}} </p>
+            <p *ngIf="item === 'Log out'"  class="dropdown-item-p"> {{item}} </p>
             <i *ngIf="item != 'Log out'" class="logout-icon fa-solid fa-gear"></i>
-            <p (click)="clickAccountSettings()" *ngIf="item != 'Log out'" class="dropdown-item-p">{{item}}</p>
+            <p  *ngIf="item != 'Log out'"  class="dropdown-item-p">{{item}}</p>
         </div>
     </div>
 </div>

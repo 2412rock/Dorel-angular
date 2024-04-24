@@ -6,4 +6,5 @@ export class AssignServiciuRequest{
     public judeteIds: number[];
     public imagini: Imagine[];
     public descriere: string;
+    public ofer: boolean;
 }

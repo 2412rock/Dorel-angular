@@ -1,0 +1,15 @@
+<div class="select-item">
+    <div class="selected-item" (click)="showDropDown = !showDropDown">
+      <span style="">{{selectedDropdownValue}}</span>
+      <i class="fa-solid fa-caret-down" style="color: black; font-size: 1.4em; margin-left: 1em;"></i>
+    </div>
+    <div *ngIf="showDropDown"  style="background-color: var(--tab-color);">
+      <div class="dropdown-item" *ngFor="let item of dropdownValues; let i = index">
+        <div (click)="selectItem(i)">
+          <span>{{item}}</span>
+        </div>
+       
+      </div>
+      
+    </div>
+  </div>

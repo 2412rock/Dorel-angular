@@ -1,0 +1,27 @@
+.selected-item{
+    font-size: 1.3em;
+    border-bottom: 0.1em solid black;
+
+    cursor: pointer;
+    background-color: var(--tab-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    border-radius: 0.1em;
+}
+
+.dropdown-item{
+    font-size: 1em;
+    cursor: pointer;
+    padding: 0.5em;
+}
+
+.dropdown-item :hover{
+    background-color: var(--smaller-tab-color);
+}
+
+.select-item{
+    width: 15em;
+    height: 3em;
+}

@@ -113,14 +113,14 @@ export class SearchBarComponent {
   }
 
   clickSearch(){
-    if(this.selectedServiciu != null || this.selectedJudet != null){
+
       var model = new SearchModel();
       model.serviciuId = this.selectedServiciu?.id;
       model.judetId = this.selectedJudet?.id;
       model.serviciuName = this.selectedServiciu?.name;
       model.judetName = this.selectedJudet?.name;
       this.searchClickEvent.emit(model);
-    } 
+  
   }
 
   getServiciuInputWidth(): number {

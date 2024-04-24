@@ -29,12 +29,12 @@ export class DataService {
     return this.http.post<Maybe<DBJudetModel[]>>(`${this.apiUrl}/api/getJudete`, request);
   }
   
-  getServiciiForUser(){
-    return this.http.get<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServiciiUser`)
+  getServiciiForUser(ofer: boolean){
+    return this.http.get<Maybe<DBServiciuModel[]>>(`${this.apiUrl}/api/getServiciiUser?ofer=${ofer}`)
   }
 
-  getServiciiForUserAsSearchResults(){
-    return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getServiciiUserAsSearchResults`)
+  getServiciiForUserAsSearchResults(ofer: boolean){
+    return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getServiciiUserAsSearchResults?ofer=${ofer}`)
   }
 
 
@@ -46,8 +46,8 @@ export class DataService {
     return this.http.get<Maybe<string>>(`${this.apiUrl}/api/getDescriereForServiciu?serviciuId=${serviciuId}`)
   }
 
-  getImaginiForServiciu(serviciuId: number){
-    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiForServiciu?serviciuId=${serviciuId}`)
+  getImaginiForServiciu(serviciuId: number, ofer: boolean){
+    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiForServiciu?serviciuId=${serviciuId}&ofer=${ofer}`)
   }
   assignUserServicii(request: AssignServiciuRequest): Observable<Maybe<string>>{
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/assignUserServiciiAndJudet`, request,) //requestOptions);
@@ -57,18 +57,18 @@ export class DataService {
     return this.http.post<Maybe<string>>(`${this.apiUrl}/api/editUserServiciu`, request,) //requestOptions);
   }
 
-  deleteUserServicii(serviciuId: number): Observable<Maybe<string>>{
-    return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId=${serviciuId}`,) //requestOptions);
+  deleteUserServicii(serviciuId: number, ofer: boolean): Observable<Maybe<string>>{
+    return this.http.delete<Maybe<string>>(`${this.apiUrl}/api/deleteUserServiciu?serviciuId=${serviciuId}&ofer=${ofer}`,) //requestOptions);
   }
 
-  getSearchResult(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number){
+  getSearchResult(serviciuId: number | undefined, judetId: number | undefined, pageNumber: number, ofer: boolean){
     serviciuId = serviciuId === undefined ? -1 : serviciuId;
     judetId = judetId === undefined ? -1 : judetId;
-    return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getSearchResult?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}`)
+    return this.http.get<Maybe<SearchResult[]>>(`${this.apiUrl}/api/getSearchResult?serviciuId=${serviciuId}&judetId=${judetId}&pageNumber=${pageNumber}&ofer=${ofer}`)
   }
   
-  getImaginiForServiciuUser(serviciuId: number, judetId: number, userId: number){
-    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiServiciuUser?serviciuId=${serviciuId}&judetId=${judetId}&userId=${userId}`)
+  getImaginiForServiciuUser(serviciuId: number, judetId: number, userId: number, ofer: boolean){
+    return this.http.get<Maybe<Imagine[]>>(`${this.apiUrl}/api/getImaginiServiciuUser?serviciuId=${serviciuId}&judetId=${judetId}&userId=${userId}&ofer=${ofer}`)
   }
 
   getReviews(reviewedUserId:number, serviciuId: number, pageNumber: number){

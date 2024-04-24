@@ -1,5 +1,9 @@
+
 .content {
   background-color: var(--background-color);
+  /* background-image: url("https://img.freepik.com/premium-vector/working-tools-illustration-background-vector-seamless-pattern_153454-3340.jpg"); */
+  /* background-image: url('../../../assets/background.jpg'); */
+  
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -10,13 +14,14 @@
 
 
 .cards-container {
-  width: 80vw;
+  width: 90vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 1em;
   margin-bottom: 3em;
   overflow: hidden;
+  filter: blur(0);
 }
 
 

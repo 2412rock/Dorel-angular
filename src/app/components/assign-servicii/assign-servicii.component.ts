@@ -12,6 +12,7 @@ import { SearchModel } from 'src/app/model/search-model';
 import { SharedDataService } from 'src/app/services/shared-data.service';
 import { Router } from '@angular/router';
 import { ChatService } from 'src/app/services/chat.service';
+import { AssignServiciiText } from 'src/app/app-text/assign-servicii-text';
 
 @Component({
   selector: 'app-assign-servicii',
@@ -24,6 +25,7 @@ export class AssignServiciiComponent {
   public searchTermServiciu: string;
   public selectedServiciu: DBServiciuModel | null;
   public alreadySelectedServicii: DBServiciuModel[];
+  public alreadySelectedServiciiBackup: string;
   public selectedJudete: DBJudetModel[] = [];
   public serviciiSearchResultEventEmitter: EventEmitter<DBServiciuModel[]> = new EventEmitter<DBServiciuModel[]>();
   public judeteSearchResultEventEmitter: EventEmitter<DBJudetModel[]> = new EventEmitter<DBJudetModel[]>();
@@ -42,6 +44,9 @@ export class AssignServiciiComponent {
   public sidebarShowEvent = new EventEmitter<boolean>();
   public showMessageNotification: boolean = false;
 
+  public selectedOption: string = "ofer";
+  public selectImaginiText = AssignServiciiText.selectImagini;
+
   constructor(private dataService: DataService,
     private modalService: ModalService,
     private location: Location,
@@ -51,10 +56,19 @@ export class AssignServiciiComponent {
 
 
   ngOnInit(){
+    AssignServiciiText
     this.loadServiciiAlreadyOferite();
     this.chatService.getMessageObservable().subscribe(e => {
       this.showMessageNotification = true;
     })
+  }
+
+  getServiciuText(){
+    return this.selectedOption === "ofer" ? AssignServiciiText.selecteazaServiciuOfer : AssignServiciiText.selecteazaServiciuCaut;
+  }
+
+  getJudetText(){
+    return this.selectedOption === "ofer" ? AssignServiciiText.selectJudetOfer : AssignServiciiText.selectJudetCaut;
   }
 
   goToMessages(){
@@ -90,8 +104,13 @@ export class AssignServiciiComponent {
     }); 
   }
 
+  onOptionChange(option: string) {
+    this.loadServiciiAlreadyOferite();
+    
+  }
+
   loadServiciiAlreadyOferite(){
-    firstValueFrom(this.dataService.getServiciiForUser()).then(res => {
+    firstValueFrom(this.dataService.getServiciiForUser(this.selectedOption === 'ofer'? true: false)).then(res => {
           if(res.isSuccess){
             this.alreadySelectedServicii = res.data;
             this.pageReady = true;
@@ -165,6 +184,7 @@ export class AssignServiciiComponent {
       request.judeteIds = this.selectedJudete.map(e => e.id);
       request.descriere = this.userDescription;
       request.imagini = this.selectedImages;
+      request.ofer = this.selectedOption === "ofer" ? true : false;
       firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
         if(e.isSuccess){
           var dialogref = this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);

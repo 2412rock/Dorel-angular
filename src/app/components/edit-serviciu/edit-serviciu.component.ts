@@ -50,7 +50,7 @@ export class EditServiciuComponent {
     private sharedDataService: SharedDataService,
     private location: Location,
     private router: Router,
-    private chatService: ChatService){}
+    private chatService: ChatService,){}
     
     goToMessages(){
       this.showMessageNotification = false;
@@ -58,8 +58,7 @@ export class EditServiciuComponent {
     }
     
   ngOnInit(){
-    this.serviciu = new DBServiciuModel();
-    this.serviciu.id =  this.sharedDataService.getServiciuToEdit().id;
+    this.serviciu =  this.sharedDataService.getServiciuToEdit();
     this.getData();
     this.chatService.getMessageObservable().subscribe(e => {
       this.showMessageNotification = true;
@@ -78,7 +77,7 @@ export class EditServiciuComponent {
         firstValueFrom(this.dataService.getDescriereForServiciu(this.serviciu.id)).then(response => {
           if(response.isSuccess){
             this.userDescription = response.data;
-            firstValueFrom(this.dataService.getImaginiForServiciu(this.serviciu.id)).then(response => {
+            firstValueFrom(this.dataService.getImaginiForServiciu(this.serviciu.id, this.serviciu.ofer)).then(response => {
               if(response.isSuccess){
                 this.selectedImages = response.data;
                 this.loading = false;
@@ -182,7 +181,7 @@ export class EditServiciuComponent {
     var dialogref = this.modalService.openConfirmationModal("Confirm delete", "Are you sure you want to delete this service?");
     dialogref.afterClosed().subscribe(result => {
       if (result) {
-        firstValueFrom(this.dataService.deleteUserServicii(this.serviciu.id)).then(response => {
+        firstValueFrom(this.dataService.deleteUserServicii(this.serviciu.id, this.serviciu.ofer)).then(response => {
           if(response.isSuccess){
             let dialogref = this.modalService.openModalNotification("Success", "Serviciu deleted succesfully", true);
             dialogref.afterClosed().subscribe(result => {this.location.back();});

@@ -33,3 +33,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .darkened-backdrop {
     background-color: rgba(0, 0, 0, 0.6); /* Adjust the opacity as needed */
   }
+
+  .background{
+    background-image: url("https://static.vecteezy.com/system/resources/previews/014/531/956/non_2x/seamless-pattern-with-building-elements-outline-illustration-in-doodle-style-construction-tools-free-vector.jpg");
+    filter: blur(2px);
+    position: absolute;
+    width: 100vw;
+    min-height: 90vh;
+    z-index: 0;
+  }

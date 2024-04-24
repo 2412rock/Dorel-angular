@@ -26,7 +26,6 @@ import { DorelHttpInterceptor } from './interceptors/http-interceptor';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditServiciiComponent } from './components/edit-servicii/edit-servicii.component';
-import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.component';
 import { EditServiciiSidebarComponent } from './components/edit-servicii-sidebar/edit-servicii-sidebar.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ImageSelectorComponent } from './components/image-selector/image-selector.component';
@@ -53,6 +52,8 @@ import { ForgotPasswordResetComponent } from './components/forgot-password-reset
 import { AccountInfoComponent } from './components/account-info/account-info.component';
 import { OverviewAdminComponent } from './components/overview-admin/overview-admin.component';
 import { TruncateServiciuNamePipe } from './pipes/truncate-serviciu-name.pipe';
+import { GenericDropdownComponent } from './components/generic-dropdown/generic-dropdown.component';
+import { EditServiciuComponent } from './components/edit-serviciu/edit-serviciu.component';
 
 
 
@@ -71,7 +72,6 @@ import { TruncateServiciuNamePipe } from './pipes/truncate-serviciu-name.pipe';
         GenericSearchBarComponent,
         AssignServiciiComponent,
         EditServiciiComponent,
-        EditServiciuComponent,
         EditServiciiSidebarComponent,
         ImageSelectorComponent,
         SearchResultCardComponent,
@@ -87,6 +87,7 @@ import { TruncateServiciuNamePipe } from './pipes/truncate-serviciu-name.pipe';
         ClickOutsideDirective,
         SideBarMobileComponent,
         TruncatePipe,
+        EditServiciuComponent,
         TruncateServiciuNamePipe,
         ChatComponent,
         ChatWithUserMenuItemComponent,
@@ -96,7 +97,8 @@ import { TruncateServiciuNamePipe } from './pipes/truncate-serviciu-name.pipe';
         ForgotPasswordComponent,
         ForgotPasswordResetComponent,
         AccountInfoComponent,
-        OverviewAdminComponent
+        OverviewAdminComponent,
+        GenericDropdownComponent
     ], 
     providers: [
         {

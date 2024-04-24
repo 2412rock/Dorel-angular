@@ -10,9 +10,17 @@
         <div class="content">
             <!-- Your content here -->
             <!-- This section represents the existing content -->
+            <div style="margin-top: 1.3em; display: flex; align-items: center; justify-content: center; flex-direction: row">
+                <label style="color: var(--text-color-white); margin-right: 2em;">
+                  <input style="transform: scale(1.5);" type="radio" name="options" [(ngModel)]="selectedOption" (ngModelChange)="onOptionChange($event)" value="ofer"> Ofer serviciu
+                </label>
+                <label style="color: var(--text-color-white);" >
+                  <input style="transform: scale(1.5);" type="radio" name="options" [(ngModel)]="selectedOption" (ngModelChange)="onOptionChange($event)" value="caut"> Caut serviciu
+                </label>
+              </div>
             <div class="search-bars-width">
                 <div>
-                    <p style="color: var(--text-color-white);">Selecteaza serviciul pe care doresti sa il prestezi</p>
+                    <p style="color: var(--text-color-white);">{{getServiciuText()}}</p>
                     <div *ngIf="selectedServiciu == null">
                         <app-generic-search-bar [notAvailableOptions]="alreadySelectedServicii"
                             [showValidationErrorEvent]="serviciuValidationErrorEmitter"
@@ -35,10 +43,7 @@
 
                         </div>
                     </div>
-                    <p style="margin-top: 2em;color: var(--text-color-white);">Selecteaza judetle unde doresti sa
-                        prestezi serviciul. Clientii te vor
-                        gasi
-                        in functie de judetule pe care le selectezi</p>
+                    <p style="margin-top: 2em;color: var(--text-color-white);">{{getJudetText()}}</p>
                     <div class="">
                         <app-generic-search-bar [notAvailableOptions]="selectedJudete"
                             [showValidationErrorEvent]="judeteValidationErrorEmitter"
@@ -61,9 +66,7 @@
 
                 <!-- Description and images -->
                 <div style="margin-top: 2em;">
-                    <span style="color: var(--text-color-white);">Selecteaza imaginile care vrei sa apara in acest
-                        anunt. Prima imagine selectata va fi cea din
-                        cover</span>
+                    <span style="color: var(--text-color-white);">{{selectImaginiText}}</span>
                     <div [ngStyle]="{'border': showImagesValidation? '0.1em solid red' : ''}">
                         <div class="add-images">
                             <app-image-selector style="background-color: var(--input-color);" [selectedImages]="[]"
@@ -78,14 +81,14 @@
                     <div style="margin-top: 2em;width: 100%;">
                         <form style="border-radius: 1em;">
                             <label style="color: var(--text-color-white);" for="description">Description:</label><br>
-                            <textarea maxlength="250" (ngModelChange)="onDescriptionChange($event)"
+                            <textarea maxlength="600" (ngModelChange)="onDescriptionChange($event)"
                                 [ngStyle]="{'border': showDescriptionValidation ? '0.1em solid red' : '0.1em solid rgba(0, 0, 0, 0.1)'}"
                                 style="width: 100%;background-color: var(--input-color); color: var(--text-color-white); border-radius: 0.7em;"
                                 [(ngModel)]="userDescription" id="description" name="description" rows="6" cols="40"
                                 placeholder="Enter your description here..."></textarea><br>
                             <div style="position: relative; width: 100%;">
                                 <span style=" bottom: 1; right: 0; color: var(--text-color-white);">
-                                    {{ userDescription.length }}/250
+                                    {{ userDescription.length }}/600
                                 </span>
                             </div>
                         </form>

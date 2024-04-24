@@ -59,4 +59,12 @@ export class MyAccountMenuComponent {
     this.showAccountDropdown = false;
     this.router.navigate(['./account-settings'])
   }
+
+  clickItem(item: string){
+    if(item === 'Log out'){
+      this.clickLogout();
+    }else{
+      this.clickAccountSettings();
+    }
+  }
 }

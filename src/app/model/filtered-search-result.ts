@@ -22,4 +22,6 @@ export class FilteredSearchResult{
     public imagineCover: Imagine;
 
     public numberOfReviews: number;
+
+    public ofer: boolean;
 }

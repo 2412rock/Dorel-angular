@@ -36,7 +36,7 @@ export class EditServiciiComponent {
   }
 
   loadServicii(){
-    firstValueFrom(this.dataService.getServiciiForUser()).then(response => {
+    firstValueFrom(this.dataService.getServiciiForUser(true)).then(response => {
       if(response.isSuccess){
         this.servicii = response.data;
         

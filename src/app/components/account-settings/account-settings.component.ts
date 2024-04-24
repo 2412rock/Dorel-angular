@@ -25,11 +25,11 @@ export class AccountSettingsComponent {
   {
     "settings": 
     [{
-      "name": "Adauga servicii",
+      "name": "Adauga anunt",
       "img": "https://categories.olxcdn.com/assets/categories/olxro/servicii-afaceri-colaborari-619-1x.png"
      },
      {
-      "name": "Edit servicii",
+      "name": "Edit anunturi",
       "img": "https://media.istockphoto.com/id/1303877287/vector/paper-checklist-and-pencil-flat-pictogram.jpg?s=2048x2048&w=is&k=20&c=H67pTLGapJLgTogGNlD0GMhQN2049N93QrBzreO6_Eo="
      },
      {

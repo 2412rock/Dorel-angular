@@ -1,23 +1,17 @@
-<div *ngIf="!loading" class="content">
+<div *ngIf="!loading" class="content" style="z-index: 0;">
 
-    <div *ngIf="!loading" class="cards-container" style="">
-        <div *ngIf="serviciuName != undefined && judetName === undefined" style="width: 100%; margin: 1em;">
-            <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{serviciuName}}</span>
+    <div *ngIf="!loading" class="cards-container" style="z-index: 1;">
+        
+        <div
+            style="width: 100%; margin: 1em; display: flex; flex-direction: row; justify-content: space-between;">
+            <span *ngIf="!editServicii" style="color: white; font-size: 2.4em; font-weight: bold;">Am gasit {{filteredSearchResults.length}} rezultate</span>
+            <span *ngIf="editServicii" style="color: white; font-size: 2.4em; font-weight: bold;">Anunturile tale</span>
+            <app-generic-dropdown *ngIf="!editServicii" style="z-index: 1;" [selectedDropdownValue]="dropDownValuesSearch[selectedDropDownvalue]" (selectedValueEvent)="dropDownValueChange($event)" [dropdownValues]="dropDownValuesSearch"></app-generic-dropdown>
+            <app-generic-dropdown *ngIf="editServicii" style="z-index: 1;" [selectedDropdownValue]="dropdownValuesEdit[selectedDropDownvalue]" (selectedValueEvent)="dropDownValueChange($event)" [dropdownValues]="dropdownValuesEdit"></app-generic-dropdown>
+
         </div>
-        <div *ngIf="serviciuName != undefined && judetName != undefined" style="width: 100%; margin: 1em;">
-            <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii de {{serviciuName}} in judetul
-                {{judetName}}</span>
-        </div>
-        <div *ngIf="(serviciuName === undefined && judetName === undefined )&& (editServicii === false || editServicii === undefined)"
-            style="width: 100%; margin: 1em;">
-            <span style="color: white; font-size: 2.4em; font-weight: bold;">Cele mai cautate servicii</span>
-        </div>
-        <div *ngIf="editServicii" style="width: 100%; margin: 1em;">
-            <span style="color: white; font-size: 2.4em; font-weight: bold;">Serviciile tale</span>
-        </div>
-        <div *ngIf="judetName != undefined && serviciuName === undefined" style="width: 100%; margin: 1em;">
-            <span style="color: white; font-size: 2.4em; font-weight: bold;">Servicii in judetul {{judetName}}</span>
-        </div>
+
+
         <div *ngFor="let item of filteredSearchResults" style="margin: 1em;">
             <app-search-result-card (cardClickEvent)="handleClickCard($event)"
                 [searchResult]="item"></app-search-result-card>
