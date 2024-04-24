@@ -33,7 +33,7 @@
                 
             </div>
             <div>
-                <div *ngIf="userIsLoggedIn">
+                <div *ngIf="userIsLoggedIn && (showWriteReview || showEditReview)">
                     <app-button (click)="clickSendMsg()" [label]="'Send message'"></app-button>
                 </div>
                 
