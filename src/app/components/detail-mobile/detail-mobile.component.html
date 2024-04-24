@@ -8,6 +8,9 @@
                         style="color: white; font-size: 1em; font-weight: 400; margin-left: 1em;">{{searchResult.starsAverage}}/5
                         ({{searchResult.numberOfReviews}} reviews)</span>
         </div>
+        <div *ngIf="userIsLoggedIn">
+            <app-button (click)="clickSendMsg()" [label]="'Send message'"></app-button>
+        </div>
         <div style="display: flex; flex-direction: row; margin-top: 1em;">
             <div style="display: flex; flex-direction: row; align-items: center;">
                 <i class="fa-solid fa-envelope contact-text" style="color: white;"></i>

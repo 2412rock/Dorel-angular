@@ -188,7 +188,7 @@ export class DetailMobileComponent {
   clickSendMsg(){
     
     this.sharedDataService.setNewChatData(this.searchResult.userId, this.searchResult.userName);
-    this.router.navigate(['./chat'])
+    this.router.navigate(['./chat-list-mobile'])
   }
 
   goBack(){
