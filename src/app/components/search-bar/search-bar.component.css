@@ -119,6 +119,7 @@ i{
 ) {
   .search-bars-container {
     width: 20em; /* Adjusted width for smaller resolutions */
+    z-index: 2;
   }
   .display-flex {
     flex-direction: column; /* Adjusted width for smaller resolutions */
@@ -144,6 +145,7 @@ i{
 
   .search-btn{
     border-radius: 0;
+    z-index: 3;
   }
 
   .search-result-judet{

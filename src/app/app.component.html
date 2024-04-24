@@ -1,7 +1,10 @@
+<div class="background">
+
+</div>
 <div class="parent">
   <div *ngIf="showSearchBar" class="top">
     <span (click)="clickLogo()" class="logo">DOREL</span>
-    <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
+    <i (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
     <div >
       <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="sideBarClose()"></app-side-bar-mobile>
     </div>
@@ -11,13 +14,13 @@
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
       <div class="mesaje" *ngIf="userLoggedIn" (click)="goToMessages()">
-        <span class="mesaje-text" style="font-size: medium; color: var(--text-color-white); margin-right: 0.7em;">Mesaje</span>
-        <i style="font-size: 2em; color: white;"
+        <span class="mesaje-text" style="font-size: medium; color: var(--text-color-white); margin-right: 0.7em; z-index: 2;">Mesaje</span>
+        <i style="font-size: 2em; color: white;z-index: 2;"
         class="fa-solid fa-message"></i>
       </div>
-      <span style="color: red; font-size: 3em;"
+      <span style="color: red; font-size: 3em; z-index: 2;"
         [ngStyle]="{'visibility': showMessageNotification ? 'visible' : 'hidden'}">*</span>
-      <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em;"></app-my-account-menu>
+      <app-my-account-menu class="account" style="margin-right: 2em; margin-bottom: 1em; z-index: 2;"></app-my-account-menu>
     </div>
   </div>
 

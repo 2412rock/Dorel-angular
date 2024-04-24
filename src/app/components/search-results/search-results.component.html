@@ -4,7 +4,7 @@
         
         <div
             style="width: 100%; margin: 1em; display: flex; flex-direction: row; justify-content: space-between;">
-            <span *ngIf="!editServicii" style="color: white; font-size: 2.4em; font-weight: bold;">Am gasit {{filteredSearchResults.length}} rezultate</span>
+            <span *ngIf="!editServicii" style="color: white; font-size: 2.4em; font-weight: bold;">Am gasit {{filteredSearchResults.length}} rezultat(e)</span>
             <span *ngIf="editServicii" style="color: white; font-size: 2.4em; font-weight: bold;">Anunturile tale</span>
             <app-generic-dropdown *ngIf="!editServicii" style="z-index: 1;" [selectedDropdownValue]="dropDownValuesSearch[selectedDropDownvalue]" (selectedValueEvent)="dropDownValueChange($event)" [dropdownValues]="dropDownValuesSearch"></app-generic-dropdown>
             <app-generic-dropdown *ngIf="editServicii" style="z-index: 1;" [selectedDropdownValue]="dropdownValuesEdit[selectedDropDownvalue]" (selectedValueEvent)="dropDownValueChange($event)" [dropdownValues]="dropdownValuesEdit"></app-generic-dropdown>
@@ -17,13 +17,13 @@
                 [searchResult]="item"></app-search-result-card>
         </div>
         <div *ngIf="searchResults.length === 0 && !editServicii"
-            style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">
+            style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 90vw; margin-top: 4em;">
             <i class="fa-solid fa-face-sad-tear" style="font-size: 4em; color: var(--text-color-white);"></i>
             <p style="font-size: 2em; color: var(--text-color-white); margin-top: 3em;">Nu am gasit nicio persona care
                 ofera servicii</p>
         </div>
         <div *ngIf="searchResults.length === 0 && editServicii != undefined && editServicii"
-            style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 70vw; margin-top: 4em;">
+            style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 90vw; margin-top: 4em;">
             <i class="fa-solid fa-exclamation" style="font-size: 4em; color: var(--text-color-white);"></i>
             <p style="font-size: 2em; color: var(--text-color-white); margin-top: 3em;">Nu ai publicat niciun serviciu
             </p>

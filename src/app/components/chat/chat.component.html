@@ -3,10 +3,10 @@
     <div style="display: flex; flex-direction: row; width: 100%; height: 100%">
         <div
             class="chat-list">
-            <div *ngIf="groups.length === 0" style="font-size: medium; color: white; margin-top: 3em;">
+            <div *ngIf="groups.length === 0" style="font-size: medium; color: white; margin-top: 3em; position: relative; z-index: 2;">
                 You dont have any chats yet
             </div>
-            <div *ngFor="let group of groups; let i = index" class="chat-div"
+            <div *ngFor="let group of groups; let i = index" class="chat-div" style="position: relative; z-index: 2;"
                 [ngStyle]="{'background-color': selectedChat === i ? 'gray' : ''}">
                 <div (click)="clickChat(i)">
                     <app-chat-with-user-menu-item [showStar]="isNewMessage(i)" style="width: 100%;" [chatWithUsername]="group.withUserName"
@@ -16,7 +16,7 @@
         </div>
         <div *ngIf="openChat" class="chat">
             <div #scrollableContent style="height: 90%; width: 100%; max-height: 100%; overflow-y: scroll;">
-                <div *ngFor="let message of groupMessages" style="width: 100%; display: flex;"
+                <div *ngFor="let message of groupMessages" style="width: 100%; display: flex; position: relative; z-index: 2;"
                     [ngStyle]="{'justify-content': message.senderId === myUserId? 'end' : 'start'}">
                     <p
                         style="color: white; font-size: large; border: 0.1em solid white; padding: 1em; border-radius: 10%; background-color: gray; margin: 0.5em;">
@@ -24,12 +24,12 @@
                 </div>
             </div>
             <div
-                style="width: 100%; height: 9%; display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                style="width: 100%; height: 9%; display: flex; flex-direction: row; align-items: center; justify-content: center;position: relative; z-index: 2;">
                 <input (keyup.enter)="sendMessage()"
                     style="width: 90%; height: 100%;border: 1px solid #ccc; border-radius: 1em;" type="text"
                     [(ngModel)]="text" placeholder="Type your message">
                 <div (click)="sendMessage()"
-                    style="background-color: var(--selected-color); padding: 0.8em; display: flex; align-items: center; justify-content: center; margin-left: 1em; cursor: pointer; border: 1px solid #ccc; border-radius: 0.7em;">
+                    style="position: relative; z-index: 2;background-color: var(--selected-color); padding: 0.8em; display: flex; align-items: center; justify-content: center; margin-left: 1em; cursor: pointer; border: 1px solid #ccc; border-radius: 0.7em;">
                     <span>Send</span>
                 </div>
             </div>

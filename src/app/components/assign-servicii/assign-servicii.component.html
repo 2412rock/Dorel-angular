@@ -10,7 +10,7 @@
         <div class="content">
             <!-- Your content here -->
             <!-- This section represents the existing content -->
-            <div style="margin-top: 1.3em; display: flex; align-items: center; justify-content: center; flex-direction: row">
+            <div style="margin-top: 1.3em; display: flex; align-items: center; justify-content: center; flex-direction: row; position: relative; z-index: 2;">
                 <label style="color: var(--text-color-white); margin-right: 2em;">
                   <input style="transform: scale(1.5);" type="radio" name="options" [(ngModel)]="selectedOption" (ngModelChange)="onOptionChange($event)" value="ofer"> Ofer serviciu
                 </label>
@@ -20,9 +20,9 @@
               </div>
             <div class="search-bars-width">
                 <div>
-                    <p style="color: var(--text-color-white);">{{getServiciuText()}}</p>
+                    <p style="color: var(--text-color-white); position: relative; z-index: 2;">{{getServiciuText()}}</p>
                     <div *ngIf="selectedServiciu == null">
-                        <app-generic-search-bar [notAvailableOptions]="alreadySelectedServicii"
+                        <app-generic-search-bar style="position: relative; z-index: 4;" [notAvailableOptions]="alreadySelectedServicii"
                             [showValidationErrorEvent]="serviciuValidationErrorEmitter"
                             (selectedValueEmitter)="getSelectedValueServicii($event)"
                             (typedValue)="getServiciuTypedValue($event)"
@@ -31,7 +31,7 @@
 
                     </div>
                     <div *ngIf="selectedServiciu != null"
-                        style="display: flex; justify-content: start; align-items: center;">
+                        style="display: flex; justify-content: start; align-items: center;position: relative; z-index: 2;">
                         <div style="width: 34%;">
                             <div *ngIf="selectedServiciu != null" class="selected-item"
                                 style="background-color: var(--selected-color);">
@@ -43,15 +43,15 @@
 
                         </div>
                     </div>
-                    <p style="margin-top: 2em;color: var(--text-color-white);">{{getJudetText()}}</p>
+                    <p style="margin-top: 2em;color: var(--text-color-white);position: relative; z-index: 2;">{{getJudetText()}}</p>
                     <div class="">
-                        <app-generic-search-bar [notAvailableOptions]="selectedJudete"
+                        <app-generic-search-bar style="position: relative; z-index: 3;" [notAvailableOptions]="selectedJudete"
                             [showValidationErrorEvent]="judeteValidationErrorEmitter"
                             (selectedValueEmitter)="getSelectedValueJudete($event)"
                             (typedValue)="getJudetTypedValue($event)"
                             [searchResultEventEmitter]="judeteSearchResultEventEmitter"
                             [placeHolderText]="'Cauta judet'"></app-generic-search-bar>
-                        <div class="selected-items">
+                        <div class="selected-items" style="position: relative; z-index: 2;">
                             <div *ngFor="let item of selectedJudete">
                                 <div class="selected-item">
                                     <p class="selected-item-text">{{item.name}}</p>
@@ -65,7 +65,7 @@
                 </div>
 
                 <!-- Description and images -->
-                <div style="margin-top: 2em;">
+                <div style="margin-top: 2em;position: relative; z-index: 2;">
                     <span style="color: var(--text-color-white);">{{selectImaginiText}}</span>
                     <div [ngStyle]="{'border': showImagesValidation? '0.1em solid red' : ''}">
                         <div class="add-images">
@@ -73,12 +73,12 @@
                                 (outPutImages)="changeImages($event)"></app-image-selector>
                         </div>
                     </div>
-                    <div *ngIf="showImagesValidation">
+                    <div *ngIf="showImagesValidation" style="position: relative; z-index: 2;">
                         <span style="color: red; font-size: medium;">Select at least one image</span>
                     </div>
 
 
-                    <div style="margin-top: 2em;width: 100%;">
+                    <div style="margin-top: 2em;width: 100%; position: relative; z-index: 2;">
                         <form style="border-radius: 1em;">
                             <label style="color: var(--text-color-white);" for="description">Description:</label><br>
                             <textarea maxlength="600" (ngModelChange)="onDescriptionChange($event)"
