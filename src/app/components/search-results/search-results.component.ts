@@ -196,13 +196,13 @@ export class SearchResultsComponent {
     else {
       this.sharedDataService.setSearchResult(searchResult);
       //
-      //this.router.navigate(["./detail-mobile"])
-      if(this.platform.ANDROID || this.platform.IOS){
-        this.router.navigate(["./detail-mobile"]);
-      }
-      else{
-        this.router.navigate(["./serviciu-detail-page"]);
-      }
+      this.router.navigate(["./detail-mobile"])
+      // if(this.platform.ANDROID || this.platform.IOS){
+      //   this.router.navigate(["./detail-mobile"]);
+      // }
+      // else{
+      //   this.router.navigate(["./serviciu-detail-page"]);
+      // }
       
     }
   }
