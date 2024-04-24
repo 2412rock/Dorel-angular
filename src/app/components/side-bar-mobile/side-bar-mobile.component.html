@@ -1,4 +1,4 @@
-<div *ngIf="sidebarShow" class="sidebar" (click)="stopPropagation($event)">
+<div *ngIf="sidebarShow" class="sidebar" style="z-index: 100;" (click)="stopPropagation($event)">
     <div [appClickOutside]="sidebarShow" (clickOutsideEvent)="closeSidebar()" *ngIf="sidebarShow">
         <div *ngIf="!loggedIn" class="btn-in-sidebar" (click)="clickLogin()">
             <i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 0.5em;"></i>

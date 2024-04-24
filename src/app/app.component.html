@@ -1,7 +1,7 @@
 <div class="parent background">
   <div *ngIf="showSearchBar" class="top">
     <span (click)="clickLogo()" class="logo">DOREL</span>
-    <i (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
+    <i id="sidebar-btn" (click)="toggleSidebar()" class="fa-solid fa-bars sidebar-button-toggle"></i>
     <div >
       <app-side-bar-mobile [sidebarShowChange]="sidebarShowEvent" (sideBarClose)="sideBarClose()"></app-side-bar-mobile>
     </div>

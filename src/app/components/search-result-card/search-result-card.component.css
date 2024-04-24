@@ -6,6 +6,8 @@
     padding-bottom: 2em;
     cursor: pointer;
     border-radius: 1em;
+    position: relative;
+    z-index:0;
 }
 
 .content:hover{
