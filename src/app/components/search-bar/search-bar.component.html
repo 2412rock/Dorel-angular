@@ -25,7 +25,7 @@
         <!-- <input [ngClass]="{'border-radius-right-bottom': !dropdownLocationVisible}" type="text" (click)="dropdownServiciiVisible = false" class="flex-locatie input-container border-radius-right-top" [formControl]="textInputControlLocation" placeholder="Locatie"/> -->
     </div>
 </div>
-<div class="search-bars-container">
+<div class="search-bars-container" style="z-index: 10; position: relative;">
     <div  class="display-flex">
         <div [ngStyle]="{'visibility': dropdownServiciiVisible ? 'visible' : 'hidden'}" class="flex-serviciu input-container border-radius-left-bottom input-container border-radius-right-bottom search-result-serviciu" [style.width.px]="getServiciuInputWidth()">
             <div class="dropdown-items-header">Results</div>

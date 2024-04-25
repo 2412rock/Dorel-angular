@@ -100,5 +100,9 @@
       margin-right: 0!important;
     }
 
+    .notification{
+      display: none;
+    }
+
 
 }
