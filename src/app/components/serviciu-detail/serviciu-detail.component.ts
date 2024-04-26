@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { DBReviewModel } from 'src/app/model/DBReviewModel';
 import { Imagine } from 'src/app/model/Imagine';
@@ -29,11 +29,13 @@ export class ServiciuDetailComponent {
   public showEditReview: boolean = false;
   public showMessageNotification: boolean = false;
   public userIsLoggedIn: boolean = false;
+  public ofer: string;
 
   constructor(private dataService: DataService,
     private sharedDataService: SharedDataService,
     private modalService: ModalService,
     private router: Router,
+    private route: ActivatedRoute,
     private localStorageService: LocalstorageService,
     private chatService: ChatService){}
 
@@ -42,7 +44,10 @@ export class ServiciuDetailComponent {
     this.loadData();
     this.chatService.getMessageObservable().subscribe(e => {
       this.showMessageNotification = true;
-    })
+    });
+    this.route.queryParams.subscribe(params => {
+      this.ofer = params['ofer'];
+  });
   }
 
 
@@ -86,23 +91,27 @@ export class ServiciuDetailComponent {
     firstValueFrom(this.dataService.getImaginiForServiciuUser(this.searchResult.serviciuId, this.searchResult.userId,this.searchResult.ofer)).then(response => {
       if(response.isSuccess){
           this.imagini = response.data;
-          firstValueFrom(this.dataService.getReviews(this.searchResult.userId, this.searchResult.serviciuId, 0)).then(response => {
-            if(response.isSuccess){
-              response.data.forEach(e => {
-                if(e.reviewerUserId.toString() === this.localStorageService.getUserId()){
-                  this.showWriteReview = false;
-                }
-              })
-              this.reviews = response.data;
-            }
-            else{
-              this.modalService.openModalNotification("Failed", `Failed to load data:${response.exceptionMessage}`, false);
-            }
+          if(this.ofer === "true"){
+            firstValueFrom(this.dataService.getReviews(this.searchResult.userId, this.searchResult.serviciuId, 0)).then(response => {
+              if(response.isSuccess){
+                response.data.forEach(e => {
+                  if(e.reviewerUserId.toString() === this.localStorageService.getUserId()){
+                    this.showWriteReview = false;
+                  }
+                })
+                this.reviews = response.data;
+              }
+              else{
+                this.modalService.openModalNotification("Failed", `Failed to load data:${response.exceptionMessage}`, false);
+              }
+              this.loading = false;
+            }).catch(e => {
+              this.loading = false;
+              this.modalService.openModalNotification("Failed", `Unkown error occured`, false);
+            });
+          }else{
             this.loading = false;
-          }).catch(e => {
-            this.loading = false;
-            this.modalService.openModalNotification("Failed", `Unkown error occured`, false);
-          });
+          }
       }else{
         this.loading = false;
         this.modalService.openModalNotification("Failed", `Failed to load data:${response.exceptionMessage}`, false);

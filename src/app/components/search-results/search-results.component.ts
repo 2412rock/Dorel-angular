@@ -204,7 +204,9 @@ export class SearchResultsComponent {
         this.router.navigate(["./detail-mobile"]);
       }
       else{
-        this.router.navigate(["./serviciu-detail-page"]);
+        this.router.navigate(["./serviciu-detail-page"], {
+          queryParams: { ofer: this.cautMester }
+        });
       }
       
     }

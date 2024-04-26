@@ -15,11 +15,12 @@
             </div>
             <div
                 style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin-top: 0.3em">
-                <div style="display: flex; flex-direction: column; margin-top: 2em;">
-                    <p style="color: white; font-size: 1em; margin-bottom: 0.4em;">
+                <div *ngIf="searchResult.ofer" style="display: flex; flex-direction: column; margin-top: 2em;">
+                    <p *ngIf="searchResult.starsAverage != 0 && searchResult.ofer" style="color: white; font-size: 1em; margin-bottom: 0.4em;">
                         {{searchResult.starsAverage + " / 5 " + "("+searchResult.numberOfReviews+")"}} </p>
-                    <app-star-rating [static]="true" [rating]="searchResult.starsAverage"
+                    <app-star-rating [static]="true" *ngIf="searchResult.starsAverage != 0 && searchResult.ofer" [rating]="searchResult.starsAverage"
                         style="bottom: 0;"></app-star-rating>
+                    <p *ngIf="searchResult.starsAverage === 0 && searchResult.ofer" style="color: var(--text-color-white);">No reviews yet</p>
                 </div>
                 <div style="display: flex; flex-direction: column; align-items: start; margin-top: 1.5em">
                     <div

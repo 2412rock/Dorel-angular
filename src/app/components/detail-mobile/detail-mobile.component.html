@@ -12,13 +12,13 @@
             <app-button (click)="clickSendMsg()" [label]="'Send message'"></app-button>
         </div>
         <div style="display: flex; flex-direction: row; margin-top: 1em;">
-            <div style="display: flex; flex-direction: row; align-items: center;">
+            <div *ngIf="searchResult.email != null && searchResult.email.trim() != ''" style="display: flex; flex-direction: row; align-items: center;">
                 <i class="fa-solid fa-envelope contact-text" style="color: white;"></i>
-                <span class="contact-text" style="margin-left:0.3em; color: white;">email.com</span>
+                <span class="contact-text" style="margin-left:0.3em; color: white;">{{searchResult.email}}</span>
             </div>
-            <div style="display: flex; flex-direction: row; align-items: center; margin-left: 0.8em;">
+            <div *ngIf="searchResult.phone != null && searchResult.phone.trim() != ''" style="display: flex; flex-direction: row; align-items: center; margin-left: 0.8em;">
                 <i class="fa-solid fa-phone contact-text" style="color: white;"></i>
-                <span class="contact-text margin-left:1em" style="margin-left:0.3em; color: white;">012 344 231</span>
+                <span class="contact-text margin-left:1em" style="margin-left:0.3em; color: white;">{{searchResult.phone}}</span>
             </div>
         </div>
         <div style="word-wrap: break-word; max-width: 21em; overflow-wrap: break-word; margin-top: 1em;">
