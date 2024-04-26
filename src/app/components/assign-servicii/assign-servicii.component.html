@@ -63,6 +63,12 @@
                         </div>
                     </div>
                 </div>
+                <label></label>
+                <p style="margin-top: 1em;color: var(--text-color-white);position: relative; z-index: 2;">Adauga datele de contact care vor aparea in anunt. Campurile nu sunt obligatorii</p>
+                <div style="display: flex; flex-direction: row;">
+                    <input maxlength="10" type="tel" class="phone-input" placeholder="Numar de telefon" [(ngModel)]="phoneNumber" (keypress)="onKeyPress($event)">
+                    <input maxlength="50" type="tel" class="phone-input" placeholder="Email" style="margin-left: 2em;" [(ngModel)]="contactEmail">
+                </div>
 
                 <!-- Description and images -->
                 <div style="margin-top: 2em;position: relative; z-index: 2;">

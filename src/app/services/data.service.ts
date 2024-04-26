@@ -11,6 +11,7 @@ import { Imagine } from '../model/Imagine';
 import { SearchResult } from '../model/search-result';
 import { DBReviewModel } from '../model/DBReviewModel';
 import { PostReviewModel } from '../model/Requests/post-review-model';
+import { DescriereAndContact } from '../model/descriere-and-contact';
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +43,8 @@ export class DataService {
     return this.http.get<Maybe<DBJudetModel[]>>(`${this.apiUrl}/api/getJudeteForServiciu?serviciuId=${serviciuId}`)
   }
 
-  getDescriereForServiciu(serviciuId: number){
-    return this.http.get<Maybe<string>>(`${this.apiUrl}/api/getDescriereForServiciu?serviciuId=${serviciuId}`)
+  getDescriereAndContactForServiciu(serviciuId: number){
+    return this.http.get<Maybe<DescriereAndContact>>(`${this.apiUrl}/api/getDescriereAndContactForServiciu?serviciuId=${serviciuId}`)
   }
 
   getImaginiForServiciu(serviciuId: number, ofer: boolean){

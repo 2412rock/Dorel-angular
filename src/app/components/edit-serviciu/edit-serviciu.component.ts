@@ -30,7 +30,9 @@ export class EditServiciuComponent {
   public selectedImages: Imagine[] = [];
   public selectedFiles: any[] = [];
   public showDescriptionValidation: boolean = false
-
+  public phone: string | null;
+  public contactEmail: string | null;
+ 
   public isToggleEnabled: boolean;
   public searchTermServiciu: string;
   public subscription: any;
@@ -69,14 +71,24 @@ export class EditServiciuComponent {
     this.getData();
   }
 
+  onKeyPress(event: KeyboardEvent) {
+    // Allow only numeric characters
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+    }
+  }
+
   getData(){
     this.loading = true;
     firstValueFrom(this.dataService.getJudeteForServiciu(this.serviciu.id)).then(response => {
       if(response.isSuccess){
         this.selectedJudete = response.data;
-        firstValueFrom(this.dataService.getDescriereForServiciu(this.serviciu.id)).then(response => {
+        firstValueFrom(this.dataService.getDescriereAndContactForServiciu(this.serviciu.id)).then(response => {
           if(response.isSuccess){
-            this.userDescription = response.data;
+            this.userDescription = response.data.descriere;
+            this.phone = response.data.phone;
+            this.contactEmail = response.data.email;
             firstValueFrom(this.dataService.getImaginiForServiciu(this.serviciu.id, this.serviciu.ofer)).then(response => {
               if(response.isSuccess){
                 this.selectedImages = response.data;
@@ -159,6 +171,9 @@ export class EditServiciuComponent {
       editRequest.imagini = this.selectedImages;
       editRequest.judeteIds = this.selectedJudete.map(e => e.id);
       editRequest.serviciuId = this.serviciu.id;
+      editRequest.ofer = this.serviciu.ofer;
+      editRequest.phone = this.phone;
+      editRequest.email = this.contactEmail;
 
       firstValueFrom(this.dataService.editUserServicii(editRequest)).then(response => {
         if(response.isSuccess){

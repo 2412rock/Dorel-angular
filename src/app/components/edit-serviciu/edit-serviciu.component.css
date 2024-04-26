@@ -61,6 +61,28 @@
     cursor: pointer;
 }
 
+.phone-input {
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: var(--text-color-white);
+    width: 250px;
+    outline: none;
+    transition: border-color 0.3s;
+    background-color: var(--input-color);
+    border-radius: 0.7em;
+  }
+
+  .phone-input::placeholder {
+    color: var(--text-color-white); /* Color for the placeholder text */
+    opacity: 1; /* Ensure the placeholder text is fully visible */
+  }
+  
+  .phone-input:focus {
+    border-color: #007bff; /* Change to your preferred focus color */
+  }
+
 
 .margin-right{
     margin-right: 10em;

@@ -43,6 +43,8 @@ export class AssignServiciiComponent {
   public sidebarShow: boolean = false;
   public sidebarShowEvent = new EventEmitter<boolean>();
   public showMessageNotification: boolean = false;
+  public phoneNumber: string = "";
+  public contactEmail: string = "";
 
   public selectedOption: string = "ofer";
   public selectImaginiText = AssignServiciiText.selectImagini;
@@ -61,6 +63,14 @@ export class AssignServiciiComponent {
     this.chatService.getMessageObservable().subscribe(e => {
       this.showMessageNotification = true;
     })
+  }
+
+  onKeyPress(event: KeyboardEvent) {
+    // Allow only numeric characters
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+    }
   }
 
   getServiciuText(){
@@ -185,6 +195,8 @@ export class AssignServiciiComponent {
       request.descriere = this.userDescription;
       request.imagini = this.selectedImages;
       request.ofer = this.selectedOption === "ofer" ? true : false;
+      request.phone = this.phoneNumber;
+      request.email = this.contactEmail;
       firstValueFrom(this.dataService.assignUserServicii(request)).then(e => {
         if(e.isSuccess){
           var dialogref = this.modalService.openModalNotification("Success", "Your data has been succesfully published!", true);

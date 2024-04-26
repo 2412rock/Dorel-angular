@@ -24,4 +24,8 @@ export class SearchResult {
     public numberOfReviews: number;
 
     public ofer: boolean;
+
+    public phone: string;
+
+    public email: string;
 }

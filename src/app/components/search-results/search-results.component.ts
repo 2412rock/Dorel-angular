@@ -123,6 +123,8 @@ export class SearchResultsComponent {
         filteredSearchResult.userName = this.searchResults[index].userName;
         filteredSearchResult.numberOfReviews = this.searchResults[index].numberOfReviews;
         filteredSearchResult.ofer = this.searchResults[index].ofer;
+        filteredSearchResult.email = this.searchResults[index].email;
+        filteredSearchResult.phone = this.searchResults[index].phone;
 
         elementsWithSameServId.forEach(e => {
           filteredSearchResult.judetIds.push(e.judetId);
@@ -144,6 +146,7 @@ export class SearchResultsComponent {
           response.data.forEach(searchResult => {
             this.searchResults.push(searchResult);
           });
+          console.log(this.searchResults)
         }
         else {
           this.modalService.openModalNotification("Error", `Something went wrong loading data: ${response.exceptionMessage}`, false);

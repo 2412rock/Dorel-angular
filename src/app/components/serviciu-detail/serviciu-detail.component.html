@@ -7,13 +7,13 @@
                     <div style="display: flex; flex-direction: column;">
                         <span class="username">{{searchResult.userName}}</span>
                         <div class="contact-details">
-                            <div style="display: flex; flex-direction: row; align-items: center;">
+                            <div *ngIf="searchResult.email != null && searchResult.email.trim() != ''" style="display: flex; flex-direction: row; align-items: center;">
                                 <i class="fa-solid fa-envelope contact-text"></i>
-                                <span class="contact-text" style="margin-left:0.3em">email.com</span>
+                                <span class="contact-text" style="margin-left:0.3em">{{searchResult.email}}</span>
                             </div>
-                            <div class="phone">
+                            <div *ngIf="searchResult.phone != null && searchResult.phone.trim() != ''" class="phone">
                                 <i class="fa-solid fa-phone contact-text"></i>
-                                <span class="contact-text margin-left:1em" style="margin-left:0.3em">012 344 231</span>
+                                <span class="contact-text margin-left:1em" style="margin-left:0.3em">{{searchResult.phone}}</span>
                             </div>
                             
                         </div>
