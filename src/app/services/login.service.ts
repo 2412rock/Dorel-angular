@@ -14,7 +14,7 @@ import { ResetPasswordReq } from '../model/Requests/reset-password-req';
 })
 export class LoginService {
 
-  private apiUrl = isDevMode() ? 'http://localhost:4500' : 'https://dorelapp.xyz:4200'; 
+  private apiUrl = isDevMode() ? 'http://localhost:4500' : 'https://dorelapp.xyz:4500'; 
 
   constructor(private http: HttpClient) {   }
 

@@ -10,7 +10,7 @@ import { Maybe } from '../model/maybe';
 })
 export class AccessLogsService {
 
-  private apiUrl = isDevMode() ? 'http://localhost:4500' : 'https://dorelapp.xyz:4200'; 
+  private apiUrl = isDevMode() ? 'http://localhost:4500' : 'https://dorelapp.xyz:4500'; 
 
   constructor(private http: HttpClient) {   }
 

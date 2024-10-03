@@ -12,7 +12,7 @@ import { Message } from '../model/group';
 export class ChatService {
 
   private hubConnection: HubConnection;
-  private apiUrl = isDevMode() ? 'http://localhost:4500' : 'https://dorelapp.xyz:4200'; 
+  private apiUrl = isDevMode() ? 'http://localhost:4500' : 'https://dorelapp.xyz:4500'; 
   
     private messageReceived = new Subject<Message>();
 
